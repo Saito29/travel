@@ -1,7 +1,6 @@
 <?php 
 include("path.php");
 include(ROOT_PATH."/app/config/db.php");
-
 ?>
 
 <!DOCTYPE html>
@@ -357,7 +356,7 @@ include(ROOT_PATH."/app/config/db.php");
                         <!--========== End of Main Content =================-->
 
                         <!--=========== Start of Sidebar Content ===============-->
-                        <div class="col-md-4 col-sm-4 col-xl-4 col-xxl-4 mt-4" id="category">
+                        <div class="col-md-4 col-sm-4 col-xl-4 col-xxl-4 mt-5" id="category">
                             <!--Search sidebar Section start here-->
                             <div class="card border-success">
                                 <h4 class="card-header text-success">Search</h4>
