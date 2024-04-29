@@ -1,0 +1,701 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    --text: #090c0e;
+    --background: #f5f7f9;
+    --primary: #738ba4;
+    --secondary: #b6a3c3;
+    --accent: #af8fb6;
+
+    /*Dark mode color*/
+    --text-dark: #eff3f5;
+    --background-dark: #06080a;
+    --primary-dark: #5b728b;
+    --secondary-dark: #503c5d;
+    --accent-dark: #68496f;
+
+    --font-default: 'Poppins', sans-serif;
+    --font-primary: 'Open Sans', sans-serif;
+    --font-secondary: 'Noto Sans', sans-serif;
+}
+
+/*body of log in, signin, forgetpassword*/
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-default);
+}
+
+/*Sign in Section CSS body of card*/
+.card-signin{
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    margin: 40px auto;
+}
+
+/*Card signin body*/
+.card-signin .card-pd-signin{
+    border-top: 2px solid rgba(182, 163, 195, 0.6);
+    width: 28rem;
+    height: 30rem;
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+
+/*Card body and content of logo signin */
+.card-signin .card-pd-signin .logo-content-signin{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 2px auto;
+}
+
+.card-signin .card-pd-signin .logo-content-signin img{
+    width: 40px;
+    height: 40px;
+    margin: 0 4px;
+}
+
+.card-signin .card-pd-signin .logo-content-signin .txt-signin{
+    font-size: 24px;
+    font-family: var(--font-primary);
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: var(--text);
+    margin: 4px 0;
+}
+
+/*Card body content signin*/
+.card-signin .card-pd-signin .card-body-signin .card-title-signin{
+    font-size: 20px;
+    text-align: center;
+    font-family: var(--font-default);
+    font-weight: 400;
+    color: var(--text);
+    letter-spacing: 2px;
+}
+
+/*Form signin*/
+.card-signin .card-pd-signin .card-body-signin .form-signin{
+    padding: 5px 10px;
+}
+
+/*Form label section signin*/
+.card-signin .card-pd-signin .card-body-signin .signin{
+    font-size: 16px;
+    color: var(--text);
+    font-family: var(--font-primary);
+    letter-spacing: 2px;
+    padding: 4px 2px;
+}
+
+.card-signin .card-pd-signin .card-body-signin .signin .colon{
+    color: #dc14dc;
+    font-size: 18px;
+}
+
+/*Form input fields signin*/
+.card-signin .card-pd-signin .card-body-signin .input-signin{
+    width: 20rem;
+    padding: 8px 12px;
+    margin: 4px 10px;
+    border: none;
+    border-left: 2px solid rgba(182, 163, 195, 0.6);
+    font-size: 14px;
+    font-family: var(--font-secondary);
+    letter-spacing: 2px;
+    color: var(--text);
+    transition: all 0.4s ease;
+}
+/*When its on focus change color*/
+.card-signin .card-pd-signin .card-body-signin .input-signin:focus{
+    outline: 2px solid rgba(182, 163, 195, 0.6);
+    border-radius: 10px;
+}
+
+/*Toggle for password icon*/
+.card-signin .card-pd-signin .card-body-signin .field-icon{
+    position: relative;
+    float: right;
+    font-size: 24px;
+    margin-top: -35px;
+    margin-right: -7.8rem;
+    color: var(--accent);
+    cursor: pointer;
+}
+
+/*Submit button signin*/
+.card-signin .card-pd-signin .card-body-signin #submit-signin{
+    font-size: 18px;
+    padding: 4px 8px;
+    text-align: center;
+    border: 2px solid rgba(175, 143, 182, 0.5);
+    border-radius: 10px;
+    width: 8rem;
+    border-top: 2px solid rgba(115, 139, 164, 0.7);
+    color: var(--primary);
+    transition: all 0.3s ease;
+}
+
+/*When it hover change opacity*/
+.card-signin .card-pd-signin .card-body-signin #submit-signin:hover{
+    opacity: 0.7;
+    box-shadow: 2px 2px 4px rgba(182, 163, 195, 0.5);
+    border-top: none;
+    color: var(--accent);
+}
+
+/*Line break signin*/
+.card-signin .card-pd-signin .line-break-signin{
+    width: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+/*card body link account*/
+.card-signin .card-pd-signin .link-signin .link-signin-acc{
+    font-family: var(--font-primary);
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 2px;
+    color: var(--text);
+}
+
+.card-signin .card-pd-signin .link-signin .link-signin-acc .card-link-signin{
+    text-decoration: none;
+    color: var(--primary);
+}
+
+/*When it mouse hover section*/
+.card-signin .card-pd-signin .link-signin .link-signin-acc .card-link-signin:hover{
+    color: var(--accent);
+}
+
+@media screen and (max-width: 600px) {
+    .card-signin{
+        margin: 20px auto;
+    }
+    .card-signin .card-pd-signin{
+        height: auto;
+        width: 100%;
+        box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+    }
+    /*Logo content*/
+    .card-signin .card-pd-signin .logo-content-signin img{
+        width: 30px;
+        height: 30px;
+    }
+    .card-signin .card-pd-signin .logo-content-signin .txt-signin{
+        font-size: 20px;
+    }
+    /*Card body content*/
+    .card-signin .card-pd-signin .card-body-signin{
+        padding: 10px;
+        margin: 0;
+    }
+    .card-signin .card-pd-signin .card-body-signin .card-title-signin{
+        font-size: 14px;
+        padding: 0;
+        margin: 8px 0;
+        text-align: center;
+    }
+    /*Fomr signin content*/
+    .card-signin .card-pd-signin .card-body-signin .form-signin{
+        padding: 4px;
+    }
+    .card-signin .card-pd-signin .card-body-signin .form-signin .signin,
+    .card-signin .card-pd-signin .card-body-signin .form-signin .colon{
+        font-size: 14px;
+        margin: 8px 0;
+        font-weight: 500;
+    }
+    .card-signin .card-pd-signin .card-body-signin .form-signin .input-signin{
+        font-size: 12px;
+        width: 100%;
+        margin: 4px 6px;
+        padding: 10px;
+        font-weight: 400;
+        border-bottom: 1px solid rgba(104, 73, 111, 0.3);
+        transition: all 0.4s ease;
+    }
+    .card-signin .card-pd-signin .card-body-signin .form-signin .input-signin:focus{
+        background: none !important;
+    }
+    /*toggle icon eye*/
+    .card-signin .card-pd-signin .card-body-signin .form-signin .field-icon{
+        position: relative;
+        margin-top: -34px;
+        margin-right: 20px;
+        font-size: 22px;
+    }
+
+    /*Submit button*/
+    .card-signin .card-pd-signin .card-body-signin .form-signin #submit-signin{
+        font-size: 12px;
+        padding: 8px 12px;
+        margin: 6px 0;
+    }
+
+    .card-signin .card-pd-signin .link-signin{
+        margin: 6px 0;
+        padding: 4px;
+    }
+    .card-signin .card-pd-signin .link-signin .link-signin-acc{
+        font-size: 12px;
+    }
+    .card-signin .card-pd-signin .link-signin .link-signin-acc .card-link-signin{
+        font-size: 12px;
+    }
+}
+
+/*Body section of signup form CSS*/
+.card-signup{
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    margin: 40px 20px;
+}
+
+/*Card signup body*/
+.card-signup .card-pd-signup{
+    border-top: 2px solid rgba(182, 163, 195, 0.6);
+    width: 45em;
+    height: 40rem;
+    padding: 10px 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 4px rgba(182, 163, 195, 0.3);
+}
+
+/*Card body and content of logo signup */
+.card-signup .card-pd-signup .logo-content-signup{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 2px 0;
+}
+
+.card-signup .card-pd-signup .logo-content-signup img{
+    width: 40px;
+    height: 40px;
+    margin: 0 4px;
+}
+
+.card-signup .card-pd-signup .logo-content-signup .txt-signup{
+    font-size: 24px;
+    font-family: var(--font-primary);
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: var(--text);
+    margin: 4px 0;
+}
+
+/*Card body content signup*/
+.card-signup .card-pd-signup .card-body-signup .card-title-signup{
+    font-size: 20px;
+    text-align: center;
+    font-family: var(--font-default);
+    font-weight: 400;
+    color: var(--primary);
+    letter-spacing: 2px;
+}
+
+/*Form Body*/
+.card-signup .card-pd-signup .card-body-signup .form-signup{
+    
+    display: flex;
+    flex-flow: wrap;
+    align-items: center;
+    gap: 10px 0;
+    padding: 8px 15px;
+    margin: 30px 0;
+}
+
+/*Form label signup*/
+.card-signup .card-pd-signup .card-body-signup .form-signup .signup{
+    font-family: var(--font-primary);
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--text);
+    letter-spacing: 2px;
+}
+
+.card-signup .card-pd-signup .card-body-signup .form-signup .colon{
+    font-size: 18px;
+    color: #dc143c;
+}
+
+/*Form input signup*/
+.card-signup .card-pd-signup .card-body-signup .form-signup .input-signup{
+    font-family: var(--font-secondary);
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--text);
+    width: 19rem;
+    padding: 5px 10px;
+    border: none;
+    border-left: 2px solid rgba(182, 163, 195, 0.6);
+    margin: 6px 0;
+    transition: all 0.4s ease;
+}
+
+/*Fomr input when focus*/
+.card-signup .card-pd-signup .card-body-signup .form-signup .input-signup:focus{
+    outline: none;
+    border: 2px solid rgba(182, 163, 195, 0.6);
+    border-radius: 10px;
+}
+
+/*Form icon password*/
+.card-signup .card-pd-signup .card-body-signup .form-signup .toggle-icon{
+    position: relative;
+    float: right;
+    margin-top: -36px;
+    margin-right: 25px;
+    font-size: 24px;
+    color: var(--accent);
+    cursor: pointer;
+}
+
+.card-signup .card-pd-signup .card-body-signup .form-signup .signup-ps{
+    font-family: var(--font-default);
+    color: var(--text);
+    font-size: 12px;
+}
+
+/*Form submit signup*/
+.card-signup .card-pd-signup .card-body-signup .form-signup .submit-signup{
+    font-size: 18px;
+    padding: 8px;
+    text-align: center;
+    border: 2px solid rgba(175, 143, 182, 0.5);
+    border-radius: 10px;
+    width: 9rem;
+    border-top: 2px solid rgba(115, 139, 164, 0.7);
+    color: var(--primary);
+    transition: all 0.3s ease;
+}
+
+/*Form submit when hover*/
+.card-signup .card-pd-signup .card-body-signup .form-signup .submit-signup:hover{
+    opacity: 0.7;
+    box-shadow: 2px 2px 4px rgba(182, 163, 195, 0.5);
+    border-top: none;
+    color: var(--accent);
+}
+
+/*line break signup*/
+.card-signup .card-pd-signup .line-break-signup{
+    width: 100%;
+    border: 1px solid rgba(9, 12, 14, 0.2);
+    margin: -20px 0 0 0;
+}
+
+/*Links signup acc*/
+.card-signup .card-pd-signup .acc-details-signup{
+    text-align: center;
+}
+
+/*Sign up acc links*/
+.card-signup .card-pd-signup .acc-details-signup .acc-links-signup{
+    font-family: var(--font-primary);
+    font-size: 17px;
+    font-weight: 400;
+    letter-spacing: 2px;
+    color: var(--text);
+}
+.card-signup .card-pd-signup .acc-details-signup .acc-links-signup .link-acc-signup{
+    text-decoration: none;
+    color: var(--primary);
+}
+
+/*Mouse hover*/
+.card-signup .card-pd-signup .acc-details-signup .acc-links-signup .link-acc-signup:hover{
+    color: var(--accent);
+}
+
+/*MQ for signup */
+@media screen and (max-width: 600px) {
+    /*Card body*/
+    .card-signup .card-pd-signup{
+        width: 20rem;
+        height: auto !important;
+    }
+    /*signup img*/
+    .card-signup .card-pd-signup .logo-content-signup img{
+        width: 25px;
+        height: 25px;
+    }
+    /*Title*/
+    .card-signup .card-pd-signup .logo-content-signup .txt-signup{
+        font-size: 16px;
+    }
+    .card-signup .card-pd-signup .card-body-signup .card-title-signup{
+        font-size: 16px;
+    }
+    /*Form signup*/
+    .card-signup .card-pd-signup .card-body-signup .form-signup{
+        margin: 20px 0;
+        padding: 10px 0;
+    }
+    /*Form label signup*/
+    .card-signup .card-pd-signup .card-body-signup .form-signup .signup{
+        font-size: 12px;
+        font-weight: 400;
+    }
+    .card-signup .card-pd-signup .card-body-signup .form-signup .colon{
+        font-size: 12px;
+    }
+    /*Form input signup*/
+    .card-signup .card-pd-signup .card-body-signup .form-signup .input-signup{
+        font-size: 12px;
+        width: 100% !important;
+        background: none;
+    }
+    .card-signup .card-pd-signup .card-body-signup .form-signup .toggle-icon{
+        font-size: 20px;
+        margin-top: -32px;
+        margin-right: 10px;
+    }
+
+    .card-signup .card-pd-signup .card-body-signup .form-signup .signup-ps{
+        font-size: 10px;
+    }
+
+    /*Submit form signup*/
+    .card-signup .card-pd-signup .card-body-signup .form-signup .submit-signup{
+        font-size: 12px;
+        padding: 6px 8px;
+        width: 8rem;
+        margin: 0;
+    }
+    .card-signup .card-pd-signup .acc-details-signup .acc-links-signup{
+        font-size: 12px;
+        text-align: justify;
+    }
+}
+
+/*Body section of forget Password form CSS*/
+.card-fgp{
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    margin: 40px auto;
+}
+
+/*Card forget password body*/
+.card-fgp .card-pd-fgp{
+    border-top: 2px solid rgba(182, 163, 195, 0.6);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    width: 28rem;
+    height: auto;
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+
+/*Card body and content of logo forgetpassword */
+.card-fgp .card-pd-fgp .logo-content-fgp{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 2px 0;
+}
+
+.card-fgp .card-pd-fgp .logo-content-fgp img{
+    width: 40px;
+    height: 40px;
+    margin: 0 4px;
+}
+
+.card-fgp .card-pd-fgp .logo-content-fgp .txt-fgp{
+    font-size: 24px;
+    font-family: var(--font-primary);
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: var(--text);
+    margin: 4px 0;
+}
+
+
+/*Card body content forget password*/
+.card-fgp .card-pd-fgp .card-body-fgp .card-content-fgp .card-title-fgp{
+    font-size: 20px;
+    text-align: center;
+    font-weight: 400;
+    color: var(--primary);
+    letter-spacing: 2px;
+    font-family: var(--font-primary);
+}
+
+.card-fgp .card-pd-fgp .card-body-fgp .card-content-fgp .card-text-fgp{
+    font-size: 16px;
+    text-align: justify;
+    font-weight: 400;
+    letter-spacing: 2px;
+    color: var(--text);
+}
+
+/*Form forget password*/
+.card-fgp .card-pd-fgp .card-body-fgp .form-fgp{
+    padding: 10px 20px;
+    gap: 10px;
+}
+
+/*Form forget password label*/
+.card-fgp .card-pd-fgp .card-body-fgp .form-fgp .forget-password{
+    font-family: var(--font-primary);
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    width: 14rem;
+    padding: 10px 0;
+    color: var(--text);
+}
+
+/*Form forget password input*/
+.card-fgp .card-pd-fgp .card-body-fgp .form-fgp .input-fgp{
+    padding: 10px;
+    width: 19rem;
+    font-family: var(--font-secondary);
+    font-weight: 400;
+    color: var(--text);
+    font-size: 12px;
+    letter-spacing: 2px;
+    border: none;
+    border-left: 2px solid rgba(182, 163, 195, 0.6);
+    transition: all 0.4s ease;
+}
+
+/*form forget passsword when its focus*/
+.card-fgp .card-pd-fgp .card-body-fgp .form-fgp .input-fgp:focus{
+    border: 2px solid rgba(182, 163, 195, 0.5);
+    outline: transparent !important;
+    border-radius: 10px;
+}
+
+/*Form icon forgot password */
+.card-fgp .card-pd-fgp .card-body-fgp .form-fgp .eye-icon{
+    position: relative;
+    float: right;
+    font-size: 24px;
+    margin-top: -32px;
+    margin-right: -10.5rem;
+    cursor: pointer !important;
+    color: var(--accent);
+}
+
+/*Form forget password submit button*/
+.card-fgp .card-pd-fgp .card-body-fgp .form-fgp #submit-fgp{
+    font-size: 16px;
+    padding: 6px 8px;
+    text-align: center;
+    border: 2px solid rgba(175, 143, 182, 0.5);
+    border-radius: 10px;
+    width: 14rem;
+    margin-top: 20px;
+    border-top: 2px solid rgba(115, 139, 164, 0.7);
+    color: var(--primary);
+    transition: all 0.3s ease;
+}
+
+/*When it hover*/
+.card-fgp .card-pd-fgp .card-body-fgp .form-fgp #submit-fgp:hover{
+    opacity: 0.7;
+    box-shadow: 2px 2px 4px rgba(182, 163, 195, 0.5);
+    border-top: none;
+    color: var(--accent);
+}
+
+/*Button icon*/
+.card-fgp .card-pd-fgp .card-body-fgp .form-fgp #submit-fgp .icon{
+    font-size: 18px;
+    padding: 4px;
+    text-align: center;
+    line-height: 10px;
+    color: var(--primary);
+}
+
+/*Linebreak fgp*/
+.card-fgp .card-pd-fgp .line-break-fgp{
+    width: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.card-fgp .card-pd-fgp .link-fgp .link-fgp-acc{
+    font-size: 14px;
+    color: var(--text);
+    font-family: var(--font-secondary);
+    padding: 5px 10px;
+}
+
+.card-fgp .card-pd-fgp .link-fgp .link-fgp-acc .card-link-fgp{
+    text-decoration: none;
+    font-family: var(--font-primary);
+    color: var(--primary);
+}
+
+/*When it hover*/
+.card-fgp .card-pd-fgp .link-fgp .link-fgp-acc .card-link-fgp:hover{
+    color: var(--accent);
+}
+
+/*Media query for forgot password section*/
+@media  screen and (max-width: 600px){
+    /*Body of content*/
+    .card-fgp .card-pd-fgp{
+        height: auto;
+        width: 20rem;
+        padding: 10px;
+    }
+    /*Body of logo content*/
+    .card-fgp .card-pd-fgp .logo-content-fgp img{
+        width: 25px;
+        height: 25px;
+    }
+    .card-fgp .card-pd-fgp .logo-content-fgp .txt-fgp{
+        font-size: 16px;
+    }
+    .card-fgp .card-pd-fgp .card-body-fgp .card-content-fgp .card-title-fgp{
+        font-size: 16px;
+    }
+    .card-fgp .card-pd-fgp .card-body-fgp .card-content-fgp .card-text-fgp{
+        font-size: 12px;
+        margin: 4px 0;
+    }
+    /*Form body*/
+    .card-fgp .card-pd-fgp .card-body-fgp .form-fgp{
+        padding: 8px 10px;
+    }
+    .card-fgp .card-pd-fgp .card-body-fgp .form-fgp .forget-password{
+        font-size: 14px;
+    }
+    .card-fgp .card-pd-fgp .card-body-fgp .form-fgp .input-fgp{
+        font-size: 12px;
+        padding: 10px;
+        width: 100%;
+    }
+    .card-fgp .card-pd-fgp .card-body-fgp .form-fgp .eye-icon{
+        margin-top: -32px;
+        margin-right: 24px;
+        font-size: 22px;
+    }
+    .card-fgp .card-pd-fgp .card-body-fgp .form-fgp #submit-fgp{
+        padding: 6px;
+        margin: 12px auto;
+        font-size: 14px;
+        width: 12rem;
+    }
+    .card-fgp .card-pd-fgp .card-body-fgp .form-fgp #submit-fgp .icon{
+        float: left;
+        font-size: 16px;
+        padding: 4px 0;
+    }
+    /*Link acc*/
+    .card-fgp .card-pd-fgp .link-fgp .link-fgp-acc{
+        font-size: 12px;
+    }
+}
