@@ -37,6 +37,9 @@
     <!--Pagination JS-->
     <link rel="stylesheet" href="./asset/vendor/Pagination/pagination.css">
 
+    <!--Summernote BS4-->
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+
 </head>
 <body>
     <!--Header here-->
@@ -103,7 +106,7 @@
                                             </div>
                                             <div class="mb-1 col-md-8 form-group w-100">
                                                 <label for="comments" class="form-label">Comment:</label>
-                                                <textarea name="comment" class="form-control" rows="3" maxlength="300" required></textarea>
+                                                <textarea name="comment" id="summernote" class="form-control" rows="5" required></textarea>
                                             </div>
                                             <div class="mb-1 col-md-4 form-group">
                                                 <button type="submit" name="submitComment" class="btn read-more">Post</button>
@@ -212,6 +215,25 @@
 
 <!--=============== Slick JS jquery ===============-->
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+<!--summernote -->
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+<script>
+      $('#summernote').summernote({
+        placeholder: 'Comment down here',
+        tabsize: 2,
+        height: 120,
+        toolbar: [
+          ['style', ['style']],
+          ['font', ['bold', 'underline', 'clear']],
+          ['color', ['color']],
+          ['para', ['ul', 'ol', 'paragraph']],
+          ['table', ['table']],
+          ['insert', ['link', 'picture', 'video']],
+          ['view', ['codeview', 'help']]
+        ]
+      });
+    </script>
 
 <!--============== Customized JS ======================-->
 <script src="./asset/js/script.js"></script>
