@@ -51,7 +51,7 @@
                     </li>
                     <?php endif;?>
                     <li class="nav__item d-none">
-                        <a href="<?php echo BASE_URL.'/editor/editor-dashboard.php' ?>" class="nav__link">
+                        <a href="<?php echo BASE_EDITOR.'/editor-dashboard.php' ?>" class="nav__link">
                             <i class='bx bxs-dashboard nav__icon'></i>
                             <span class="nav__name">Dashboard</span>
                         </a>

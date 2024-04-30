@@ -41,13 +41,15 @@ include(ROOT_PATH."/app/config/db.php");
 
 <body>
     <!--Header here-->
-    <?php
-        include (ROOT_PATH . "/app/includes/header.php");
-    ?>
-
+    <?php include (ROOT_PATH . "/app/includes/header.php");?>
     <main>
         <!--=============== HOME ===============-->
         <section class="container section section__height" id="home">
+
+            <!--Alert Message Success-->
+            <?php include(ROOT_PATH."/app/helpers/messageAlert.php");?>
+            <!--End of alert -->
+
             <div class="page-wrapper mx-auto h-100 w-100">
                 <!--========= Post Slider Title =================-->
                 <div class="container mx-auto my-3 py-3 h-100 post-slider">
