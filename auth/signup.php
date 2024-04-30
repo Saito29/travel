@@ -78,8 +78,8 @@
                         <div class="col-md-6 col-sm-6">
                             <select name="" class="form-select form-select-sm">
                                 <option selected>Choose type of user</option>
-                                <option value="3">Editor User</option>
-                                <option value="0">Guest User</option>
+                                <option name="role" value="3">Editor User</option>
+                                <option name="role" value="0">Guest User</option>
                             </select>
                             <input type="hidden" class="input-signup" id="role" name="role" value="<?php echo $role?>"><br>
                         </div>
