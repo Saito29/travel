@@ -75,14 +75,14 @@
                             <input type="file" class="d-none" name="profileImage" onchange="displayImg(this)" id="profileImage" on value="<?php echo $profileImage?>">
                             <p class="signup-ps">Profile Image should at least 10mb</p>
                         </div>
-                        <div class="col-md-6 col-sm-6">
+                        <div class="col-md-6 col-sm-6 mb-3">
                             <label class="form-label">Select user type:</label>
                             <select name="role" class="form-select form-select-sm bg-body-secondary">
-                                <option selected>Choose type of user</option>
-                                <option name="role" value="3">Editor User</option>
-                                <option name="role" value="0">Guest User</option>
+                                <option value="<?php echo $role;?>" selected>Choose type of user</option>
+                                <option value="editor">Editor User</option>
+                                <option value="user">Guest User</option>
                             </select>
-                            <input type="hidden" class="input-signup" id="role" name="role" value="<?php echo $role?>"><br>
+                            <!--<input type="hidden" class="input-signup" id="role" name="role" value=""><br>-->
                         </div>
                         <div class="col-md-8 col-md-8">
                             <button type="submit" name="register-btn" id="submit-signup" class="submit-signup">Create account</button>

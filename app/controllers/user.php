@@ -34,15 +34,13 @@ if (isset($_POST['register-btn']) && isset($_FILES['profileImage']))
     #Clear the registration buttons when submitting
     unset($_POST['register-btn']);
 
-    #add the admin role when submitting the registration
-    $role = $_POST['role'] = 3; #admin role is editors
-
     #identify user information and profile image
-    $firstName = $_POST['firstName']; 
-    $lastName = $_POST['lastName'];
-    $username = $_POST['username'];
-    $email = $_POST['email'];
+    $firstName = trim($_POST['firstName']); 
+    $lastName = trim($_POST['lastName']);
+    $username = trim($_POST['username']);
+    $email = trim($_POST['email']);
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT); #Password hash Encyption Algorithm for security purposes
+    $role = $_POST['role'];
     
     #Image identification
     $profileImage = $_FILES['profileImage']['name']; #image name
@@ -87,8 +85,8 @@ if (isset($_POST['register-btn']) && isset($_FILES['profileImage']))
                     <path d="M16.707 2.293A.996.996 0 0 0 16 2H8a.996.996 0 0 0-.707.293l-5 5A.996.996 0 0 0 2 8v8c0 .266.105.52.293.707l5 5A.996.996 0 0 0 8 22h8c.266 0 .52-.105.707-.293l5-5A.996.996 0 0 0 22 16V8a.996.996 0 0 0-.293-.707l-5-5zM13 17h-2v-2h2v2zm0-4h-2V7h2v6z"></path></svg>';
                 }
 
-                #Insert the image into the database alongside the user information
-                $sql = "INSERT INTO users (role,firstName, lastName, username, email, password, profileImage) VALUES ('$role','$firstName', '$lastName','$username', '$email', '$password', '$newImgName')";
+                #Insert the image into the database alongside the user information using MYSQLI
+                $sql = "INSERT INTO users (role, firstName, lastName, username, email, password, profileImage) VALUES ('$role','$firstName', '$lastName','$username', '$email', '$password', '$newImgName')";
                 $result = mysqli_query($conn, $sql);
 
                 #Select the user that has make account
@@ -112,6 +110,8 @@ if (isset($_POST['register-btn']) && isset($_FILES['profileImage']))
                     $email = '';
                     $password = '';
                     $profileImage = '';
+                    header('location: '.BASE_URL_LINKS.'/signup.php');
+                    exit();
                 }else
                 {
                     #Alert the user failed to upload and create account
@@ -133,9 +133,9 @@ if (isset($_POST['register-btn']) && isset($_FILES['profileImage']))
                 <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm-1.999 14.413-3.713-3.705L7.7 11.292l2.299 2.295 5.294-5.294 1.414 1.414-6.706 6.706z"></path></svg>';
 
                 #Set some conditions for the admin, Sub admin or editor users
-                if ($_SESSION['role'] === 1 || $_SESSION['role'] === 2) {
+                if ($_SESSION['role'] === 'admin' || $_SESSION['role'] === 'sub-admin') {
                     header('location:'.BASE_ADMIN.'/dashboard.php'); # dashboard admin and sub admin page
-                } elseif($_SESSION['role'] === 3) { 
+                } elseif($_SESSION['role'] === 'editor') { 
                     header('location:'.BASE_EDITOR.'/editor-dashboard.php'); #editor dashboard page
                 } else {
                     #if not any defined direct it to home page
@@ -160,6 +160,7 @@ if (isset($_POST['register-btn']) && isset($_FILES['profileImage']))
         $email = $_POST['email'];
         $password = $_POST['password'];
         $profileImage = $_FILES['profileImage']['name'];
+        $role = $_POST['role'];
 
         #Alert Error message and direct again to register page
         #$msg = "Something went wrong, please validate your username and email.";

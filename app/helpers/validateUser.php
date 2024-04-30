@@ -23,6 +23,10 @@ function validateUser($user)
         array_push($errors, "Password is required.");
     }  
 
+    if(empty($user['role'])){
+        array_push($errors, "Please select user type.");
+    }
+
     #Find an existing user email acc from database
     $existingUser = selectOne('users', ['username' => $user['username']]);
     if(isset($existingUser)){
