@@ -76,7 +76,8 @@
                             <p class="signup-ps">Profile Image should at least 10mb</p>
                         </div>
                         <div class="col-md-6 col-sm-6">
-                            <select name="" class="form-select form-select-sm">
+                            <label class="form-label">Select user type:</label>
+                            <select name="role" class="form-select form-select-sm bg-body-secondary">
                                 <option selected>Choose type of user</option>
                                 <option name="role" value="3">Editor User</option>
                                 <option name="role" value="0">Guest User</option>
