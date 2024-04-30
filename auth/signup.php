@@ -47,35 +47,40 @@
                         <!--Alert-->
                         <?php include(ROOT_PATH."/app/helpers/formAlert.php");?>
                         <!--End of Alert-->
-                        <div class="col-md-6 col-md-6">
+                        <div class="col-md-6 col-sm-6">
                             <label for="firstName" class="signup">First Name <span class="colon">*</span></label><br>
                             <input type="text" class="input-signup" id="fname" name="firstName" value="<?php echo $firstName?>" placeholder="Enter your first name" ><br>
                         </div>
-                        <div class="col-md-6 col-md-6">
+                        <div class="col-md-6 col-sm-6">
                             <label for="lastName" class="signup">Last Name <span class="colon">*</span></label><br>
                             <input type="text" class="input-signup" id="lname" name="lastName" value="<?php echo $lastName?>" placeholder="Enter your last name"><br>
                         </div>
-                        <div class="col-md-6 col-md-6">
+                        <div class="col-md-6 col-sm-6">
                             <label for="username" class="signup">Username <span class="colon">*</span></label><br>
                             <input type="text" class="input-signup" id="username" name="username" value="<?php echo $username?>" placeholder="Enter username" ><br>
                         </div>
-                        <div class="col-md-6 col-md-6">
+                        <div class="col-md-6 col-sm-6">
                             <label for="email" class="signup">Email address <span class="colon">*</span></label><br>
                             <input type="email" class="input-signup" id="email" name="email" value="<?php echo $email?>" placeholder="Enter email address" ><br>
                         </div>
-                        <div class="col-md-6 col-md-6">
+                        <div class="col-md-6 col-sm-6">
                             <label for="password" class="signup">Password <span class="colon">*</span></label><br>
                             <input type="password" class="input-signup password" minlength="8" name="password" value="<?php echo $password?>" placeholder="Enter password" ><br>
                             <i class='bx bx-low-vision toggle-icon toggle-password'></i><br>
                             <p class="signup-ps">Password must be at least minimum of 8 characters.</p>
                         </div>
-                        <div class="col-md-6 col-md-6">
+                        <div class="col-md-6 col-sm-6">
                             <label for="profileImage" class="form-label">Profile Image:</label>
                             <img src="<?php echo BASE_URL.'/asset/img/profile/placeholder.webp'?>" onclick="imgClick()" id="profileDisplay" class="rounded-circle d-block border" alt="profile-user" style="cursor:pointer" width="70">
                             <input type="file" class="d-none" name="profileImage" onchange="displayImg(this)" id="profileImage" on value="<?php echo $profileImage?>">
                             <p class="signup-ps">Profile Image should at least 10mb</p>
                         </div>
-                        <div class="col-md-6 col-md-6">
+                        <div class="col-md-6 col-sm-6">
+                            <select name="" class="form-select form-select-sm">
+                                <option selected>Choose type of user</option>
+                                <option value="3">Editor User</option>
+                                <option value="0">Guest User</option>
+                            </select>
                             <input type="hidden" class="input-signup" id="role" name="role" value="<?php echo $role?>"><br>
                         </div>
                         <div class="col-md-8 col-md-8">

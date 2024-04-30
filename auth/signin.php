@@ -31,7 +31,7 @@
 </head>
 <body>
     <div class="card-signin">
-        <div class="card card-pd-signin">
+        <div class="card card-pd-signin h-auto">
             <div class="logo-content-signin">
                 <img src="../asset/img/logo/travel.png" alt="travel_Logo">
                 <h2 class="txt-signin">Travel</span>

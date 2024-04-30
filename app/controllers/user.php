@@ -131,7 +131,16 @@ if (isset($_POST['register-btn']) && isset($_FILES['profileImage']))
                 $_SESSION['css_class'] = 'alert-success';
                 $_SESSION['icon'] = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(30, 197, 111, 1);transform: ;msFilter:;">
                 <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm-1.999 14.413-3.713-3.705L7.7 11.292l2.299 2.295 5.294-5.294 1.414 1.414-6.706 6.706z"></path></svg>';
-                header('location:'.BASE_URL.'/index.php'); #direct to index page the account to login
+
+                #Set some conditions for the admin, Sub admin or editor users
+                if ($_SESSION['role'] === 1 || $_SESSION['role'] === 2) {
+                    header('location:'.BASE_ADMIN.'/dashboard.php'); # dashboard admin and sub admin page
+                } elseif($_SESSION['role'] === 3) { 
+                    header('location:'.BASE_EDITOR.'/editor-dashboard.php'); #editor dashboard page
+                } else {
+                    #if not any defined direct it to home page
+                    header('location:'.BASE_URL.'/index.php'); #direct to index page the account to login
+                }
                 exit(); #terminate the session after creating a account
             } else
             {
