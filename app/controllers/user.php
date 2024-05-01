@@ -203,9 +203,3 @@ if(isset($_POST['signin-btn']))
         $password = $_POST['password'];
     }
 }
-
-
-
-
-
-
