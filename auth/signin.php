@@ -1,4 +1,8 @@
-<?php include("../path.php"); ?>
+<?php 
+include("../path.php"); 
+include(ROOT_PATH.'/app/controllers/user.php');
+?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -39,18 +43,21 @@
             <div class="card-body card-body-signin">
                 <h3 class="card-title card-title-signin">Login to your account</h3>
                 <div class="row gy-3">
-                    <form action="#" method="post" autocomplete="on" class="form-signin" enctype="application/x-www-form-urlencoded">
-                        <div class="col-xxl-6 col-md-6">
-                            <label for="username" class="signin">Username<span class="colon">*</span></label>
-                            <input type="email" class="input-signin" id="username" name="username" placeholder="Username | Email address" required><br>
+                    <form action="signin.php" method="post" autocomplete="on" class="form-signin" enctype="application/x-www-form-urlencoded">
+                        <!--Alert-->
+                        <?php include(ROOT_PATH."/app/helpers/formAlert.php");?>
+                        <!--End of Alert-->
+                        <div class="col-xxl-8 col-md-8">
+                            <label for="username" class="signin form-label">Username or Email<span class="colon">*</span></label>
+                            <input type="text" class="input-signin" id="username" name="usemail" placeholder="Username | Email address"><br>
                         </div>
-                        <div class="col-xxl-6 col-md-6">
-                            <label for="password" class="signin">Password <span class="colon">*</span></label>
-                            <input type="password" name="password" minlength="8" class="input-signin password" placeholder="Enter your password" required>
+                        <div class="col-xxl-8 col-md-8">
+                            <label for="password" class="signin form-label">Password <span class="colon">*</span></label>
+                            <input type="password" name="password" minlength="8" class="input-signin password" placeholder="Enter your password">
                             <i class='bx bx-low-vision field-icon toggle-password'></i><br>
                         </div>
                         <div class="col-xxl-8 col-md-8">
-                            <button type="button" id="submit-signin" name="button-fgp">Login</button>
+                            <button type="button" id="submit-signin" name="signin-btn">Login</button>
                         </div>
                     </form>
                 </div>

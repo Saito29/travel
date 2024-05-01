@@ -77,7 +77,7 @@ body{
     text-align: center;
     font-family: var(--font-default);
     font-weight: 400;
-    color: var(--text);
+    color: var(--primary);
     letter-spacing: 2px;
 }
 
