@@ -11,10 +11,10 @@
     <title>Travel | Signin Page</title>
 
     <!--Customized CSS-->
-    <link rel="stylesheet" href="../asset/css/auth.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL.'/asset/css/auth.css'?>">
 
     <!--favicon logo-->
-    <link rel="shortcut icon" href="../asset/img/logo/travel.png" type="image/x-icon">
+    <link rel="shortcut icon" href="<?php echo BASE_URL.'/asset/img/logo/travel.png'?>" type="image/x-icon">
 
     <!--Google Fonts-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -33,7 +33,7 @@
     <div class="card-signin">
         <div class="card card-pd-signin h-auto">
             <div class="logo-content-signin">
-                <img src="../asset/img/logo/travel.png" alt="travel_Logo">
+                <img src="<?php echo BASE_URL.'/asset/img/logo/travel.png'?>" alt="travel_Logo">
                 <h2 class="txt-signin">Travel</span>
             </div>
             <div class="card-body card-body-signin">
@@ -65,6 +65,6 @@
         </div>
     </div>
     <!--Customized Js-->
-    <script src="../asset/js/togglePassword.js"></script>
+    <script src="<?php echo BASE_URL.'/asset/js/togglePassword.js'?>"></script>
 </body>
 </html>

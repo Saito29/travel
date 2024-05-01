@@ -64,7 +64,7 @@
                                 <span class="nav__name">Logout</span>
                             </a>
                         </li>
-                        
+
                     <?php else:?>
                         <!--If user not login display the login link-->
                         <li class="nav__item">

@@ -14,12 +14,12 @@ include(ROOT_PATH."/app/config/db.php");
     <title>Travel</title>
 
     <!--Customized CSS Section-->
-    <link rel="stylesheet" href="./asset/css/skin.css">
-    <link rel="stylesheet" href="./asset/css/index.css">
-    <link rel="stylesheet" href="./asset/css/main.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL.'/asset/css/skin.css'?>">
+    <link rel="stylesheet" href="<?php echo BASE_URL.'/asset/css/index.css'?>">
+    <link rel="stylesheet" href="<?php echo BASE_URL.'/asset/css/main.css'?>">
 
      <!--favicon logo-->
-     <link rel="shortcut icon" href="./asset/img/logo/travel.png" type="image/x-icon">
+     <link rel="shortcut icon" href="<?php echo BASE_URL.'/asset/img/logo/travel.png'?>" type="image/x-icon">
 
      <!--Google Fonts-->
      <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -34,8 +34,8 @@ include(ROOT_PATH."/app/config/db.php");
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
     <!--Pagination JS-->
-    <link rel="stylesheet" href="./asset/vendor/Pagination/pagination.css">
-    <link rel="stylesheet" href="./asset/vendor/Pagination/pagination.less">
+    <link rel="stylesheet" href="<?php echo BASE_URL.'/asset/vendor/Pagination/pagination.css'?>">
+    <link rel="stylesheet" href="<?php echo BASE_URL.'/asset/vendor/Pagination/pagination.less'?>">
 
 </head>
 

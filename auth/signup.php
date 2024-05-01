@@ -12,10 +12,10 @@
     <title>Travel | Signup Page</title>
 
     <!--Customized CSS-->
-    <link rel="stylesheet" href="../asset/css/auth.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL.'/asset/css/auth.css'?>">
 
     <!--favicon logo-->
-    <link rel="shortcut icon" href="../asset/img/logo/travel.png" type="image/x-icon">
+    <link rel="shortcut icon" href="<?php echo BASE_URL.'/asset/img/logo/travel.png'?>" type="image/x-icon">
 
     <!--Google Fonts-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -34,7 +34,7 @@
     <div class="card-signup">
         <div class="card card-pd-signup h-auto">
             <div class="logo-content-signup">
-                <img src="../asset/img/logo/travel.png" alt="Travel_Logo">
+                <img src="<?php echo BASE_URL.'/asset/img/logo/travel.png'?>" alt="Travel_Logo">
                 <h2 class="txt-signup">Travel</h2>
             </div>
             <div class="card-body card-body-signup">
@@ -97,7 +97,7 @@
         </div>
     </div>
     <!--Customized JS-->
-    <script src="../asset/js/togglePassword.js"></script>
-    <script src="../asset/js/cgImage.js"></script>
+    <script src="<?php echo BASE_URL.'/asset/js/togglePassword.js'?>"></script>
+    <script src="<?php echo BASE_URL.'/asset/js/cgImage.js'?>"></script>
 </body>
 </html>
