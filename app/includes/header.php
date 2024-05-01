@@ -26,7 +26,8 @@
                         </a>
                     </li>
 
-                    <?php if(isset($_SESSION['role']) === 'admin' || isset($_SESSION['role']) === 'sub-admin'):?>
+                    <?php if(isset($_SESSION['id'])): ?>
+                        <?php if($_SESSION['role'] === 'admin' || $_SESSION['role'] === 'sub-admin'): ?>
                         <!--If user login as admin display dashboard and logout if not display login-->
                         <li class="nav__item">
                             <a href="<?php echo BASE_ADMIN.'/dashboard.php' ?>" class="nav__link">
@@ -34,47 +35,30 @@
                                 <span class="nav__name">Dashboard</span>
                             </a>
                         </li>
-                        <!--If user login display dashboard and replace login to  logout-->
+                        <?php elseif($_SESSION['role'] === 'editor'): ?>
+                        <!--if user login as editor display dashboard and logout-->
                         <li class="nav__item">
-                            <a href="<?php echo BASE_URL.'/index.php'?>" class="nav__link">
-                                <i class='bx bx-log-out nav__icon'></i>
-                                <span class="nav__name">Logout</span>
-                            </a>
-                        </li>
-                    <?php elseif(isset($_SESSION['role']) === 'editor'):?>
-                        <!--IF user is 3 = editor display dashboard and logout -->
-                        <li class="nav__item d-none">
                             <a href="<?php echo BASE_EDITOR.'/editor-dashboard.php' ?>" class="nav__link">
                                 <i class='bx bxs-dashboard nav__icon'></i>
                                 <span class="nav__name">Dashboard</span>
                             </a>
                         </li>
+                        <?php endif; ?>  
                         <li class="nav__item">
                             <a href="<?php echo BASE_URL.'/index.php'?>" class="nav__link">
                                 <i class='bx bx-log-out nav__icon'></i>
                                 <span class="nav__name">Logout</span>
                             </a>
                         </li>
-
-                    <?php elseif(isset($_SESSION['role']) === 'user'):?>
-                        <!--if its user role display logout-->
-                        <li class="nav__item">
-                            <a href="<?php echo BASE_URL.'/index.php'?>" class="nav__link">
-                                <i class='bx bx-log-out nav__icon'></i>
-                                <span class="nav__name">Logout</span>
-                            </a>
-                        </li>
-
-                    <?php else:?>
-                        <!--If user not login display the login link-->
-                        <li class="nav__item">
+                    <?php else: ?>
+                    <!--If user not login display the login link-->
+                    <li class="nav__item">
                         <a href="<?php echo BASE_URL_LINKS.'/signin.php'?>" class="nav__link">
                             <i class='bx bx-log-in nav__icon'></i>
                             <span class="nav__name">Login</span>
                         </a>
                     </li>
-                    <?php endif;?>
-                    
+                    <?php endif; ?>
                 </ul>
             </div>
             

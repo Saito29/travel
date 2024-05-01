@@ -47,17 +47,20 @@ include(ROOT_PATH.'/app/controllers/user.php');
                         <!--Alert-->
                         <?php include(ROOT_PATH."/app/helpers/formAlert.php");?>
                         <!--End of Alert-->
+                        <!--Message Alert Success-->
+                        <?php include(ROOT_PATH."/app/helpers/accountAlert.php");?>
+                        <!--End of Message Alert-->
                         <div class="col-xxl-8 col-md-8">
-                            <label for="username" class="signin form-label">Username or Email<span class="colon">*</span></label>
-                            <input type="text" class="input-signin" id="username" name="usemail" placeholder="Username | Email address"><br>
+                            <label for="email" class="signin form-label">Email<span class="colon">*</span></label>
+                            <input type="email" class="input-signin" id="username" name="email" value="<?php echo $email?>" placeholder="Enter your Email address"><br>
                         </div>
                         <div class="col-xxl-8 col-md-8">
                             <label for="password" class="signin form-label">Password <span class="colon">*</span></label>
-                            <input type="password" name="password" minlength="8" class="input-signin password" placeholder="Enter your password">
+                            <input type="password" name="password" minlength="8" class="input-signin password" value="<?php echo $password?>" placeholder="Enter your password">
                             <i class='bx bx-low-vision field-icon toggle-password'></i><br>
                         </div>
                         <div class="col-xxl-8 col-md-8">
-                            <button type="button" id="submit-signin" name="signin-btn">Login</button>
+                            <button type="submit" id="submit-signin" name="signin-btn">Login</button>
                         </div>
                     </form>
                 </div>
@@ -67,7 +70,6 @@ include(ROOT_PATH.'/app/controllers/user.php');
                 <p class="link-signin-acc">Don't have a account?, <a href="<?php echo BASE_URL_LINKS.'/signup.php'?>" target="_self" class="card-link-signin">Register here.</a></p>
                 <p class="link-signin-acc">Forget your password, <a href="<?php echo BASE_URL_LINKS.'/forgetpassword.php'?>" target="_self" class="card-link-signin">click here.</a></p>
                 <p class="link-signin-acc">Take me back to<a href="<?php echo BASE_URL.'/index.php'?>" target="_self" class="card-link-signin"> Homepage.</a></p>
-
             </div>
         </div>
     </div>

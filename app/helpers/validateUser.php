@@ -44,5 +44,24 @@ function validateUser($user)
     return $errors;
 }
 
+#Validate user login function
+function validateLogin($user)
+{
+    #Pass all error in error array
+    $errors = array();  
+
+    if(empty($user['email'])){
+        array_push($errors, "Email address is required.");
+    }
+
+    if(empty($user['password'])){
+        array_push($errors, "Password is required.");
+    }  
+
+    #dd($errors);
+    
+    return $errors;
+}
+
 
 
