@@ -45,7 +45,7 @@
                         </li>
                         <?php endif; ?>  
                         <li class="nav__item">
-                            <a href="<?php echo BASE_URL.'/index.php'?>" class="nav__link">
+                            <a href="<?php echo BASE_URL.'/logout.php'?>" class="nav__link">
                                 <i class='bx bx-log-out nav__icon'></i>
                                 <span class="nav__name">Logout</span>
                             </a>

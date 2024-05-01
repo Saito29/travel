@@ -11,6 +11,9 @@ $email = '';
 $password = '';
 $profileImage = '';
 
+#Table name for the user datbase
+$table = 'users';
+
 #Array of errors to display
 $errors = array();
 
@@ -19,6 +22,31 @@ $acmsg = '';
 $msg = '';
 $css_class = '';
 $icon = '';
+
+#Function for session login
+function loginUser($user){
+    #Login the user after the registration session
+    $_SESSION['id'] = $user['id']; #id of users
+    $_SESSION['username'] = $user['username'];
+    $_SESSION['email'] = $user['email'];
+    $_SESSION['profileImage'] = $user['profileImage'];
+    $_SESSION['role'] = $user['role'];
+    $_SESSION['message'] = 'Login Successfully.';
+    $_SESSION['css_class'] = 'alert-success';
+    $_SESSION['icon'] = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(30, 197, 111, 1);transform: ;msFilter:;">
+    <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm-1.999 14.413-3.713-3.705L7.7 11.292l2.299 2.295 5.294-5.294 1.414 1.414-6.706 6.706z"></path></svg>';
+
+    #Set some conditions for the admin, Sub admin or editor users
+    if ($_SESSION['role'] === 'admin' || $_SESSION['role'] === 'sub-admin') {
+        header('location:'.BASE_ADMIN.'/dashboard.php'); # dashboard admin and sub admin page
+    } elseif($_SESSION['role'] === 'editor') { 
+        header('location:'.BASE_EDITOR.'/editor-dashboard.php'); #editor dashboard page
+    } else {
+        #if not any defined direct it to home page
+        header('location:'.BASE_URL.'/index.php'); #direct to index page for user
+    }
+    exit(); #terminate the session header after loggin in a account
+}
 
 #This is for Register user information
 #If user click the button create and submit a profile image
@@ -90,7 +118,7 @@ if (isset($_POST['register-btn']) && isset($_FILES['profileImage']))
                 $result = mysqli_query($conn, $sql);
 
                 #Select the user that has make account
-                $user = selectOne('users',['id' => $result]);
+                $user = selectOne($table,['id' => $result]);
 
                 #validate the user information and profile image information when submitting the query to the database
                 if($result)
@@ -157,35 +185,15 @@ if(isset($_POST['signin-btn']))
 
     if(count($errors) === 0){
         #check the user
-        $user = selectOne('users', ['email' => $_POST['email']]);
+        $user = selectOne($table, ['email' => $_POST['email']]);
 
-        #if the user is exist
-        
+        #if the user is exist verify the user credentials
         if($user && password_verify($_POST['password'], $user['password'])){
-            #Login the user after the registration session
-            $_SESSION['id'] = $user['id']; #id of users
-            $_SESSION['username'] = $user['username'];
-            $_SESSION['email'] = $user['email'];
-            $_SESSION['profileImage'] = $user['profileImage'];
-            $_SESSION['role'] = $user['role'];
-            $_SESSION['message'] = 'Login Successfully.';
-            $_SESSION['css_class'] = 'alert-success';
-            $_SESSION['icon'] = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(30, 197, 111, 1);transform: ;msFilter:;">
-            <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm-1.999 14.413-3.713-3.705L7.7 11.292l2.299 2.295 5.294-5.294 1.414 1.414-6.706 6.706z"></path></svg>';
-
-            #Set some conditions for the admin, Sub admin or editor users
-            if ($_SESSION['role'] == 'admin' || $_SESSION['role'] == 'sub-admin') {
-                header('location:'.BASE_ADMIN.'/dashboard.php'); # dashboard admin and sub admin page
-            } elseif($_SESSION['role'] == 'editor') { 
-                header('location:'.BASE_EDITOR.'/editor-dashboard.php'); #editor dashboard page
-            } else {
-                #if not any defined direct it to home page
-                header('location:'.BASE_URL.'/index.php'); #direct to index page the account to login
-            }
-            exit(); #terminate the session after creating a account
+            #Session User login function
+            loginUser($user);
         }else{
             #Display the error message
-            array_push($errors, "Invalid credentials.");
+            array_push($errors, "Email or Password Incorrect.");
             $email = $_POST['email'];
             $password = $_POST['password'];
         }

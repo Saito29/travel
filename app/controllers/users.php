@@ -9,6 +9,8 @@ $username = '';
 $email = '';
 $password = '';
 $profileImage = '';
+$role = '';
+$table = 'users';
 $errors = array();
 
 if (isset($_POST['register-btn']) && isset($_FILES['profileImage']))
@@ -35,7 +37,11 @@ if (isset($_POST['register-btn']) && isset($_FILES['profileImage']))
         #Encypt Password using Password hashing
         $_POST['password'] = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
-        #find the users id in the database
+        #Create a user and insert into database
+        $user_id = create($table, $_POST);
+
+        #Find the user
+        $user = selectOne($table, $user_id);
 
         #validate image size. Size is calculated in Bytes
         if($_FILES['profileImage']['size'] > 10000000) 
