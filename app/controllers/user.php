@@ -110,8 +110,6 @@ if (isset($_POST['register-btn']) && isset($_FILES['profileImage']))
                     $email = '';
                     $password = '';
                     $profileImage = '';
-                    header('location: '.BASE_URL_LINKS.'/signup.php');
-                    exit();
                 }else
                 {
                     #Alert the user failed to upload and create account

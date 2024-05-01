@@ -26,7 +26,7 @@
                         </a>
                     </li>
 
-                    <?php if(isset($_SESSION['role']) === 1 || isset($_SESSION['role']) === 2):?>
+                    <?php if(isset($_SESSION['role']) === 'admin' || isset($_SESSION['role']) === 'sub-admin'):?>
                         <!--If user login as admin display dashboard and logout if not display login-->
                         <li class="nav__item">
                             <a href="<?php echo BASE_ADMIN.'/dashboard.php' ?>" class="nav__link">
@@ -41,7 +41,7 @@
                                 <span class="nav__name">Logout</span>
                             </a>
                         </li>
-                    <?php elseif(isset($_SESSION['role']) === 3):?>
+                    <?php elseif(isset($_SESSION['role']) === 'editor'):?>
                         <!--IF user is 3 = editor display dashboard and logout -->
                         <li class="nav__item d-none">
                             <a href="<?php echo BASE_EDITOR.'/editor-dashboard.php' ?>" class="nav__link">
@@ -55,6 +55,16 @@
                                 <span class="nav__name">Logout</span>
                             </a>
                         </li>
+
+                    <?php elseif(isset($_SESSION['role']) === 'user'):?>
+                        <!--if its user role display logout-->
+                        <li class="nav__item">
+                            <a href="<?php echo BASE_URL.'/index.php'?>" class="nav__link">
+                                <i class='bx bx-log-out nav__icon'></i>
+                                <span class="nav__name">Logout</span>
+                            </a>
+                        </li>
+                        
                     <?php else:?>
                         <!--If user not login display the login link-->
                         <li class="nav__item">

@@ -78,7 +78,7 @@
                         <div class="col-md-6 col-sm-6 mb-3">
                             <label class="form-label">Select user type:</label>
                             <select name="role" class="form-select form-select-sm bg-body-secondary">
-                                <option value="<?php echo $role;?>" selected>Choose type of user</option>
+                                <option value="<?php echo $role?>" selected>Choose type of user</option>
                                 <option value="editor">Editor User</option>
                                 <option value="user">Guest User</option>
                             </select>
