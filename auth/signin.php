@@ -47,9 +47,6 @@ include(ROOT_PATH.'/app/controllers/user.php');
                         <!--Alert-->
                         <?php include(ROOT_PATH."/app/helpers/formAlert.php");?>
                         <!--End of Alert-->
-                        <!--Message Alert Success-->
-                        <?php include(ROOT_PATH."/app/helpers/accountAlert.php");?>
-                        <!--End of Message Alert-->
                         <div class="col-xxl-8 col-md-8">
                             <label for="email" class="signin form-label">Email<span class="colon">*</span></label>
                             <input type="email" class="input-signin" id="username" name="email" value="<?php echo $email?>" placeholder="Enter your Email address"><br>
