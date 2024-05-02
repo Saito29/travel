@@ -1,8 +1,8 @@
 <!--Customized CSS Section-->
-<link rel="stylesheet" href="<?php echo BASE_URL.'/asset/css/style.css'?>">
+<link rel="stylesheet" href="<?php echo BASE_ADMIN.'/asset/css/style.css'?>">
 
 <!--favicon logo-->
-<link rel="shortcut icon" href="<?php echo BASE_URL.'/asset/images/icon/Cube.io.png'?>" type="image/x-icon">
+<link rel="shortcut icon" href="<?php echo BASE_ADMIN.'/asset/images/icon/travel.png'?>" type="image/x-icon">
 
 <!--Google Fonts-->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,8 +24,8 @@
 
 <!--Tinymce Text Editor This is for CDN need to be configured in Admin
 <script src="https://cdn.tiny.cloud/1/ibwzlzvtiue1cnl2kujwtewutyd1oegqob2svdnyv38tndmq/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>-->
-<script src="<?php echo BASE_URL.'/vendor/tinymce_7.0.0/tinymce/js/tinymce/tinymce.min.js" referrerpolicy="origin'?>"></script>
-<link rel="stylesheet" href="<?php echo BASE_URL.'/vendor/tinymce_7.0.0/tinymce/js/tinymce/skins/ui/tinymce-5-dark/content.inline.min.css'?>">
-<link rel="stylesheet" href="<?php echo BASE_URL.'/vendor/tinymce_7.0.0/tinymce/js/tinymce/skins/ui/tinymce-5-dark/content.inline.js'?>">
+<script src="<?php echo BASE_ADMIN.'/vendor/tinymce_7.0.0/tinymce/js/tinymce/tinymce.min.js" referrerpolicy="origin'?>"></script>
+<link rel="stylesheet" href="<?php echo BASE_ADMIN.'/vendor/tinymce_7.0.0/tinymce/js/tinymce/skins/ui/tinymce-5-dark/content.inline.min.css'?>">
+<link rel="stylesheet" href="<?php echo BASE_ADMIN.'/vendor/tinymce_7.0.0/tinymce/js/tinymce/skins/ui/tinymce-5-dark/content.inline.js'?>">
 <!--Tinymce initializer-->
-<script src="<?php echo BASE_URL.'/vendor/tinymce_7.0.0/tinymce/js/tinymce/tinymceFullOpen-Source.js'?>"></script>
+<script src="<?php echo BASE_ADMIN.'/vendor/tinymce_7.0.0/tinymce/js/tinymce/tinymceFullOpen-Source.js'?>"></script>

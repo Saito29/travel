@@ -16,4 +16,4 @@ unset($_SESSION['icon']);
 session_destroy();
 
 #After destroy all the sessions direct it to the home page
-header('location:'.BASE_URL.'/index.php'); #direct to index page for user
+header('location:'.BASE_URL_LINKS.'/signin.php'); #direct to signin page for user

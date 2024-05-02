@@ -1,4 +1,7 @@
-<?php include ("path.php");?>
+<?php 
+include ("path.php");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,7 +36,7 @@
                         <!--Row of dashboard content-->
                         <div class="row">
                             <div class="col-12 col-md-4">
-                                <a href="<?php echo BASE_URL.'/manage-user.php'?>">
+                                <a href="<?php echo BASE_ADMIN.'/app/users/manage-user.php'?>">
                                     <div class="card cardh border-0">
                                         <div class="card-body py-4">
                                             <h5 class="mb-2 fw-bold text-uppercase">Users</h5>
@@ -44,7 +47,7 @@
                                 </a>
                             </div>
                             <div class="col-12 col-md-4">
-                                <a href="<?php echo BASE_URL.'/manage-category.php'?>">
+                                <a href="<?php echo BASE_ADMIN.'/app/category/manage-category.php'?>">
                                     <div class="card cardh border-0">
                                         <div class="card-body py-4">
                                             <h5 class="mb-2 fw-bold text-uppercase">Category listed</h5>
@@ -55,7 +58,7 @@
                                 </a>
                             </div>
                             <div class="col-12 col-md-4">
-                                <a href="<?php echo BASE_URL.'/manage-subcategories.php'?>">
+                                <a href="<?php echo BASE_ADMIN.'/app/category/manage-subcategories.php'?>">
                                     <div class="card cardh border-0">
                                         <div class="card-body py-4">
                                             <h5 class="mb-2 fw-bold text-uppercase">Sub Category listed</h5>
@@ -66,7 +69,7 @@
                                 </a>
                             </div>
                             <div class="col-12 col-md-4">
-                                <a href="<?php echo BASE_URL.'/manage-post.php'?>">
+                                <a href="<?php echo BASE_ADMIN.'/app/posts/manage-post.php'?>">
                                     <div class="card cardh border-0">
                                         <div class="card-body py-4">                                    
                                             <h5 class="mb-2 fw-bold text-uppercase">Posts</h5>

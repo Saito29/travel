@@ -1,21 +1,21 @@
 <!--Sidebar-->
 <aside id="sidebar">
     <div class="d-flex">
-        <button id="toggle-btn" type="button"><img src="<?php echo BASE_URL.'/asset/images/icon/Cube.io.png'?>" width="30px" alt="Cube.io_logo"></button>
+        <button id="toggle-btn" type="button"><img src="<?php echo BASE_ADMIN.'/asset/images/logo/travel.png'?>" width="30px" alt="Cube.io_logo"></button>
         <div class="sidebar-logo">
-            <a href="#Dashboard"><span style="color: #af8fb6;">Cube</span>.io</a>
+            <a href="#Dashboard"><span style="color: #af8fb6;">Tra</span>vel</a>
         </div>
     </div>
     <!--Sidebar navigation start here-->
     <ul class="sidebar-nav">
         <li class="sidebar-item">
-            <a href="<?php echo BASE_URL.'/dashboard.php'?>" class="sidebar-link">
+            <a href="<?php echo BASE_ADMIN.'/dashboard.php'?>" class="sidebar-link">
                 <i class='bx bxs-dashboard'></i>
                 <span>Dashboard</span>
             </a>
         </li>
         <li class="sidebar-item">
-            <a href="<?php echo BASE_HOME.'/index.php'?>" class="sidebar-link">
+            <a href="<?php echo BASE_URL.'/index.php'?>" class="sidebar-link">
                 <i class='bx bx-globe'></i>
                 <span>Web Page</span>
             </a>
@@ -28,10 +28,10 @@
             </a>
             <ul id="users" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                 <li class="sidebar-item">
-                    <a href="<?php echo BASE_URL.'/add-users.php'?>" class="sidebar-link">Add Users</a>
+                    <a href="<?php echo BASE_ADMIN.'/app/users/add-users.php'?>" class="sidebar-link">Add Users</a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="<?php echo BASE_URL.'/manage-user.php'?>" class="sidebar-link">Manage Users</a>
+                    <a href="<?php echo BASE_ADMIN.'/app/users/manage-user.php'?>" class="sidebar-link">Manage Users</a>
                 </li>
             </ul>
         </li>
@@ -43,10 +43,10 @@
                 </a>
             <ul id="category" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                 <li class="sidebar-item">
-                    <a href="<?php echo BASE_URL.'/add-category.php'?>" class="sidebar-link">Add Category</a>
+                    <a href="<?php echo BASE_ADMIN.'/app/category/add-category.php'?>" class="sidebar-link">Add Category</a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="<?php echo BASE_URL.'/manage-category.php'?>" class="sidebar-link">Manage Category</a>
+                    <a href="<?php echo BASE_ADMIN.'/app/category/manage-category.php'?>" class="sidebar-link">Manage Category</a>
                 </li>
             </ul>
         </li>
@@ -58,10 +58,10 @@
             </a>
             <ul id="subcategory" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                 <li class="sidebar-item">
-                    <a href="<?php echo BASE_URL.'/add-subcategory.php'?>" class="sidebar-link">Add Sub Category</a>
+                    <a href="<?php echo BASE_ADMIN.'/app/category/add-subcategory.php'?>" class="sidebar-link">Add Sub Category</a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="<?php echo BASE_URL.'/manage-subcategories.php'?>" class="sidebar-link">Manage Sub Category</a>
+                    <a href="<?php echo BASE_ADMIN.'/app/category/manage-subcategories.php'?>" class="sidebar-link">Manage Sub Category</a>
                 </li>
             </ul>
         </li>
@@ -73,13 +73,13 @@
                 </a>
             <ul id="posts" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                 <li class="sidebar-item">
-                    <a href="<?php echo BASE_URL.'/add-post.php'?>" class="sidebar-link">Add Posts</a>
+                    <a href="<?php echo BASE_ADMIN.'/app/posts/add-post.php'?>" class="sidebar-link">Add Posts</a>
                 </li>   
                 <li class="sidebar-item">
-                    <a href="<?php echo BASE_URL.'/manage-post.php'?>" class="sidebar-link">Manage Posts</a>
+                    <a href="<?php echo BASE_ADMIN.'/app/posts/manage-post.php'?>" class="sidebar-link">Manage Posts</a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="<?php echo BASE_URL.'/trash-post.php'?>" class="sidebar-link">Trash Posts</a>
+                    <a href="<?php echo BASE_ADMIN.'/app/posts/trash-post.php'?>" class="sidebar-link">Trash Posts</a>
                 </li>
             </ul>
         </li>
@@ -91,13 +91,13 @@
             </a>
             <ul id="pages" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                 <li class="sidebar-item">
-                    <a href="<?php echo BASE_URL.'/aboutUs.php'?>" class="sidebar-link">About us</a>
+                    <a href="<?php echo BASE_ADMIN.'/app/pages/aboutUs.php'?>" class="sidebar-link">About us</a>
                 </li>   
                 <li class="sidebar-item">
-                    <a href="<?php echo BASE_URL.'/terms.php'?>" class="sidebar-link">Terms</a>
+                    <a href="<?php echo BASE_ADMIN.'/app/pages/terms.php'?>" class="sidebar-link">Terms</a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="<?php echo BASE_URL.'/aboutpage.php'?>" class="sidebar-link">About page</a>
+                    <a href="<?php echo BASE_ADMIN.'/app/pages/aboutpage.php'?>" class="sidebar-link">About page</a>
                 </li>
             </ul>
         </li>
@@ -109,10 +109,10 @@
             </a>
             <ul id="comments" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                 <li class="sidebar-item">
-                    <a href="<?php echo BASE_URL.'/approved-comments.php'?>" class="sidebar-link">Approved Comments</a>
+                    <a href="<?php echo BASE_ADMIN.'/app/comments/approved-comments.php'?>" class="sidebar-link">Approved Comments</a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="<?php echo BASE_URL.'/disapproved-comment.php'?>" class="sidebar-link">Disapproved Comments</a>
+                    <a href="<?php echo BASE_ADMIN.'/app/comments/disapproved-comment.php'?>" class="sidebar-link">Disapproved Comments</a>
                 </li>   
             </ul>
         </li>
@@ -124,10 +124,10 @@
             </a>
             <ul id="settings" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                 <li class="sidebar-item">
-                    <a href="<?php echo BASE_URL.'/general-setting.php'?>" class="sidebar-link">General</a>
+                    <a href="<?php echo BASE_ADMIN.'/general-setting.php'?>" class="sidebar-link">General</a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="<?php echo BASE_URL.'/profile.php'?>" class="sidebar-link">Profile</a>
+                    <a href="<?php echo BASE_ADMIN.'/profile.php'?>" class="sidebar-link">Profile</a>
                 </li>   
             </ul>
         </li>
