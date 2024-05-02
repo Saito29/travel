@@ -99,10 +99,12 @@
                                             <div class="mb-1 col-md-4 form-group w-50">
                                                 <label for="usName" class="form-label">Username:</label>
                                                 <input type="text" name="usName" placeholder="Username" class="form-control" required>
+                                                <p class="text-secondary">(required)</p>
                                             </div>
                                             <div class="mb-1 col-md-4 form-group w-50">
                                                 <label for="emailAdd" class="form-label">Email:</label>
                                                 <input type="email" name="emailAdd" placeholder="Email:" class="form-control">
+                                                <p class="text-secondary">(optional)</p>
                                             </div>
                                             <div class="mb-1 col-md-8 form-group w-100">
                                                 <label for="comments" class="form-label">Comment:</label>
