@@ -208,11 +208,11 @@ if(isset($_POST['signin-btn']))
 }
 
 #This is for Forgotten Password Authentication
-if(isset($_POST['forget-btn'])){
+if(isset($_REQUEST['forget-btn'])){
     #Clear the forget-btn 
-    unset($_POST['forget-btn']);
+    unset($_REQUEST['forget-btn']);
 
     #print the email 
-    echo "<pre>", print_r($_POST, true), "</pre>";
-
+    dd($_REQUEST);
+    
 }
