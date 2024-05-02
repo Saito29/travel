@@ -191,6 +191,9 @@ if(isset($_POST['signin-btn']))
         if($user && password_verify($_POST['password'], $user['password'])){
             #Session User login function
             loginUser($user);
+            #after session login success clear the form fields
+            $email = '';
+            $password = '';
         }else{
             #Display the error message
             array_push($errors, "Email or Password Incorrect.");
@@ -202,4 +205,14 @@ if(isset($_POST['signin-btn']))
         $email = $_POST['email'];
         $password = $_POST['password'];
     }
+}
+
+#This is for Forgotten Password Authentication
+if(isset($_POST['forget-btn'])){
+    #Clear the forget-btn 
+    unset($_POST['forget-btn']);
+
+    #print the email 
+    echo "<pre>", print_r($_POST, true), "</pre>";
+
 }

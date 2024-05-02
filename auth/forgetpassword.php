@@ -1,4 +1,8 @@
-<?php include("../path.php"); ?>
+<?php 
+include("../path.php"); 
+include(ROOT_PATH."/app/controllers/user.php");
+?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -11,10 +15,10 @@
     <title>Travel | Forgot Password</title>
 
     <!--Customized CSS-->
-    <link rel="stylesheet" href="../asset/css/auth.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL.'/asset/css/auth.css'?>">
 
     <!--Favicon logo-->
-    <link rel="shortcut icon" href="../asset/img/logo/travel.png" type="image/x-icon">
+    <link rel="shortcut icon" href="<?php echo BASE_URL.'/asset/img/logo/travel.png'?>" type="image/x-icon">
 
     <!--Google Fonts-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -31,24 +35,24 @@
 </head>
 <body>  
     <div class="card-fgp">
-        <div class="card card-pd-fgp">
+        <div class="card card-pd-fgp h-auto">
             <div class="logo-content-fgp">
-                <img src="../asset/img/logo/travel.png" alt="travel_logo">
+                <img src="<?php echo BASE_URL.'/asset/img/logo/travel.png'?>" alt="travel_logo">
                 <h2 class="txt-fgp">Travel</h2>
             </div>
             <div class="card-body card-body-fgp">
                 <div class="card-content-fgp">
                     <h3 class="card-title card-title-fgp">Forgot password</h3>
-                    <p class="card-text card-text-fgp">Enter your email adress and your password will be reset and emailed to you.</p>
+                    <p class="card-text card-text-fgp"><span class="text-warning">NOTE:</span> Enter your email adress and your password will be reset and emailed to you.</p>
                 </div>
                 <div class="row gy-4">
-                    <form action="/#" method="post" autocomplete="off" class="form-fgp" enctype="application/x-www-form-urlencoded">
+                    <form action="forgetpassword.php" method="post" autocomplete="on" class="form-fgp" enctype="application/x-www-form-urlencoded">
                         <div class="col-xxl-4 col-md-6">
-                            <label for="email-fgp" class="forget-password">Email address</label><br>
-                            <input type="email" class="input-fgp" name="Username" id="email-fgp" placeholder="Enter Email" required><br>
+                            <label for="email" class="forget-password">Email address</label><br>
+                            <input type="email" class="input-fgp" name="email" id="email-fgp" placeholder="Enter Email address" required><br>
                         </div>
                         <div class="col-xxl-8 col-md-8">
-                            <button type="submit" id="submit-fgp" name="button-fgp"><i class='bx bx-envelope icon'></i>Send me new password</button>
+                            <button type="submit" id="submit-fgp" name="forget-btn"><i class='bx bx-envelope icon'></i>Send me new password</button>
                         </div>
                     </form>
                 </div>
@@ -59,6 +63,6 @@
             </div>
         </div>
     </div>
-    <script src="../asset/js/togglePassword.js"></script>
+    <script src="<?php echo BASE_URL.'/asset/js/togglePassword.js'?>"></script>
 </body>
 </html>

@@ -49,23 +49,23 @@
                         <!--End of Alert-->
                         <div class="col-md-6 col-sm-6">
                             <label for="firstName" class="signup">First Name <span class="colon">*</span></label><br>
-                            <input type="text" class="input-signup" id="fname" name="firstName" value="<?php echo $firstName?>" placeholder="Enter your first name" ><br>
+                            <input type="text" class="input-signup" id="fname" name="firstName" value="<?php echo $firstName?>" placeholder="First Name"><br>
                         </div>
                         <div class="col-md-6 col-sm-6">
                             <label for="lastName" class="signup">Last Name <span class="colon">*</span></label><br>
-                            <input type="text" class="input-signup" id="lname" name="lastName" value="<?php echo $lastName?>" placeholder="Enter your last name"><br>
+                            <input type="text" class="input-signup" id="lname" name="lastName" value="<?php echo $lastName?>" placeholder="Last Name"><br>
                         </div>
                         <div class="col-md-6 col-sm-6">
                             <label for="username" class="signup">Username <span class="colon">*</span></label><br>
-                            <input type="text" class="input-signup" id="username" name="username" value="<?php echo $username?>" placeholder="Enter username" ><br>
+                            <input type="text" class="input-signup" id="username" name="username" value="<?php echo $username?>" placeholder="Username"><br>
                         </div>
                         <div class="col-md-6 col-sm-6">
                             <label for="email" class="signup">Email address <span class="colon">*</span></label><br>
-                            <input type="email" class="input-signup" id="email" name="email" value="<?php echo $email?>" placeholder="Enter email address" ><br>
+                            <input type="email" class="input-signup" id="email" name="email" value="<?php echo $email?>" placeholder="Email Address"><br>
                         </div>
                         <div class="col-md-6 col-sm-6">
                             <label for="password" class="signup">Password <span class="colon">*</span></label><br>
-                            <input type="password" class="input-signup password" minlength="8" name="password" value="<?php echo $password?>" placeholder="Enter password" ><br>
+                            <input type="password" class="input-signup password" minlength="8" name="password" value="<?php echo $password?>" placeholder="Password"><br>
                             <i class='bx bx-low-vision toggle-icon toggle-password'></i><br>
                             <p class="signup-ps">Password must be at least minimum of 8 characters.</p>
                         </div>
