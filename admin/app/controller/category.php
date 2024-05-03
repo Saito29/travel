@@ -5,8 +5,10 @@ include(ROOT_PATH."/app/helpers/validateCategory.php");
 #Global Variable for Category
 $categName = '';
 $categDesc = '';
+$is_Active = '';
 $table = 'category';
 
+#Array of Category errors messages
 $errors = array();
 
 #This function is for session category
@@ -19,6 +21,10 @@ function sessionCategory($categ){
     exit();
 }
 
+#Select all the categories created 
+$category = selectAll($table);
+
+
 if(isset($_POST["addCateg-btn"])){
     #Error alert function
     $errors = validateCategory($_POST);
@@ -28,9 +34,8 @@ if(isset($_POST["addCateg-btn"])){
         #unset the creation button
         unset($_POST["addCateg-btn"]);
 
-        #Collect the categories data from the form
-        $categName = $_POST["categName"];
-        $categDesc = $_POST["categDesc"];
+        #Save the category as active key 1
+        $_POST['Is_Active'] = 1;
 
         #crete a category data and insert into database
         $categ_id = create($table, $_POST);

@@ -1,5 +1,5 @@
 <!--Customized CSS Section-->
-<link rel="stylesheet" href="<?php echo BASE_ADMIN.'/asset/css/style.css'?>">
+<link rel="stylesheet" href="<?php echo BASE_ADMIN.'/asset/css/style.css';?>">
 
 <!--favicon logo-->
 <link rel="shortcut icon" href="<?php echo BASE_ADMIN.'/asset/images/icon/travel.png'?>" type="image/x-icon">

@@ -1,5 +1,6 @@
 <?php 
 include("../path.php");
+include(ROOT_PATH."/app/controller/category.php");
 ?>
 
 <!DOCTYPE html>
@@ -79,7 +80,7 @@ include("../path.php");
                                                         <th>#</th>
                                                         <th>Category</th>
                                                         <th>Description</th>
-                                                        <th>Posting Date</th>
+                                                        <th>Created Date</th>
                                                         <th>Last updation Date</th>                                                        
                                                         <th>Action</th>
                                                     </tr>
@@ -87,42 +88,20 @@ include("../path.php");
                                                 <!--========== End of Table header ================-->
                                                 <tbody>
                                                     <!--========= Table Data =====================-->
+                                                    <?php foreach ($category as $key => $categories):?>
                                                     <tr>
-                                                        <td>1</td>
-                                                        <td>Travel and Tour</td>
-                                                        <td>Blogging about Travel and Tour here in Quezon Province</td>
-                                                        <td>2024-03-02 15:20:12</td>
-                                                        <td></td>
+                                                        <td><?Php echo $key + 1; ?></td>
+                                                        <td><?php echo $categories['categName'];?></td>
+                                                        <td><?php echo $categories['categDesc'];?></td>
+                                                        <td><?php echo $categories['categCreated_at'];?></td>
+                                                        <td><?php echo $categories['categUpt_at'];?></td>
                                                         <td>
                                                             <a href="<?php echo BASE_ADMIN.'/category/edit-category.php'?>" class="btn btn-outline-primary m-1"><i class='bx bx-edit'></i></a>
                                                             &nbsp;
                                                             <a href="#deleteUser" class="btn btn-outline-danger m-1"><i class='bx bx-trash-alt' ></i></a>
                                                         </td>
                                                     </tr>
-                                                    <tr>
-                                                        <td>2</td>
-                                                        <td>Programming Related</td>
-                                                        <td>Tutorial Video about basic Fundamentals of Programming Languages</td>
-                                                        <td>2024-03-02 15:20:12</td>
-                                                        <td></td>
-                                                        <td>
-                                                            <a href="<?php echo BASE_ADMIN.'/category/edit-category.php'?>" class="btn btn-outline-primary m-1"><i class='bx bx-edit'></i></a>
-                                                            &nbsp;
-                                                            <a href="#deleteUser" class="btn btn-outline-danger m-1"><i class='bx bx-trash-alt' ></i></a>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>3</td>
-                                                        <td>Entertainment</td>
-                                                        <td>Stress relief blog</td>
-                                                        <td>2024-03-02 15:20:12</td>
-                                                        <td></td>
-                                                        <td>
-                                                            <a href="<?php echo BASE_ADMIN.'/category/edit-category.php'?>" class="btn btn-outline-primary m-1"><i class='bx bx-edit'></i></a>
-                                                            &nbsp;
-                                                            <a href="#deleteUser" class="btn btn-outline-danger m-1"><i class='bx bx-trash-alt' ></i></a>
-                                                        </td>
-                                                    </tr>
+                                                    <?php endforeach; ?>
                                                     <!--============= End of Table Data ===============-->
                                                 </tbody>
                                             </table>
@@ -144,7 +123,7 @@ include("../path.php");
                                                         <th>#</th>
                                                         <th>Category</th>
                                                         <th>Description</th>
-                                                        <th>Posting Date</th>
+                                                        <th>Created Date</th>
                                                         <th>Last updation Date</th>                                                        
                                                         <th>Action</th>
                                                     </tr>
