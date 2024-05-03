@@ -1,5 +1,5 @@
 <?php 
-include ("path.php");
+include("path.php");
 ?>
 
 <!DOCTYPE html>
@@ -114,7 +114,7 @@ include ("path.php");
                                                     <td>Hiking</td>
                                                     <td>Published</td>
                                                     <td>
-                                                        <a href="<?php echo BASE_URL.'/edit-post.php'?>" class="btn btn-outline-primary m-1"><i class='bx bx-edit'></i></a>
+                                                        <a href="<?php echo BASE_ADMIN.'/app/posts/edit-post.php'?>" class="btn btn-outline-primary m-1"><i class='bx bx-edit'></i></a>
                                                         &nbsp;
                                                         <a href="#deletePost" class="btn btn-outline-danger m-1"><i class='bx bx-trash-alt' ></i></a>
                                                     </td>
@@ -127,7 +127,7 @@ include ("path.php");
                                                     <td>Programming Tutorials</td>
                                                     <td>Published</td>
                                                     <td>
-                                                        <a href="<?php echo BASE_URL.'/edit-post.php'?>" class="btn btn-outline-primary m-1"><i class='bx bx-edit'></i></a>
+                                                        <a href="<?php echo BASE_ADMIN.'/app/posts/edit-post.php'?>" class="btn btn-outline-primary m-1"><i class='bx bx-edit'></i></a>
                                                         &nbsp;
                                                         <a href="#deletePost" class="btn btn-outline-danger m-1"><i class='bx bx-trash-alt' ></i></a>
                                                     </td>
@@ -140,7 +140,7 @@ include ("path.php");
                                                     <td>Music</td>
                                                     <td>Published</td>
                                                     <td>
-                                                        <a href="<?php echo BASE_URL.'/edit-post.php'?>" class="btn btn-outline-primary m-1"><i class='bx bx-edit'></i></a>
+                                                        <a href="<?php echo BASE_ADMIN.'/app/posts/edit-post.php'?>" class="btn btn-outline-primary m-1"><i class='bx bx-edit'></i></a>
                                                         &nbsp;
                                                         <a href="#deletePost" class="btn btn-outline-danger m-1"><i class='bx bx-trash-alt' ></i></a>
                                                     </td>
@@ -186,7 +186,7 @@ include ("path.php");
                                                     <tr>
                                                         <td clas>1</td>
                                                         <td class="tb-image">
-                                                            <img src="<?php echo BASE_URL.'/asset/images/profile/hutao_profile.jpg'?>" width="36" height="36" alt="User_profile" class="rounded-circle border">
+                                                            <img src="<?php echo BASE_ADMIN.'/asset/images/profile/hutao_profile.jpg'?>" width="36" height="36" alt="User_profile" class="rounded-circle border">
                                                         </td>
                                                         <td>Mark Kinnedy</td>
                                                         <td>Anda</td>
@@ -194,7 +194,7 @@ include ("path.php");
                                                         <td>saito29@gmail.com</td>
                                                         <td>Admin</td>
                                                         <td>
-                                                            <a href="<?php echo BASE_URL.'/edit-user.php'?>" class="btn btn-outline-primary m-1"><i class='bx bx-edit'></i></a>
+                                                            <a href="<?php echo BASE_ADMIN.'/app/posts/edit-post.php'?>" class="btn btn-outline-primary m-1"><i class='bx bx-edit'></i></a>
                                                             &nbsp;
                                                             <a href="#deleteUser" class="btn btn-outline-danger m-1"><i class='bx bx-trash-alt' ></i></a>
                                                         </td>
@@ -202,7 +202,7 @@ include ("path.php");
                                                     <tr>
                                                         <td clas>2</td>
                                                         <td class="tb-image">
-                                                            <img src="<?php echo BASE_URL.'/asset/images/logo/Cube.io.png'?>" width="36" height="36" alt="User_profile" class="rounded-circle border">
+                                                            <img src="<?php echo BASE_ADMIN.'/asset/images/logo/Cube.io.png'?>" width="36" height="36" alt="User_profile" class="rounded-circle border">
                                                         </td>
                                                         <td>Khrisalyn</td>
                                                         <td>Tolentino</td>
@@ -210,7 +210,7 @@ include ("path.php");
                                                         <td>krhisalyn@gmail.com</td>
                                                         <td>Admin</td>
                                                         <td>
-                                                            <a href="<?php echo BASE_URL.'/edit-user.php'?>" class="btn btn-outline-primary m-1"><i class='bx bx-edit'></i></a>
+                                                            <a href="<?php echo BASE_ADMIN.'/app/posts/edit-post.php'?>" class="btn btn-outline-primary m-1"><i class='bx bx-edit'></i></a>
                                                             &nbsp;
                                                             <a href="#deleteUser" class="btn btn-outline-danger m-1"><i class='bx bx-trash-alt' ></i></a>
                                                         </td>
@@ -218,7 +218,7 @@ include ("path.php");
                                                     <tr>
                                                         <td clas>3</td>
                                                         <td class="tb-image">
-                                                            <img src="<?php echo BASE_URL.'/asset/images/logo/Cube.io.png'?>" width="36" height="36" alt="User_profile" class="rounded-circle border">
+                                                            <img src="<?php echo BASE_ADMIN.'/asset/images/logo/Cube.io.png'?>" width="36" height="36" alt="User_profile" class="rounded-circle border">
                                                         </td>
                                                         <td>Gelo</td>
                                                         <td>Eranzo</td>
@@ -226,7 +226,7 @@ include ("path.php");
                                                         <td>Gelo@gmail.com</td>
                                                         <td>Admin</td>
                                                         <td>
-                                                            <a href="<?php echo BASE_URL.'/edit-user.php'?>" class="btn btn-outline-primary m-1"><i class='bx bx-edit'></i></a>
+                                                            <a href="<?php echo BASE_ADMIN.'/app/posts/edit-post.php'?>" class="btn btn-outline-primary m-1"><i class='bx bx-edit'></i></a>
                                                             &nbsp;
                                                             <a href="#deleteUser" class="btn btn-outline-danger m-1"><i class='bx bx-trash-alt' ></i></a>
                                                         </td>
