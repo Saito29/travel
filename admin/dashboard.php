@@ -36,7 +36,7 @@ include("path.php");
                         <!--Row of dashboard content-->
                         <div class="row">
                             <div class="col-12 col-md-4">
-                                <a href="<?php echo BASE_ADMIN.'/app/users/manage-user.php'?>">
+                                <a href="<?php echo BASE_ADMIN.'/users/manage-user.php'?>">
                                     <div class="card cardh border-0">
                                         <div class="card-body py-4">
                                             <h5 class="mb-2 fw-bold text-uppercase">Users</h5>
@@ -47,7 +47,7 @@ include("path.php");
                                 </a>
                             </div>
                             <div class="col-12 col-md-4">
-                                <a href="<?php echo BASE_ADMIN.'/app/category/manage-category.php'?>">
+                                <a href="<?php echo BASE_ADMIN.'/category/manage-category.php'?>">
                                     <div class="card cardh border-0">
                                         <div class="card-body py-4">
                                             <h5 class="mb-2 fw-bold text-uppercase">Category listed</h5>
@@ -58,7 +58,7 @@ include("path.php");
                                 </a>
                             </div>
                             <div class="col-12 col-md-4">
-                                <a href="<?php echo BASE_ADMIN.'/app/category/manage-subcategories.php'?>">
+                                <a href="<?php echo BASE_ADMIN.'/category/manage-subcategories.php'?>">
                                     <div class="card cardh border-0">
                                         <div class="card-body py-4">
                                             <h5 class="mb-2 fw-bold text-uppercase">Sub Category listed</h5>
@@ -69,7 +69,7 @@ include("path.php");
                                 </a>
                             </div>
                             <div class="col-12 col-md-4">
-                                <a href="<?php echo BASE_ADMIN.'/app/posts/manage-post.php'?>">
+                                <a href="<?php echo BASE_ADMIN.'/posts/manage-post.php'?>">
                                     <div class="card cardh border-0">
                                         <div class="card-body py-4">                                    
                                             <h5 class="mb-2 fw-bold text-uppercase">Posts</h5>
@@ -114,7 +114,7 @@ include("path.php");
                                                     <td>Hiking</td>
                                                     <td>Published</td>
                                                     <td>
-                                                        <a href="<?php echo BASE_ADMIN.'/app/posts/edit-post.php'?>" class="btn btn-outline-primary m-1"><i class='bx bx-edit'></i></a>
+                                                        <a href="<?php echo BASE_ADMIN.'/posts/edit-post.php'?>" class="btn btn-outline-primary m-1"><i class='bx bx-edit'></i></a>
                                                         &nbsp;
                                                         <a href="#deletePost" class="btn btn-outline-danger m-1"><i class='bx bx-trash-alt' ></i></a>
                                                     </td>
@@ -127,7 +127,7 @@ include("path.php");
                                                     <td>Programming Tutorials</td>
                                                     <td>Published</td>
                                                     <td>
-                                                        <a href="<?php echo BASE_ADMIN.'/app/posts/edit-post.php'?>" class="btn btn-outline-primary m-1"><i class='bx bx-edit'></i></a>
+                                                        <a href="<?php echo BASE_ADMIN.'/posts/edit-post.php'?>" class="btn btn-outline-primary m-1"><i class='bx bx-edit'></i></a>
                                                         &nbsp;
                                                         <a href="#deletePost" class="btn btn-outline-danger m-1"><i class='bx bx-trash-alt' ></i></a>
                                                     </td>
@@ -140,7 +140,7 @@ include("path.php");
                                                     <td>Music</td>
                                                     <td>Published</td>
                                                     <td>
-                                                        <a href="<?php echo BASE_ADMIN.'/app/posts/edit-post.php'?>" class="btn btn-outline-primary m-1"><i class='bx bx-edit'></i></a>
+                                                        <a href="<?php echo BASE_ADMIN.'/posts/edit-post.php'?>" class="btn btn-outline-primary m-1"><i class='bx bx-edit'></i></a>
                                                         &nbsp;
                                                         <a href="#deletePost" class="btn btn-outline-danger m-1"><i class='bx bx-trash-alt' ></i></a>
                                                     </td>
@@ -194,7 +194,7 @@ include("path.php");
                                                         <td>saito29@gmail.com</td>
                                                         <td>Admin</td>
                                                         <td>
-                                                            <a href="<?php echo BASE_ADMIN.'/app/posts/edit-post.php'?>" class="btn btn-outline-primary m-1"><i class='bx bx-edit'></i></a>
+                                                            <a href="<?php echo BASE_ADMIN.'/posts/edit-post.php'?>" class="btn btn-outline-primary m-1"><i class='bx bx-edit'></i></a>
                                                             &nbsp;
                                                             <a href="#deleteUser" class="btn btn-outline-danger m-1"><i class='bx bx-trash-alt' ></i></a>
                                                         </td>
@@ -210,7 +210,7 @@ include("path.php");
                                                         <td>krhisalyn@gmail.com</td>
                                                         <td>Admin</td>
                                                         <td>
-                                                            <a href="<?php echo BASE_ADMIN.'/app/posts/edit-post.php'?>" class="btn btn-outline-primary m-1"><i class='bx bx-edit'></i></a>
+                                                            <a href="<?php echo BASE_ADMIN.'/posts/edit-post.php'?>" class="btn btn-outline-primary m-1"><i class='bx bx-edit'></i></a>
                                                             &nbsp;
                                                             <a href="#deleteUser" class="btn btn-outline-danger m-1"><i class='bx bx-trash-alt' ></i></a>
                                                         </td>
@@ -226,7 +226,7 @@ include("path.php");
                                                         <td>Gelo@gmail.com</td>
                                                         <td>Admin</td>
                                                         <td>
-                                                            <a href="<?php echo BASE_ADMIN.'/app/posts/edit-post.php'?>" class="btn btn-outline-primary m-1"><i class='bx bx-edit'></i></a>
+                                                            <a href="<?php echo BASE_ADMIN.'/posts/edit-post.php'?>" class="btn btn-outline-primary m-1"><i class='bx bx-edit'></i></a>
                                                             &nbsp;
                                                             <a href="#deleteUser" class="btn btn-outline-danger m-1"><i class='bx bx-trash-alt' ></i></a>
                                                         </td>

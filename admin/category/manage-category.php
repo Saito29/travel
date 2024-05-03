@@ -64,7 +64,7 @@ include("../path.php");
                                         <!--==== Search & button ======-->
                                         <div class="container-fluid p-2 mt-3">
                                             <div class="col-sm-8">
-                                                <a href="<?php echo BASE_ADMIN.'/app/category/add-category.php'?>">
+                                                <a href="<?php echo BASE_ADMIN.'/category/add-category.php'?>">
                                                     <button type="button" class="btn btn-outline-primary">Add Category</button>
                                                 </a>
                                             </div>
@@ -94,7 +94,7 @@ include("../path.php");
                                                         <td>2024-03-02 15:20:12</td>
                                                         <td></td>
                                                         <td>
-                                                            <a href="<?php echo BASE_ADMIN.'/app/category/edit-category.php'?>" class="btn btn-outline-primary m-1"><i class='bx bx-edit'></i></a>
+                                                            <a href="<?php echo BASE_ADMIN.'/category/edit-category.php'?>" class="btn btn-outline-primary m-1"><i class='bx bx-edit'></i></a>
                                                             &nbsp;
                                                             <a href="#deleteUser" class="btn btn-outline-danger m-1"><i class='bx bx-trash-alt' ></i></a>
                                                         </td>
@@ -106,7 +106,7 @@ include("../path.php");
                                                         <td>2024-03-02 15:20:12</td>
                                                         <td></td>
                                                         <td>
-                                                            <a href="<?php echo BASE_ADMIN.'/app/category/edit-category.php'?>" class="btn btn-outline-primary m-1"><i class='bx bx-edit'></i></a>
+                                                            <a href="<?php echo BASE_ADMIN.'/category/edit-category.php'?>" class="btn btn-outline-primary m-1"><i class='bx bx-edit'></i></a>
                                                             &nbsp;
                                                             <a href="#deleteUser" class="btn btn-outline-danger m-1"><i class='bx bx-trash-alt' ></i></a>
                                                         </td>
@@ -118,7 +118,7 @@ include("../path.php");
                                                         <td>2024-03-02 15:20:12</td>
                                                         <td></td>
                                                         <td>
-                                                            <a href="<?php echo BASE_ADMIN.'/app/category/edit-category.php'?>" class="btn btn-outline-primary m-1"><i class='bx bx-edit'></i></a>
+                                                            <a href="<?php echo BASE_ADMIN.'/category/edit-category.php'?>" class="btn btn-outline-primary m-1"><i class='bx bx-edit'></i></a>
                                                             &nbsp;
                                                             <a href="#deleteUser" class="btn btn-outline-danger m-1"><i class='bx bx-trash-alt' ></i></a>
                                                         </td>

@@ -10,14 +10,14 @@ include("../path.php");
     <meta name="description" content="Travel Manage Sub-categories">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Travel | Manage Sub-categories</title>
-    <?php include(ROOT_PATH."/app/includes/header.php");?>
+    <?php include(ROOT_PATH."/includes/header.php");?>
 </head>
 <body>
     <div class="wrapper">
         <!--Sidebar-->
-        <?php include(ROOT_PATH."/app/includes/sidebar.php");?>
+        <?php include(ROOT_PATH."/includes/sidebar.php");?>
         <div class="main">
-            <?php include(ROOT_PATH."/app/includes/nav.php");?>
+            <?php include(ROOT_PATH."/includes/nav.php");?>
             <!--==================== Manage Sub category ==================-->
             <main class="content px-3 py-4">
                 <div class="container-fluid mb-2">
@@ -63,7 +63,7 @@ include("../path.php");
                                         <!--==== Add sub category Button ======-->
                                         <div class="container-fluid p-2 mt-3">
                                             <div class="col-sm-8">
-                                                <a href="<?php echo BASE_ADMIN.'/app/category/add-subcategory.php'?>">
+                                                <a href="<?php echo BASE_ADMIN.'/category/add-subcategory.php'?>">
                                                     <button type="button" class="btn btn-outline-primary">Add Sub-Category</button>
                                                 </a>
                                             </div>
@@ -94,7 +94,7 @@ include("../path.php");
                                                         <td>2024-03-02 15:20:12</td>
                                                         <td></td>
                                                         <td>
-                                                            <a href="<?php echo BASE_ADMIN.'/app/category/edit-subcategories.php'?>" class="btn btn-outline-primary m-1"><i class='bx bx-edit'></i></a>
+                                                            <a href="<?php echo BASE_ADMIN.'/category/edit-subcategories.php'?>" class="btn btn-outline-primary m-1"><i class='bx bx-edit'></i></a>
                                                             &nbsp;
                                                             <a href="#deleteUser" class="btn btn-outline-danger m-1"><i class='bx bx-trash-alt' ></i></a>
                                                         </td>
@@ -107,7 +107,7 @@ include("../path.php");
                                                         <td>2024-03-02 15:20:12</td>
                                                         <td></td>
                                                         <td>
-                                                            <a href="<?php echo BASE_ADMIN.'/app/category/edit-subcategories.php'?>" class="btn btn-outline-primary m-1"><i class='bx bx-edit'></i></a>
+                                                            <a href="<?php echo BASE_ADMIN.'/category/edit-subcategories.php'?>" class="btn btn-outline-primary m-1"><i class='bx bx-edit'></i></a>
                                                             &nbsp;
                                                             <a href="#deleteUser" class="btn btn-outline-danger m-1"><i class='bx bx-trash-alt' ></i></a>
                                                         </td>
@@ -120,7 +120,7 @@ include("../path.php");
                                                         <td>2024-03-02 15:20:12</td>
                                                         <td></td>
                                                         <td>
-                                                            <a href="<?php echo BASE_ADMIN.'/app/category/edit-subcategories.php'?>" class="btn btn-outline-primary m-1"><i class='bx bx-edit'></i></a>
+                                                            <a href="<?php echo BASE_ADMIN.'/category/edit-subcategories.php'?>" class="btn btn-outline-primary m-1"><i class='bx bx-edit'></i></a>
                                                             &nbsp;
                                                             <a href="#deleteUser" class="btn btn-outline-danger m-1"><i class='bx bx-trash-alt' ></i></a>
                                                         </td>
@@ -207,10 +207,10 @@ include("../path.php");
                 </div>
             </main>
             <!--Footer-->
-            <?php include(ROOT_PATH."/app/includes/footer.php");?>
+            <?php include(ROOT_PATH."/includes/footer.php");?>
         </div>
     </div>
     <!--scripts-->
-    <?php include(ROOT_PATH."/app/includes/scripts.php");?>
+    <?php include(ROOT_PATH."/includes/scripts.php");?>
 </body>
 </html>
