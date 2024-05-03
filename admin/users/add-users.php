@@ -1,5 +1,5 @@
 <?php 
-include("");
+include("../path.php");
 ?>
 
 <!DOCTYPE html>
