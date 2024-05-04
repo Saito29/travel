@@ -3,10 +3,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="author" content="Cube.io">
-    <meta name="description" content="Cube.io Profile">
+    <meta http-equiv="X-UA-Compatible" content="IE=7">
+    <meta name="description" content="Travel Profile">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cube.io | Profile</title>
+    <title>Travel | Profile</title>
     <?php include(ROOT_PATH."/app/includes/header.php");?>
 </head>
 <body>

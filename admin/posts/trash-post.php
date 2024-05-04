@@ -18,7 +18,7 @@ include("../path.php");
         <?php include(ROOT_PATH."/app/includes/sidebar.php");?>
         <div class="main">
             <!--Navbar-->
-            <?php include(ROOT_PATH."/app/includes/navbar.php");?>
+            <?php include(ROOT_PATH."/app/includes/nav.php");?>
             <!--==================== Manage Trash Post ==================-->
             <main class="content px-3 py-4">
                 <div class="container-fluid mb-2">

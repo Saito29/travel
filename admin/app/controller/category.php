@@ -112,5 +112,4 @@ if(isset($_POST['upt-btn'])){
 
     #Called the update function
     sessionUpdateCategory($categ_id);
-    
 }

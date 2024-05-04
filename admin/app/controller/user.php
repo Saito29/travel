@@ -195,6 +195,7 @@ if(isset($_GET['id'])){
     $lastName = $user['lastName'];
     $username = $user['username'];
     $email = $user['email'];
+    $password = $user['password'];
     $profileImage = $user['profileImage'];
     $role = $user['role'];
     $updated_at = $user['updated_at'];

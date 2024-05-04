@@ -1,7 +1,7 @@
-<?php 
+<?php
 include("../path.php");
+include(ROOT_PATH."/app/controller/sub-category.php");
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,14 +10,14 @@ include("../path.php");
     <meta name="description" content="Travel Manage Sub-categories">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Travel | Manage Sub-categories</title>
-    <?php include(ROOT_PATH."/includes/header.php");?>
+    <?php include(ROOT_PATH."/app/includes/header.php");?>
 </head>
 <body>
     <div class="wrapper">
         <!--Sidebar-->
-        <?php include(ROOT_PATH."/includes/sidebar.php");?>
+        <?php include(ROOT_PATH."/app/includes/sidebar.php");?>
         <div class="main">
-            <?php include(ROOT_PATH."/includes/nav.php");?>
+            <?php include(ROOT_PATH."/app/includes/nav.php");?>
             <!--==================== Manage Sub category ==================-->
             <main class="content px-3 py-4">
                 <div class="container-fluid mb-2">
@@ -75,56 +75,32 @@ include("../path.php");
                                                     <!--============ Table Header ================-->
                                                     <tr>
                                                         <th>#</th>
-                                                        <th>Category</th>
-                                                        <th>Sub Category</th>
+                                                        <th>Category Name</th>
+                                                        <th>Sub Category Name</th>
                                                         <th>Description</th>
-                                                        <th>Posting Date</th>
-                                                        <th>Last updation Date</th>                                                        
+                                                        <th>Created Date</th>
+                                                        <th>Last Update Date</th>                                                        
                                                         <th>Action</th>
                                                     </tr>
                                                 </thead>
                                                 <!--========== End of Table header ================-->
                                                 <tbody>
                                                     <!--========= Table Data =====================-->
+                                                    <?php foreach($subcategory as $key => $subcategories):?>
                                                     <tr>
-                                                        <td>1</td>
-                                                        <td>Travel and Tour</td>
-                                                        <td>Hiking Mountains</td>
-                                                        <td>Blogging about Hiking in Mountains</td>
-                                                        <td>2024-03-02 15:20:12</td>
-                                                        <td></td>
+                                                        <td><?php echo $key + 1?></td>
+                                                        <td><?php echo $subcategories['categoryName']?></td>
+                                                        <td><?php echo $subcategories['name']?></td>
+                                                        <td><?php echo $subcategories['description']?></td>
+                                                        <td><?php echo $subcategories['created_at']?></td>
+                                                        <td><?php echo $subcategories['updated_at']?></td>
                                                         <td>
-                                                            <a href="<?php echo BASE_ADMIN.'/category/edit-subcategories.php'?>" class="btn btn-outline-primary m-1"><i class='bx bx-edit'></i></a>
+                                                            <a href="edit-subcategories.php?id=<?php echo $subcategories['id']?>" class="btn btn-outline-primary m-1"><i class='bx bx-edit'></i></a>
                                                             &nbsp;
                                                             <a href="#deleteUser" class="btn btn-outline-danger m-1"><i class='bx bx-trash-alt' ></i></a>
                                                         </td>
                                                     </tr>
-                                                    <tr>
-                                                        <td>2</td>
-                                                        <td>Programming Related</td>
-                                                        <td>Tutorial</td>
-                                                        <td>Tutorial Video about PL(Programming Languages)</td>
-                                                        <td>2024-03-02 15:20:12</td>
-                                                        <td></td>
-                                                        <td>
-                                                            <a href="<?php echo BASE_ADMIN.'/category/edit-subcategories.php'?>" class="btn btn-outline-primary m-1"><i class='bx bx-edit'></i></a>
-                                                            &nbsp;
-                                                            <a href="#deleteUser" class="btn btn-outline-danger m-1"><i class='bx bx-trash-alt' ></i></a>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>3</td>
-                                                        <td>Entertainment</td>
-                                                        <td>Stress Relief</td>
-                                                        <td>Funny compilations video</td>
-                                                        <td>2024-03-02 15:20:12</td>
-                                                        <td></td>
-                                                        <td>
-                                                            <a href="<?php echo BASE_ADMIN.'/category/edit-subcategories.php'?>" class="btn btn-outline-primary m-1"><i class='bx bx-edit'></i></a>
-                                                            &nbsp;
-                                                            <a href="#deleteUser" class="btn btn-outline-danger m-1"><i class='bx bx-trash-alt' ></i></a>
-                                                        </td>
-                                                    </tr>
+                                                    <?php endforeach;?>
                                                     <!--============= End of Table Data ===============-->
                                                 </tbody>
                                             </table>
@@ -207,10 +183,10 @@ include("../path.php");
                 </div>
             </main>
             <!--Footer-->
-            <?php include(ROOT_PATH."/includes/footer.php");?>
+            <?php include(ROOT_PATH."/app/includes/footer.php");?>
         </div>
     </div>
     <!--scripts-->
-    <?php include(ROOT_PATH."/includes/scripts.php");?>
+    <?php include(ROOT_PATH."/app/includes/scripts.php");?>
 </body>
 </html>

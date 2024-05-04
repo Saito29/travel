@@ -1,5 +1,6 @@
 <?php 
 include("path.php");
+include(ROOT_PATH."/app/controller/dashboard.php");
 ?>
 
 <!DOCTYPE html>
@@ -41,7 +42,7 @@ include("path.php");
                                         <div class="card-body py-4">
                                             <h5 class="mb-2 fw-bold text-uppercase">Users</h5>
                                             <i class='bx bxs-user icon'></i>
-                                            <p class="mb-2 fw-bold">5</p>
+                                            <p class="mb-2 fw-bold"><?php echo $users?></p>
                                         </div>
                                     </div>
                                 </a>
@@ -52,7 +53,7 @@ include("path.php");
                                         <div class="card-body py-4">
                                             <h5 class="mb-2 fw-bold text-uppercase">Category listed</h5>
                                             <i class='bx bxs-layer icon'></i>
-                                            <p class="mb-2 fw-bold">4</p>
+                                            <p class="mb-2 fw-bold"><?php echo $categories?></p>
                                         </div>
                                     </div>
                                 </a>
@@ -63,7 +64,7 @@ include("path.php");
                                         <div class="card-body py-4">
                                             <h5 class="mb-2 fw-bold text-uppercase">Sub Category listed</h5>
                                             <i class='bx bxs-layer icon'></i>
-                                            <p class="mb-2 fw-bold">2</p>
+                                            <p class="mb-2 fw-bold"><?php echo $subcategories?></p>
                                         </div>
                                     </div>
                                 </a>

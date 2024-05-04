@@ -105,8 +105,8 @@ include(ROOT_PATH."/app/controller/user.php");
                                                         <td><?php echo $users['email']?></td>
                                                         <td class="text-truncate"><?php echo $users['password']?></td>
                                                         <td><?php echo $users['role']?></td>
-                                                        <td><?php echo $users['created_at']?></td>
-                                                        <td><?php echo $users['updated_at']?></td>
+                                                        <td class="text-truncate"><?php echo $users['created_at']?></td>
+                                                        <td class="text-truncate"><?php echo $users['updated_at']?></td>
                                                         <td>
                                                             <a href="edit-user.php?id=<?php echo $users['id']?>" class="btn btn-outline-primary m-1"><i class='bx bx-edit'></i></a>
                                                             &nbsp;

@@ -1,19 +1,22 @@
 <?php
 
-function validateSubCategory($subcateg)
+function validateSubCategory($subcategory)
 {
     #Pass all error in error array
     $errors = array();  
-
-    if(empty($subcateg['subcategName'])){
+    
+    if(empty($subcategory['categoryName'])){
         array_push($errors, "Category Name is required.");
     }
-    if(empty($subcateg['subcategDesc'])){
+    if(empty($subcategory['name'])){
+        array_push($errors, "Category Name is required.");
+    }
+    if(empty($subcategory['description'])){
         array_push($errors, "Category description is required.");
     }
 
     #Find an existing category name in the database
-    $existingSubCategName = selectOne('sub-category', ['categName' => $subcateg['subcategName']]);
+    $existingSubCategName = selectOne('tblsubcategory', ['name' => $subcategory['name']]);
     if(isset($existingSubCategName)){
         array_push($errors, "Sub-Category name is already exist.");
     }

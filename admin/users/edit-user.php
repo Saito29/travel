@@ -64,7 +64,7 @@ include(ROOT_PATH."/app/controller/user.php");
                                             <div class="mb-1 col-sm-6">
                                                 <label for="role" class="form-label">Role type:</label>
                                                 <select name="role" class="form-select form-select-sm">
-                                                    <option value="<?php echo $role?>" selected>Choose type of user</option>
+                                                    <option value="<?php echo $role?>" selected><?php echo $role?></option>
                                                     <option value="admin">Admin User</option>
                                                     <option value="sub-admin">Sub-Admin User</option>
                                                     <option value="editor">Editor User</option>
@@ -76,8 +76,8 @@ include(ROOT_PATH."/app/controller/user.php");
                                                 <input type="email" class="form-control" name="email-address" value="<?php echo $email?>" placeholder="Email Address" >
                                             </div>
                                             <div class="mb-1 col-sm-6">
-                                                <label class="form-label">Password:</label>
-                                                <input type="password" class="form-control" name="password" minlength="8" id="password" value="<?php echo $password?>" placeholder="Password" >
+                                                <label class="form-label" for="password">Password:</label>
+                                                <input type="password" class="form-control" name="password" minlength="8" id="password" value="<?php echo $password?>"  placeholder="Password" >
                                                 <label for="checkPassword" class="form-check-label">Show password</label>
                                                 <input type="checkbox" class="form-check-input bg-primary toggle-password">
                                                 <span class="form-text px-2 py-3">Password must be at least minimum of 8 characters long</span>

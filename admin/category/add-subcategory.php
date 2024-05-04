@@ -43,29 +43,30 @@ include(ROOT_PATH."/app/controller/sub-category.php");
                                         <div class="row">
                                             <div class="col-sm-6 col-md-8">
                                                 <!--Alert Start Here -->
-                                                <?php include(ROOT_PATH."/app/helpers/formAlert.php"); ?>
-                                                <?php include(ROOT_PATH."/app/helpers/messageAlert.php"); ?>
+                                                <?php include(ROOT_PATH."/app/helpers/formAlert.php");?>
+                                                <?php include(ROOT_PATH."/app/helpers/messageAlert.php");?>
                                                 <!--Alert End Here -->
                                             </div>
                                          </div>
-                                        <form action="#" class="row gx-2 gy-3" name="addUser" method="post">
+                                        <form action="add-subcategory.php" class="row gx-2 gy-3" autocomplete="on" name="addUser" method="post" enctype="application/x-www-form-urlencoded">
+                                            <input type="hidden" name="created_at" value="<?php echo $created_at?>">
                                             <div class="mb-1 col-md-6">
                                                 <label for="categories" class="form-label">Category:</label>
-                                                <select name="category" class="form-select form-select-sm" aria-label="Default select example" required>
-                                                    <option value="" selected>Select Categories:</option>
+                                                <select name="categoryName" class="form-select">
+                                                    <option value="<?php echo $category?>" selected>Select Categories:</option>
                                                     <!--Category List-->
-                                                    <option value="">Travel and Tour</option>
-                                                    <option value="">Programming Related</option>
-                                                    <option value="">Entertainment</option>
+                                                    <?php foreach ($category as $key => $subcateg):?>
+                                                    <option value="<?php echo $subcateg['categName']?>"><?php echo $subcateg['categName']?></option>
+                                                    <?php endforeach;?>
                                                 </select>
                                             </div>
                                             <div class="mb-1 col-md-6 form-group">
-                                                <label for="addSubCateg" class="form-label">Sub-Category:</label>
-                                                <input type="text" class="form-control p-2" name="addSubCateg" placeholder="Sub-Category Name" required>
+                                                <label for="name" class="form-label">Sub-Category:</label>
+                                                <input type="text" class="form-control" name="name" value="<?php echo $name?>" placeholder="Sub-Category Name">
                                             </div>
                                             <div class="mb-1 col-md-6 form-group">
-                                                <label for="subCategDesc" class="form-label">Sub-Category Description:</label>
-                                                <textarea name="subCategDesc" class="form-control" rows="4" placeholder="Sub-Category Description" required></textarea>
+                                                <label for="description" class="form-label">Sub-Category Description:</label>
+                                                <textarea name="description" class="form-control" rows="4" placeholder="Sub-Category Description"><?php echo $description?></textarea>
                                             </div>
                                             <div class="mb-2 col-md-12 form-group">
                                                 <button type="submit" class="btn btn-outline-primary" name="addSubCateg-btn">Add Sub-Category</button>

@@ -1,5 +1,6 @@
 <?php 
 include("../path.php");
+include(ROOT_PATH."/app/controller/sub-category.php");
 ?>
 
 <!DOCTYPE html>
@@ -40,45 +41,31 @@ include("../path.php");
                                         <hr />
                                         <div class="row">
                                             <div class="col-sm-6 ">
-                                               <!---Success Message--->  
-                                               <div class="alert alert-success d-flex align-items-center alert-dismissible fade show w-100" role="alert">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(30, 197, 111, 1);transform: ;msFilter:;">
-                                                        <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm-1.999 14.413-3.713-3.705L7.7 11.292l2.299 2.295 5.294-5.294 1.414 1.414-6.706 6.706z"></path>
-                                                    </svg>
-                                                    <strong>User Successfully Added!</strong>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                                </div>
-                                               <!---Error Message--->
-                                                <div class="alert alert-danger d-flex align-items-center alert-dismissible fade show w-100" role="alert">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(179, 18, 20, 1);transform: ;msFilter:;">
-                                                        <path d="M12.884 2.532c-.346-.654-1.422-.654-1.768 0l-9 17A.999.999 0 0 0 3 21h18a.998.998 0 0 0 .883-1.467L12.884 2.532zM13 18h-2v-2h2v2zm-2-4V9h2l.001 5H11z"></path>
-                                                    </svg>
-                                                    <strong>Failed to add user!</strong>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                                </div>
+                                               <?php include(ROOT_PATH."/app/helpers/messageAlert.php")?>
                                             </div>
                                          </div>
-                                        <form action="#" class="row gx-2 gy-3" name="addUser" method="post">
+                                        <form action="edit-subcategories.php" class="row gx-2 gy-3" name="addUser" method="post" enctype="application/x-www-form-urlencoded">
+                                            <input type="hidden" name="updated_at" value="<?php echo $updated_at?>">
                                             <div class="mb-1 col-md-6">
                                                 <label for="categories" class="form-label">Category:</label>
-                                                <select name="category" class="form-select form-select-sm" aria-label="Default select example" required>
-                                                    <option selected>Select Categories: </option>
+                                                <select name="categoryName" class="form-select">
+                                                    <option value="<?php echo $category?>" selected><?php echo $category?></option>
                                                     <!--Category List-->
-                                                    <option value="">Travel and Tour</option>
-                                                    <option value="">Programming Related</option>
-                                                    <option value="">Entertainment</option>
+                                                    <?php foreach ($category as $key => $subcateg):?>
+                                                    <option value="<?php echo $subcateg['categName']?>"><?php echo $subcateg['categName']?></option>
+                                                    <?php endforeach;?>
                                                 </select>
                                             </div>
                                             <div class="mb-1 col-md-6 form-group">
-                                                <label for="editSubCateg" class="form-label">Sub-Category:</label>
-                                                <input type="text" class="form-control form-select-sm" name="editSubCateg" placeholder="Sub-Category Name" required>
+                                                <label for="name" class="form-label">Sub-Category:</label>
+                                                <input type="text" class="form-control" name="name" value="<?php echo $name?>" placeholder="Sub-Category Name">
                                             </div>
                                             <div class="mb-1 col-md-6 form-group">
-                                                <label for="editSubCategDesc" class="form-label">Sub-Category Description:</label>
-                                                <textarea name="editSubCategDesc" class="form-control" rows="4" placeholder="Sub-Category Description" required></textarea>
+                                                <label for="description" class="form-label">Sub-Category Description:</label>
+                                                <textarea name="description" class="form-control" rows="4" placeholder="Sub-Category Description"><?php echo $description?></textarea>
                                             </div>
                                             <div class="mb-2 col-md-12 form-group">
-                                                <button type="submit" class="btn btn-outline-success" name="updateSubCateg-btn">Update Sub-Category</button>
+                                                <button type="submit" class="btn btn-outline-success" name="upt-btn">Update Sub-Category</button>
                                             </div>
                                         </form>
                                     </div>
