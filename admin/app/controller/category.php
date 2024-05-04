@@ -3,8 +3,11 @@ include(ROOT_PATH."/app/config/db.php");
 include(ROOT_PATH."/app/helpers/validateCategory.php");
 
 #Global Variable for Category
+$id = '';
 $categName = '';
 $categDesc = '';
+$categCreated_at = '';
+$categUpt_at = '';
 $is_Active = '';
 $table = 'category';
 
@@ -37,6 +40,7 @@ if(isset($_POST["addCateg-btn"])){
         #Save the category as active key 1
         $_POST['Is_Active'] = 1;
 
+
         #crete a category data and insert into database
         $categ_id = create($table, $_POST);
 
@@ -58,4 +62,27 @@ if(isset($_POST["addCateg-btn"])){
         <path d="M12.884 2.532c-.346-.654-1.422-.654-1.768 0l-9 17A.999.999 0 0 0 3 21h18a.998.998 0 0 0 .883-1.467L12.884 2.532zM13 18h-2v-2h2v2zm-2-4V9h2l.001 5H11z"></path></svg>';
      
     }  
+}
+
+#This is for the updating the category
+if(isset($_GET['id'])){
+    #get the id of the category to update
+    $id = $_GET['id'];
+
+    #Select that match the id of the category to update
+    $category = selectOne($table,['id' => $id]);
+
+    #Set the category to update based on the database
+    $id = $category['id'];
+    $categName = $category['categName'];
+    $categDesc = $category['categDesc'];
+    $categUpt_at = $category['categUpt_at'];
+
+}
+
+#Check if the user clicked the update button
+if(isset($_POST['upt-btn'])){
+    unset($_POST['upt-btn']);
+    $_POST['categUpt_at'] = date_create($_POST['categUpt_at']);
+    dd($_POST);
 }

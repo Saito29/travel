@@ -55,8 +55,9 @@ include(ROOT_PATH."/app/controller/category.php");
                                             </div>
                                             <div class="mb-1 col-md-6 form-group">
                                                 <label for="categDesc" class="form-label">Category Description:</label>
-                                                <textarea name="categDesc" class="form-control" rows="4" value="<?php echo $categDesc;?>" placeholder="Category Description"></textarea>
+                                                <textarea name="categDesc" class="form-control" rows="4"placeholder="Category Description"><?php echo $categDesc;?></textarea>
                                             </div>
+                                            <input type="hidden" name="categCreated_at" value="<?php echo $categCreated_at?>">
                                             <div class="mb-2 col-md-12 form-group">
                                                 <button type="submit" class="btn btn-outline-primary" name="addCateg-btn">Add Category</button>
                                                 <button type="reset" class="btn btn-outline-danger" name="resetCateg-btn">Discard Category</button>

@@ -102,7 +102,7 @@ if (isset($_POST['register-btn']) && isset($_FILES['profileImage']))
             {
                 #The uniqid() function generates a unique ID based on the microtime
                 $newImgName = uniqid("IMG-", true).'-'.$username.'.'.$imageEx_Lc; #Create unique id and insert the username in the image
-                $imagePath = ROOT_PATH.'/app/images/'.$newImgName; #Get the image path
+                $imagePath = ROOT_PATH.'/app/upload/uploadProfile/'.$newImgName; #Get the image path
                 move_uploaded_file($imageTmp, $imagePath); #Upload the image to the folder and database
 
                 #Validate the user image already exists 
