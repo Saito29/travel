@@ -96,7 +96,7 @@ include(ROOT_PATH."/app/controller/category.php");
                                                         <td><?php echo $categories['categCreated_at'];?></td>
                                                         <td><?php echo $categories['categUpt_at'];?></td>
                                                         <td>
-                                                            <a href="<?php echo BASE_ADMIN.'/category/edit-category.php'?>?id=<?php echo $categories['id'];?>" class="btn btn-outline-primary m-1"><i class='bx bx-edit'></i></a>
+                                                            <a href="edit-category.php?id=<?php echo $categories['id'];?>" class="btn btn-outline-primary m-1"><i class='bx bx-edit'></i></a>
                                                             &nbsp;
                                                             <a href="#deleteUser" class="btn btn-outline-danger m-1"><i class='bx bx-trash-alt' ></i></a>
                                                         </td>
@@ -116,7 +116,7 @@ include(ROOT_PATH."/app/controller/category.php");
                                         <hr />
                                         <!--============= Table Category Management  ===============-->
                                         <div class="table-responsive p-2">
-                                            <table class="table m-0 table-responsive-md table-bordered" style="width: 100%" id="DeletedmyTable">
+                                            <table class="table m-0 table-responsive-md table-bordered" style="width: 100%;" id="DeletedmyTable">
                                                 <thead>
                                                     <!--============ Table Header ================-->
                                                     <tr>

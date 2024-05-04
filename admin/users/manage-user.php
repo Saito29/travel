@@ -1,5 +1,6 @@
 <?php 
 include("../path.php");
+include(ROOT_PATH."/app/controller/user.php");
 ?>
 
 <!DOCTYPE html>
@@ -92,63 +93,27 @@ include("../path.php");
                                                 <!--========== End of Table header ================-->
                                                 <tbody>
                                                     <!--========= Table Data =====================-->
+                                                    <?php foreach($user as $key => $users): ?> 
                                                     <tr>
-                                                        <td clas>1</td>
+                                                        <td><?php echo $key + 1?></td>
                                                         <td class="tb-image">
-                                                            <img src="<?php echo BASE_ADMIN.'/asset/images/profile/hutao_profile.jpg'?>" width="30px" height="30px" alt="User_profile" class="rounded-circle">
+                                                            <img src="<?php echo BASE_URL.'/app/upload/uploadProfile/'?><?php echo $users['profileImage']?>" width="45" height="45" alt="User_profile" class="rounded-circle">
                                                         </td>
-                                                        <td>Mark Kinnedy</td>
-                                                        <td>Anda</td>
-                                                        <td>Saito</td>
-                                                        <td>saito29@gmail.com</td>
-                                                        <td>saito291</td>
-                                                        <td>Admin</td>
-                                                        <td>2024-03-02 15:20:12</td>
-                                                        <td></td>
+                                                        <td><?php echo $users['firstName']?></td>
+                                                        <td><?php echo $users['lastName']?></td>
+                                                        <td><?php echo $users['username']?></td>
+                                                        <td><?php echo $users['email']?></td>
+                                                        <td class="text-truncate"><?php echo $users['password']?></td>
+                                                        <td><?php echo $users['role']?></td>
+                                                        <td><?php echo $users['created_at']?></td>
+                                                        <td><?php echo $users['updated_at']?></td>
                                                         <td>
-                                                            <a href="<?php echo BASE_ADMIN.'/users/edit-user.php'?>" class="btn btn-outline-primary m-1"><i class='bx bx-edit'></i></a>
+                                                            <a href="edit-user.php?id=<?php echo $users['id']?>" class="btn btn-outline-primary m-1"><i class='bx bx-edit'></i></a>
                                                             &nbsp;
                                                             <a href="#deleteUser" class="btn btn-outline-danger m-1"><i class='bx bx-trash-alt' ></i></a>
                                                         </td>
                                                     </tr>
-                                                    <tr>
-                                                        <td clas>2</td>
-                                                        <td class="tb-image">
-                                                            <img src="<?php echo BASE_ADMIN.'/asset/images/logo/Cube.io.png'?>" width="30px" height="30px" alt="User_profile" class="rounded-circle">
-                                                        </td>
-                                                        <td>Khrisalyn</td>
-                                                        <td>Tolentino</td>
-                                                        <td>Khrisa</td>
-                                                        <td>krhisalyn@gmail.com</td>
-                                                        <td>krhisalyn212</td>
-                                                        <td>Admin</td>
-                                                        <td>2024-03-02 15:20:12</td>
-                                                        <td></td>
-                                                        <td>
-                                                            <a href="<?php echo BASE_ADMIN.'/users/edit-user.php'?>" class="btn btn-outline-primary m-1"><i class='bx bx-edit'></i></a>
-                                                            &nbsp;
-                                                            <a href="#deleteUser" class="btn btn-outline-danger m-1"><i class='bx bx-trash-alt' ></i></a>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td clas>2</td>
-                                                        <td class="tb-image">
-                                                            <img src="<?php echo BASE_ADMIN.'/asset/images/logo/Cube.io.png'?>" width="30px" height="30px" alt="User_profile" class="rounded-circle">
-                                                        </td>
-                                                        <td>Gelo</td>
-                                                        <td>Eranzo</td>
-                                                        <td>Gelo29</td>
-                                                        <td>Gelo@gmail.com</td>
-                                                        <td>gelo20221</td>
-                                                        <td>Admin</td>
-                                                        <td>2024-03-02 15:20:12</td>
-                                                        <td></td>
-                                                        <td>
-                                                            <a href="<?php echo BASE_ADMIN.'/users/edit-user.php'?>" class="btn btn-outline-primary m-1"><i class='bx bx-edit'></i></a>
-                                                            &nbsp;
-                                                            <a href="#deleteUser" class="btn btn-outline-danger m-1"><i class='bx bx-trash-alt' ></i></a>
-                                                        </td>
-                                                    </tr>
+                                                    <?php endforeach; ?>
                                                     <!--============= End of Table Data ===============-->
                                                 </tbody>
                                             </table>

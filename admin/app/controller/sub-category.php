@@ -1,74 +1,59 @@
-<?php   
+<?php
 include(ROOT_PATH."/app/config/db.php");
-include(ROOT_PATH."/app/helpers/validateCategory.php");
+include(ROOT_PATH."/app/helpers/validateSubCategory.php");
 
 #Global Variable for Category
 $id = '';
-$categName = '';
-$categDesc = '';
-$categCreated_at = '';
-$categUpt_at = '';
+$subcategName = '';
+$subcategDesc = '';
+$subcategCreated_at = '';
+$subcategUpt_at = '';
 $is_Active = '';
-$table = 'category';
+$table = 'sub-category';
 
 #Array of Category errors messages
 $errors = array();
 
 #This function is for session category
-function sessionCategory($categ){
+function sessionSubCategory($subcateg){
     $_SESSION['message'] = "Category has been created successfully.";
     $_SESSION['css_class'] = 'alert-success';
     $_SESSION['icon'] = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(30, 197, 111, 1);transform: ;msFilter:;">
     <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm-1.999 14.413-3.713-3.705L7.7 11.292l2.299 2.295 5.294-5.294 1.414 1.414-6.706 6.706z"></path></svg>';
-    header('location:'.BASE_ADMIN.'/category/add-category.php');
-    exit();
-}
-
-#this function is for updates sessions
-
-function sessionUpdateCategory($categ){
-    $_SESSION['message'] = "Category has been updated successfully.";
-    $_SESSION['css_class'] = 'alert-success';
-    $_SESSION['icon'] = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(30, 197, 111, 1);transform: ;msFilter:;">
-    <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm-1.999 14.413-3.713-3.705L7.7 11.292l2.299 2.295 5.294-5.294 1.414 1.414-6.706 6.706z"></path></svg>';
-    header('location:'.BASE_ADMIN.'/category/edit-category.php');
+    header('location:'.BASE_ADMIN.'/category/add-subcategory.php');
     exit();
 }
 
 #Select all the categories created 
 $category = selectAll($table);
 
-#This is to create a category
-if(isset($_POST["addCateg-btn"])){
+
+if(isset($_POST["addSubCateg-btn"])){
     #Error alert function
     $errors = validateCategory($_POST);
 
     #Validate the category
     if(count($errors) === 0){
         #unset the creation button
-        unset($_POST["addCateg-btn"]);
+        unset($_POST["addSubCateg-btn"]);
 
         #Save the category as active key 1
         $_POST['Is_Active'] = 1;
 
-        #Get current timestamp 
-        $timeStamp = time();
-        $categCreated_at = gmdate('Y-m-d H:i:s', $timeStamp);
-        $_POST['categCreated_at'] = $categCreated_at;
-        
+
         #crete a category data and insert into database
-        $categ_id = create($table, $_POST);
+        $subcateg_id = create($table, $_POST);
 
         #Session the data category
-        sessionCategory($categ_id);
+        sessionSubCategory($subcateg_id);
             
         #after the session category is created clear all the fields
-        $categName = '';
-        $categDesc = '';
+        $subcategName = '';
+        $subcategDesc = '';
     }else{
         #Display all the information that the submitted but error
-        $categName = $_POST['categName'];
-        $categDesc = $_POST['categDesc'];
+        $subcategName = $_POST['subcategName'];
+        $subcategDesc = $_POST['subcategDesc'];
 
         #Display error alert
         $msg = "Category failed to be created.";
@@ -85,32 +70,19 @@ if(isset($_GET['id'])){
     $id = $_GET['id'];
 
     #Select that match the id of the category to update
-    $category = selectOne($table, ['id' => $id]);
+    $subcategory = selectOne($table,['id' => $id]);
 
     #Set the category to update based on the database
     $id = $category['id'];
-    $categName = $category['categName'];
-    $categDesc = $category['categDesc'];
-    $categUpt_at = $category['categUpt_at'];
+    $subcategName = $subcategory['subcategName'];
+    $subcategDesc = $subcategory['subcategDesc'];
+    $subcategUpt_at = $subcategory['subcategUpt_at'];
+
 }
 
 #Check if the user clicked the update button
 if(isset($_POST['upt-btn'])){
-    #insert the category id
-    $id = $_POST['id'];
-
-    #Clear the update button and the id
-    unset($_POST['upt-btn'], $_POST['id']);
-
-    #Get the current timestamp
-    $timeStamp = time();
-    $categUpt_at = gmdate('Y-m-d H:i:s', $timeStamp);
-    $_POST['categUpt_at'] = $categUpt_at;
-
-    #Update the category
-    $categ_id = update($table, $id, $_POST,);
-
-    #Called the update function
-    sessionUpdateCategory($categ_id);
-    
+    unset($_POST['upt-btn']);
+    $_POST['subcategUpt_at'] = date_create($_POST['subcategUpt_at']);
+    dd($_POST);
 }

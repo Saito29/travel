@@ -49,8 +49,8 @@ include(ROOT_PATH."/app/controller/category.php");
                                             </div>
                                          </div>
                                         <form action="edit-category.php" class="row gx-2 gy-3" name="addUser" method="post" enctype="application/x-www-form-urlencoded">
-                                            <input type="hidden" name="categName" value="<?php echo $id?>">
-                                            <input type="hidden" name="categName" value="<?php echo $categUpt_at?>">
+                                            <input type="hidden" name="id" value="<?php echo $id?>">
+                                            <input type="hidden" name="categUpt_at" value="<?php echo $categUpt_at?>">
                                             <div class="mb-1 col-md-6 form-group">
                                                 <label for="categName" class="form-label">Category:</label>
                                                 <input type="text" class="form-control p-2" name="categName" value="<?php echo $categName?>" placeholder="Category Name">

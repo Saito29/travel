@@ -1,5 +1,6 @@
 <?php 
 include("../path.php");
+include(ROOT_PATH."/app/controller/user.php");
 ?>
 
 <!DOCTYPE html>
@@ -40,41 +41,30 @@ include("../path.php");
                                         <hr />
                                         <div class="row">
                                             <div class="col-sm-6 col-md-8">
-                                                <!---Success Message--->  
-                                                <div class="alert alert-success d-flex align-items-center alert-dismissible fade show w-100" role="alert">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(30, 197, 111, 1);transform: ;msFilter:;">
-                                                        <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm-1.999 14.413-3.713-3.705L7.7 11.292l2.299 2.295 5.294-5.294 1.414 1.414-6.706 6.706z"></path>
-                                                    </svg>
-                                                    <strong>User Successfully Added!</strong>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                                </div>
-                                               <!---Error Message--->
-                                                <div class="alert alert-danger d-flex align-items-center alert-dismissible fade show w-100" role="alert">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(179, 18, 20, 1);transform: ;msFilter:;">
-                                                        <path d="M12.884 2.532c-.346-.654-1.422-.654-1.768 0l-9 17A.999.999 0 0 0 3 21h18a.998.998 0 0 0 .883-1.467L12.884 2.532zM13 18h-2v-2h2v2zm-2-4V9h2l.001 5H11z"></path>
-                                                    </svg>
-                                                    <strong>Failed to add user!</strong>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                                </div>
+                                                <!--Alert start-->
+                                                <?php include(ROOT_PATH."/app/helpers/formAlert.php");?>
+                                                <?php include(ROOT_PATH."/app/helpers/messageAlert.php");?>
+                                                <!--Alert end-->
                                             </div>
                                          </div>
-                                        <form action="#" class="row gx-2 gy-3" autocomplete="on" name="editUser" method="post" enctype="multipart/form-data">
+                                        <form action="edit-user.php" class="row gx-2 gy-3" autocomplete="on" name="editUser" method="post" enctype="multipart/form-data">
+                                            <input type="hidden" name="updated_at" value="<?php echo $updated_at;?>">
                                             <div class="mb-1 col-sm-6">
                                                 <label for="fname" class="form-label">First Name:</label>
-                                                <input type="text" class="form-control" name="firstName" placeholder="First Name" required>
+                                                <input type="text" class="form-control" name="firstName" value="<?php echo $firstName?>" placeholder="First Name" >
                                             </div>
                                             <div class="mb-1 col-sm-6">
                                                 <label for="fname" class="form-label">Last Name:</label>
-                                                <input type="text" class="form-control" name="lastName" placeholder="Last Name">
+                                                <input type="text" class="form-control" name="lastName" value="<?php echo $lastName?>" placeholder="Last Name">
                                             </div>
                                             <div class="mb-1 col-sm-6">
                                                 <label for="username" class="form-label">Username:</label>
-                                                <input type="text" class="form-control" name="username" placeholder="Username" required>
+                                                <input type="text" class="form-control" name="username" value="<?php echo $username?>" placeholder="Username">
                                             </div>
                                             <div class="mb-1 col-sm-6">
                                                 <label for="role" class="form-label">Role type:</label>
                                                 <select name="role" class="form-select form-select-sm">
-                                                    <option value="" selected>Choose type of user</option>
+                                                    <option value="<?php echo $role?>" selected>Choose type of user</option>
                                                     <option value="admin">Admin User</option>
                                                     <option value="sub-admin">Sub-Admin User</option>
                                                     <option value="editor">Editor User</option>
@@ -83,19 +73,20 @@ include("../path.php");
                                             </div>
                                             <div class="mb-1 col-sm-6">
                                                 <label for="email-address" class="form-label">Email:</label>
-                                                <input type="email" class="form-control" name="email-address" placeholder="Email Address" required>
+                                                <input type="email" class="form-control" name="email-address" value="<?php echo $email?>" placeholder="Email Address" >
                                             </div>
                                             <div class="mb-1 col-sm-6">
-                                                <label for="password" class="form-label">Password:</label>
-                                                <input type="password" class="form-control" name="password" minlength="8" id="password" placeholder="Password" required>
+                                                <label class="form-label">Password:</label>
+                                                <input type="password" class="form-control" name="password" minlength="8" id="password" value="<?php echo $password?>" placeholder="Password" >
                                                 <label for="checkPassword" class="form-check-label">Show password</label>
-                                                <input type="checkbox" class="form-check-input bg-primary toggle-password" name="password" placeholder="Show password">
+                                                <input type="checkbox" class="form-check-input bg-primary toggle-password">
                                                 <span class="form-text px-2 py-3">Password must be at least minimum of 8 characters long</span>
                                             </div>
                                             <div class="mb-1 col-sm-6">
                                                 <label for="profileImage" class="form-label">Profile Image:</label>
-                                                <img src="<?php echo BASE_EDITOR.'/asset/images/profile/placeholder.webp'?>" onclick="triggerProfileClick()" id="profileDisplay" class="rounded-circle d-block border" alt="profile-user" style="cursor:pointer" width="75">
+                                                <img src="<?php echo BASE_URL.'/app/upload/uploadProfile/'?><?php echo $profileImage?>" onclick="triggerProfileClick()" id="profileDisplay" class="rounded-circle d-block border" alt="profile-user" style="cursor:pointer" width="75">
                                                 <input type="file" class="d-none" name="profileImage" onchange="displayProfileImage(this)" id="profileImage">
+                                                <p class="form-text fs-6 py-3">Profile Image should at least 10mb</p>
                                             </div>
                                             <div class="mb-2 col-sm-8">
                                                 <button type="submit" class="btn btn-outline-success p-2 text-center" name="updateUser-btn">Update Users</button>
