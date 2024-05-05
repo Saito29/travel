@@ -43,23 +43,8 @@ include(ROOT_PATH."/app/controller/user.php");
                                         <h4 class="card-title">Manage User</h4>
                                         <hr />
                                         <div class="row">
-                                            <div class="col-sm-6 col-md-8">
-                                               <!---Success Message--->  
-                                               <div class="alert alert-success d-flex align-items-center alert-dismissible fade show w-100" role="alert">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(30, 197, 111, 1);transform: ;msFilter:;">
-                                                        <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm-1.999 14.413-3.713-3.705L7.7 11.292l2.299 2.295 5.294-5.294 1.414 1.414-6.706 6.706z"></path>
-                                                    </svg>
-                                                    <strong>User Successfully Added!</strong>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                                </div>
-                                               <!---Error Message--->
-                                                <div class="alert alert-danger d-flex align-items-center alert-dismissible fade show w-100" role="alert">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(179, 18, 20, 1);transform: ;msFilter:;">
-                                                        <path d="M12.884 2.532c-.346-.654-1.422-.654-1.768 0l-9 17A.999.999 0 0 0 3 21h18a.998.998 0 0 0 .883-1.467L12.884 2.532zM13 18h-2v-2h2v2zm-2-4V9h2l.001 5H11z"></path>
-                                                    </svg>
-                                                    <strong>Failed to add user!</strong>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                                </div>
+                                            <div class="col-sm-12 col-md-12">
+                                               <?php include(ROOT_PATH."/app/helpers/updateAlert.php");?>
                                             </div>
                                         </div>
                                         <!--==== Search & button ======-->
@@ -97,13 +82,13 @@ include(ROOT_PATH."/app/controller/user.php");
                                                     <tr>
                                                         <td><?php echo $key + 1?></td>
                                                         <td class="tb-image">
-                                                            <img src="<?php echo BASE_URL.'/app/upload/uploadProfile/'?><?php echo $users['profileImage']?>" width="45" height="45" alt="User_profile" class="rounded-circle">
+                                                            <img src="<?php echo BASE_URL.'/app/upload/uploadProfile/'?><?php echo $users['profileImage']?>" width="32" height="32" alt="User_profile" class="rounded-circle">
                                                         </td>
                                                         <td><?php echo $users['firstName']?></td>
                                                         <td><?php echo $users['lastName']?></td>
                                                         <td><?php echo $users['username']?></td>
                                                         <td><?php echo $users['email']?></td>
-                                                        <td class="text-truncate"><?php echo $users['password']?></td>
+                                                        <td class="text-break"><?php echo $users['password']?></td>
                                                         <td><?php echo $users['role']?></td>
                                                         <td class="text-truncate"><?php echo $users['created_at']?></td>
                                                         <td class="text-truncate"><?php echo $users['updated_at']?></td>

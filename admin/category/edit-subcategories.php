@@ -41,7 +41,8 @@ include(ROOT_PATH."/app/controller/sub-category.php");
                                         <hr />
                                         <div class="row">
                                             <div class="col-sm-6 ">
-                                               <?php include(ROOT_PATH."/app/helpers/messageAlert.php")?>
+                                                <?php include(ROOT_PATH.'/app/helpers/formAlert.php');?>
+                                                <?php include(ROOT_PATH."/app/helpers/updateAlert.php")?>
                                             </div>
                                          </div>
                                         <form action="edit-subcategories.php" class="row gx-2 gy-3" name="addUser" method="post" enctype="application/x-www-form-urlencoded">

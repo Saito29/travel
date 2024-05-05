@@ -42,8 +42,9 @@ include(ROOT_PATH."/app/controller/user.php");
                                         <h4 class="card-title">Add User</h4>
                                         <hr />
                                         <div class="row">
-                                            <div class="col-sm-6 col-md-6">
+                                            <div class="col-sm-12 col-md-12">
                                                <?php include(ROOT_PATH."/app/helpers/formAlert.php");?>
+                                               <?php include(ROOT_PATH."/app/helpers/updateAlert.php");?>
                                             </div>
                                          </div>
                                         <form action="add-users.php" class="row gx-2 gy-3 form-group" autocomplete="on" name="addUser" method="post" enctype="multipart/form-data">

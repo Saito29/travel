@@ -44,7 +44,7 @@ include(ROOT_PATH."/app/controller/category.php");
                                             <div class="col-sm-6 col-md-8">
                                                 <!---Alert start--->  
                                                 <?php include(ROOT_PATH.'/app/helpers/formAlert.php');?>
-                                                <?php include(ROOT_PATH.'/app/helpers/messageAlert.php');?>
+                                                <?php include(ROOT_PATH.'/app/helpers/updateAlert.php');?>
                                                 <!--Alert ends-->
                                             </div>
                                          </div>
