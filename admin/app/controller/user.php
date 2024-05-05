@@ -219,5 +219,4 @@ if(isset($_POST['upt-btn'])){
 
     #Called the update function
     sessionUpdateUser($categ_id);
-    
 }

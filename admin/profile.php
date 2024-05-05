@@ -1,4 +1,7 @@
-<?php include("path.php");?>
+<?php 
+include("path.php");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,36 +41,32 @@
                                         <hr />
                                         <div class="row">
                                             <div class="col-sm-6 ">
-                                               <!---Success Message--->  
-                                               <div class="alert alert-success" role="alert">
-                                                  <strong>User  update profile successfully!</strong>
-                                               </div>
-                                               <!---Error Message--->
-                                               <div class="alert alert-danger" role="alert">
-                                                  <strong>Failed to Update user profile, Please try again later.</strong>
-                                               </div>
+                                                <!--Messages Alert -->
+                                                
+                                               <!--End of message-->
                                             </div>
                                          </div>
-                                        <form action="#" class="row gx-2 gy-3" name="editUser" method="post" autocomplete="on" enctype="multipart/form-data">
+                                        <form action="profile.php" class="row gx-2 gy-3" name="editUser" method="post" autocomplete="on" enctype="multipart/form-data">
+                                            <input type="hidden" name="updated_at" value="">
                                             <div class="mb-1 col-sm-6">
-                                                <label for="fname" class="form-label">First Name:</label>
-                                                <input type="text" class="form-control" name="fname" placeholder="First Name" required>
+                                                <label for="firstName" class="form-label">First Name:</label>
+                                                <input type="text" class="form-control" name="firstName"  placeholder="First Name">
                                             </div>
                                             <div class="mb-1 col-sm-6">
-                                                <label for="fname" class="form-label">Last Name:</label>
-                                                <input type="text" class="form-control" name="lname" placeholder="Last Name" required>
+                                                <label for="lastName" class="form-label">Last Name:</label>
+                                                <input type="text" class="form-control" name="lastName" placeholder="Last Name">
                                             </div>
                                             <div class="mb-1 col-sm-6">
                                                 <label for="username" class="form-label">Username:</label>
-                                                <input type="text" class="form-control" name="username" placeholder="Username" required>
+                                                <input type="text" class="form-control" name="username"  placeholder="Username">
                                             </div>
                                             <div class="mb-1 col-sm-6">
-                                                <label for="email-address" class="form-label">Email:</label>
-                                                <input type="email" class="form-control" name="email-address" placeholder="Email Address" required>
+                                                <label for="email" class="form-label">Email:</label>
+                                                <input type="email" class="form-control" name="email"  placeholder="Email Address">
                                             </div>
                                             <div class="mb-1 col-sm-6">
                                                 <label for="profileImage" class="form-label">Profile Image:</label>
-                                                <img src="<?php echo BASE_ADMIN.'/asset/images/profile/placeholder.webp'?>" onclick="triggerProfileClick()" id="profileDisplay" class="rounded-circle d-block border" alt="profile-user" style="cursor:pointer" width="75">
+                                                <img src="<?php echo BASE_URL.'/app/upload/uploadProfile/'?>" onclick="triggerProfileClick()" id="profileDisplay" class="rounded-circle d-block border" alt="profile-user" style="cursor:pointer" width="75">
                                                 <input type="file" class="d-none" name="profileImage" onchange="displayProfileImage(this)" id="profileImage">
                                             </div>
                                             <div class="mb-1 col-sm-6">
@@ -75,7 +74,7 @@
                                                 <a href="<?php echo BASE_URL_LINKS.'/Changepassword.php'?>" class="link-success">Change password</a>
                                             </div>
                                             <div class="mb-2 col-sm-8">
-                                                <button type="submit" class="btn btn-outline-success p-2 text-center" name="updateUser">Update Profile</button>
+                                                <button type="submit" class="btn btn-outline-success p-2 text-center" name="uptProfile-btn">Update Profile</button>
                                             </div>
                                         </form>
                                     </div>

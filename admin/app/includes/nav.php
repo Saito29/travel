@@ -10,7 +10,7 @@
                 <img src="<?php echo BASE_ADMIN.'/asset/images/profile/hutao_profile.jpg'?>" alt="profile" width="40" height="40" class="avatar img-fluid rounded-circle">
             </a>
             <ul class="dropdown-menu dropdown-menu-end rounded">
-                <li><p class="dropdown-item text-center">Hi admin</p></li>
+                <li><p class="dropdown-item text-center">Hi <?php echo $_SESSION['role']?></p></li>
                 <li><hr class="dropdown-divider"></li>
                 <li>
                     <a class="dropdown-item" href="<?php echo BASE_ADMIN.'/profile.php'?>">
