@@ -1,5 +1,6 @@
 <?php 
 include("path.php");
+include(ROOT_PATH."/app/controller/user.php");
 ?>
 
 <!DOCTYPE html>
@@ -26,7 +27,7 @@ include("path.php");
                         <h3 class="fw-bold fs-4 mb-3">User Profile</h3>
                         <ol class="breadcrumb p-0 m-0 ">
                             <li class="breadcrumb-item"><a href="#">Cube.io</a></li>
-                            <li class="breadcrumb-item"><a href="#">Admin</a></li>
+                            <li class="breadcrumb-item"><a href="#"><?php echo $_SESSION['role']?></a></li>
                             <li class="breadcrumb-item active" aria-current="page">Profile</li>
                         </ol>
                     </div>
@@ -50,23 +51,23 @@ include("path.php");
                                             <input type="hidden" name="updated_at" value="">
                                             <div class="mb-1 col-sm-6">
                                                 <label for="firstName" class="form-label">First Name:</label>
-                                                <input type="text" class="form-control" name="firstName"  placeholder="First Name">
+                                                <input type="text" class="form-control" name="firstName" value="<?php echo $_SESSION['firstName']?>" placeholder="First Name">
                                             </div>
                                             <div class="mb-1 col-sm-6">
                                                 <label for="lastName" class="form-label">Last Name:</label>
-                                                <input type="text" class="form-control" name="lastName" placeholder="Last Name">
+                                                <input type="text" class="form-control" name="lastName" value="<?php echo $_SESSION['lastName']?>" placeholder="Last Name">
                                             </div>
                                             <div class="mb-1 col-sm-6">
                                                 <label for="username" class="form-label">Username:</label>
-                                                <input type="text" class="form-control" name="username"  placeholder="Username">
+                                                <input type="text" class="form-control" name="username" value="<?php echo $_SESSION['username']?>" placeholder="Username">
                                             </div>
                                             <div class="mb-1 col-sm-6">
                                                 <label for="email" class="form-label">Email:</label>
-                                                <input type="email" class="form-control" name="email"  placeholder="Email Address">
+                                                <input type="email" class="form-control" name="email" value="<?php echo $_SESSION['email']?>" placeholder="Email Address">
                                             </div>
                                             <div class="mb-1 col-sm-6">
                                                 <label for="profileImage" class="form-label">Profile Image:</label>
-                                                <img src="<?php echo BASE_URL.'/app/upload/uploadProfile/'?>" onclick="triggerProfileClick()" id="profileDisplay" class="rounded-circle d-block border" alt="profile-user" style="cursor:pointer" width="75">
+                                                <img src="<?php echo BASE_URL.'/app/upload/uploadProfile/'?><?php echo $_SESSION['profileImage']?>" onclick="triggerProfileClick()" id="profileDisplay" class="rounded-circle d-block border" alt="profile-user" style="cursor:pointer" width="75">
                                                 <input type="file" class="d-none" name="profileImage" onchange="displayProfileImage(this)" id="profileImage">
                                             </div>
                                             <div class="mb-1 col-sm-6">
@@ -74,7 +75,7 @@ include("path.php");
                                                 <a href="<?php echo BASE_URL_LINKS.'/Changepassword.php'?>" class="link-success">Change password</a>
                                             </div>
                                             <div class="mb-2 col-sm-8">
-                                                <button type="submit" class="btn btn-outline-success p-2 text-center" name="uptProfile-btn">Update Profile</button>
+                                                <button type="submit" class="btn btn-outline-success p-2 text-center" name="upt-btn">Update Profile</button>
                                             </div>
                                         </form>
                                     </div>

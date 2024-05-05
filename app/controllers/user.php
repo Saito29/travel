@@ -27,6 +27,8 @@ $icon = '';
 function loginUser($user){
     #Login the user after the registration session
     $_SESSION['id'] = $user['id']; #id of users
+    $_SESSION['firstName'] = $user['firstName'];
+    $_SESSION['lastName'] = $user['lastName'];
     $_SESSION['username'] = $user['username'];
     $_SESSION['email'] = $user['email'];
     $_SESSION['profileImage'] = $user['profileImage'];

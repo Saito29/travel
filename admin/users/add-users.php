@@ -28,7 +28,7 @@ include(ROOT_PATH."/app/controller/user.php");
                         <h3 class="fw-bold fs-4 mb-3">Add User</h3>
                         <ol class="breadcrumb p-0 m-0 ">
                             <li class="breadcrumb-item"><a href="#">Travel</a></li>
-                            <li class="breadcrumb-item"><a href="#">Admin</a></li>
+                            <li class="breadcrumb-item"><a href="#"><?php echo $_SESSION['role']?></a></li>
                             <li class="breadcrumb-item active" aria-current="page">Add User</li>
                         </ol>
                     </div>

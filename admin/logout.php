@@ -5,8 +5,11 @@ session_start();
 
 #unset all the sessions 
 unset($_SESSION['id']);
+unset($_SESSION['firstName']);
+unset($_SESSION['lastName']);
 unset($_SESSION['username']); 
 unset($_SESSION['email']);
+unset($_SESSION['profileImage']);
 unset($_SESSION['role']);
 unset($_SESSION['message']);
 unset($_SESSION['css_class']);

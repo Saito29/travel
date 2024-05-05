@@ -3,10 +3,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="author" content="Cube.io">
-    <meta name="description" content="Cube.io Settings">
+    <meta http-equiv="X-UA-Compatible" content="IE=7">
+    <meta name="description" content="Travel Settings">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cube.io | General Settings</title>
+    <title>Trvel | General Settings</title>
     <?php include(ROOT_PATH."/app/includes/header.php");?>
 </head>
 <body>
@@ -22,8 +22,8 @@
                     <div class="d-flex justify-content-between  px-2 py-2" aria-label="breadcrumb">
                         <h3 class="fw-bold fs-4 mb-3">General Settings System</h3>
                         <ol class="breadcrumb p-0 m-0 ">
-                            <li class="breadcrumb-item"><a href="#">Cube.io</a></li>
-                            <li class="breadcrumb-item"><a href="#">Admin</a></li>
+                            <li class="breadcrumb-item"><a href="#">Travel</a></li>
+                            <li class="breadcrumb-item"><a href="#"><?php echo $_SESSION['role']?></a></li>
                             <li class="breadcrumb-item active" aria-current="page">General Settings</li>
                         </ol>
                     </div>
