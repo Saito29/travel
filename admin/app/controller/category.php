@@ -149,8 +149,8 @@ if(isset($_GET['del_id'])){
         #Check if the deleted category was successfully deleted
         if($categ_id > 0){
             #insert the delete data into the database
-            $_POST['is_Active'] = 0;
-            $categ_id = update($table, $id, $_POST);
+            #$_POST['is_Active'] = 0;
+            $categ_id = create($table, $_POST);
 
             #Commit the transaction
             $conn->commit();
