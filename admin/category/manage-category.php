@@ -43,23 +43,8 @@ include(ROOT_PATH."/app/controller/category.php");
                                         <h4 class="card-title">Manage Categories</h4>
                                         <hr />
                                         <div class="row">
-                                            <div class="col-sm-6 col-md-8">
-                                               <!---Success Message--->  
-                                               <div class="alert alert-success d-flex align-items-center alert-dismissible fade show w-100" role="alert">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(30, 197, 111, 1);transform: ;msFilter:;">
-                                                        <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm-1.999 14.413-3.713-3.705L7.7 11.292l2.299 2.295 5.294-5.294 1.414 1.414-6.706 6.706z"></path>
-                                                    </svg>
-                                                    <strong>User Successfully Added!</strong>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                                </div>
-                                               <!---Error Message--->
-                                                <div class="alert alert-danger d-flex align-items-center alert-dismissible fade show w-100" role="alert">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(179, 18, 20, 1);transform: ;msFilter:;">
-                                                        <path d="M12.884 2.532c-.346-.654-1.422-.654-1.768 0l-9 17A.999.999 0 0 0 3 21h18a.998.998 0 0 0 .883-1.467L12.884 2.532zM13 18h-2v-2h2v2zm-2-4V9h2l.001 5H11z"></path>
-                                                    </svg>
-                                                    <strong>Failed to add user!</strong>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                                </div>
+                                            <div class="col-sm-12 col-md-12">
+                                                <?php include(ROOT_PATH."/app/helpers/updateAlert.php")?>
                                             </div>
                                         </div>
                                         <!--==== Search & button ======-->
@@ -98,7 +83,7 @@ include(ROOT_PATH."/app/controller/category.php");
                                                         <td>
                                                             <a href="edit-category.php?id=<?php echo $categories['id'];?>" class="btn btn-outline-primary m-1"><i class='bx bx-edit'></i></a>
                                                             &nbsp;
-                                                            <a href="#deleteUser" class="btn btn-outline-danger m-1"><i class='bx bx-trash-alt' ></i></a>
+                                                            <a href="manage-category.php?del_id=<?php echo $categories['id']?>" class="btn btn-outline-danger m-1"><i class='bx bx-trash-alt' ></i></a>
                                                         </td>
                                                     </tr>
                                                     <?php endforeach; ?>
@@ -131,6 +116,7 @@ include(ROOT_PATH."/app/controller/category.php");
                                                 <!--========== End of Table header ================-->
                                                 <tbody>
                                                     <!--========= Table Data =====================-->
+                                                    
                                                     <tr>
                                                         <td>1</td>
                                                         <td>Travel and Tour</td>

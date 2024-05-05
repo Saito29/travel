@@ -35,6 +35,26 @@ function sessionUpdateCategory($categ){
     exit();
 }
 
+#This function is for delete category session
+function sessionDeleteCategory($categ){
+    $_SESSION['messages'] = "Category has been deleted successfully.";
+    $_SESSION['css_class'] = 'alert-success';
+    $_SESSION['icon'] = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(30, 197, 111, 1);transform: ;msFilter:;">
+    <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm-1.999 14.413-3.713-3.705L7.7 11.292l2.299 2.295 5.294-5.294 1.414 1.414-6.706 6.706z"></path></svg>';
+    header('location:'.BASE_ADMIN.'/category/manage-category.php');
+    exit();
+}
+
+#This function is for failed attmepts messages
+function sessionFailedCategory($categ){
+    $_SESSION['messages'] = 'No category has been deleted';
+    $_SESSION['css_class'] = 'alert-danger';
+    $_SESSION['icon'] = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(179, 18, 20, 1);transform: ;msFilter:;">
+    <path d="M12.884 2.532c-.346-.654-1.422-.654-1.768 0l-9 17A.999.999 0 0 0 3 21h18a.998.998 0 0 0 .883-1.467L12.884 2.532zM13 18h-2v-2h2v2zm-2-4V9h2l.001 5H11z"></path></svg>';
+    header('location:'.BASE_ADMIN.'/category/manage-category.php');
+    exit();
+}
+
 #Select all the categories created 
 $category = selectAll($table);
 
@@ -108,8 +128,47 @@ if(isset($_POST['upt-btn'])){
     $_POST['categUpt_at'] = $categUpt_at;
 
     #Update the category
-    $categ_id = update($table, $id, $_POST,);
+    $categ_id = update($table, $id, $_POST);
 
     #Called the update function
     sessionUpdateCategory($categ_id);
 }
+
+#Delete the category but actually archive
+if(isset($_GET['del_id'])){
+    #Get the id
+    $id = $_GET['del_id'];
+
+    #start the transaction
+    $conn->begin_transaction();
+
+    try{
+        #Perform the transaction delete
+        $delid = deleted($table, $id);
+
+        #Check if the deleted category was successfully deleted
+        if($categ_id > 0){
+            #insert the delete data into the database
+            $_POST['is_Active'] = 0;
+            $categ_id = update($table, $id, $_POST);
+
+            #Commit the transaction
+            $conn->commit();
+            sessionDeleteCategory($delid);
+        }else{
+            #if no rows were effected, rollback the transaction
+            $conn->rollback();
+            sessionFailedCategory($categ_id);
+        }
+    }catch(Exception $e){
+        #If an error occurred,
+        $_SESSION['messages'] = 'Category has been failed to be deleted'.$e->getMessage();
+        $_SESSION['css_class'] = 'alert-danger';
+        $_SESSION['icon'] = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(179, 18, 20, 1);transform: ;msFilter:;">
+        <path d="M12.884 2.532c-.346-.654-1.422-.654-1.768 0l-9 17A.999.999 0 0 0 3 21h18a.998.998 0 0 0 .883-1.467L12.884 2.532zM13 18h-2v-2h2v2zm-2-4V9h2l.001 5H11z"></path></svg>';
+        header('location:'.BASE_ADMIN.'/category/manage-category.php');
+        exit();
+    }
+}
+
+

@@ -41,7 +41,7 @@ include(ROOT_PATH."/app/controller/category.php");
                                         <h4 class="card-title">Add Category</h4>
                                         <hr />
                                         <div class="row">
-                                            <div class="col-sm-6 col-md-8">
+                                            <div class="col-sm-12 col-md-12">
                                                 <!---Alert start--->  
                                                 <?php include(ROOT_PATH.'/app/helpers/formAlert.php');?>
                                                 <?php include(ROOT_PATH.'/app/helpers/updateAlert.php');?>

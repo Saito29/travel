@@ -190,7 +190,7 @@ include(ROOT_PATH."/app/controller/dashboard.php");
                                                     <tr>
                                                         <td><?php echo $key + 1?></td>
                                                         <td class="tb-image">
-                                                            <img src="<?php echo BASE_URL.'/app/upload/uploadProfile/'?><?php echo $user['profileImage']?>" width="40" height="40" alt="User_profile" class="rounded-circle border">
+                                                            <img src="<?php echo BASE_URL.'/app/upload/uploadProfile/'?><?php echo $user['profileImage']?>" width="32" height="32" alt="User_profile" class="rounded-circle border">
                                                         </td>
                                                         <td><?php echo $user['firstName']?></td>
                                                         <td><?php echo $user['lastName']?></td>

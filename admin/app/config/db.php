@@ -117,7 +117,7 @@ function update($table, $id, $data)
 }
 
 #delete users functions
-function delete($table, $id)
+function deleted($table, $id)
 {
     global $conn;
     # sql = DELETE FROM users WHERE id=?
