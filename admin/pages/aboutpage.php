@@ -6,10 +6,10 @@ include("../path.php");
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="author" content="Cube.io">
-    <meta name="description" content="Cube.io About Page">
+    <meta http-equiv="X-UA-Compatible" content="IE=7">
+    <meta name="description" content="Travel About Page">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cube.io | About Page</title>
+    <title>Travel | About Page</title>
     <?php include(ROOT_PATH."/app/includes/header.php");?>
 </head>
 <body>
@@ -25,8 +25,8 @@ include("../path.php");
                     <div class="d-flex justify-content-between  px-2 py-2" aria-label="breadcrumb">
                         <h3 class="fw-bold fs-4 mb-3">About Page</h3>
                         <ol class="breadcrumb p-0 m-0 ">
-                            <li class="breadcrumb-item"><a href="#">Cube.io</a></li>
-                            <li class="breadcrumb-item"><a href="#">Admin</a></li>
+                            <li class="breadcrumb-item"><a href="#">Travel</a></li>
+                            <li class="breadcrumb-item"><a href="#"><?php echo $_SESSION['role']?></a></li>
                             <li class="breadcrumb-item active" aria-current="page">About page</li>
                         </ol>
                     </div>

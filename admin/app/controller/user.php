@@ -215,7 +215,7 @@ if(isset($_POST['upt-btn'])){
     $_POST['updated_at'] = $updated_at;
 
     #Update the category
-    $user_id = update($table, $id, $_POST,);
+    $user_id = update($table, $id, $_POST);
 
     #Called the update function
     sessionUpdateUser($categ_id);

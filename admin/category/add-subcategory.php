@@ -27,7 +27,7 @@ include(ROOT_PATH."/app/controller/sub-category.php");
                         <h3 class="fw-bold fs-4 mb-3">Add Sub-Category</h3>
                         <ol class="breadcrumb p-0 m-0 ">
                             <li class="breadcrumb-item"><a href="#">Travel</a></li>
-                            <li class="breadcrumb-item"><a href="#">Admin</a></li>
+                            <li class="breadcrumb-item"><a href="#"><?php echo $_SESSION['role']?></a></li>
                             <li class="breadcrumb-item active" aria-current="page">Add Sub-Category</li>
                         </ol>
                     </div>
@@ -44,7 +44,7 @@ include(ROOT_PATH."/app/controller/sub-category.php");
                                             <div class="col-sm-6 col-md-8">
                                                 <!--Alert Start Here -->
                                                 <?php include(ROOT_PATH."/app/helpers/formAlert.php");?>
-                                                <?php include(ROOT_PATH."/app/helpers/messageAlert.php");?>
+                                                <?php include(ROOT_PATH."/app/helpers/updateAlert.php");?>
                                                 <!--Alert End Here -->
                                             </div>
                                          </div>
