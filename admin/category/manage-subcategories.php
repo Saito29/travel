@@ -41,23 +41,10 @@ include(ROOT_PATH."/app/controller/sub-category.php");
                                         <h4 class="card-title">Manage Sub-Categories</h4>
                                         <hr />
                                         <div class="row">
-                                            <div class="col-sm-6">
-                                                 <!---Success Message--->  
-                                                <div class="alert alert-success d-flex align-items-center alert-dismissible fade show w-100" role="alert">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(30, 197, 111, 1);transform: ;msFilter:;">
-                                                        <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm-1.999 14.413-3.713-3.705L7.7 11.292l2.299 2.295 5.294-5.294 1.414 1.414-6.706 6.706z"></path>
-                                                    </svg>
-                                                    <strong>User Successfully Added!</strong>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                                </div>
-                                                <!---Error Message--->
-                                                <div class="alert alert-danger d-flex align-items-center alert-dismissible fade show w-100" role="alert">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(179, 18, 20, 1);transform: ;msFilter:;">
-                                                        <path d="M12.884 2.532c-.346-.654-1.422-.654-1.768 0l-9 17A.999.999 0 0 0 3 21h18a.998.998 0 0 0 .883-1.467L12.884 2.532zM13 18h-2v-2h2v2zm-2-4V9h2l.001 5H11z"></path>
-                                                    </svg>
-                                                    <strong>Failed to add user!</strong>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                                </div>
+                                            <div class="col-sm-12 col-md-12">
+                                                 <!--Alert start here -->
+                                                 <?php include(ROOT_PATH."/app/helpers/updateAlert.php")?>
+                                                 <!--Alert end here -->
                                             </div>
                                         </div>
                                         <!--==== Add sub category Button ======-->
@@ -86,7 +73,12 @@ include(ROOT_PATH."/app/controller/sub-category.php");
                                                 <!--========== End of Table header ================-->
                                                 <tbody>
                                                     <!--========= Table Data =====================-->
-                                                    <?php foreach($subcategory as $key => $subcategories):?>
+                                                    <?php
+                                                        $subcategory = "SELECT * FROM tblsubcategory WHERE is_Active != '0'";
+                                                        $subcategory_run = mysqli_query($conn, $subcategory);
+                                                    ?>
+                                                    <?php if(mysqli_num_rows($subcategory_run) > 0):?>
+                                                        <?php foreach($subcategory_run as $key => $subcategories):?>
                                                     <tr>
                                                         <td><?php echo $key + 1?></td>
                                                         <td><?php echo $subcategories['categoryName']?></td>
@@ -97,10 +89,11 @@ include(ROOT_PATH."/app/controller/sub-category.php");
                                                         <td>
                                                             <a href="edit-subcategories.php?id=<?php echo $subcategories['id']?>" class="btn btn-outline-primary m-1"><i class='bx bx-edit'></i></a>
                                                             &nbsp;
-                                                            <a href="#deleteUser" class="btn btn-outline-danger m-1"><i class='bx bx-trash-alt' ></i></a>
+                                                            <a href="manage-subcategories.php?del_id=<?php echo $subcategories['id']?>" class="btn btn-outline-danger m-1"><i class='bx bx-trash-alt' ></i></a>
                                                         </td>
                                                     </tr>
-                                                    <?php endforeach;?>
+                                                        <?php endforeach;?>
+                                                    <?php endif;?>
                                                     <!--============= End of Table Data ===============-->
                                                 </tbody>
                                             </table>
@@ -131,45 +124,28 @@ include(ROOT_PATH."/app/controller/sub-category.php");
                                                 <!--========== End of Table header ================-->
                                                 <tbody>
                                                     <!--========= Table Data =====================-->
+                                                    <?php 
+                                                        $subcategory = "SELECT * FROM tblsubcategory WHERE is_Active != '1'";
+                                                        $subcategory_run = mysqli_query($conn, $subcategory);
+                                                    ?>
+
+                                                    <?php if(mysqli_num_rows($subcategory_run) > 0):?>
+                                                        <?php foreach($subcategory_run as $key => $subcategories):?>
                                                     <tr>
-                                                        <td>1</td>
-                                                        <td>Travel and Tour</td>
-                                                        <td>Hiking Mountains</td>
-                                                        <td>Blogging about Hiking in Mountains</td>
-                                                        <td>2024-03-02 15:20:12</td>
-                                                        <td></td>
+                                                        <td><?php echo $key + 1?></td>
+                                                        <td><?php echo $subcategories['categoryName']?></td>
+                                                        <td><?php echo $subcategories['name']?></td>
+                                                        <td><?php echo $subcategories['description']?></td>
+                                                        <td><?php echo $subcategories['created_at']?></td>
+                                                        <td><?php echo $subcategories['updated_at']?></td>
                                                         <td>
-                                                            <a href="#redo" class="btn btn-outline-success m-1"><i class='bx bx-redo'></i></a>
+                                                            <a href="manage-subcategories.php?id_rec=<?php echo $subcategories['id']?>" class="btn btn-outline-success m-1"><i class='bx bx-redo'></i></a>
                                                             &nbsp;
-                                                            <a href="#deleteUser" class="btn btn-outline-danger m-1"><i class='bx bx-trash-alt' ></i></a>
+                                                            <a href="manage-subcategories.php?id_del=<?php echo $subcategories['id']?>" class="btn btn-outline-danger m-1"><i class='bx bx-trash-alt' ></i></a>
                                                         </td>
                                                     </tr>
-                                                    <tr>
-                                                        <td>2</td>
-                                                        <td>Programming Related</td>
-                                                        <td>Tutorial</td>
-                                                        <td>Tutorial Video about PL(Programming Languages)</td>
-                                                        <td>2024-03-02 15:20:12</td>
-                                                        <td></td>
-                                                        <td>
-                                                            <a href="#redo" class="btn btn-outline-success m-1"><i class='bx bx-redo'></i></a>
-                                                            &nbsp;
-                                                            <a href="#deleteUser" class="btn btn-outline-danger m-1"><i class='bx bx-trash-alt' ></i></a>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>3</td>
-                                                        <td>Entertainment</td>
-                                                        <td>Stress Relief</td>
-                                                        <td>Funny compilations video</td>
-                                                        <td>2024-03-02 15:20:12</td>
-                                                        <td></td>
-                                                        <td>
-                                                            <a href="#redo" class="btn btn-outline-success m-1"><i class='bx bx-redo'></i></a>
-                                                            &nbsp;
-                                                            <a href="#deleteUser" class="btn btn-outline-danger m-1"><i class='bx bx-trash-alt' ></i></a>
-                                                        </td>
-                                                    </tr>
+                                                        <?php endforeach;?>
+                                                    <?php endif;?>
                                                     <!--============= End of Table Data ===============-->
                                                 </tbody>
                                             </table>

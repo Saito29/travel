@@ -25,7 +25,6 @@ function sessionCategory($categ){
 }
 
 #this function is for updates sessions
-
 function sessionUpdateCategory($categ){
     $_SESSION['messages'] = "Category has been updated successfully.";
     $_SESSION['css_class'] = 'alert-success';
@@ -45,7 +44,7 @@ function sessionDeleteCategory($categ){
     exit();
 }
 
-#This function is for failed attmepts messages
+#This function is for success restored attmepts messages
 function sessionSuccessCategory($categ){
     $_SESSION['messages'] = 'Category has been restored successfully.';
     $_SESSION['css_class'] = 'alert-success';
@@ -55,6 +54,7 @@ function sessionSuccessCategory($categ){
     exit();
 }
 
+#this function is for permanently deleted
 function sessionDeletedCategory($categ){
     $_SESSION['messages'] = 'Category has been deleted permanently!';
     $_SESSION['css_class'] = 'alert-danger';

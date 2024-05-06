@@ -36,6 +36,36 @@ function sessionUpdateSubCategory($subcateg){
     exit();
 }
 
+#This function is for delete subcategory session
+function sessionDeleteCategory($subcateg){
+    $_SESSION['messages'] = "Sub-Category has been deleted successfully.";
+    $_SESSION['css_class'] = 'alert-success';
+    $_SESSION['icon'] = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(30, 197, 111, 1);transform: ;msFilter:;">
+    <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm-1.999 14.413-3.713-3.705L7.7 11.292l2.299 2.295 5.294-5.294 1.414 1.414-6.706 6.706z"></path></svg>';
+    header('location:'.BASE_ADMIN.'/category/manage-subcategories.php');
+    exit();
+}
+
+#This function is for success restored attmepts messages
+function sessionSuccessCategory($subcateg){
+    $_SESSION['messages'] = 'Sub-Category has been restored successfully.';
+    $_SESSION['css_class'] = 'alert-success';
+    $_SESSION['icon'] = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(30, 197, 111, 1);transform: ;msFilter:;">
+    <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm-1.999 14.413-3.713-3.705L7.7 11.292l2.299 2.295 5.294-5.294 1.414 1.414-6.706 6.706z"></path></svg>';
+    header('location:'.BASE_ADMIN.'/category/manage-subcategories.php');
+    exit();
+}
+
+#this function is for permanently deleted
+function sessionDeletedCategory($subcateg){
+    $_SESSION['messages'] = 'Sub-Category has been deleted permanently!';
+    $_SESSION['css_class'] = 'alert-danger';
+    $_SESSION['icon'] = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(179, 18, 20, 1);transform: ;msFilter:;">
+    <path d="M12.884 2.532c-.346-.654-1.422-.654-1.768 0l-9 17A.999.999 0 0 0 3 21h18a.998.998 0 0 0 .883-1.467L12.884 2.532zM13 18h-2v-2h2v2zm-2-4V9h2l.001 5H11z"></path></svg>';
+    header('location:'.BASE_ADMIN.'/category/manage-subcategories.php');
+    exit();
+}
+
 #Select all the categories created to select the categories from the add sub categories
 $category = selectAll($tables);
 
@@ -69,11 +99,13 @@ if(isset($_POST["addSubCateg-btn"])){
         $category = '';
         $name = '';
         $description = '';
+        $created_at = '';
     }else{
         #Display all the information that the submitted on error
         $category = $_POST['categoryName'];
         $name = $_POST['name'];
         $description = $_POST['description'];
+        $created_at = $_POST['created_at'];
 
         #Display error alert
         $msg = "Sub-Category failed to be created.";
@@ -116,5 +148,53 @@ if(isset($_POST['upt-btn'])){
     $subcateg_id = update($table, $id, $_POST);
 
     #Called the update function
-    sessionUpdateSubCategory($categ_id);
+    sessionUpdateSubCategory($subcateg_id);
+}
+
+#This function is for deleted subcategory but only archived it
+if(isset($_GET['del_id'])){
+    #Get the subcategory id
+    $id = $_GET['del_id'];
+
+    #Select the subcategory from the subcategory table
+    $subcategory = selectOne($table, ['id' => $id]);
+
+    #Value the subcategory as 0
+    $_POST['is_Active'] = 0;
+
+    #update the subcategory
+    $subcateg_id = update($table, $id, $_POST);
+
+    #Session the data
+    sessionDeleteCategory($subcateg_id);
+}
+
+#This function is for recovering data
+if(isset($_GET['id_rec'])){
+    #Get the id
+    $id = $_GET['id_rec'];
+
+    #Select the subcategory from the subcategory table
+    $subcategory = selectOne($table, ['id' => $id]);
+
+    #Value the subcategory as 1
+    $_POST['is_Active'] = 1;
+
+    #Update the subcategory
+    $subcateg_id = update($table, $id, $_POST);
+
+    #Session the data
+    sessionSuccessCategory($subcateg_id);
+}
+
+#This function is for permanently deleting the data from the database
+if(isset($_GET['id_del'])){
+    #Get the id
+    $id = $_GET['id_del'];
+
+    #Permanently delete the subcategory from the subcategory table of database
+    $subcateg_id = deleted($table, $id);
+
+    #Session the data 
+    sessionDeletedCategory($subcateg_id);
 }
