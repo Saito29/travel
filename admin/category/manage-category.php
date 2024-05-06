@@ -73,7 +73,12 @@ include(ROOT_PATH."/app/controller/category.php");
                                                 <!--========== End of Table header ================-->
                                                 <tbody>
                                                     <!--========= Table Data =====================-->
-                                                    <?php foreach ($category as $key => $categories):?>
+                                                    <?php
+                                                        $category = "SELECT * FROM category WHERE Is_Active != '0'";
+                                                        $category_run = mysqli_query($conn, $category);
+                                                    ?>
+                                                    <?php if(mysqli_num_rows($category_run) > 0):?>
+                                                        <?php foreach ($category_run as $key => $categories):?>
                                                     <tr>
                                                         <td><?Php echo $key + 1; ?></td>
                                                         <td><?php echo $categories['categName'];?></td>
@@ -86,7 +91,8 @@ include(ROOT_PATH."/app/controller/category.php");
                                                             <a href="manage-category.php?del_id=<?php echo $categories['id']?>" class="btn btn-outline-danger m-1"><i class='bx bx-trash-alt' ></i></a>
                                                         </td>
                                                     </tr>
-                                                    <?php endforeach; ?>
+                                                        <?php endforeach; ?>
+                                                    <?php endif;?>
                                                     <!--============= End of Table Data ===============-->
                                                 </tbody>
                                             </table>
@@ -116,43 +122,27 @@ include(ROOT_PATH."/app/controller/category.php");
                                                 <!--========== End of Table header ================-->
                                                 <tbody>
                                                     <!--========= Table Data =====================-->
-                                                    
+                                                    <?php 
+                                                        $category = "SELECT * FROM category WHERE Is_Active != '1'";
+                                                        $category_run = mysqli_query($conn, $category);
+                                                    ?>
+
+                                                    <?php if(mysqli_num_rows($category_run) > 0):?>
+                                                        <?php foreach($category_run as $key => $categories):?>
                                                     <tr>
-                                                        <td>1</td>
-                                                        <td>Travel and Tour</td>
-                                                        <td>Blogging about Travel and Tour here in Quezon Province</td>
-                                                        <td>2024-03-02 15:20:12</td>
-                                                        <td></td>
+                                                        <td><?php echo $key + 1?></td>
+                                                        <td><?php echo $categories['categName']?></td>
+                                                        <td><?php echo $categories['categDesc']?></td>
+                                                        <td><?php echo $categories['categCreated_at']?></td>
+                                                        <td><?php echo $categories['categUpt_at']?></td>
                                                         <td>
-                                                            <a href="#redo" class="btn btn-outline-success m-1"><i class='bx bx-redo'></i></a>
+                                                            <a href="manage-category.php?id_rec=<?php echo $categories['id']?>" class="btn btn-outline-success m-1"><i class='bx bx-redo'></i></a>
                                                             &nbsp;
-                                                            <a href="#deleteUser" class="btn btn-outline-danger m-1"><i class='bx bx-trash-alt' ></i></a>
+                                                            <a href="manage-category.php?id_del=<?php echo $categories['id']?>" class="btn btn-outline-danger m-1"><i class='bx bx-trash-alt' ></i></a>
                                                         </td>
                                                     </tr>
-                                                    <tr>
-                                                        <td>2</td>
-                                                        <td>Programming Related</td>
-                                                        <td>Tutorial Video about basic Fundamentals of Programming Languages</td>
-                                                        <td>2024-03-02 15:20:12</td>
-                                                        <td></td>
-                                                        <td>
-                                                            <a href="#redo" class="btn btn-outline-success m-1"><i class='bx bx-redo'></i></a>
-                                                            &nbsp;
-                                                            <a href="#deleteUser" class="btn btn-outline-danger m-1"><i class='bx bx-trash-alt' ></i></a>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>3</td>
-                                                        <td>Entertainment</td>
-                                                        <td>Stress relief blog</td>
-                                                        <td>2024-03-02 15:20:12</td>
-                                                        <td></td>
-                                                        <td>
-                                                            <a href="#redo" class="btn btn-outline-success m-1"><i class='bx bx-redo'></i></a>
-                                                            &nbsp;
-                                                            <a href="#deleteUser" class="btn btn-outline-danger m-1"><i class='bx bx-trash-alt' ></i></a>
-                                                        </td>
-                                                    </tr>
+                                                        <?php endforeach;?>
+                                                    <?php endif;?>
                                                     <!--============= End of Table Data ===============-->
                                                 </tbody>
                                             </table>
