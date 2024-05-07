@@ -1,6 +1,7 @@
 <?php 
 include("path.php");
 include(ROOT_PATH."/app/config/db.php");
+
 ?>
 
 <!DOCTYPE html>

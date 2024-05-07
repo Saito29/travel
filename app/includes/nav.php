@@ -25,37 +25,48 @@
                             <span class="nav__name">Contact</span>
                         </a>
                     </li>
-
+                    <?php if(isset($_SESSION['id'])): ?>
+                        <?php if($_SESSION['role'] === 'admin' || $_SESSION['role'] === 'sub-admin'): ?>
+                    <!--If user login as admin display dashboard and logout if not display login-->
+                    <li class="nav__item">
+                        <a href="<?php echo BASE_ADMIN.'/dashboard.php?userID='?><?php echo $_SESSION['id']?>" class="nav__link">
+                            <i class='bx bxs-dashboard nav__icon'></i>
+                            <span class="nav__name">Dashboard</span>
+                        </a>
+                    </li>
+                        <?php elseif($_SESSION['role'] === 'editor'): ?>
+                    <!--if user login as editor display dashboard and logout-->
+                    <li class="nav__item">
+                        <a href="<?php echo BASE_EDITOR.'/editor-dashboard.php?userID='?><?php echo $_SESSION['id']?>" class="nav__link">
+                            <i class='bx bxs-dashboard nav__icon'></i>
+                            <span class="nav__name">Dashboard</span>
+                        </a>
+                    </li>
+                    <?php endif; ?> 
+                    <li class="nav__item">
+                        <a href="<?php echo BASE_URL.'/logout.php'?>" class="nav__link">
+                            <i class='bx bx-log-out nav__icon'></i>
+                            <span class="nav__name">Logout</span>
+                        </a>
+                    </li>
+                    <?php else: ?>
+                        <!--If user not login display the login link-->
                     <li class="nav__item">
                         <a href="<?php echo BASE_URL_LINKS.'/signin.php'?>" class="nav__link">
                             <i class='bx bx-log-in nav__icon'></i>
                             <span class="nav__name">Login</span>
                         </a>
                     </li>
-                    <!--If user login display dashboard if not display login-->
-                    <li class="nav__item d-none">
-                        <a href="<?php echo BASE_URL.'/admin/dashboard.php'?>" class="nav__link">
-                            <i class='bx bxs-dashboard nav__icon'></i>
-                            <span class="nav__name">Dashboard</span>
-                        </a>
-                    </li>
-
-                    <li class="nav__item d-none">
-                        <a href="./editor/index.html" class="nav__link">
-                            <i class='bx bxs-dashboard nav__icon'></i>
-                            <span class="nav__name">Dashboard</span>
-                        </a>
-                    </li>
-                    <!--If user login display dashboard and replace login to  logout-->
-                    <li class="nav__item d-none">
-                        <a href="<?php echo BASE_URL.'/index.php'?>" class="nav__link">
-                            <i class='bx bx-log-out nav__icon'></i>
-                            <span class="nav__name">Logout</span>
-                        </a>
-                    </li>
+                    <?php endif; ?>
                 </ul>
             </div>
 
-            <a href="#profile"><img src="./asset/img/logo/Cube.io.png" alt="User_profile" class="nav__img"></a>
+            <?php if(isset($_SESSION['profileImage'])):?>
+                <!--Profile image of user login-->
+                <a href="#profile"><img src="<?php echo BASE_URL.'/app/upload/uploadProfile/'?><?php echo $_SESSION['profileImage']?>" alt="Logo" class="nav__img"></a>
+            <?php else:?>
+                <!--Profile Image-->
+                <a href="#profile"><img src="<?php echo BASE_URL.'/asset/img/logo/travel.png'?>" alt="Logo" class="nav__img"></a>
+            <?php endif;?>
         </nav>
     </header>

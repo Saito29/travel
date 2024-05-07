@@ -1,6 +1,12 @@
 <?php 
 include("../path.php"); 
 include(ROOT_PATH.'/app/controllers/user.php');
+
+#if session already login can't access the login page again
+if(isset($_SESSION['id'])){
+    header('location: '.BASE_URL.'/index.php?id='.$_SESSION['id']);
+    exit();
+}
 ?>
 
 

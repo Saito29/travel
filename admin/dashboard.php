@@ -1,6 +1,12 @@
 <?php 
 include("path.php");
 include(ROOT_PATH."/app/controller/dashboard.php");
+
+#if session id not login direct to login page
+if(!isset($_SESSION['id'])){
+    header("Location: ".BASE_URL."/index.php");
+}
+
 ?>
 
 <!DOCTYPE html>

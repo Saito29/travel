@@ -33,6 +33,7 @@ function loginUser($user){
     $_SESSION['email'] = $user['email'];
     $_SESSION['profileImage'] = $user['profileImage'];
     $_SESSION['role'] = $user['role'];
+    $_SESSION['updated_at'] = $user['updated_at'];
     $_SESSION['message'] = 'Login Successfully.';
     $_SESSION['css_class'] = 'alert-success';
     $_SESSION['icon'] = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(30, 197, 111, 1);transform: ;msFilter:;">
@@ -103,7 +104,7 @@ if (isset($_POST['register-btn']) && isset($_FILES['profileImage']))
             if(in_array($imageEx_Lc, $allowed_exs))
             {
                 #The uniqid() function generates a unique ID based on the microtime
-                $newImgName = uniqid("$username-", true).'.'.$imageEx_Lc; #Create unique id and insert the username in the image
+                $newImgName = uniqid("IMG-", true)."-".$username.'.'.$imageEx_Lc; #Create unique id and insert the username in the image
                 $imagePath = ROOT_PATH.'/app/upload/uploadProfile/'.$newImgName; #Get the image path
                 move_uploaded_file($imageTmp, $imagePath); #Upload the image to the folder and database
 

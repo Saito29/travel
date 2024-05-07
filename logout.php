@@ -14,6 +14,7 @@ unset($_SESSION['role']);
 unset($_SESSION['message']);
 unset($_SESSION['css_class']);
 unset($_SESSION['icon']);
+unset($_SESSION['?id=']);
 
 #Destroy all the sessions happen in the website
 session_destroy();

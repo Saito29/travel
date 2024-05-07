@@ -1,4 +1,13 @@
-<?php include("../path.php"); ?>
+<?php 
+include("../path.php");
+include(ROOT_PATH.'/app/config/db.php'); 
+
+#if session not login send header to homepage
+if(!isset($_SESSION['id'])){
+    header('location: '.BASE_URL.'/index.php');
+}
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">

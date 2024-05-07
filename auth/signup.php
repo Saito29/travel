@@ -1,5 +1,12 @@
 <?php include("../path.php"); ?>
-<?php include(ROOT_PATH."/app/controllers/user.php");?>
+<?php include(ROOT_PATH."/app/controllers/user.php");
+
+#if session already login can't access the signup page again
+if(isset($_SESSION['id'])){
+    header('location: '.BASE_URL.'/index.php?id='.$_SESSION['id']);
+}
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
