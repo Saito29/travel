@@ -20,6 +20,9 @@
                 <span>Web Page</span>
             </a>
         </li>
+        <?php if(isset($_SESSION['id'])):?>
+            <?php if($_SESSION['role'] === 'admin'):#If the session login was admin display users else not?>
+
         <li class="sidebar-item">
             <a href="#users" class="sidebar-link has-dropdown collapsed" data-bs-toggle="collapse" data-bs-target="#users" 
                 aria-expanded="false" aria-controls="users">
@@ -35,6 +38,8 @@
                 </li>
             </ul>
         </li>
+            <?php endif;?>
+        <?php endif;?>
         <li class="sidebar-item">
                 <a href="#category" class="sidebar-link has-dropdown collapsed" data-bs-toggle="collapse" data-bs-target="#category" 
                     aria-expanded="false" aria-controls="category">

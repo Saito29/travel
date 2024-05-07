@@ -95,7 +95,7 @@ include(ROOT_PATH."/app/controller/user.php");
                                                         <td>
                                                             <a href="edit-user.php?id=<?php echo $users['id']?>" class="btn btn-outline-primary m-1"><i class='bx bx-edit'></i></a>
                                                             &nbsp;
-                                                            <a href="#deleteUser" class="btn btn-outline-danger m-1"><i class='bx bx-trash-alt' ></i></a>
+                                                            <a href="manage-user.php?del_id=<?php echo $users['id']?>" class="btn btn-outline-danger m-1"><i class='bx bx-trash-alt' ></i></a>
                                                         </td>
                                                     </tr>
                                                     <?php endforeach; ?>

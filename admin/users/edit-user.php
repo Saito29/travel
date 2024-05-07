@@ -48,6 +48,7 @@ include(ROOT_PATH."/app/controller/user.php");
                                             </div>
                                          </div>
                                         <form action="edit-user.php" class="row gx-2 gy-3" autocomplete="on" name="editUser" method="post" enctype="multipart/form-data">
+                                            <input type="hidden" name="id" value="<?php echo $id?>">
                                             <input type="hidden" name="updated_at" value="<?php echo $updated_at;?>">
                                             <div class="mb-1 col-sm-6">
                                                 <label for="fname" class="form-label">First Name:</label>
@@ -73,7 +74,7 @@ include(ROOT_PATH."/app/controller/user.php");
                                             </div>
                                             <div class="mb-1 col-sm-6">
                                                 <label for="email-address" class="form-label">Email:</label>
-                                                <input type="email" class="form-control" name="email-address" value="<?php echo $email?>" placeholder="Email Address" >
+                                                <input type="email" class="form-control" name="email" value="<?php echo $email?>" placeholder="Email Address" >
                                             </div>
                                             <div class="mb-1 col-sm-6">
                                                 <label class="form-label" for="password">Password:</label>

@@ -36,6 +36,7 @@ include(ROOT_PATH."/app/controller/dashboard.php");
                         <div class="clearfix"></div>
                         <!--Row of dashboard content-->
                         <div class="row">
+                        <?php if($_SESSION['id'] && $_SESSION['role'] === 'admin'):?>
                             <div class="col-12 col-md-4">
                                 <a href="<?php echo BASE_ADMIN.'/users/manage-user.php'?>">
                                     <div class="card cardh border-0">
@@ -80,9 +81,45 @@ include(ROOT_PATH."/app/controller/dashboard.php");
                                     </div>
                                 </a>                                
                             </div>
+                            <?php else:?>
+                            <div class="col-12 col-md-4">
+                                <a href="<?php echo BASE_ADMIN.'/category/manage-category.php'?>">
+                                    <div class="card cardh border-0">
+                                        <div class="card-body py-4">
+                                            <h5 class="mb-2 fw-bold text-uppercase">Category listed</h5>
+                                            <i class='bx bxs-layer icon'></i>
+                                            <p class="mb-2 fw-bold"><?php echo $categories?></p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-12 col-md-4">
+                                <a href="<?php echo BASE_ADMIN.'/category/manage-subcategories.php'?>">
+                                    <div class="card cardh border-0">
+                                        <div class="card-body py-4">
+                                            <h5 class="mb-2 fw-bold text-uppercase">Sub Category listed</h5>
+                                            <i class='bx bxs-layer icon'></i>
+                                            <p class="mb-2 fw-bold"><?php echo $subcategories?></p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-12 col-md-4">
+                                <a href="<?php echo BASE_ADMIN.'/posts/manage-post.php'?>">
+                                    <div class="card cardh border-0">
+                                        <div class="card-body py-4">                                    
+                                            <h5 class="mb-2 fw-bold text-uppercase">Posts</h5>
+                                            <i class='bx bxs-layer icon'></i>
+                                            <p class="mb-2 fw-bold text-truncate">10</p>
+                                        </div>
+                                    </div>
+                                </a>                                
+                            </div>
+                            <?php endif;?>
                         </div>
+                        
                             <!--End of Row content-->
-
+                        
                         <!--====================== Start of Recent Post Table-->
                         <div class="col-md-12 col-sm-12 col-xl-12 col-xxl-12 col-lg-12">
                             <div class="card">
@@ -157,7 +194,8 @@ include(ROOT_PATH."/app/controller/dashboard.php");
                             </div>
                         </div>
                         <!--======================= End of Table Recent Post section ===========================-->
-
+                        <?php if(isset($_SESSION['id'])):?>
+                            <?php if($_SESSION['role'] === 'admin'):?>
                         <!--=================== Start Of Recent User =====================-->
                         <div class="row mt-3">
                             <div class="col-md-12">
@@ -219,6 +257,9 @@ include(ROOT_PATH."/app/controller/dashboard.php");
                             </div>
                             <!--=================== End Recent User ===============-->
                         </div>
+                            <?php else:?>
+                        <?php endif;?>
+                    <?php endif;?>
                     <!--End of Dashboard Content-->
                 </div>
             </main>
