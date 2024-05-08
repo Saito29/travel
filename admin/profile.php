@@ -18,7 +18,7 @@ if(!isset($_SESSION['id'])){
     <title>Travel | Profile</title>
     <?php include(ROOT_PATH."/app/includes/header.php");?>
 </head>
-<body onload="profile();">
+<body>
     <div class="wrapper">
         <!--Sidebar-->
         <?php include(ROOT_PATH."/app/includes/sidebar.php");?>
@@ -82,7 +82,8 @@ if(!isset($_SESSION['id'])){
                                                 <a href="<?php echo BASE_URL_LINKS.'/Changepassword.php'?>" class="link-success">Change password</a>
                                             </div>
                                             <div class="mb-2 col-sm-8">
-                                                <button type="submit" class="btn btn-outline-success p-2 text-center" name="uptProf-btn">Update Profile</button>
+                                                <button type="submit" class="btn btn-outline-success text-center" name="uptProf-btn">Update Profile</button>
+                                                <button type="submit" class="btn btn-outline-danger text-center" name="delete-btn">Permanently Delete</button>
                                             </div>
                                         </form>
                                     </div>
@@ -98,18 +99,5 @@ if(!isset($_SESSION['id'])){
     </div>
     <!--Scripts-->
     <?php include(ROOT_PATH."/app/includes/scripts.php");?>
-    <script type="text/javascript">
-        function profile(){
-            const xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function(){
-                
-            }
-            xhttp.open('GET', "./app/controller/profile.php");
-            xhttp.send();
-        }
-        setInterval(function() {
-            prorile();
-        }, 1)
-    </script>
 </body>
 </html>

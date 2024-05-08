@@ -9,9 +9,9 @@ const icon = document.querySelector("#icon");
 icon.onclick = function(){
     document.body.classList.toggle("dark-theme");
     if(document.body.classList.contains("dark-theme")){
-        icon.src = "/asset/images/icon/sun-24.png";
+        icon.src = "./asset/images/icon/sun-24.png";
     }else{
-        icon.src = "/asset/images/icon/moon-solid.png";
+        icon.src = "./asset/images/icon/moon-solid.png";
     }
 }
 

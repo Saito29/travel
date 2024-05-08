@@ -75,7 +75,7 @@ if (isset($_POST['addUser-btn']) && isset($_FILES['profileImage']))
     $firstName = trim($_POST['firstName']); 
     $lastName = trim($_POST['lastName']);
     $username = trim($_POST['username']);
-    $email = trim($_POST['email']);
+    $email = filter_var(trim($_POST['email']), FILTER_SANITIZE_EMAIL);
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT); #Password hash Encyption Algorithm for security purposes
     $role = $_POST['role'];
     
@@ -116,7 +116,7 @@ if (isset($_POST['addUser-btn']) && isset($_FILES['profileImage']))
             {
                 #The uniqid() function generates a unique ID based on the microtime
                 $newImgName = uniqid("IMG-", true).'-'.$username.'.'.$imageEx_Lc; #Create unique id and insert the username in the image
-                $imagePath = BASE_URL.'/app/upload/uploadProfile/'.$newImgName; #Get the image path
+                $imagePath = ROOT_PATH.'../../app/upload/uploadProfile/'.$newImgName; #Get the image path
                 move_uploaded_file($imageTmp, $imagePath); #Upload the image to the folder and database
 
                 #Validate the user image already exists 

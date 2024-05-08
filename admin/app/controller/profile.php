@@ -187,3 +187,33 @@ if(isset($_POST['uptProf-btn'])){
         <path d="M12.884 2.532c-.346-.654-1.422-.654-1.768 0l-9 17A.999.999 0 0 0 3 21h18a.998.998 0 0 0 .883-1.467L12.884 2.532zM13 18h-2v-2h2v2zm-2-4V9h2l.001 5H11z"></path></svg>'; 
     }
 }
+
+#This is for the permanent delete user information
+if(isset($_POST['delete-btn'])){
+    #get the id of the user
+    $id = $_SESSION['id'];
+
+    #Select the user session id
+    $user_id = deleted($table, $id);
+
+    $_SESSION['message'] = 'User has been deleted permanently!';
+    $_SESSION['css_class'] = 'alert-danger';
+    $_SESSION['icon'] = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(179, 18, 20, 1);transform: ;msFilter:;">
+    <path d="M12.884 2.532c-.346-.654-1.422-.654-1.768 0l-9 17A.999.999 0 0 0 3 21h18a.998.998 0 0 0 .883-1.467L12.884 2.532zM13 18h-2v-2h2v2zm-2-4V9h2l.001 5H11z"></path></svg>';
+
+    #unset all the sessions 
+    unset($_SESSION['id']);
+    unset($_SESSION['firstName']);
+    unset($_SESSION['lastName']);
+    unset($_SESSION['username']); 
+    unset($_SESSION['email']);
+    unset($_SESSION['profileImage']);
+    unset($_SESSION['role']);    
+
+    #Destroy all the sessions
+    session_destroy();
+
+    #direct to the homepage after the session destroy
+    header('location:'.BASE_URL.'/index.php');
+    exit();
+}

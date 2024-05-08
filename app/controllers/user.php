@@ -33,7 +33,6 @@ function loginUser($user){
     $_SESSION['email'] = $user['email'];
     $_SESSION['profileImage'] = $user['profileImage'];
     $_SESSION['role'] = $user['role'];
-    $_SESSION['updated_at'] = $user['updated_at'];
     $_SESSION['message'] = 'Login Successfully.';
     $_SESSION['css_class'] = 'alert-success';
     $_SESSION['icon'] = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(30, 197, 111, 1);transform: ;msFilter:;">
@@ -69,7 +68,7 @@ if (isset($_POST['register-btn']) && isset($_FILES['profileImage']))
     $firstName = trim($_POST['firstName']); 
     $lastName = trim($_POST['lastName']);
     $username = trim($_POST['username']);
-    $email = trim($_POST['email']);
+    $email = filter_var(trim($_POST['email']), FILTER_SANITIZE_EMAIL);
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT); #Password hash Encyption Algorithm for security purposes
     $role = $_POST['role'];
     
