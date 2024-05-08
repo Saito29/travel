@@ -18,7 +18,7 @@ if(!isset($_SESSION['id'])){
     <title>Travel | Manage Users</title>
     <?php include(ROOT_PATH."/app/includes/header.php");?>
 </head>
-<body>
+<body onload="manageUser();">
     <div class="wrapper">
         <!--Sidebar-->
         <?php include(ROOT_PATH."/app/includes/sidebar.php");?>
@@ -123,5 +123,18 @@ if(!isset($_SESSION['id'])){
     </div>
     <!--Scripts-->
     <?php include(ROOT_PATH.'/app/includes/Scripts.php');?>
+    <script type="text/javascript">
+        function manageUser(){
+            const xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function(){
+                
+            }
+            xhttp.open('GET', "./app/controller/user.php");
+            xhttp.send();
+        }
+        setInterval(function() {
+            manageUser();
+        }, 1)
+    </script>
 </body>
 </html>

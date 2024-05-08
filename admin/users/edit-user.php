@@ -45,7 +45,7 @@ if(!isset($_SESSION['id'])){
                                         <h4 class="card-title">Edit User</h4>
                                         <hr />
                                         <div class="row">
-                                            <div class="col-sm-6 col-md-8">
+                                            <div class="col-sm-12 col-md-12">
                                                 <!--Alert start-->
                                                 <?php include(ROOT_PATH."/app/helpers/formAlert.php");?>
                                                 <?php include(ROOT_PATH."/app/helpers/updateAlert.php");?>
@@ -90,7 +90,11 @@ if(!isset($_SESSION['id'])){
                                             </div>
                                             <div class="mb-1 col-sm-6">
                                                 <label for="profileImage" class="form-label">Profile Image:</label>
+                                                <?php if(isset($profileImage)):?>
                                                 <img src="<?php echo BASE_URL.'/app/upload/uploadProfile/'?><?php echo $profileImage?>" onclick="triggerProfileClick()" id="profileDisplay" class="rounded-circle d-block border" alt="profile-user" style="cursor:pointer" width="75">
+                                                <?php else:?>
+                                                <img src="<?php echo BASE_URL.'/app/upload/uploadProfile/'?><?php echo $profileImage?>" onclick="triggerProfileClick()" id="profileDisplay" class="rounded-circle d-block border" alt="profile-user" style="cursor:pointer" width="75">
+                                                <?php endif;?>
                                                 <input type="file" class="d-none" name="profileImage" onchange="displayProfileImage(this)" id="profileImage">
                                                 <p class="form-text fs-6 py-3">Profile Image should at least 10mb</p>
                                             </div>

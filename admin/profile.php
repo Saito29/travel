@@ -1,6 +1,6 @@
 <?php 
 include("path.php");
-include(ROOT_PATH."/app/controller/user.php");
+include(ROOT_PATH."/app/controller/profile.php");
 
 #if session id not login direct to home page
 if(!isset($_SESSION['id'])){
@@ -18,7 +18,7 @@ if(!isset($_SESSION['id'])){
     <title>Travel | Profile</title>
     <?php include(ROOT_PATH."/app/includes/header.php");?>
 </head>
-<body>
+<body onload="profile();">
     <div class="wrapper">
         <!--Sidebar-->
         <?php include(ROOT_PATH."/app/includes/sidebar.php");?>
@@ -46,14 +46,14 @@ if(!isset($_SESSION['id'])){
                                         <h4 class="card-title">User Profile Information</h4>
                                         <hr />
                                         <div class="row">
-                                            <div class="col-sm-6 ">
+                                            <div class="col-sm-12 col-md-12">
                                                 <!--Messages Alert -->
                                                 <?php include(ROOT_PATH."/app/helpers/updateAlert.php");?>
                                                 <?php include(ROOT_PATH."/app/helpers/formAlert.php");?>
                                                <!--End of message-->
                                             </div>
                                          </div>
-                                        <form action="profile.php" class="row gx-2 gy-3" name="editUser" method="post" autocomplete="on" enctype="multipart/form-data">
+                                        <form action="profile.php" class="row gx-2 gy-3" name="editUser" id="profile" method="post" autocomplete="on" enctype="multipart/form-data">
                                             <input type="hidden" name="id" value="<?php echo $_SESSION['id']?>">
                                             <input type="hidden" name="updated_at" value="<?php echo $_SESSIONt['updated_at']?>">
                                             <div class="mb-1 col-sm-6">
@@ -98,5 +98,18 @@ if(!isset($_SESSION['id'])){
     </div>
     <!--Scripts-->
     <?php include(ROOT_PATH."/app/includes/scripts.php");?>
+    <script type="text/javascript">
+        function profile(){
+            const xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function(){
+                
+            }
+            xhttp.open('GET', "./app/controller/profile.php");
+            xhttp.send();
+        }
+        setInterval(function() {
+            prorile();
+        }, 1)
+    </script>
 </body>
 </html>
