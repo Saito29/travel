@@ -32,6 +32,19 @@ function sessionUpdateUser($user){
     exit();
 }
 
+#
+function sessionUser($user){
+    $_SESSION['id'] = $user['id'];
+    $_SESSION['firstName'] = $user['firstName'];
+    $_SESSION['lastName'] = $user['lastName'];
+    $_SESSION['username'] = $user['username'];
+    $_SESSION['email'] = $user['email'];
+    $_SESSION['profileImage'] = $user['profileImage'];
+    
+    header('location:'.BASE_ADMIN.'/profile.php');
+    exit();
+}
+
 function sessionFailedUser($user){
     $_SESSION['messages'] = "User update failed, try again!";
     $_SESSION['css_class'] = 'alert-danger';

@@ -247,8 +247,11 @@ if(isset($_POST['updateUser-btn'])){
      $imageError = $_FILES['profileImage']['error']; #Image error either 1 or 0
      $imageType = $_FILES['profileImage']['type']; #Image type of the image
 
+    #errors
+    $errors = validateUpdateUser($_POST);
+
     #if image error and alert error is equal 0
-    if($imageError === 0)
+    if(count($errors) === 0)
     {
         #Validate the image size, if its greater than 10mb alert error message
         if($imageSize > 10000000)

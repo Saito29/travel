@@ -91,9 +91,9 @@ if(!isset($_SESSION['id'])){
                                             <div class="mb-1 col-sm-6">
                                                 <label for="profileImage" class="form-label">Profile Image:</label>
                                                 <?php if(isset($profileImage)):?>
-                                                <img src="<?php echo BASE_URL.'/app/upload/uploadProfile/'?><?php echo $profileImage?>" onclick="triggerProfileClick()" id="profileDisplay" class="rounded-circle d-block border" alt="profile-user" style="cursor:pointer" width="75">
-                                                <?php else:?>
-                                                <img src="<?php echo BASE_URL.'/app/upload/uploadProfile/'?><?php echo $profileImage?>" onclick="triggerProfileClick()" id="profileDisplay" class="rounded-circle d-block border" alt="profile-user" style="cursor:pointer" width="75">
+                                                <img src="<?php echo BASE_URL.'/app/upload/uploadProfile/'?><?php echo $profileImage?>" onclick="triggerProfileClick()" id="profileDisplay" class="rounded-circle d-block border" alt="profile-user" style="cursor:pointer" height="75" width="75">
+                                                <?php elseif(empty(isset($profileImage))):?>
+                                                <img src="<?php echo BASE_URL.'/asset/img/profile/placeholder.webp'?>" onclick="triggerProfileClick()" id="profileDisplay" class="rounded-circle d-block border" alt="profile-user" style="cursor:pointer" height="75" width="75">
                                                 <?php endif;?>
                                                 <input type="file" class="d-none" name="profileImage" onchange="displayProfileImage(this)" id="profileImage">
                                                 <p class="form-text fs-6 py-3">Profile Image should at least 10mb</p>
