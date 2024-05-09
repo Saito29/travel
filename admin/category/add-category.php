@@ -6,7 +6,10 @@ include(ROOT_PATH."/app/controllers/category.php");
 if(!isset($_SESSION['id'])){
     header("Location: ".BASE_URL."/index.php");
 }
-
+if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] === 'editor'){
+    header("Location: ".BASE_URL."/index.php");
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
@@ -54,7 +57,7 @@ if(!isset($_SESSION['id'])){
                                                 <!--Alert ends-->
                                             </div>
                                          </div>
-                                        <form action="add-category.php" class="row gx-2 gy-3" name="addUser" autocomplete="on" method="post" enctype="application/x-www-form-urlencoded">
+                                        <form action="add-category.php" class="row gx-2 gy-2" name="addUser" autocomplete="on" method="post" enctype="application/x-www-form-urlencoded">
                                             <div class="mb-1 col-md-6 form-group">
                                                 <label for="categName" class="form-label">Category:</label>
                                                 <input type="text" class="form-control p-2" name="categName" value="<?php echo $categName;?>" placeholder="Category Name">
@@ -63,7 +66,7 @@ if(!isset($_SESSION['id'])){
                                                 <label for="categDesc" class="form-label">Category Description:</label>
                                                 <textarea name="categDesc" class="form-control" rows="4"placeholder="Category Description"><?php echo $categDesc;?></textarea>
                                             </div>
-                                            <div class="mb-1 col-md-4 form-group">
+                                            <div class="mb-3 col-md-4 form-group">
                                                 <label for="categCreated_at" class="form-label">Category Created:</label>
                                                 <input type="datetime-local" name="categCreated_at" class="form-control form-control-sm" value="<?php echo $categCreated_at?>">
                                             </div>

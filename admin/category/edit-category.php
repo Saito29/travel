@@ -6,6 +6,10 @@ include(ROOT_PATH."/app/controllers/category.php");
 if(!isset($_SESSION['id'])){
     header("Location: ".BASE_URL."/index.php");
 }
+if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] === 'editor'){
+    header("Location: ".BASE_URL."/index.php");
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
