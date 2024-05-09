@@ -1,6 +1,6 @@
 <?php
 include("../path.php");
-include(ROOT_PATH."/app/controller/sub-category.php");
+include(ROOT_PATH."/app/controllers/sub-category.php");
 
 #if session id not login direct to home page
 if(!isset($_SESSION['id'])){
@@ -80,14 +80,14 @@ if(!isset($_SESSION['id'])){
                                                 <tbody>
                                                     <!--========= Table Data =====================-->
                                                     <?php
-                                                        $subcategory = "SELECT * FROM tblsubcategory WHERE is_Active != '0'";
+                                                        $subcategory = "SELECT * FROM subcategory WHERE is_Active != '0'";
                                                         $subcategory_run = mysqli_query($conn, $subcategory);
                                                     ?>
                                                     <?php if(mysqli_num_rows($subcategory_run) > 0):?>
-                                                        <?php foreach($subcategory_run as $key => $subcategories):?>
+                                                        <?php foreach($subcategory_run as $keys => $subcategories):?>
                                                     <tr>
-                                                        <td><?php echo $key + 1?></td>
-                                                        <td><?php echo $subcategories['categoryName']?></td>
+                                                        <td><?php echo $keys + 1?></td>
+                                                        <td><?php echo $subcategories['categName']?></td>
                                                         <td><?php echo $subcategories['name']?></td>
                                                         <td><?php echo $subcategories['description']?></td>
                                                         <td><?php echo $subcategories['created_at']?></td>
@@ -131,14 +131,14 @@ if(!isset($_SESSION['id'])){
                                                 <tbody>
                                                     <!--========= Table Data =====================-->
                                                     <?php 
-                                                        $subcategory = "SELECT * FROM tblsubcategory WHERE is_Active != '1'";
+                                                        $subcategory = "SELECT * FROM subcategory WHERE is_Active != '1'";
                                                         $subcategory_run = mysqli_query($conn, $subcategory);
                                                     ?>
 
                                                     <?php if(mysqli_num_rows($subcategory_run) > 0):?>
-                                                        <?php foreach($subcategory_run as $key => $subcategories):?>
+                                                        <?php foreach($subcategory_run as $keys => $subcategories):?>
                                                     <tr>
-                                                        <td><?php echo $key + 1?></td>
+                                                        <td><?php echo $keys + 1?></td>
                                                         <td><?php echo $subcategories['categoryName']?></td>
                                                         <td><?php echo $subcategories['name']?></td>
                                                         <td><?php echo $subcategories['description']?></td>

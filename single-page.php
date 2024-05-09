@@ -97,17 +97,18 @@ include(ROOT_PATH."/app/config/db.php");
                                 <div class="card col-md-8 col-xl-8 col-sm-8 col-xxl-8 w-100 h-100 border-0">
                                     <div class="card-header text-primary fw-bold fs-5 bg-body-tertiary">Comments</div>
                                     <div class="card-body">
+                                        <?php if(!isset($_SESSION['id'], $_SESSION['username'], $_SESSION['email'])):?>
                                         <!--Comments required to identify user-->
                                         <form action="#" method="post" name="Comment" class="row gx-2 gy-2 p-2" autocomplete="on" enctype="application/x-www-form-urlencoded">
                                             <div class="mb-1 col-md-4 form-group w-50">
                                                 <label for="usName" class="form-label">Username:</label>
-                                                <input type="text" name="usName" placeholder="Username" class="form-control" required>
-                                                <p class="text-secondary">(required)</p>
+                                                <input type="text" name="usName" placeholder="Username" value="" class="form-control" required>
+                                                <p class="text-warning-emphasis">(required)</p>
                                             </div>
                                             <div class="mb-1 col-md-4 form-group w-50">
                                                 <label for="emailAdd" class="form-label">Email:</label>
-                                                <input type="email" name="emailAdd" placeholder="Email:" class="form-control">
-                                                <p class="text-secondary">(optional)</p>
+                                                <input type="email" name="emailAdd" placeholder="Email:" value="" class="form-control">
+                                                <p class="text-warning-emphasis">(optional)</p>
                                             </div>
                                             <div class="mb-1 col-md-8 form-group w-100">
                                                 <label for="comments" class="form-label">Comment:</label>
@@ -117,21 +118,30 @@ include(ROOT_PATH."/app/config/db.php");
                                                 <button type="submit" name="submitComment" class="btn read-more">Post</button>
                                                 <button type="reset" name="reset" class="btn read-more">Cancel</button>
                                             </div>
+                                            <?php else:?>
+                                            <input type="hidden" name="username" value="<?php echo $_SESSION['username']?>">
+                                            <input type="hidden" name="email" value="<?php echo $_SESSION['email']?>">
+                                            <div class="mb-1 col-md-8 form-group w-100">
+                                                <label for="comments" class="form-label">Comment:</label>
+                                                <textarea name="comment" id="summernote" class="form-control" rows="5"></textarea>
+                                            </div>
+                                            <div class="mb-1 col-md-4 form-group">
+                                                <button type="submit" name="submitComment" class="btn read-more">Post</button>
+                                                <button type="reset" name="reset" class="btn read-more">Cancel</button>
+                                            </div>
                                         </form>
+                                        <?php endif;?>
                                     </div>
 
                                     <!--Post comment here-->
-                                    <div class="row mt-5 mb-3 my-5 py-5 px-4 col-md-8 w-100 h-100">
+                                    <?php if(isset($_SESSION['id'])):?>
+                                    <div class="row mt-5 mb-3 my-3 py-2 px-4 col-md-8 w-100 h-100">
                                         <div class="d-flex justify-content-center">
                                             <div class="card w-100 h-100 bg-transparent border-0">
-                                                <div class="card-body p-4">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 22 24" style="fill: rgba(0, 0, 0, 1);">
-                                                        <path d="M12 2C6.579 2 2 6.579 2 12s4.579 10 10 10 10-4.579 10-10S17.421 2 12 2zm0 5c1.727 0 3 1.272 3 3s-1.273 3-3 
-                                                        3c-1.726 0-3-1.272-3-3s1.274-3 3-3zm-5.106 9.772c.897-1.32 2.393-2.2 4.106-2.2h2c1.714 0 3.209.88 4.106 2.2C15.828 18.14 14.015 19 12 19s-3.828-.86-5.106-2.228z">
-                                                        </path>
-                                                    </svg>
+                                                <div class="card-body">
+                                                    <img src="<?php echo BASE_URL.'/app/upload/uploadProfile/'.$_SESSION['profileImage']?>" alt="User_profile" class="rounded-circle" style="height: 40px; width: 40px;" width="40" height="40" >
                                                     <div class="card-text" style="text-align: justify;">
-                                                        <h5 class="fw-bold text-primary">Saito</h5>
+                                                        <h5 class="fw-bold text-primary"><?php echo $_SESSION['username']?></h5>
                                                         <p class="small text-muted">March 24, 2024</p>
                                                         <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.
                                                         A, voluptatibus commodi repudiandae maxime nulla magnam reiciendis ratione nesciunt possimus beatae inventore doloremque 
@@ -141,6 +151,8 @@ include(ROOT_PATH."/app/config/db.php");
                                             </div>
                                         </div>
                                     </div>
+                                    <?php endif;?>
+                                    <!--End of comment here-->
                                 </div>
                             </div>
                         </div>

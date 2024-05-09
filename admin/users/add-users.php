@@ -1,6 +1,6 @@
 <?php 
 include("../path.php");
-include(ROOT_PATH."/app/controller/user.php");
+include(ROOT_PATH."/app/controllers/users.php");
 
 #if session id not login direct to home page
 if(!isset($_SESSION['id'])){
@@ -52,7 +52,7 @@ if(!isset($_SESSION['id'])){
                                                <?php include(ROOT_PATH."/app/helpers/updateAlert.php");?>
                                             </div>
                                          </div>
-                                        <form action="add-users.php" class="row gx-2 gy-3 form-group" autocomplete="on" name="addUser" method="post" enctype="multipart/form-data">
+                                        <form action="add-users.php" class="row gx-2 gy-2 form-group" autocomplete="on" name="addUser" method="post" enctype="multipart/form-data">
                                             <div class="mb-1 col-sm-6">
                                                 <label for="fname" class="form-label">First Name:</label>
                                                 <input type="text" class="form-control" name="firstName" value="<?php echo $firstName;?>" placeholder="First Name" >
@@ -91,6 +91,10 @@ if(!isset($_SESSION['id'])){
                                                 <img src="<?php echo BASE_ADMIN.'/asset/images/profile/placeholder.webp'?>" onclick="triggerProfileClick()" id="profileDisplay" class="rounded-circle d-block border" alt="profile-user" style="cursor:pointer" height="75" width="75">
                                                 <input type="file" class="d-none" name="profileImage" onchange="displayProfileImage(this)" id="profileImage" value="<?php echo $profileImage;?>">
                                                 <p class="form-text fs-6 py-3">Profile Image should at least 10mb</p>
+                                            </div>
+                                            <div class="mb-1 col-sm-4">
+                                                <label for="created_at" class="form-label">Date Created:</label>
+                                                <input type="datetime-local" class="form-control form-control-sm" name="created_at" value="<?php echo $created_at?>">
                                             </div>
                                             <div class="mb-2 col-sm-8">
                                                 <button type="submit" class="btn btn-outline-primary" name="addUser-btn">Add Users</button>

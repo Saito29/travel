@@ -1,6 +1,6 @@
 <?php 
 include("../path.php");
-include(ROOT_PATH."/app/controller/category.php");
+include(ROOT_PATH."/app/controllers/category.php");
 
 #if session id not login direct to home page
 if(!isset($_SESSION['id'])){
@@ -84,9 +84,9 @@ if(!isset($_SESSION['id'])){
                                                         $category_run = mysqli_query($conn, $category);
                                                     ?>
                                                     <?php if(mysqli_num_rows($category_run) > 0):?>
-                                                        <?php foreach ($category_run as $key => $categories):?>
+                                                        <?php foreach ($category_run as $keys => $categories):?>
                                                     <tr>
-                                                        <td><?Php echo $key + 1; ?></td>
+                                                        <td><?Php echo $keys + 1; ?></td>
                                                         <td><?php echo $categories['categName'];?></td>
                                                         <td><?php echo $categories['categDesc'];?></td>
                                                         <td><?php echo $categories['categCreated_at'];?></td>
@@ -134,9 +134,9 @@ if(!isset($_SESSION['id'])){
                                                     ?>
 
                                                     <?php if(mysqli_num_rows($category_run) > 0):?>
-                                                        <?php foreach($category_run as $key => $categories):?>
+                                                        <?php foreach($category_run as $keys => $categories):?>
                                                     <tr>
-                                                        <td><?php echo $key + 1?></td>
+                                                        <td><?php echo $keys + 1?></td>
                                                         <td><?php echo $categories['categName']?></td>
                                                         <td><?php echo $categories['categDesc']?></td>
                                                         <td><?php echo $categories['categCreated_at']?></td>

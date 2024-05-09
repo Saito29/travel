@@ -50,7 +50,7 @@ if(isset($_SESSION['id'])){
                     your account.</p>
                 </p>
                 <div class="row gy-4 gx-3">
-                    <form action="signup.php" method="post" autocomplete="on" class="form-signup h-auto" enctype="multipart/form-data">
+                    <form action="signup.php" method="post"  autocomplete="on" class="form-signup h-auto" enctype="multipart/form-data">
                         <!--Alert-->
                         <?php include(ROOT_PATH."/app/helpers/formAlert.php");?>
                         <!--End of Alert-->
@@ -89,7 +89,10 @@ if(isset($_SESSION['id'])){
                                 <option value="editor">Editor User</option>
                                 <option value="user">Guest User</option>
                             </select>
-                            <!--<input type="hidden" class="input-signup" id="role" name="role" value=""><br>-->
+                        </div>
+                        <div class="mb-1 col-sm-5 mb-3 px-2">
+                            <label for="created_at" class="form-label">Date Created:</label>
+                            <input type="datetime-local" class="form-control form-control-sm" name="created_at" value="<?php echo $created_at?>">
                         </div>
                         <div class="col-md-8 col-md-8">
                             <button type="submit" name="register-btn" id="submit-signup" class="submit-signup">Create account</button>

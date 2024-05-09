@@ -8,6 +8,7 @@ $lastName = $_SESSION['lastName'];
 $username = $_SESSION['username'];
 $email = $_SESSION['email'];
 $profileImage = $_SESSION['profileImage'];
+$updated_at = '';
 
 #Table name for the user datbase
 $table = 'users';
@@ -64,6 +65,7 @@ if(isset($_POST['uptProf-btn'])){
     $username = $_POST['username'];
     $email = $_POST['email'];
     $profileImage = $_FILES['profileImage'];
+    $updated_at = $_POST['updated_at'];
 
     #Unset the information of id and the button
     unset($_POST['uptProf-btn'], $_POST['id']);
@@ -74,11 +76,6 @@ if(isset($_POST['uptProf-btn'])){
     $imageTmp = $_FILES['profileImage']['tmp_name']; #image name of the image temporary
     $imageError = $_FILES['profileImage']['error']; #Image error either 1 or 0
     $imageType = $_FILES['profileImage']['type']; #Image type of the image
-
-    #Get the current timestamp
-    $timeStamp = time();
-    $updated_at = gmdate('Y-m-d H:i:s', $timeStamp);
-    $_POST['updated_at'] = $updated_at;
     
     /*
     echo "<pre>", print_r($_POST, true), "</pre>";
@@ -134,23 +131,23 @@ if(isset($_POST['uptProf-btn'])){
                 }
 
                 #Update user account in the database
-                $sql = "UPDATE users SET firstName=?, lastName=?, username=?, email=?, profileImage=?, updated_at=?
+                $query = "UPDATE users SET firstName=?, lastName=?, username=?, email=?, profileImage=?, updated_at=?
                         WHERE id=?";
-                $stmt = $conn->prepare($sql);
-                $stmt->execute([$firstName, $lastName, $username, $email, $newImgName, $updated_at, $id]);
+                $stmt_profile = $conn->prepare($query);
+                $stmt_profile->execute([$firstName, $lastName, $username, $email, $newImgName, $updated_at, $id]);
 
                 #Select the user that has make account
                 $user = selectOne($table,['id' => $id]);
 
                 #validate the user information and profile image information when submitting the query to the database
-                if($stmt)
+                if($stmt_profile)
                 {
                     #Alert the user success and uploading the image to the database successfully
-                    sessionUpdateUser($stmt);
+                    sessionUpdateUser($stmt_profile);
                 }else
                 {
                     #Alert the user failed to upload and create account
-                    sessionFailedUser($stmt);
+                    sessionFailedUser($stmt_profile);
                 }
             } else
             {
@@ -160,6 +157,7 @@ if(isset($_POST['uptProf-btn'])){
                 $username = $_POST['username'];
                 $email = $_POST['email'];
                 $profileImage = $_FILES['profileImage']['name'];
+                $updated_at = $_POST['updated_at'];
 
                 #Alert error message if the file type is not supported and return it to current page
                 $msg = "You can't upload this type of file, Please check the file type again ['jpeg, jpg, png, webp'].";
@@ -176,6 +174,7 @@ if(isset($_POST['uptProf-btn'])){
         $username = $_POST['username'];
         $email = $_POST['email'];
         $profileImage = $_FILES['profileImage']['name'];
+        $updated_at = $_POST['updated_at'];
 
         #Alert Error message and direct again to register page
         #$msg = "Something went wrong, please validate your username and email.";

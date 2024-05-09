@@ -1,6 +1,6 @@
 <?php 
 include("../path.php");
-include(ROOT_PATH."/app/controller/user.php");
+include(ROOT_PATH."/app/controllers/users.php");
 
 #if session id not login direct to home page
 if(!isset($_SESSION['id'])){
@@ -83,9 +83,9 @@ if(!isset($_SESSION['id'])){
                                                 <!--========== End of Table header ================-->
                                                 <tbody>
                                                     <!--========= Table Data =====================-->
-                                                    <?php foreach($user as $key => $users): ?> 
+                                                    <?php foreach($user as $keys => $users): ?> 
                                                     <tr>
-                                                        <td><?php echo $key + 1?></td>
+                                                        <td><?php echo $keys + 1?></td>
                                                         <td class="tb-image">
                                                             <img src="<?php echo BASE_URL.'/app/upload/uploadProfile/'?><?php echo $users['profileImage']?>" width="32" height="32" alt="User_profile" class="rounded-circle">
                                                         </td>

@@ -10,7 +10,7 @@ $description = '';
 $created_at = '';
 $updated_at = '';
 $is_Active = '';
-$table = 'tblsubcategory';
+$table = 'subcategory';
 $tables = 'category';
 
 #Array of Category errors messages
@@ -84,11 +84,6 @@ if(isset($_POST["addSubCateg-btn"])){
         #Save the category as active key 1
         $_POST['is_Active'] = 1;    
 
-        #Get current timestamp 
-        $timeStamp = time();
-        $created_at = gmdate('Y-m-d H:i:s', $timeStamp);
-        $_POST['created_at'] = $created_at;
-
         #crete a category data and insert into database
         $subcateg_id = create($table, $_POST);
 
@@ -102,7 +97,7 @@ if(isset($_POST["addSubCateg-btn"])){
         $created_at = '';
     }else{
         #Display all the information that the submitted on error
-        $category = $_POST['categoryName'];
+        $category = $_POST['categName'];
         $name = $_POST['name'];
         $description = $_POST['description'];
         $created_at = $_POST['created_at'];
@@ -125,7 +120,7 @@ if(isset($_GET['id'])){
 
     #Set the category to update based on the database
     $id = $subcategory['id'];
-    $category = $subcategory['categoryName'];
+    $category = $subcategory['categName'];
     $name = $subcategory['name'];
     $description = $subcategory['description'];
     $updated_at = $subcategory['updated_at'];
@@ -133,22 +128,20 @@ if(isset($_GET['id'])){
 
 #Check if the user clicked the update button
 if(isset($_POST['upt-btn'])){
-    #insert the category id
-    $id = $_POST['id'];
+    $errors = validateUpdateSubCategory($_POST);
+    if(count($errors) === 0){
+        #insert the category id
+        $id = $_POST['id'];
 
-    #Clear the update button and the id
-    unset($_POST['upt-btn'], $_POST['id']);
+        #Clear the update button and the id
+        unset($_POST['upt-btn'], $_POST['id']);
 
-    #Get the current timestamp
-    $timeStamp = time();
-    $updated_at = gmdate('Y-m-d H:i:s', $timeStamp);
-    $_POST['updated_at'] = $updated_at;
+        #Update the category
+        $subcateg_id = update($table, $id, $_POST);
 
-    #Update the category
-    $subcateg_id = update($table, $id, $_POST);
-
-    #Called the update function
-    sessionUpdateSubCategory($subcateg_id);
+        #Called the update function
+        sessionUpdateSubCategory($subcateg_id);
+    }
 }
 
 #This function is for deleted subcategory but only archived it

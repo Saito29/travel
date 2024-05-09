@@ -1,6 +1,6 @@
 <?php 
 include("../path.php");
-include(ROOT_PATH."/app/controller/category.php");
+include(ROOT_PATH."/app/controllers/category.php");
 
 #if session id not login direct to home page
 if(!isset($_SESSION['id'])){
@@ -63,7 +63,10 @@ if(!isset($_SESSION['id'])){
                                                 <label for="categDesc" class="form-label">Category Description:</label>
                                                 <textarea name="categDesc" class="form-control" rows="4"placeholder="Category Description"><?php echo $categDesc;?></textarea>
                                             </div>
-                                            <input type="hidden" name="categCreated_at" value="<?php echo $categCreated_at?>">
+                                            <div class="mb-1 col-md-4 form-group">
+                                                <label for="categCreated_at" class="form-label">Category Created:</label>
+                                                <input type="datetime-local" name="categCreated_at" class="form-control form-control-sm" value="<?php echo $categCreated_at?>">
+                                            </div>
                                             <div class="mb-2 col-md-12 form-group">
                                                 <button type="submit" class="btn btn-outline-primary" name="addCateg-btn">Add Category</button>
                                                 <button type="reset" class="btn btn-outline-danger" name="resetCateg-btn">Discard Category</button>

@@ -1,6 +1,6 @@
 <?php 
 include("../path.php");
-include(ROOT_PATH."/app/controller/user.php");
+include(ROOT_PATH."/app/controllers/users.php");
 
 #if session id not login direct to home page
 if(!isset($_SESSION['id'])){
@@ -52,9 +52,8 @@ if(!isset($_SESSION['id'])){
                                                 <!--Alert end-->
                                             </div>
                                          </div>
-                                        <form action="edit-user.php" class="row gx-2 gy-3" autocomplete="on" name="editUser" method="post" enctype="multipart/form-data">
+                                        <form action="edit-user.php" class="row gx-2 gy-2" autocomplete="on" name="editUser" method="post" enctype="multipart/form-data">
                                             <input type="hidden" name="id" value="<?php echo $id?>">
-                                            <input type="hidden" name="updated_at" value="<?php echo $updated_at;?>">
                                             <div class="mb-1 col-sm-6">
                                                 <label for="fname" class="form-label">First Name:</label>
                                                 <input type="text" class="form-control" name="firstName" value="<?php echo $firstName?>" placeholder="First Name" >
@@ -90,13 +89,17 @@ if(!isset($_SESSION['id'])){
                                             </div>
                                             <div class="mb-1 col-sm-6">
                                                 <label for="profileImage" class="form-label">Profile Image:</label>
-                                                <?php if(isset($profileImage)):?>
+                                                <?php if(isset($_GET['id'])):?>
                                                 <img src="<?php echo BASE_URL.'/app/upload/uploadProfile/'?><?php echo $profileImage?>" onclick="triggerProfileClick()" id="profileDisplay" class="rounded-circle d-block border" alt="profile-user" style="cursor:pointer" height="75" width="75">
-                                                <?php elseif(empty(isset($profileImage))):?>
+                                                <?php elseif(empty(!isset($_GET['id']))):?>
                                                 <img src="<?php echo BASE_URL.'/asset/img/profile/placeholder.webp'?>" onclick="triggerProfileClick()" id="profileDisplay" class="rounded-circle d-block border" alt="profile-user" style="cursor:pointer" height="75" width="75">
                                                 <?php endif;?>
                                                 <input type="file" class="d-none" name="profileImage" onchange="displayProfileImage(this)" id="profileImage">
                                                 <p class="form-text fs-6 py-3">Profile Image should at least 10mb</p>
+                                            </div>
+                                            <div class="mb-1 col-sm-4">
+                                                <label for="updated_at" class="form-label">Date Updated:</label>
+                                                <input type="datetime-local" class="form-control form-control-sm" name="updated_at" value="<?php echo $updated_at?>">
                                             </div>
                                             <div class="mb-2 col-sm-8">
                                                 <button type="submit" class="btn btn-outline-success p-2 text-center" name="updateUser-btn">Update Users</button>

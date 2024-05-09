@@ -3,7 +3,7 @@ include(ROOT_PATH."/app/config/db.php");
 
 $user = 'users';
 $category = 'category';
-$subcategory = 'tblsubcategory';
+$subcategory = 'subcategory';
 $post = '';
 
 #select all the users

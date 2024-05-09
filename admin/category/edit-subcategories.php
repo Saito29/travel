@@ -1,6 +1,6 @@
 <?php 
 include("../path.php");
-include(ROOT_PATH."/app/controller/sub-category.php");
+include(ROOT_PATH."/app/controllers/sub-category.php");
 
 #if session id not login direct to home page
 if(!isset($_SESSION['id'])){
@@ -52,7 +52,7 @@ if(!isset($_SESSION['id'])){
                                             </div>
                                          </div>
                                         <form action="edit-subcategories.php" class="row gx-2 gy-3" name="addUser" method="post" enctype="application/x-www-form-urlencoded">
-                                            <input type="hidden" name="updated_at" value="<?php echo $updated_at?>">
+                                            <input type="hidden" name="id" value="<?php echo $id?>">
                                             <div class="mb-1 col-md-6">
                                                 <label for="categories" class="form-label">Category:</label>
                                                 <select name="categoryName" class="form-select">
@@ -70,6 +70,10 @@ if(!isset($_SESSION['id'])){
                                             <div class="mb-1 col-md-6 form-group">
                                                 <label for="description" class="form-label">Sub-Category Description:</label>
                                                 <textarea name="description" class="form-control" rows="4" placeholder="Sub-Category Description"><?php echo $description?></textarea>
+                                            </div>
+                                            <div class="mb-1 col-md-4 form-group">
+                                                <label for="updated_at" class="form-label">Sub-Category Update DateTime:</label>
+                                                <input type="datetime-local" name="updated_at" class="form-control form-control-sm" value="<?php echo $updated_at?>">
                                             </div>
                                             <div class="mb-2 col-md-12 form-group">
                                                 <button type="submit" class="btn btn-outline-success" name="upt-btn">Update Sub-Category</button>

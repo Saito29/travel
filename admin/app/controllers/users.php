@@ -78,11 +78,7 @@ if (isset($_POST['addUser-btn']) && isset($_FILES['profileImage']))
     $email = filter_var(trim($_POST['email']), FILTER_SANITIZE_EMAIL);
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT); #Password hash Encyption Algorithm for security purposes
     $role = $_POST['role'];
-    
-    #Get the current timestamp
-    $timeStamp = time();
-    $created_at = gmdate('Y-m-d H:i:s', $timeStamp);
-    $_POST['created_at'] = $created_at;
+    $created_at = $_POST['created_at'];
 
     #Image identification
     $profileImage = $_FILES['profileImage']['name']; #image name
@@ -128,8 +124,8 @@ if (isset($_POST['addUser-btn']) && isset($_FILES['profileImage']))
                 }
 
                 #Insert the image into the database alongside the user information using MYSQLI
-                $sql = "INSERT INTO users (role, firstName, lastName, username, email, password, profileImage) VALUES ('$role','$firstName', '$lastName','$username', '$email', '$password', '$newImgName')";
-                $result = mysqli_query($conn, $sql);
+                $query = "INSERT INTO users (role, firstName, lastName, username, email, password, profileImage, created_at) VALUES ('$role','$firstName', '$lastName','$username', '$email', '$password', '$newImgName', '$created_at')";
+                $result = mysqli_query($conn, $query);
 
                 #Select the user that has make account
                 $user = selectOne($table,['id' => $result]);
@@ -152,6 +148,7 @@ if (isset($_POST['addUser-btn']) && isset($_FILES['profileImage']))
                     $email = '';
                     $password = '';
                     $profileImage = '';
+                    $created_at = '';
                 }else
                 {
                     #Alert the user failed to upload and create account
@@ -170,6 +167,7 @@ if (isset($_POST['addUser-btn']) && isset($_FILES['profileImage']))
                 $password = $_POST['password'];
                 $profileImage = $_FILES['profileImage']['name'];
                 $role = $_POST['role'];
+                $created_at = $_POST['created_at'];
 
                 #Alert error message if the file type is not supported and return it to current page
                 $msg = "You can't upload this type of file, Please check the file type again ['jpeg, jpg, png, webp'].";
@@ -188,6 +186,7 @@ if (isset($_POST['addUser-btn']) && isset($_FILES['profileImage']))
         $password = $_POST['password'];
         $profileImage = $_FILES['profileImage']['name'];
         $role = $_POST['role'];
+        $created_at = $_POST['created_at'];
 
         #Alert Error message and direct again to register page
         #$msg = "Something went wrong, please validate your username and email.";
@@ -234,11 +233,7 @@ if(isset($_POST['updateUser-btn'])){
     $username = trim($_POST['username']);
     $email = trim($_POST['email']);
     $role = $_POST['role'];
-
-    #Get the current timestamp
-    $timeStamp = time();
-    $updated_at = gmdate('Y-m-d H:i:s', $timeStamp);
-    $_POST['updated_at'] = $updated_at;
+    $updated_at = $_POST['updated_at'];
 
      #Image identification
      $profileImage = $_FILES['profileImage']['name']; #image name
@@ -293,19 +288,19 @@ if(isset($_POST['updateUser-btn'])){
                 }
 
                 #Update user account in the database
-                $sql = "UPDATE users SET role=?, firstName=?, lastName=?, username=?, email=?, profileImage=?, updated_at=?
+                $query = "UPDATE users SET role=?, firstName=?, lastName=?, username=?, email=?, profileImage=?, updated_at=?
                         WHERE id=?";
-                $stmt = $conn->prepare($sql);
-                $stmt->execute([$role, $firstName, $lastName, $username, $email, $newImgName, $updated_at, $id]);
+                $stmt_user = $conn->prepare($query);
+                $stmt_user->execute([$role, $firstName, $lastName, $username, $email, $newImgName, $updated_at, $id]);
 
                 #Select the user that has make account
                 $user = selectOne($table,['id' => $id]);
 
                 #validate the user information and profile image information when submitting the query to the database
-                if($stmt)
+                if($stmt_user)
                 {
                     #Alert the user success and uploading the image to the database successfully
-                    sessionUpdateUser($stmt);
+                    sessionUpdateUser($stmt_user);
 
                     #Once successfuly created empty every field
                     $role = '';
@@ -315,10 +310,11 @@ if(isset($_POST['updateUser-btn'])){
                     $email = '';
                     $password = '';
                     $profileImage = '';
+                    $updated_at = '';
                 }else
                 {
                     #Alert the user failed to upload and create account
-                    sessionFailedUser($stmt);
+                    sessionFailedUser($stmt_user);
                 }
             } else
             {
@@ -330,6 +326,7 @@ if(isset($_POST['updateUser-btn'])){
                 $password = $_POST['password'];
                 $profileImage = $_FILES['profileImage']['name'];
                 $role = $_POST['role'];
+                $updated_at = $_POST['updated_at'];
 
                 #Alert error message if the file type is not supported and return it to current page
                 $msg = "You can't upload this type of file, Please check the file type again ['jpeg, jpg, png, webp'].";
@@ -348,6 +345,7 @@ if(isset($_POST['updateUser-btn'])){
         $password = $_POST['password'];
         $profileImage = $_FILES['profileImage']['name'];
         $role = $_POST['role'];
+        $updated_at = $_POST['updated_at'];
 
         #Alert Error message and direct again to register page
         #$msg = "Something went wrong, please validate your username and email.";

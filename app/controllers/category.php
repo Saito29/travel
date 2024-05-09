@@ -64,7 +64,7 @@ function sessionDeletedCategory($categ){
     exit();
 }
 
-#Select all the categories created 
+#Select all the categories created global variables 
 $category = selectAll($table);
 
 #This is to create a category
@@ -79,11 +79,6 @@ if(isset($_POST["addCateg-btn"])){
 
         #Save the category as active key 1
         $_POST['Is_Active'] = 1;
-
-        #Get current timestamp 
-        $timeStamp = time();
-        $categCreated_at = gmdate('Y-m-d H:i:s', $timeStamp);
-        $_POST['categCreated_at'] = $categCreated_at;
         
         #crete a category data and insert into database
         $categ_id = create($table, $_POST);
@@ -94,10 +89,12 @@ if(isset($_POST["addCateg-btn"])){
         #after the session category is created clear all the fields
         $categName = '';
         $categDesc = '';
+        $categCreated_at = '';
     }else{
         #Display all the information that the submitted but error
         $categName = $_POST['categName'];
         $categDesc = $_POST['categDesc'];
+        $categCreated_at = $_POST['categCreated_at'];
 
         #Display error alert
         $msg = "Category failed to be created.";
@@ -125,22 +122,20 @@ if(isset($_GET['id'])){
 
 #Check if the user clicked the update button
 if(isset($_POST['upt-btn'])){
-    #insert the category id
-    $id = $_POST['id'];
+    $errors = validateUpdateCategory($_POST);
+    if(count($errors) === 0){
+        #insert the category id
+        $id = $_POST['id'];
 
-    #Clear the update button and the id
-    unset($_POST['upt-btn'], $_POST['id']);
+        #Clear the update button and the id
+        unset($_POST['upt-btn'], $_POST['id']);
 
-    #Get the current timestamp
-    $timeStamp = time();
-    $categUpt_at = gmdate('Y-m-d H:i:s', $timeStamp);
-    $_POST['categUpt_at'] = $categUpt_at;
+        #Update the category
+        $categ_id = update($table, $id, $_POST);
 
-    #Update the category
-    $categ_id = update($table, $id, $_POST);
-
-    #Called the update function
-    sessionUpdateCategory($categ_id);
+        #Called the update function
+        sessionUpdateCategory($categ_id);
+    }
 }
 
 #Delete the category but actually archive the data

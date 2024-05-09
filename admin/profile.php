@@ -1,6 +1,6 @@
 <?php 
 include("path.php");
-include(ROOT_PATH."/app/controller/profile.php");
+include(ROOT_PATH."/app/controllers/profile.php");
 
 #if session id not login direct to home page
 if(!isset($_SESSION['id'])){
@@ -76,6 +76,10 @@ if(!isset($_SESSION['id'])){
                                                 <label for="profileImage" class="form-label">Profile Image:</label>
                                                 <img src="<?php echo BASE_URL.'/app/upload/uploadProfile/'?><?php echo $_SESSION['profileImage']?>" onclick="triggerProfileClick()" id="profileDisplay" class="rounded-circle d-block border" alt="profile-user" style="cursor:pointer" height="75" width="75">
                                                 <input type="file" class="d-none" name="profileImage" onchange="displayProfileImage(this)" id="profileImage">
+                                            </div>
+                                            <div class="mb-1 col-sm-4">
+                                                <label for="updated_at" class="form-label">Date Updated:</label>
+                                                <input type="datetime-local" class="form-control" name="updated_at" value="<?php echo $_SESSION['updated_at']?>">
                                             </div>
                                             <div class="mb-1 col-sm-6">
                                                 <label for="password" class="form-label">Change Password:</label>

@@ -1,11 +1,11 @@
 <?php 
 include("path.php");
-include(ROOT_PATH."/app/config/db.php");
+include(ROOT_PATH."/app/controllers/category.php");
 
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en">    
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=7">
@@ -67,7 +67,7 @@ include(ROOT_PATH."/app/config/db.php");
                             <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhKkw4-fakWFEGyhNp6BDcpB7mMtDR25wW2tisWYnCpY94h2zla9hpx4mJ_J9esSGIZVPmefrf_0cO9sGX97x0j4MvE64-6lFAZhV35dDMLh2PS6aikW2WxtmlRU0PMHJSd1GRYf7Y-HPI/s1600/mt-pinagbanderahan-bantakay-falls-05.jpg"
                              name="post-Thumbnail" alt="post-image" class="card-img-top">
                             <div class="card-body">
-                                <h6 class="card-title" style="text-align: justify;"><a href="<?php echo BASE_URL.'/single-page.php'?>">Basic Fundamentals of SQL Tutorial Tagalog Full course with source code and full documentation for begginners</a></h6>
+                                <h6 class="card-title fs-6" style="text-align: justify;"><a href="<?php echo BASE_URL.'/single-page.php'?>">Basic Fundamentals of SQL Tutorial Tagalog Full course with source code and full documentation for begginners</a></h6>
                                 <div class="d-flex align-items-center mb-1">
                                     <div class="flex-shrink-0">
                                         <img src="./asset/img/logo/travel.png" alt="User_profile" class="rounded-circle border"
@@ -186,7 +186,7 @@ include(ROOT_PATH."/app/config/db.php");
                                         </div>
                                         <div class="col-md-8 col-sm-8 col-xl-8 col-lg-8 col-xxl-8">
                                             <div class="card-header d-inline-flex w-100 align-self-center">
-                                                <img src="./asset/img/logo/travel.png" alt="author-profile" class="rounded-circle img-fluid" width="32" height="24">
+                                                <img src="./asset/img/logo/travel.png" alt="author-profile" class="rounded-circle img-fluid" width="32" height="32">
                                                 <h6 class="card-text ms-2">Saito Hiragi</h6>
                                                 <p class="card-text flex-grow-1 ms-2"><small class="text-body-secondary"><i class='bx bx-calendar'>March 24, 2024</i></small></p>
                                             </div>
@@ -201,157 +201,7 @@ include(ROOT_PATH."/app/config/db.php");
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-
-                                <div class="card clearfix w-100 h-auto mt-4">
-                                    <div class="row g-0 h-100 w-100">
-                                        <div class="col-md-4 col-sm-4 col-xl-4 col-xxl-4">
-                                            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhKkw4-fakWFEGyhNp6BDcpB7mMtDR25wW2tisWYnCpY94h2zla9hpx4mJ_J9esSGIZVPmefrf_0cO9sGX97x0j4MvE64-6lFAZhV35dDMLh2PS6aikW2WxtmlRU0PMHJSd1GRYf7Y-HPI/s1600/mt-pinagbanderahan-bantakay-falls-05.jpg" 
-                                            alt="post-Thumbnail" class="img-fluid rounded-start w-100 h-100 object-fit-cover">
-                                        </div>
-                                        <div class="col-md-8 col-sm-8 col-xl-8 col-lg-8 col-xxl-8">
-                                            <div class="card-header d-inline-flex w-100 align-self-center">
-                                                <img src="./asset/img/logo/travel.png" alt="author-profile" class="rounded-circle img-fluid" width="32" height="24">
-                                                <h6 class="card-text ms-2">Saito Hiragi</h6>
-                                                <p class="card-text flex-grow-1 ms-2"><small class="text-body-secondary"><i class='bx bx-calendar'>March 24, 2024</i></small></p>
-                                            </div>
-                                            <div class="card-body">
-                                                <h5 class="card-title mb-2"><a href="<?php echo BASE_URL.'/single-page.php'?>">Basic Fundamentals of SQL Tutorial Tagalog Full course with source code and full documentation for begginners</a></h5>
-                                                <p class="card-text mb-2" name="postDescriptions" style="text-align: justify;">The content here tackle about the basic SQL. Things for only begginners to understand the basic fundamental of SQL. 
-                                                    The modules here provide a table content of what you learn and some documents that easy to understand for begginners only.
-                                                </p>
-                                                <div class="text-end mt-3">
-                                                    <a href="<?php echo BASE_URL.'/single-page.php'?>" class="btn read-more">Read more</a>
-                                                </div>                                            
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="card clearfix w-100 h-auto mt-4">
-                                    <div class="row g-0 h-100 w-100">
-                                        <div class="col-md-4 col-sm-4 col-xl-4 col-xxl-4">
-                                            <img src="https://jangotshome.files.wordpress.com/2018/11/cuasay.jpg?w=1100" 
-                                            alt="post-Thumbnail" class="img-fluid rounded-start w-100 h-100 object-fit-cover">
-                                        </div>
-                                        <div class="col-md-8 col-sm-8 col-xl-8 col-lg-8 col-xxl-8">
-                                            <div class="card-header d-inline-flex w-100 align-self-center">
-                                                <img src="./asset/img/logo/travel.png" alt="author-profile" class="rounded-circle img-fluid" width="32" height="24">
-                                                <h6 class="card-text ms-2">Saito Hiragi</h6>
-                                                <p class="card-text flex-grow-1 ms-2"><small class="text-body-secondary"><i class='bx bx-calendar'>March 24, 2024</i></small></p>
-                                            </div>
-                                            <div class="card-body">
-                                                <h5 class="card-title mb-2"><a href="<?php echo BASE_URL.'/single-page.php'?>">Basic Fundamentals of SQL Tutorial Tagalog Full course with source code and full documentation for begginners</a></h5>
-                                                <p class="card-text mb-2" name="postDescriptions" style="text-align: justify;">The content here tackle about the basic SQL. Things for only begginners to understand the basic fundamental of SQL. 
-                                                    The modules here provide a table content of what you learn and some documents that easy to understand for begginners only.
-                                                </p>
-                                                <div class="text-end mt-3">
-                                                    <a href="<?php echo BASE_URL.'/single-page.php'?>" class="btn read-more">Read more</a>
-                                                </div>                                            
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="card clearfix w-100 h-auto mt-4">
-                                    <div class="row g-0 h-100 w-100">
-                                        <div class="col-md-4 col-sm-4 col-xl-4 col-xxl-4">
-                                            <img src="https://i0.wp.com/touristjourney.com/wp-content/uploads/2021/04/Punta-Laguna-Nature-Reserve-Travel.jpg?fit=2500,1872&ssl=1" 
-                                            alt="post-Thumbnail" class="img-fluid rounded-start w-100 h-100 object-fit-cover">
-                                        </div>
-                                        <div class="col-md-8 col-sm-8 col-xl-8 col-lg-8 col-xxl-8">
-                                            <div class="card-header d-inline-flex w-100 align-self-center">
-                                                <img src="./asset/img/logo/travel.png" alt="author-profile" class="rounded-circle img-fluid" width="32" height="24">
-                                                <h6 class="card-text ms-2">Saito Hiragi</h6>
-                                                <p class="card-text flex-grow-1 ms-2"><small class="text-body-secondary"><i class='bx bx-calendar'>March 24, 2024</i></small></p>
-                                            </div>
-                                            <div class="card-body">
-                                                <h5 class="card-title mb-2"><a href="<?php echo BASE_URL.'/single-page.php'?>">Basic Fundamentals of SQL Tutorial Tagalog Full course with source code and full documentation for begginners</a></h5>
-                                                <p class="card-text mb-2" name="postDescriptions" style="text-align: justify;">The content here tackle about the basic SQL. Things for only begginners to understand the basic fundamental of SQL. 
-                                                    The modules here provide a table content of what you learn and some documents that easy to understand for begginners only.
-                                                </p>
-                                                <div class="text-end mt-3">
-                                                    <a href="<?php echo BASE_URL.'/single-page.php'?>" class="btn read-more">Read more</a>
-                                                </div>                                            
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="card clearfix w-100 h-auto mt-4">
-                                    <div class="row g-0 h-100 w-100">
-                                        <div class="col-md-4 col-sm-4 col-xl-4 col-xxl-4">
-                                            <img src="https://gttp.imgix.net/320664/x/0/tourist-stands-on-kalanggaman-island-s-sandbar.jpg?auto=compress,format&ch=Width,DPR&dpr=1&ixlib=php-3.3.0&auto=format,compress&fit=crop&h=undefined" 
-                                            alt="post-Thumbnail" class="img-fluid rounded-start w-100 h-100 object-fit-cover">
-                                        </div>
-                                        <div class="col-md-8 col-sm-8 col-xl-8 col-lg-8 col-xxl-8">
-                                            <div class="card-header d-inline-flex w-100 align-self-center">
-                                                <img src="./asset/img/logo/travel.png" alt="author-profile" class="rounded-circle img-fluid" width="32" height="24">
-                                                <h6 class="card-text ms-2">Saito Hiragi</h6>
-                                                <p class="card-text flex-grow-1 ms-2"><small class="text-body-secondary"><i class='bx bx-calendar'>March 24, 2024</i></small></p>
-                                            </div>
-                                            <div class="card-body">
-                                                <h5 class="card-title mb-2"><a href="<?php echo BASE_URL.'/single-page.php'?>">Basic Fundamentals of SQL Tutorial Tagalog Full course with source code and full documentation for begginners</a></h5>
-                                                <p class="card-text mb-2" name="postDescriptions" style="text-align: justify;">The content here tackle about the basic SQL. Things for only begginners to understand the basic fundamental of SQL. 
-                                                    The modules here provide a table content of what you learn and some documents that easy to understand for begginners only.
-                                                </p>
-                                                <div class="text-end mt-3">
-                                                    <a href="<?php echo BASE_URL.'/single-page.php'?>" class="btn read-more">Read more</a>
-                                                </div>                                            
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="card clearfix w-100 h-auto mt-4">
-                                    <div class="row g-0 h-100 w-100">
-                                        <div class="col-md-4 col-sm-4 col-xl-4 col-xxl-4">
-                                            <img src="https://www.tutorialspoint.com/cplusplus/images/cpp-mini-logo.jpg" 
-                                            alt="post-Thumbnail" class="img-fluid rounded-start w-100 h-100 object-fit-cover">
-                                        </div>
-                                        <div class="col-md-8 col-sm-8 col-xl-8 col-lg-8 col-xxl-8">
-                                            <div class="card-header d-inline-flex w-100 align-self-center">
-                                                <img src="./asset/img/logo/travel.png" alt="author-profile" class="rounded-circle img-fluid" width="32" height="24">
-                                                <h6 class="card-text ms-2">Saito Hiragi</h6>
-                                                <p class="card-text flex-grow-1 ms-2"><small class="text-body-secondary"><i class='bx bx-calendar'>March 24, 2024</i></small></p>
-                                            </div>
-                                            <div class="card-body">
-                                                <h5 class="card-title mb-2"><a href="<?php echo BASE_URL.'/single-page.php'?>">Basic Fundamentals of SQL Tutorial Tagalog Full course with source code and full documentation for begginners</a></h5>
-                                                <p class="card-text mb-2" name="postDescriptions" style="text-align: justify;">The content here tackle about the basic SQL. Things for only begginners to understand the basic fundamental of SQL. 
-                                                    The modules here provide a table content of what you learn and some documents that easy to understand for begginners only.
-                                                </p>
-                                                <div class="text-end mt-3">
-                                                    <a href="<?php echo BASE_URL.'/single-page.php'?>" class="btn read-more">Read more</a>
-                                                </div>                                            
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="card clearfix w-100 h-auto mt-4">
-                                    <div class="row g-0 h-100 w-100">
-                                        <div class="col-md-4 col-sm-4 col-xl-4 col-xxl-4">
-                                            <img src="https://t3.ftcdn.net/jpg/04/72/70/84/360_F_472708496_jWIQVKy4u5hbXCfph6uJcEZ7h2fWzwnk.jpg" 
-                                            alt="post-Thumbnail" class="img-fluid rounded-start w-100 h-100 object-fit-cover">
-                                        </div>
-                                        <div class="col-md-8 col-sm-8 col-xl-8 col-lg-8 col-xxl-8">
-                                            <div class="card-header d-inline-flex w-100 align-self-center">
-                                                <img src="./asset/img/logo/travel.png" alt="author-profile" class="rounded-circle img-fluid" width="32" height="24">
-                                                <h6 class="card-text ms-2">Saito Hiragi</h6>
-                                                <p class="card-text flex-grow-1 ms-2"><small class="text-body-secondary"><i class='bx bx-calendar'>March 24, 2024</i></small></p>
-                                            </div>
-                                            <div class="card-body">
-                                                <h5 class="card-title mb-2"><a href="<?php echo BASE_URL.'/single-page.php'?>">Basic Fundamentals of SQL Tutorial Tagalog Full course with source code and full documentation for begginners</a></h5>
-                                                <p class="card-text mb-2" name="postDescriptions" style="text-align: justify;">The content here tackle about the basic SQL. Things for only begginners to understand the basic fundamental of SQL. 
-                                                    The modules here provide a table content of what you learn and some documents that easy to understand for begginners only.
-                                                </p>
-                                                <div class="text-end mt-3">
-                                                    <a href="<?php echo BASE_URL.'/single-page.php'?>" class="btn read-more">Read more</a>
-                                                </div>                                            
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                </div>                                
                                 <!--========= End of Card Content =================-->
                             </div>
                             <!--========= End of Post Content ===========-->
@@ -381,16 +231,9 @@ include(ROOT_PATH."/app/config/db.php");
                                 <h4 class="card-header bg-transparent text-success">Categories</h4>
                                 <div class="card-body border-success">
                                     <ul class="list-group list-group-flush">
-                                        <li class="list-group-item list-group-flush"><a href="#">Agdangan</a></li>
-                                        <li class="list-group-item list-group-flush"><a href="#">Atimonan</a></li>
-                                        <li class="list-group-item list-group-flush"><a href="#">Candelaria</a></li>
-                                        <li class="list-group-item list-group-flush"><a href="#">Dolores</a></li>
-                                        <li class="list-group-item list-group-flush"><a href="#">Lucban</a></li>
-                                        <li class="list-group-item list-group-flush"><a href="#">Luciana</a></li>
-                                        <li class="list-group-item list-group-flush"><a href="#">Padre Borgos</a></li>
-                                        <li class="list-group-item list-group-flush"><a href="#">Pagbilao</a></li>
-                                        <li class="list-group-item list-group-flush"><a href="#">Sariaya</a></li>
-                                        <li class="list-group-item list-group-flush"><a href="#">Tayabas</a></li>
+                                    <?php foreach($category as $key => $categories):?>
+                                        <li class="list-group-item list-group-flush"><a href="#"><?php echo $categories['categName'];?></a></li>
+                                    <?php endforeach;?>
                                     </ul>
                                 </div>
                             </div>

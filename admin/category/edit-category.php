@@ -1,6 +1,6 @@
 <?php 
 include("../path.php");
-include(ROOT_PATH."/app/controller/category.php");
+include(ROOT_PATH."/app/controllers/category.php");
 
 #if session id not login direct to home page
 if(!isset($_SESSION['id'])){
@@ -55,7 +55,6 @@ if(!isset($_SESSION['id'])){
                                          </div>
                                         <form action="edit-category.php" class="row gx-2 gy-3" name="addUser" method="post" enctype="application/x-www-form-urlencoded">
                                             <input type="hidden" name="id" value="<?php echo $id?>">
-                                            <input type="hidden" name="categUpt_at" value="<?php echo $categUpt_at?>">
                                             <div class="mb-1 col-md-6 form-group">
                                                 <label for="categName" class="form-label">Category:</label>
                                                 <input type="text" class="form-control p-2" name="categName" value="<?php echo $categName?>" placeholder="Category Name">
@@ -63,6 +62,10 @@ if(!isset($_SESSION['id'])){
                                             <div class="mb-1 col-md-6 form-group">
                                                 <label for="categDesc" class="form-label">Category Description:</label>
                                                 <textarea name="categDesc" class="form-control" rows="4" placeholder="Category Description"><?php echo $categDesc?></textarea>
+                                            </div>
+                                            <div class="mb-1 col-md-4 form-group">
+                                                <label for="categUpt_at" class="form-label">Category Update DateTime:</label>
+                                                <input type="datetime-local" name="categUpt_at" class="form-control form-control-sm" value="<?php echo $categUpt_at?>">
                                             </div>
                                             <div class="mb-2 col-md-12 form-group">
                                                 <button type="submit" class="btn btn-outline-success" name="upt-btn">Update Category</button>

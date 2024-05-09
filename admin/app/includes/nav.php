@@ -3,7 +3,7 @@
     <div class="navbar-collapse collapse">
         <h3>Admin Panel</h3>
         <!--Toggle button Dark mode-->
-        <img src="./asset/images/icon/moon-solid.png" role="button" class="icon-toggle" id="icon" alt="toggle-dark-theme">
+        <img src="<?php echo BASE_ADMIN.'/asset/images/icon/moon-solid.png'?>" role="button" class="icon-toggle" id="icon" alt="toggle-dark-theme">
         <!--end of toggle button dark mode-->
         <div class="navbar-nav ms-auto dropdown">
             <a href="#" class="nav-icon pe-md-0" data-bs-toggle="dropdown" aria-expanded="false">
