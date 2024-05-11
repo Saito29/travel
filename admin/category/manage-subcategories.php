@@ -71,8 +71,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                                     <!--============ Table Header ================-->
                                                     <tr>
                                                         <th>#</th>
-                                                        <th>Category Name</th>
-                                                        <th>Sub Category Name</th>
+                                                        <th>Sub-Category Name</th>
                                                         <th>Description</th>
                                                         <th>Created Date</th>
                                                         <th>Last Update Date</th>                                                        
@@ -90,7 +89,6 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                                         <?php foreach($subcategory_run as $keys => $subcategories):?>
                                                     <tr>
                                                         <td><?php echo $keys + 1?></td>
-                                                        <td><?php echo $subcategories['categName']?></td>
                                                         <td><?php echo $subcategories['name']?></td>
                                                         <td><?php echo $subcategories['description']?></td>
                                                         <td><?php echo $subcategories['created_at']?></td>
@@ -122,8 +120,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                                     <!--============ Table Header ================-->
                                                     <tr>
                                                         <th>#</th>
-                                                        <th>Category</th>
-                                                        <th>Sub Category</th>
+                                                        <th>Sub-Category Name</th>
                                                         <th>Description</th>
                                                         <th>Posting Date</th>
                                                         <th>Last updation Date</th>                                                        
@@ -142,7 +139,6 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                                         <?php foreach($subcategory_run as $keys => $subcategories):?>
                                                     <tr>
                                                         <td><?php echo $keys + 1?></td>
-                                                        <td><?php echo $subcategories['categoryName']?></td>
                                                         <td><?php echo $subcategories['name']?></td>
                                                         <td><?php echo $subcategories['description']?></td>
                                                         <td><?php echo $subcategories['created_at']?></td>

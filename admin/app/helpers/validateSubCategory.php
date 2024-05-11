@@ -4,10 +4,6 @@ function validateSubCategory($subcategory)
 {
     #Pass all error in error array
     $errors = array();  
-    
-    if(empty($subcategory['categName'])){
-        array_push($errors, "Category Name is required.");
-    }
     if(empty($subcategory['name'])){
         array_push($errors, "Sub-category Name is required.");
     }
@@ -17,7 +13,11 @@ function validateSubCategory($subcategory)
     if(empty($subcategory['created_at'])){
         array_push($errors, "Sub-Category created Datatime is required.");
     }
-
+    #Find an existing category name in the database
+    $existingSubCategName = selectOne('subcategory', ['name' => $subcategory['name']]);
+    if(isset($existingSubCategName)){
+        array_push($errors, "Sub-category name is already exist.");
+    }
     #dd($errors);
     
     return $errors;
@@ -28,10 +28,6 @@ function validateUpdateSubCategory($subcategory)
 {
     #Pass all error in error array
     $errors = array();  
-    
-    if(empty($subcategory['categName'])){
-        array_push($errors, "Category Name is required.");
-    }
     if(empty($subcategory['name'])){
         array_push($errors, "Sub-category Name is required.");
     }

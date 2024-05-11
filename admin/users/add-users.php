@@ -75,7 +75,11 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                             <div class="mb-1 col-sm-6">
                                                 <label for="role" class="form-label">Role type:</label>
                                                 <select name="role" class="form-select form-select-sm">
+                                                    <?php if(!isset($_POST['role'])):?>
                                                     <option value="<?php echo $role;?>" selected>Choose type of user</option>
+                                                    <?php else:?>
+                                                    <option value="<?php echo $role;?>" selected>User type: <?php echo $role;?></option>
+                                                    <?php endif;?>
                                                     <option value="admin">Admin User</option>
                                                     <option value="sub-admin">Sub-Admin User</option>
                                                     <option value="editor">Editor User</option>

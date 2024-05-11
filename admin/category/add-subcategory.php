@@ -58,24 +58,6 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                             </div>
                                          </div>
                                         <form action="add-subcategory.php" class="row gx-2 gy-3" autocomplete="on" name="addUser" method="post" enctype="application/x-www-form-urlencoded">
-                                            <div class="mb-1 col-md-6">
-                                                <label for="categories" class="form-label">Category:</label>
-                                                <select name="categName" class="form-select">
-                                                    <?php if(!isset($_POST['categName'])):?>
-                                                    <option value="<?php echo $category?>" selected>Select Categories: </option>
-                                                    <!--Category List-->
-                                                    <?php foreach ($category as $key => $subcateg):?>
-                                                    <option value="<?php echo $subcateg['categName']?>"><?php echo $subcateg['categName']?></option>
-                                                    <?php endforeach;?>
-                                                    <?php else:?>
-                                                    <option value="<?php echo $category?>" selected>Select Categories: <?php echo $category?></option>
-                                                    <!--Category List-->
-                                                    <?php foreach ($category as $key => $subcateg):?>
-                                                    <option value="<?php echo $subcateg['categName']?>"><?php echo $subcateg['categName']?></option>
-                                                    <?php endforeach;?>
-                                                    <?php endif;?>
-                                                </select>
-                                            </div>
                                             <div class="mb-1 col-md-6 form-group">
                                                 <label for="name" class="form-label">Sub-Category:</label>
                                                 <input type="text" class="form-control" name="name" value="<?php echo $name?>" placeholder="Sub-Category Name">

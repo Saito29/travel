@@ -14,3 +14,24 @@
 
 <!--============== Customized JS ======================-->
 <script src="<?php echo BASE_ADMIN.'/asset/js/script.js'?>"></script>
+
+<!--============== Summernote JS =======================-->
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+<script>
+$('.summernote').summernote({
+    tabsize: 2,
+    height: 180,                 // set editor height
+    minHeight: null,             // set minimum height of editor
+    maxHeight: null,             // set maximum height of editor
+    focus: false,   
+    toolbar: [
+        ['style', ['style']],
+        ['font', ['bold', 'underline', 'clear', 'fontsize']],
+        ['color', ['color']],
+        ['para', ['ul', 'ol', 'paragraph']],
+        ['table', ['table']],
+        ['insert', ['link', 'picture', 'video']],
+        ['view', ['codeview', 'help']]
+    ]
+});
+</script>

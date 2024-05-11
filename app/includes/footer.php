@@ -48,7 +48,7 @@
                 </div>
 
                 <div class="footer-bottom" align="center">
-                    &copy;Copyright 2024 Cube.io, All right reserved.
+                    &copy;Copyright <?php echo date('Y')?> Travel, All right reserved.
                 </div>
             </div>
             <!--============================= End of Footer and Contact ===========================-->

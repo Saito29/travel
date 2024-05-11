@@ -56,16 +56,6 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                          </div>
                                         <form action="edit-subcategories.php" class="row gx-2 gy-3" name="addUser" method="post" enctype="application/x-www-form-urlencoded">
                                             <input type="hidden" name="id" value="<?php echo $id?>">
-                                            <div class="mb-1 col-md-6">
-                                                <label for="categories" class="form-label">Category:</label>
-                                                <select name="categoryName" class="form-select">
-                                                    <option value="<?php echo $category?>" selected><?php echo $category?></option>
-                                                    <!--Category List-->
-                                                    <?php foreach ($category as $key => $subcateg):?>
-                                                    <option value="<?php echo $subcateg['categName']?>"><?php echo $subcateg['categName']?></option>
-                                                    <?php endforeach;?>
-                                                </select>
-                                            </div>
                                             <div class="mb-1 col-md-6 form-group">
                                                 <label for="name" class="form-label">Sub-Category:</label>
                                                 <input type="text" class="form-control" name="name" value="<?php echo $name?>" placeholder="Sub-Category Name">

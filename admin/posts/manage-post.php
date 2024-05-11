@@ -1,11 +1,15 @@
 <?php 
 include("../path.php");
+include(ROOT_PATH.'/app/config/db.php');
 
 #if session id not login direct to home page
 if(!isset($_SESSION['id'])){
     header("Location: ".BASE_URL."/index.php");
 }
-
+if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] === 'editor'){
+    header("Location: ".BASE_URL."/index.php");
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
@@ -84,7 +88,7 @@ if(!isset($_SESSION['id'])){
                                                         <td>Hiking</td>
                                                         <td>Published</td>
                                                         <td>
-                                                            <a href="<?php echo BASE_URL.'/edit-post.php'?>" class="btn btn-outline-primary m-1"><i class='bx bx-edit'></i></a>
+                                                            <a href="<?php echo BASE_ADMIN.'/posts/edit-post.php'?>" class="btn btn-outline-primary m-1"><i class='bx bx-edit'></i></a>
                                                             &nbsp;
                                                             <a href="#deletePost" class="btn btn-outline-danger m-1"><i class='bx bx-trash-alt' ></i></a>
                                                         </td>

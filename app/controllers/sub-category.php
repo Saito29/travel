@@ -4,14 +4,12 @@ include(ROOT_PATH."/app/helpers/validateSubCategory.php");
 
 #Global Variable for Category
 $id = '';
-$category = '';
 $name = '';
 $description = '';
 $created_at = '';
 $updated_at = '';
 $is_Active = '';
 $table = 'subcategory';
-$tables = 'category';
 
 #Array of Category errors messages
 $errors = array();
@@ -66,12 +64,10 @@ function sessionDeletedCategory($subcateg){
     exit();
 }
 
-#Select all the categories created to select the categories from the add sub categories
-$category = selectAll($tables);
-
 #Select all the sub categories created and displayed to manage sub categories
 $subcategory = selectAll($table);
 
+#This function is for adding the sub categories
 if(isset($_POST["addSubCateg-btn"])){
     #Error alert function
     $errors = validateSubCategory($_POST);
@@ -91,13 +87,11 @@ if(isset($_POST["addSubCateg-btn"])){
         sessionSubCategory($subcateg_id);
             
         #after the session category is created clear all the fields
-        $category = '';
         $name = '';
         $description = '';
         $created_at = '';
     }else{
         #Display all the information that the submitted on error
-        $category = $_POST['categName'];
         $name = $_POST['name'];
         $description = $_POST['description'];
         $created_at = $_POST['created_at'];
@@ -120,7 +114,6 @@ if(isset($_GET['id'])){
 
     #Set the category to update based on the database
     $id = $subcategory['id'];
-    $category = $subcategory['categName'];
     $name = $subcategory['name'];
     $description = $subcategory['description'];
     $updated_at = $subcategory['updated_at'];
