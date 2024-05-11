@@ -135,6 +135,12 @@ if(isset($_POST['upt-btn'])){
 
         #Called the update function
         sessionUpdateCategory($categ_id);
+    }else{
+        #If theres an error return all data in field
+        $id = $_POST['id'];
+        $categName = $_POST['categName'];
+        $categDesc = $_POST['categDesc'];
+        $categUpt_at = $_POST['categUpt_at'];
     }
 }
 

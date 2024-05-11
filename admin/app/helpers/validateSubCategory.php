@@ -15,7 +15,7 @@ function validateSubCategory($subcategory)
     }
     #Find an existing category name in the database
     $existingSubCategName = selectOne('subcategory', ['name' => $subcategory['name']]);
-    if(isset($existingSubCategName)){
+    if($existingSubCategName){
         array_push($errors, "Sub-category name is already exist.");
     }
     #dd($errors);

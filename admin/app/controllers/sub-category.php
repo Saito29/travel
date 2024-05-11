@@ -134,6 +134,12 @@ if(isset($_POST['upt-btn'])){
 
         #Called the update function
         sessionUpdateSubCategory($subcateg_id);
+    }else{
+        #Theres an error happen return data from the field
+        $id = $_POST['id'];
+        $name = $_POST['name'];
+        $description = $_POST['description'];
+        $updated_at = $_POST['updated_at'];
     }
 }
 

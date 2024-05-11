@@ -17,7 +17,7 @@ function validateCategory($categ)
 
     #Find an existing category name in the database
     $existingCategName = selectOne('category', ['categName' => $categ['categName']]);
-    if(isset($existingCategName)){
+    if($existingCategName){
         array_push($errors, "Category name is already exist.");
     }
 

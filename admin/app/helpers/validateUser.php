@@ -33,13 +33,13 @@ function validateUser($user)
 
     #Find an existing user email acc from database
     $existingUser = selectOne('users', ['username' => $user['username']]);
-    if(isset($existingUser)){
+    if($existingUser){
         array_push($errors, "Username is already taken.");
     }
 
     #Find an existing user account username from database
     $existingUSN = selectOne('users', ['email' => $user['email']]);
-    if(isset($existingUSN)){
+    if($existingUSN){
         array_push($errors, "Email Address is already exists.");
     }
 
