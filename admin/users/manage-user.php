@@ -74,7 +74,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                                 <thead>
                                                     <!--============ Table Header ================-->
                                                     <tr>
-                                                        <th>#</th>
+                                                        <th>SNID</th>
                                                         <th>Profile</th>
                                                         <th>First Name</th>
                                                         <th>Last Name</th>

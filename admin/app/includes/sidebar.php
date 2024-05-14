@@ -9,13 +9,13 @@
     <!--Sidebar navigation start here-->
     <ul class="sidebar-nav">
         <li class="sidebar-item">
-            <a href="<?php echo BASE_ADMIN.'/dashboard.php?userID='?><?php echo $_SESSION['id']?>" class="sidebar-link">
+            <a href="<?php echo BASE_ADMIN.'/dashboard.php?SNID='?><?php echo $_SESSION['id']?>" class="sidebar-link">
                 <i class='bx bxs-dashboard'></i>
                 <span>Dashboard</span>
             </a>
         </li>
         <li class="sidebar-item">
-            <a href="<?php echo BASE_URL.'/index.php?userID='?><?php echo $_SESSION['id']?>" class="sidebar-link">
+            <a href="<?php echo BASE_URL.'/index.php?SNID='?><?php echo $_SESSION['id']?>" class="sidebar-link">
                 <i class='bx bx-globe'></i>
                 <span>Web Page</span>
             </a>
@@ -31,10 +31,10 @@
             </a>
             <ul id="users" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                 <li class="sidebar-item">
-                    <a href="<?php echo BASE_ADMIN.'/users/add-users.php?userID='?><?php echo $_SESSION['id']?>" class="sidebar-link">Add Users</a>
+                    <a href="<?php echo BASE_ADMIN.'/users/add-users.php?SNID='?><?php echo $_SESSION['id']?>" class="sidebar-link">Add Users</a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="<?php echo BASE_ADMIN.'/users/manage-user.php?userID='?><?php echo $_SESSION['id']?>" class="sidebar-link">Manage Users</a>
+                    <a href="<?php echo BASE_ADMIN.'/users/manage-user.php?SNID='?><?php echo $_SESSION['id']?>" class="sidebar-link">Manage Users</a>
                 </li>
             </ul>
         </li>
@@ -48,10 +48,10 @@
                 </a>
             <ul id="category" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                 <li class="sidebar-item">
-                    <a href="<?php echo BASE_ADMIN.'/category/add-category.php?userID='?><?php echo $_SESSION['id']?>" class="sidebar-link">Add Category</a>
+                    <a href="<?php echo BASE_ADMIN.'/category/add-category.php?SNID='?><?php echo $_SESSION['id']?>" class="sidebar-link">Add Category</a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="<?php echo BASE_ADMIN.'/category/manage-category.php?userID='?><?php echo $_SESSION['id']?>" class="sidebar-link">Manage Category</a>
+                    <a href="<?php echo BASE_ADMIN.'/category/manage-category.php?SNID='?><?php echo $_SESSION['id']?>" class="sidebar-link">Manage Category</a>
                 </li>
             </ul>
         </li>
@@ -63,10 +63,10 @@
             </a>
             <ul id="subcategory" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                 <li class="sidebar-item">
-                    <a href="<?php echo BASE_ADMIN.'/category/add-subcategory.php?userID='?><?php echo $_SESSION['id']?>" class="sidebar-link">Add Sub Category</a>
+                    <a href="<?php echo BASE_ADMIN.'/category/add-subcategory.php?SNID='?><?php echo $_SESSION['id']?>" class="sidebar-link">Add Sub Category</a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="<?php echo BASE_ADMIN.'/category/manage-subcategories.php?userID='?><?php echo $_SESSION['id']?>" class="sidebar-link">Manage Sub Category</a>
+                    <a href="<?php echo BASE_ADMIN.'/category/manage-subcategories.php?SNID='?><?php echo $_SESSION['id']?>" class="sidebar-link">Manage Sub Category</a>
                 </li>
             </ul>
         </li>
@@ -78,13 +78,13 @@
                 </a>
             <ul id="posts" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                 <li class="sidebar-item">
-                    <a href="<?php echo BASE_ADMIN.'/posts/add-post.php?userID='?><?php echo $_SESSION['id']?>" class="sidebar-link">Add Posts</a>
+                    <a href="<?php echo BASE_ADMIN.'/posts/add-post.php?SNID='?><?php echo $_SESSION['id']?>" class="sidebar-link">Add Posts</a>
                 </li>   
                 <li class="sidebar-item">
-                    <a href="<?php echo BASE_ADMIN.'/posts/manage-post.php?userID='?><?php echo $_SESSION['id']?>" class="sidebar-link">Manage Posts</a>
+                    <a href="<?php echo BASE_ADMIN.'/posts/manage-post.php?SNID='?><?php echo $_SESSION['id']?>" class="sidebar-link">Manage Posts</a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="<?php echo BASE_ADMIN.'/posts/trash-post.php?userID='?><?php echo $_SESSION['id']?>" class="sidebar-link">Trash Posts</a>
+                    <a href="<?php echo BASE_ADMIN.'/posts/trash-post.php?SNID='?><?php echo $_SESSION['id']?>" class="sidebar-link">Trash Posts</a>
                 </li>
             </ul>
         </li>
@@ -96,13 +96,13 @@
             </a>
             <ul id="pages" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                 <li class="sidebar-item">
-                    <a href="<?php echo BASE_ADMIN.'/pages/aboutUs.php?userID='?><?php echo $_SESSION['id']?>" class="sidebar-link">About us</a>
+                    <a href="<?php echo BASE_ADMIN.'/pages/aboutUs.php?SNID='?><?php echo $_SESSION['id']?>" class="sidebar-link">About us</a>
                 </li>   
                 <li class="sidebar-item">
-                    <a href="<?php echo BASE_ADMIN.'/pages/terms.php?userID='?><?php echo $_SESSION['id']?>" class="sidebar-link">Terms</a>
+                    <a href="<?php echo BASE_ADMIN.'/pages/terms.php?SNID='?><?php echo $_SESSION['id']?>" class="sidebar-link">Terms</a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="<?php echo BASE_ADMIN.'/pages/aboutpage.php?userID='?><?php echo $_SESSION['id']?>" class="sidebar-link">About page</a>
+                    <a href="<?php echo BASE_ADMIN.'/pages/aboutpage.php?SNID='?><?php echo $_SESSION['id']?>" class="sidebar-link">About page</a>
                 </li>
             </ul>
         </li>
@@ -114,10 +114,10 @@
             </a>
             <ul id="comments" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                 <li class="sidebar-item">
-                    <a href="<?php echo BASE_ADMIN.'/comments/approved-comments.php?userID='?><?php echo $_SESSION['id']?>" class="sidebar-link">Approved Comments</a>
+                    <a href="<?php echo BASE_ADMIN.'/comments/approved-comments.php?SNID='?><?php echo $_SESSION['id']?>" class="sidebar-link">Approved Comments</a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="<?php echo BASE_ADMIN.'/comments/disapproved-comment.php?userID='?><?php echo $_SESSION['id']?>" class="sidebar-link">Disapproved Comments</a>
+                    <a href="<?php echo BASE_ADMIN.'/comments/disapproved-comment.php?SNID='?><?php echo $_SESSION['id']?>" class="sidebar-link">Disapproved Comments</a>
                 </li>   
             </ul>
         </li>
@@ -129,10 +129,10 @@
             </a>
             <ul id="settings" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                 <li class="sidebar-item">
-                    <a href="<?php echo BASE_ADMIN.'/general-setting.php?userID='?><?php echo $_SESSION['id']?>" class="sidebar-link">General</a>
+                    <a href="<?php echo BASE_ADMIN.'/general-setting.php?SNID='?><?php echo $_SESSION['id']?>" class="sidebar-link">General</a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="<?php echo BASE_ADMIN.'/profile.php?userID='?><?php echo $_SESSION['id']?>" class="sidebar-link">Profile</a>
+                    <a href="<?php echo BASE_ADMIN.'/profile.php?SNID='?><?php echo $_SESSION['id']?>" class="sidebar-link">Profile</a>
                 </li>   
             </ul>
         </li>

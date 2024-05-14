@@ -1,33 +1,35 @@
-<?php
+<?php 
 include("../path.php");
 include(ROOT_PATH."/app/controllers/sub-category.php");
 
-#if session id not login direct to home page
+#if session id not login direct to login page
 if(!isset($_SESSION['id'])){
     header("Location: ".BASE_URL."/index.php");
 }
-if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] === 'editor'){
+if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] === 'admin' || $_SESSION['role'] === 'sub-admin'){
     header("Location: ".BASE_URL."/index.php");
-    exit();
+    exit(); 
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=7">
-    <meta name="description" content="Travel Manage Sub-categories">
+    <meta name="description" content="Travel Manage Subcategories">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Travel | Manage Sub-categories</title>
-    <?php include(ROOT_PATH."/app/includes/header.php");?>
+    <title>Travel | Manage Subcategories</title>
+    <?php include(ROOT_PATH."/app/includes/header.php")?>
 </head>
 <body>
     <div class="wrapper">
         <!--Sidebar-->
         <?php include(ROOT_PATH."/app/includes/sidebar.php");?>
         <div class="main">
+            <!--Navbar-->
             <?php include(ROOT_PATH."/app/includes/nav.php");?>
-            <!--==================== Manage Sub category ==================-->
+            <!--Main Content-->
             <main class="content px-3 py-4">
                 <div class="container-fluid mb-2">
                     <div class="d-flex justify-content-between  px-2 py-2" aria-label="breadcrumb">
@@ -50,16 +52,16 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                         <h4 class="card-title">Manage Sub-Categories</h4>
                                         <hr />
                                         <div class="row">
-                                            <div class="col-sm-12 col-md-12">
-                                                 <!--Alert start here -->
-                                                 <?php include(ROOT_PATH."/app/helpers/updateAlert.php")?>
+                                            <div class="col-sm-6">
+                                                <!--Alert start here -->
+                                                <?php include(ROOT_PATH."/app/helpers/updateAlert.php")?>
                                                  <!--Alert end here -->
                                             </div>
-                                        </div>
+                                         </div>
                                         <!--==== Add sub category Button ======-->
                                         <div class="container-fluid p-2 mt-3">
                                             <div class="col-sm-8">
-                                                <a href="<?php echo BASE_ADMIN.'/category/add-subcategory.php'?>">
+                                                <a href="<?php echo BASE_EDITOR.'/category/add-subcategory.php'?>">
                                                     <button type="button" class="btn btn-outline-primary">Add Sub-Category</button>
                                                 </a>
                                             </div>
@@ -67,7 +69,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                         <!--============= Table Sub category Management  ===============-->
                                         <div class="table-responsive p-2">
                                             <table class="table m-0 table-responsive-md table-bordered" style="width: 100%;" id="myTable">
-                                                <thead>
+                                            <thead>
                                                     <!--============ Table Header ================-->
                                                     <tr>
                                                         <th>SCID</th>
@@ -94,7 +96,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                                         <td><?php echo $subcategories['created_at']?></td>
                                                         <td><?php echo $subcategories['updated_at']?></td>
                                                         <td>
-                                                            <a href="edit-subcategories.php?id=<?php echo $subcategories['id']?>" class="btn btn-outline-primary m-1"><i class='bx bx-edit'></i></a>
+                                                            <a href="edit-subcategories.php?id=<?php echo $subcategories['id']?>/SNID?=<?php echo $_SESSION['id']?>" class="btn btn-outline-primary m-1"><i class='bx bx-edit'></i></a>
                                                             &nbsp;
                                                             <a href="manage-subcategories.php?del_id=<?php echo $subcategories['id']?>" class="btn btn-outline-danger m-1"><i class='bx bx-trash-alt' ></i></a>
                                                         </td>
@@ -106,17 +108,17 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                             </table>
                                         </div>
                                         <!--=========================== End of Table Sub category Management ========================-->
-                                    </div>
+                                   </div>
                                    <!--============== End of Sub category Management =======================-->
 
                                    <!--============== Start Deleted Sub category Management ===================-->
                                     <div class="card-body">
                                         <h4 class="card-title"><i class='bx bx-trash'></i>Deleted Sub-Categories Management</h4>
                                         <hr />
-                                        <!--============= Table Sub category Management  ===============-->
+                                    <!--============= Table Sub category Management  ===============-->
                                         <div class="table-responsive p-2">
                                             <table class="table m-0 table-responsive-md table-bordered" style="width: 100%;" id="DeletedmyTable">
-                                                <thead>
+                                            <thead>
                                                     <!--============ Table Header ================-->
                                                     <tr>
                                                         <th>SCID</th>
@@ -160,7 +162,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                 </div>
                             </div>
                         </div>
-                    </div>  
+                    </div>
                 </div>
             </main>
             <!--Footer-->

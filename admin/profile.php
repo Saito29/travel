@@ -59,7 +59,6 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                          </div>
                                         <form action="profile.php" class="row gx-2 gy-3" name="editUser" id="profile" method="post" autocomplete="on" enctype="multipart/form-data">
                                             <input type="hidden" name="id" value="<?php echo $_SESSION['id']?>">
-                                            <input type="hidden" name="updated_at" value="<?php echo $_SESSIONt['updated_at']?>">
                                             <div class="mb-1 col-sm-6">
                                                 <label for="firstName" class="form-label">First Name:</label>
                                                 <input type="text" class="form-control" name="firstName" value="<?php echo $_SESSION['firstName']?>" placeholder="First Name">

@@ -52,17 +52,9 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                         <hr />
                                         <div class="row">
                                             <div class="col-sm-6 ">
-                                               <!---Success Message--->  
-                                               <div class="alert alert-success" role="alert">
-                                                  <strong>Trash Post successfully restored!</strong>
-                                               </div>
-                                               <!---Error Message--->
-                                               <div class="alert alert-danger" role="alert">
-                                                  <strong>Trash Post failed to restored, Please try again later.</strong>
-                                               </div>
-                                               <div class="alert alert-danger" role="alert">
-                                                <strong>Oh snap Post deleted permanently!</strong>
-                                                </div>
+                                                <!--Alert start here -->
+                                                <?php include(ROOT_PATH."/app/helpers/updateAlert.php")?>
+                                                <!--Alert end here -->
                                             </div>
                                         </div>
                                         <!--============= Table User Management  ===============-->
@@ -71,8 +63,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                                 <thead>
                                                     <!--============ Table Header ================-->
                                                     <tr>
-                                                        <th>#</th>
-                                                        <th>Username</th>
+                                                        <th>PSID</th>
                                                         <th>Post Title</th>
                                                         <th>Category</th>
                                                         <th>Sub-Category</th>
@@ -83,45 +74,27 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                                 <!--========== End of Table header ================-->
                                                 <tbody>
                                                     <!--========= Table Data =====================-->
+                                                    <?php 
+                                                        $post = "SELECT * FROM post WHERE is_Active != '1'";
+                                                        $post_run = mysqli_query($conn, $post);
+                                                    ?>
+
+                                                    <?php if(mysqli_num_rows($post_run) > 0):?>
+                                                        <?php foreach($post_run as $keys => $posts):?>
                                                     <tr>
-                                                        <td>1</td>
-                                                        <td>Saito</td>
-                                                        <td>Hiking in Pinagbanderahan</td>
-                                                        <td>Travel and Tour</td>
-                                                        <td>Hiking</td>
-                                                        <td>Deleted</td>
+                                                        <td><?php echo $keys + 1?></td>
+                                                        <td><?php echo $posts['title']?></td>
+                                                        <td><?php echo $posts['category']?></td>
+                                                        <td><?php echo $posts['subcategory']?></td>
+                                                        <td><?php echo $posts['status']?></td>
                                                         <td>
                                                             <a href="#toggleReturn" class="btn btn-outline-success"><i class='bx bx-redo'></i></a>
                                                             &nbsp;
                                                             <a href="#deletePost" class="btn btn-outline-danger m-1"><i class='bx bx-trash-alt' ></i></a>
                                                         </td>
                                                     </tr>
-                                                    <tr>
-                                                        <td>2</td>
-                                                        <td>Flash</td>
-                                                        <td>SQL Basic Fundamentals</td>
-                                                        <td>Programming Related</td>
-                                                        <td>Programming Tutorials</td>
-                                                        <td>Deleted</td>
-                                                        <td>
-                                                            <a href="#toggleReturn" class="btn btn-outline-success"><i class='bx bx-redo'></i></a>
-                                                            &nbsp;
-                                                            <a href="#deletePost" class="btn btn-outline-danger m-1"><i class='bx bx-trash-alt' ></i></a>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>3</td>
-                                                        <td>Jexxx</td>
-                                                        <td>Tip Toe by author</td>
-                                                        <td>Entertainment</td>
-                                                        <td>Music</td>
-                                                        <td>Deleted</td>
-                                                        <td>
-                                                            <a href="#toggleReturn" class="btn btn-outline-success"><i class='bx bx-redo'></i></a>
-                                                            &nbsp;
-                                                            <a href="#deletePost" class="btn btn-outline-danger m-1"><i class='bx bx-trash-alt' ></i></a>
-                                                        </td>
-                                                    </tr>
+                                                    <?php endforeach;?>
+                                                    <?php endif;?>
                                                     <!--============= End of Table Data ===============-->
                                                 </tbody>
                                             </table>

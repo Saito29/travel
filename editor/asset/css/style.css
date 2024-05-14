@@ -36,6 +36,10 @@ p{
     color: var(--text);
 }
 
+.addUser{
+    font-size: 12px;
+}
+
 a{
     text-decoration: none !important;
     font-family: var(--font-secondary);

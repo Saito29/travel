@@ -2,13 +2,13 @@
 include("../path.php");
 include(ROOT_PATH."/app/controllers/sub-category.php");
 
-#if session id not login direct to home page
+#if session id not login direct to login page
 if(!isset($_SESSION['id'])){
     header("Location: ".BASE_URL."/index.php");
 }
-if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] === 'editor'){
+if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] === 'admin' || $_SESSION['role'] === 'sub-admin'){
     header("Location: ".BASE_URL."/index.php");
-    exit();
+    exit(); 
 }
 ?>
 
@@ -17,10 +17,10 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=7">
-    <meta name="description" content="Travel Edit Sub-categories">
+    <meta name="description" content="Travel Edit Subcategories">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Travel | Edit Sub-categories</title>
-    <?php include(ROOT_PATH."/app/includes/header.php");?>
+    <title>Travel | Edit Subcategories</title>
+    <?php include(ROOT_PATH."/app/includes/header.php")?>
 </head>
 <body>
     <div class="wrapper">
@@ -29,14 +29,15 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
         <div class="main">
             <!--Navbar-->
             <?php include(ROOT_PATH."/app/includes/nav.php");?>
+            <!--Main content-->
             <main class="content px-3 py-4">
                 <div class="container-fluid mb-2">
                     <div class="d-flex justify-content-between  px-2 py-2" aria-label="breadcrumb">
-                        <h3 class="fw-bold fs-4 mb-3">Edit Sub-Category</h3>
+                        <h3 class="fw-bold fs-4 mb-3">Update Sub-Category</h3>
                         <ol class="breadcrumb p-0 m-0 ">
                             <li class="breadcrumb-item"><a href="#">Travel</a></li>
                             <li class="breadcrumb-item"><a href="#"><?php echo $_SESSION['role']?></a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Edit Sub-Category</li>
+                            <li class="breadcrumb-item active" aria-current="page">Update Sub-Category</li>
                         </ol>
                     </div>
                 </div>
@@ -53,7 +54,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                                 <?php include(ROOT_PATH.'/app/helpers/formAlert.php');?>
                                                 <?php include(ROOT_PATH."/app/helpers/updateAlert.php")?>
                                             </div>
-                                         </div>
+                                        </div>
                                         <form action="edit-subcategories.php" class="row gx-2 gy-3" name="addUser" method="post" enctype="application/x-www-form-urlencoded">
                                             <input type="hidden" name="id" value="<?php echo $id?>">
                                             <div class="mb-1 col-md-6 form-group">
@@ -83,7 +84,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
             <?php include(ROOT_PATH."/app/includes/footer.php");?>
         </div>
     </div>
-    <!--Script-->
+    <!--scripts-->
     <?php include(ROOT_PATH."/app/includes/scripts.php");?>
 </body>
 </html>

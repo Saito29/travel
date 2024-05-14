@@ -1,15 +1,14 @@
 <?php
-    $severname = "localhost";
-    $username = 'root';
-    $password = '';
-    $db_name = 'cube.io.com';
-    
-    //Create a connection
-    $conn = new mysqli($severname,$username,$password,$db_name);
+$servername = "localhost";
+$username = 'root';
+$password = '';
+$db_name = 'travel';
 
-    //Check connection
-    if($conn->connect_error){
-        die("Error connecting to" . $conn->connect_error);
-    }               
-    $conn->close();
-?>;
+#Procedural MySQLi Database
+#Create a connection to the database
+$conn = mysqli_connect($servername,$username,$password,$db_name);
+
+#Check connection for the database 
+if(!$conn){
+    die("Error connecting to" . mysqli_connect_error());
+}

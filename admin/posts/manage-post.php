@@ -1,6 +1,6 @@
 <?php 
 include("../path.php");
-include(ROOT_PATH.'/app/config/db.php');
+include(ROOT_PATH.'/app/controllers/posts.php');
 
 #if session id not login direct to home page
 if(!isset($_SESSION['id'])){
@@ -51,15 +51,10 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                         <h4 class="card-title">Post Management</h4>
                                         <hr />
                                         <div class="row">
-                                            <div class="col-sm-6 ">
-                                               <!---Success Message--->  
-                                               <div class="alert alert-success" role="alert">
-                                                  <strong>Post successfully Deleted!</strong>
-                                               </div>                                               
-                                               <!---Error Message--->
-                                               <div class="alert alert-danger" role="alert">
-                                                <strong>Oh snap Post deleted permanently!</strong>
-                                                </div>
+                                            <div class="col-sm-12">
+                                                <!--Alert start here -->
+                                                <?php include(ROOT_PATH."/app/helpers/updateAlert.php")?>
+                                                <!--Alert end here -->
                                             </div>
                                         </div>
                                         <!--============= Table User Management  ===============-->
@@ -68,57 +63,41 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                                 <thead>
                                                     <!--============ Table Header ================-->
                                                     <tr>
-                                                        <th>#</th>
-                                                        <th>Username</th>
+                                                        <th>PSID</th>
                                                         <th>Post Title</th>
                                                         <th>Category</th>
                                                         <th>Sub-Category</th>
-                                                        <th>Status</th>                                                        
+                                                        <th>Status</th>
+                                                        <th>Post Created</th>                                                        
+                                                        <th>Post Updated</th>
                                                         <th>Action</th>
                                                     </tr>
                                                 </thead>
                                                 <!--========== End of Table header ================-->
                                                 <tbody>
                                                     <!--========= Table Data =====================-->
+                                                    <?php
+                                                        $post = "SELECT * FROM post WHERE is_Active != '0'";
+                                                        $post_run = mysqli_query($conn, $post);
+                                                    ?>
+                                                    <?php if(mysqli_num_rows($post_run) > 0):?>
+                                                        <?php foreach($post_run as $keys => $posts):?>
                                                     <tr>
-                                                        <td>1</td>
-                                                        <td>Saito</td>
-                                                        <td>Hiking in Pinagbanderahan</td>
-                                                        <td>Travel and Tour</td>
-                                                        <td>Hiking</td>
-                                                        <td>Published</td>
+                                                        <td><?php echo $keys + 1?></td>
+                                                        <td><?php echo $posts['title']?></td>
+                                                        <td><?php echo $posts['category']?></td>
+                                                        <td><?php echo $posts['subcategory']?></td>
+                                                        <td><?php echo $posts['status']?></td>
+                                                        <td><?php echo $posts['created_at']?></td>
+                                                        <td><?php echo $posts['updated_at']?></td>
                                                         <td>
-                                                            <a href="<?php echo BASE_ADMIN.'/posts/edit-post.php'?>" class="btn btn-outline-primary m-1"><i class='bx bx-edit'></i></a>
+                                                            <a href="<?php echo BASE_ADMIN.'/posts/edit-post.php?psID='?><?php echo $posts['ps_id']?>" class="btn btn-outline-primary m-1"><i class='bx bx-edit'></i></a>
                                                             &nbsp;
                                                             <a href="#deletePost" class="btn btn-outline-danger m-1"><i class='bx bx-trash-alt' ></i></a>
                                                         </td>
                                                     </tr>
-                                                    <tr>
-                                                        <td>2</td>
-                                                        <td>Barry Allen</td>
-                                                        <td>SQL Basic Fundamentals</td>
-                                                        <td>Programming Related</td>
-                                                        <td>Programming Tutorials</td>
-                                                        <td>Published</td>
-                                                        <td>
-                                                            <a href="<?php echo BASE_URL.'/edit-post.php'?>" class="btn btn-outline-primary m-1"><i class='bx bx-edit'></i></a>
-                                                            &nbsp;
-                                                            <a href="#deletePost" class="btn btn-outline-danger m-1"><i class='bx bx-trash-alt' ></i></a>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>3</td>
-                                                        <td>Monica</td>
-                                                        <td>Tip Toe by author</td>
-                                                        <td>Entertainment</td>
-                                                        <td>Music</td>
-                                                        <td>Published</td>
-                                                        <td>
-                                                            <a href="<?php echo BASE_URL.'/edit-post.php'?>" class="btn btn-outline-primary m-1"><i class='bx bx-edit'></i></a>
-                                                            &nbsp;
-                                                            <a href="#deletePost" class="btn btn-outline-danger m-1"><i class='bx bx-trash-alt' ></i></a>
-                                                        </td>
-                                                    </tr>
+                                                    <?php endforeach;?>
+                                                    <?php endif;?>
                                                     <!--============= End of Table Data ===============-->
                                                 </tbody>
                                             </table>

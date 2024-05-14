@@ -30,7 +30,7 @@
                         <?php if($_SESSION['role'] === 'admin' || $_SESSION['role'] === 'sub-admin'): ?>
                         <!--If user login as admin display dashboard and logout if not display login-->
                         <li class="nav__item">
-                            <a href="<?php echo BASE_ADMIN.'/dashboard.php?userID='?><?php echo $_SESSION['id']?>" class="nav__link">
+                            <a href="<?php echo BASE_ADMIN.'/dashboard.php?SNID='?><?php echo $_SESSION['id']?>" class="nav__link">
                                 <i class='bx bxs-dashboard nav__icon'></i>
                                 <span class="nav__name">Dashboard</span>
                             </a>
@@ -38,7 +38,7 @@
                         <?php elseif($_SESSION['role'] === 'editor'): ?>
                         <!--if user login as editor display dashboard and logout-->
                         <li class="nav__item">
-                            <a href="<?php echo BASE_EDITOR.'/editor-dashboard.php?userID='?><?php echo $_SESSION['id']?>" class="nav__link">
+                            <a href="<?php echo BASE_EDITOR.'/editor-dashboard.php?SNID='?><?php echo $_SESSION['id']?>" class="nav__link">
                                 <i class='bx bxs-dashboard nav__icon'></i>
                                 <span class="nav__name">Dashboard</span>
                             </a>

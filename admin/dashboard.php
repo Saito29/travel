@@ -1,6 +1,6 @@
 <?php 
 include("path.php");
-include(ROOT_PATH."../../app/controllers/dashboard.php");
+include(ROOT_PATH."/app/controllers/dashboard.php");
 
 #if session id not login direct to login page
 if(!isset($_SESSION['id'])){
@@ -33,6 +33,9 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
             <!--Navbar-->
             <?php include(ROOT_PATH."/app/includes/nav.php");?>
             <main class="content px-3 py-4">
+                <!--Message Alert -->
+                <?php include(ROOT_PATH."/app/helpers/messageAlert.php");?>
+                <!--End of message Alert-->
                 <div class="container-fluid mb-5">
                     <div class="d-flex justify-content-between mb-3 px-2 py-2" aria-label="breadcrumb">
                         <h3 class="fw-bold fs-4 mb-3">Dashboard</h3>
@@ -86,7 +89,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                         <div class="card-body py-4">                                    
                                             <h5 class="mb-2 fw-bold text-uppercase">Posts</h5>
                                             <i class='bx bxs-layer icon'></i>
-                                            <p class="mb-2 fw-bold text-truncate">10</p>
+                                            <p class="mb-2 fw-bold text-truncate"><?php echo $posts?></p>
                                         </div>
                                     </div>
                                 </a>                                
@@ -120,7 +123,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                         <div class="card-body py-4">                                    
                                             <h5 class="mb-2 fw-bold text-uppercase">Posts</h5>
                                             <i class='bx bxs-layer icon'></i>
-                                            <p class="mb-2 fw-bold text-truncate">10</p>
+                                            <p class="mb-2 fw-bold text-truncate"><?php echo $posts?></p>
                                         </div>
                                     </div>
                                 </a>                                
@@ -142,57 +145,37 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                             <thead>
                                                 <!--============ Table Header ================-->
                                                 <tr>
-                                                    <th>#</th>
+                                                    <th>PSID</th>
                                                     <th>Username</th>
                                                     <th>Post Title</th>
                                                     <th>Category</th>
                                                     <th>Sub-Category</th>
-                                                    <th>Status</th>                                                        
+                                                    <th>Status</th>
+                                                    <th>Post Created</th>
+                                                    <th>Post Updated</th>                                                        
                                                     <th>Action</th>
                                                 </tr>   
                                             </thead>
                                             <!--========== End of Table header ================-->
                                             <tbody>
                                                 <!--========= Table Data =====================-->
+                                                <?php foreach($selectPost as $key => $posts):?>
                                                 <tr>
-                                                    <td>1</td>
-                                                    <td>Saito</td>
-                                                    <td>Hiking in Pinagbanderahan</td>
-                                                    <td>Travel and Tour</td>
-                                                    <td>Hiking</td>
-                                                    <td>Published</td>
+                                                    <td><?php echo $key + 1?></td>
+                                                    <td><?php echo $posts['user_id']?></td>
+                                                    <td><?php echo $posts['title']?></td>
+                                                    <td><?php echo $posts['category']?></td>
+                                                    <td><?php echo $posts['subcategory']?></td>
+                                                    <td><?php echo $posts['status']?></td>
+                                                    <td><?php echo $posts['created_at']?></td>
+                                                    <td><?php echo $posts['updated_at']?></td>
                                                     <td>
                                                         <a href="<?php echo BASE_ADMIN.'/posts/edit-post.php'?>" class="btn btn-outline-primary m-1"><i class='bx bx-edit'></i></a>
                                                         &nbsp;
                                                         <a href="#deletePost" class="btn btn-outline-danger m-1"><i class='bx bx-trash-alt' ></i></a>
                                                     </td>
                                                 </tr>
-                                                <tr>
-                                                    <td>2</td>
-                                                    <td>Barry</td>
-                                                    <td>SQL Basic Fundamentals</td>
-                                                    <td>Programming Related</td>
-                                                    <td>Programming Tutorials</td>
-                                                    <td>Published</td>
-                                                    <td>
-                                                        <a href="<?php echo BASE_ADMIN.'/posts/edit-post.php'?>" class="btn btn-outline-primary m-1"><i class='bx bx-edit'></i></a>
-                                                        &nbsp;
-                                                        <a href="#deletePost" class="btn btn-outline-danger m-1"><i class='bx bx-trash-alt' ></i></a>
-                                                    </td>
-                                                </tr>       
-                                                <tr>
-                                                    <td>3</td>
-                                                    <td>Gojo</td>
-                                                    <td>Tip Toe by author</td>
-                                                    <td>Entertainment</td>
-                                                    <td>Music</td>
-                                                    <td>Published</td>
-                                                    <td>
-                                                        <a href="<?php echo BASE_ADMIN.'/posts/edit-post.php'?>" class="btn btn-outline-primary m-1"><i class='bx bx-edit'></i></a>
-                                                        &nbsp;
-                                                        <a href="#deletePost" class="btn btn-outline-danger m-1"><i class='bx bx-trash-alt' ></i></a>
-                                                    </td>
-                                                </tr>
+                                                <?php endforeach;?>
                                                 <!--============= End of Table Data ===============-->
                                             </tbody>
                                             <!--End of table body-->
@@ -219,7 +202,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                                 <thead>
                                                     <!--============ Table Header ================-->
                                                     <tr>
-                                                        <th>#</th>
+                                                        <th>SNID</th>
                                                         <th>Profile</th>
                                                         <th>First Name</th>
                                                         <th>Last Name</th>

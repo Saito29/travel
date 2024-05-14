@@ -9,9 +9,9 @@ const icon = document.querySelector("#icon");
 icon.onclick = function(){
     document.body.classList.toggle("dark-theme");
     if(document.body.classList.contains("dark-theme")){
-        icon.src = "./asset/images/icon/sun-24.png";
+        icon.src = "/asset/images/icon/sun-24.png";
     }else{
-        icon.src = "./asset/images/icon/moon-solid.png";
+        icon.src = "/asset/images/icon/moon-solid.png";
     }
 }
 
@@ -58,6 +58,38 @@ function displayPostImage(e){
 
         reader.onload = function(e){
             document.querySelector('#featureImgDisplay').setAttribute('src', e.target.result);
+        }
+        reader.readAsDataURL(e.files[0]);
+    }
+};
+
+//Trigger logo Favicon
+function triggerClick(){
+    document.querySelector('#featureLogoFavicon').click();
+};
+
+function displayImage(e){
+    if(e.files[0]){
+        var reader = new FileReader();
+
+        reader.onload = function(e){
+            document.querySelector('#logoFavIcon').setAttribute('src', e.target.result);
+        }
+        reader.readAsDataURL(e.files[0]);
+    }
+};
+
+//Trigger System Logo
+function systemClick(){
+    document.querySelector('#featureSystemLogo').click();
+};
+
+function displaySystem(e){
+    if(e.files[0]){
+        var reader = new FileReader();
+
+        reader.onload = function(e){
+            document.querySelector('#systemLogo').setAttribute('src', e.target.result);
         }
         reader.readAsDataURL(e.files[0]);
     }

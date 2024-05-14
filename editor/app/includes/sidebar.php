@@ -1,21 +1,21 @@
 <!--Sidebar-->
 <aside id="sidebar">
     <div class="d-flex">
-        <button id="toggle-btn" type="button"><img src="<?php echo BASE_URL.'/asset/images/icon/Cube.io.png'?>" width="30px" alt="Cube.io_logo"></button>
+        <button id="toggle-btn" type="button"><img src="<?php echo BASE_EDITOR.'/asset/images/icon/travel.png'?>" width="30px" alt="Travel Logo"></button>
         <div class="sidebar-logo">
-            <a href="#Dashboard"><span style="color: #af8fb6;">Cube</span>.io</a>
+            <a href="#Dashboard"><span style="color: #af8fb6;">Tra</span>vel</a>
         </div>
     </div>
     <!--Sidebar navigation start here-->
     <ul class="sidebar-nav">
         <li class="sidebar-item">
-            <a href="<?php echo BASE_URL.'/editor-dashboard.php'?>" class="sidebar-link">
+            <a href="<?php echo BASE_EDITOR.'/editor-dashboard.php?SNID='?><?php echo $_SESSION['id']?>" class="sidebar-link">
                 <i class='bx bxs-dashboard'></i>
                 <span>Dashboard</span>
             </a>
         </li>
         <li class="sidebar-item">
-            <a href="<?php echo BASE_HOME.'/index.php'?>" class="sidebar-link">
+            <a href="<?php echo BASE_URL.'/index.php'?>" class="sidebar-link">
                 <i class='bx bx-globe'></i>
                 <span>Web Page</span>
             </a>
@@ -28,10 +28,10 @@
             </a>
             <ul id="subcategory" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                 <li class="sidebar-item">
-                    <a href="<?php echo BASE_URL.'/add-subcategory.php'?>" class="sidebar-link">Add Sub Category</a>
+                    <a href="<?php echo BASE_EDITOR.'/category/add-subcategory.php?SNID='?><?php echo $_SESSION['id']?>" class="sidebar-link">Add Sub Category</a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="<?php echo BASE_URL.'/manage-subcategories.php'?>" class="sidebar-link">Manage Sub Category</a>
+                    <a href="<?php echo BASE_EDITOR.'/category/manage-subcategories.php?SNID='?><?php echo $_SESSION['id']?>" class="sidebar-link">Manage Sub Category</a>
                 </li>
             </ul>
         </li>
@@ -43,13 +43,13 @@
                 </a>
             <ul id="posts" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                 <li class="sidebar-item">
-                    <a href="<?php echo BASE_URL.'/add-post.php'?>" class="sidebar-link">Add Posts</a>
+                    <a href="<?php echo BASE_EDITOR.'/post/add-post.php?SNID='?><?php echo $_SESSION['id']?>" class="sidebar-link">Add Posts</a>
                 </li>   
                 <li class="sidebar-item">
-                    <a href="<?php echo BASE_URL.'/manage-post.php'?>" class="sidebar-link">Manage Posts</a>
+                    <a href="<?php echo BASE_EDITOR.'/post/manage-post.php?SNID='?><?php echo $_SESSION['id']?>" class="sidebar-link">Manage Posts</a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="<?php echo BASE_URL.'/trash-post.php'?>" class="sidebar-link">Trash Posts</a>
+                    <a href="<?php echo BASE_EDITOR.'/post/trash-post.php?SNID='?><?php echo $_SESSION['id']?>" class="sidebar-link">Trash Posts</a>
                 </li>
             </ul>
         </li>
@@ -61,13 +61,13 @@
             </a>
             <ul id="settings" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                 <li class="sidebar-item">
-                    <a href="<?php echo BASE_URL.'/profile.php'?>" class="sidebar-link">Profile</a>
+                    <a href="<?php echo BASE_EDITOR.'/profile.php?SNID='?><?php echo $_SESSION['id']?>" class="sidebar-link">Profile</a>
                 </li>   
             </ul>
         </li>
     </ul>
     <div class="sidebar-footer">
-        <a href="<?php echo BASE_URL_LINKS.'/signin.php'?>" class="sidebar-link">
+        <a href="<?php echo BASE_EDITOR.'/logout.php'?>" class="sidebar-link">
             <i class='bx bx-log-out'></i>
             <span>Logout</span>
         </a>

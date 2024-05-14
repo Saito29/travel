@@ -27,4 +27,4 @@
 <script src="<?php echo BASE_ADMIN.'/vendor/tinymce_7.0.0/tinymce/js/tinymce/tinymceFullOpen-Source.js'?>"></script>
 
 <!--- Summernote CSS -->
-<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">

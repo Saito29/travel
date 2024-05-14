@@ -58,62 +58,102 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                                <!--Alert end-->
                                             </div>
                                          </div>
-                                        <form action="add-post.php" class="row gx-2 gy-2" autocomplete="on" name="addPost" method="post" enctype="multipart/form-data">
+                                         <form action="edit-post.php" class="row gx-2 gy-3" autocomplete="on" name="addPost" method="post" enctype="multipart/form-data">
+                                            <input type="hidden" name="user_id" value="<?php echo $_SESSION['id']?>">
                                             <div class="mb-1 col-md-6 form-group">
-                                                <label for="postTitle" class="form-label">Post Title:</label>
-                                                <input type="text" class="form-control" id="postTitle" name="postTitle" placeholder="Enter Title">
+                                                <label for="title" class="form-label">Post Title:</label>
+                                                <input type="text" class="form-control" name="title" placeholder="Enter Title">
                                             </div>
                                             <div class="mb-1 col-md-6 form-group">
                                                 <label for="categoryDescription" class="form-label">Category:</label>
-                                                <select name="category" id="category" class="form-select">
-                                                    <option selected>Select Category </option>
-                                                    <option value="">Travel and Tour</option>
-                                                    <option value="">Programming Related</option>
-                                                    <option value="">Entertainment</option>
+                                                <select name="category" class="form-select">
+                                                <?php if(!isset($_POST['category'])):?>
+                                                    <option value="" selected>Select Categories: </option>
+                                                    <!--Category List-->
+                                                    <?php 
+                                                    $query = mysqli_query($conn, "SELECT * FROM category WHERE Is_Active = 1 ORDER BY categName");
+                                                    while($categories = mysqli_fetch_array($query))
+                                                    {
+                                                    ?>
+                                                    <option value="<?php echo $categories['categName'];?>"><?php echo $categories['categName'];?></option>
+                                                    <?php }?>
+                                                    <?php else:?>
+                                                    <option value="<?php echo $category?>" selected>Selected Categories: <?php echo $category?></option>
+                                                    <!--Category List-->
+                                                    <?php 
+                                                    $query = mysqli_query($conn, "SELECT * FROM category WHERE Is_Active = 1 ORDER BY categName ASC");  
+                                                    while($categories = mysqli_fetch_array($query))
+                                                    {
+                                                    ?>
+                                                    <option value="<?php echo $categories['categName'];?>"><?php echo $categories['categName'];?></option>
+                                                    <?php }?>
+                                                    <?php endif;?>
                                                 </select>
                                             </div>
                                             <div class="mb-1 col-md-6 form-group">
                                                 <label for="subCategory" class="form-label">Sub Category:</label>
-                                                <select name="subCategory" id="subCategory" class="form-select">
-                                                <option selected>Sub Category:</option>
-                                                <option value="">Hiking</option>
+                                                <select name="subcategory" class="form-select">
+                                                <?php if(!isset($_POST['subcategory'])):?>
+                                                    <option value="" selected>Select Sub-Categories: </option>
+                                                    <!--Sub-Category List-->
+                                                    <?php 
+                                                    $query = mysqli_query($conn, "SELECT * FROM subcategory WHERE is_Active = 1 ORDER BY name ASC");
+                                                    while($subcategories = mysqli_fetch_array($query))
+                                                    {
+                                                    ?>
+                                                    <option value="<?php echo $subcategories['name'];?>"><?php echo $subcategories['name'];?></option>
+                                                    <?php }?>
+                                                    <?php else:?>
+                                                    <option value="<?php echo $subcategory?>" selected>Selected Sub-Categories: <?php echo $subcategory?></option>
+                                                    <!--Sub-Category List-->
+                                                    <?php 
+                                                    $query = mysqli_query($conn, "SELECT * FROM subcategory WHERE is_Active = 1 ORDER BY name ASC");
+                                                    while($subcategories = mysqli_fetch_array($query))
+                                                    {
+                                                    ?>
+                                                    <option value="<?php echo $subcategories['name'];?>"><?php echo $subcategories['name'];?></option>
+                                                    <?php }?>
+                                                    <?php endif;?>
                                                 </select>
                                             </div>
                                             <div class="mb-1 col-md-6 form-group">
                                                 <label for="status" class="form-label">Status:</label>
                                                 <select name="status" class="form-select">
+                                                    <?php if(!isset($_POST['status'])):?>
                                                     <option value="" selected>Status:</option>
+                                                    <?php else:?>
+                                                    <option value="<?php echo $status;?>" selected>Status: <?php echo $status?></option>
+                                                    <?php endif;?>
                                                     <option value="published">Published</option>
                                                     <option value="unpublished">Unpublished</option>
                                                 </select>
                                             </div>
                                             <div class="mb-1 col-md-6 form-group">
-                                                <label for="categoryDescription" class="form-label">Post Description:</label>
-                                                <textarea name="categoryDescription" class="summernote" class="form-control" rows="4">Post Description</textarea>
-                                            </div>
-                                            <div class="mb-1 col-md-4 form-group">
-                                                <label for="categoryDescription" class="form-label">Post Updated:</label>
-                                                <input type="datetime-local" class="form-control form-control-sm" name="created_at" value="">
-                                            </div>
-                                            <div class="mb-1 col-sm-12">
-                                                <div class="card-body">
-                                                    <h4 class="mb-3 mt-0 card-title">Post details:</h4>
-                                                    <textarea name="textarea" id="mytextarea" class="form-control" required>Hi!, always make your content justify</textarea>
-                                                </div>
+                                                <label for="categoryDescription" class="form-label">Post Created:</label>
+                                                <input type="date" class="form-control" name="created_at" value="">
                                             </div>
                                             <div class="mb-1 col-sm-6">
-                                                <div class="card-body">
-                                                    <label for="featureImage" class="form-label">Feature Image:</label>
-                                                    <img src="<?php echo BASE_ADMIN.'/asset/images/profile/placeholder.webp'?>" onclick="triggerPostClick()" id="featureImgDisplay" class="d-block border" alt="profile-user" style="cursor:pointer" width="150" height="150">
-                                                    <input type="file" class="d-none" name="featureImage" onchange="displayPostImage(this)" id="featureImage">
-                                                </div>
+                                                <label for="image" class="form-label">Feature Image:</label>
+                                                <input type="file" class="form-control" name="image" accept="image/*" value="<?php echo $postImage?>">
+                                                <br>
+                                                <?php if(isset($_POST['postImage'])):?>
+                                                <img src="<?php echo BASE_URL.'/app/upload/uploadThumbnail/'.$postImage?>" alt="Post_Thumbnail" width="120" height="120">
+                                                <?php endif;?>
+                                            </div>
+                                            <div class="mb-1 col-sm-12">
+                                                <label for="description" class="mb-3 form-label">Post description:</label>
+                                                <?php if(!isset($_POST['details'])):?>
+                                                <textarea name="description" id="mytextarea" class="form-control">Hi!, always make your content justify</textarea>
+                                                <?php else:?>
+                                                <textarea name="description" id="mytextarea" class="form-control"><?php echo $description?></textarea>
+                                                <?php endif;?>
+                                            </div>
+                                            <div class="mb-1 col-md-12 form-group">
+                                                <label for="googleWidget" class="form-label">Google Widgets:</label>
+                                                <textarea name="googleWidget" class="summernote fs-6">Google widgets</textarea>
                                             </div>
                                             <div class="mb-1 col-md-6 form-group">
-                                                <label for="categoryDescription" class="form-label">Google Widgets:</label>
-                                                <textarea name="googleWidget" class="summernote" rows="4" class="form-control">Google widgets</textarea>
-                                            </div>
-                                            <div class="mb-1 col-md-6 form-group">
-                                                <button type="submit" class="btn btn-outline-success" name="update_at">Update Posts</button>
+                                                <button type="submit" class="btn btn-outline-primary" name="submitPost">Save and Post</button>
                                                 <button type="reset" class="btn btn-outline-danger" name="discard">Discard</button>
                                             </div>
                                         </form>

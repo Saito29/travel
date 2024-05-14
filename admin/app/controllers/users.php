@@ -235,12 +235,12 @@ if(isset($_POST['updateUser-btn'])){
     $role = $_POST['role'];
     $updated_at = $_POST['updated_at'];
 
-     #Image identification
-     $profileImage = $_FILES['profileImage']['name']; #image name
-     $imageSize = $_FILES['profileImage']['size']; #image size
-     $imageTmp = $_FILES['profileImage']['tmp_name']; #image name of the image temporary
-     $imageError = $_FILES['profileImage']['error']; #Image error either 1 or 0
-     $imageType = $_FILES['profileImage']['type']; #Image type of the image
+    #Image identification
+    $profileImage = $_FILES['profileImage']['name']; #image name
+    $imageSize = $_FILES['profileImage']['size']; #image size
+    $imageTmp = $_FILES['profileImage']['tmp_name']; #image name of the image temporary
+    $imageError = $_FILES['profileImage']['error']; #Image error either 1 or 0
+    $imageType = $_FILES['profileImage']['type']; #Image type of the image
 
     #errors
     $errors = validateUpdateUser($_POST);

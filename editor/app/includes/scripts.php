@@ -34,10 +34,10 @@ $(document).ready(function() {
 <!--DataTables-->
 <script src="https://cdn.datatables.net/2.0.1/js/dataTables.js"></script>    
 <script src="https://cdn.datatables.net/2.0.1/js/dataTables.bootstrap5.js"></script>
-<script src="<?php echo BASE_URL.'/asset/js/dataTable.js'?>"></script>
+<script src="<?php echo BASE_EDITOR.'/asset/js/dataTable.js'?>"></script>
 
 <!--Tinymce Editor in Webcomponents if using cloud form-->
 <script src="https://cdn.jsdelivr.net/npm/@tinymce/tinymce-webcomponent@1/dist/tinymce-webcomponent.min.js"></script>
 
 <!--============== Customized JS ======================-->
-<script src="<?php echo BASE_URL.'/asset/js/script.js'?>"></script>
+<script src="<?php echo BASE_EDITOR.'/asset/js/script.js'?>"></script>
