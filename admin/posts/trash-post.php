@@ -1,6 +1,6 @@
 <?php 
 include("../path.php");
-include(ROOT_PATH.'/app/config/db.php');
+include(ROOT_PATH.'/app/controllers/posts.php');
 
 #if session id not login direct to home page
 if(!isset($_SESSION['id'])){
@@ -36,7 +36,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                         <h3 class="fw-bold fs-4 mb-3">Trash Post</h3>
                         <ol class="breadcrumb p-0 m-0 ">
                             <li class="breadcrumb-item"><a href="#">Travel</a></li>
-                            <li class="breadcrumb-item"><a href="#"><?php echo $_SESSION['role']?></a></li>
+                            <li class="breadcrumb-item"><a href="#"><?php echo htmlentities($_SESSION['role'])?></a></li>
                             <li class="breadcrumb-item active" aria-current="page">Trash Post</li>
                         </ol>
                     </div>
@@ -51,7 +51,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                         <h4 class="card-title">Trash Post</h4>
                                         <hr />
                                         <div class="row">
-                                            <div class="col-sm-6 ">
+                                            <div class="col-sm-12">
                                                 <!--Alert start here -->
                                                 <?php include(ROOT_PATH."/app/helpers/updateAlert.php")?>
                                                 <!--Alert end here -->
@@ -64,10 +64,13 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                                     <!--============ Table Header ================-->
                                                     <tr>
                                                         <th>PSID</th>
+                                                        <th>Posted by</th>
                                                         <th>Post Title</th>
                                                         <th>Category</th>
                                                         <th>Sub-Category</th>
-                                                        <th>Status</th>                                                        
+                                                        <th>Status</th>
+                                                        <th>Post Created</th>                                                        
+                                                        <th>Post Updated</th>
                                                         <th>Action</th>
                                                     </tr>
                                                 </thead>
@@ -75,22 +78,25 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                                 <tbody>
                                                     <!--========= Table Data =====================-->
                                                     <?php 
-                                                        $post = "SELECT * FROM post WHERE is_Active != '1'";
+                                                        $post = "SELECT * FROM post WHERE is_Active = 0";
                                                         $post_run = mysqli_query($conn, $post);
                                                     ?>
 
-                                                    <?php if(mysqli_num_rows($post_run) > 0):?>
+                                                    <?php if(mysqli_num_rows($post_run) >= 0):?>
                                                         <?php foreach($post_run as $keys => $posts):?>
                                                     <tr>
-                                                        <td><?php echo $keys + 1?></td>
-                                                        <td><?php echo $posts['title']?></td>
-                                                        <td><?php echo $posts['category']?></td>
-                                                        <td><?php echo $posts['subcategory']?></td>
-                                                        <td><?php echo $posts['status']?></td>
+                                                        <td><?php echo htmlentities($keys + 1);?></td>
+                                                        <td><?php echo htmlentities($posts['postedBy']);?></td>
+                                                        <td><?php echo htmlentities($posts['title']);?></td>
+                                                        <td><?php echo htmlentities($posts['category']);?></td>
+                                                        <td><?php echo htmlentities($posts['subcategory']);?></td>
+                                                        <td><?php echo htmlentities($posts['status']);?></td>
+                                                        <td><?php echo htmlentities($posts['created_at']);?></td>
+                                                        <td><?php echo htmlentities($posts['updated_at']);?></td>
                                                         <td>
-                                                            <a href="#toggleReturn" class="btn btn-outline-success"><i class='bx bx-redo'></i></a>
+                                                            <a href="<?php echo BASE_ADMIN.'/posts/trash-post.php?recPS_ID='?><?php echo htmlentities($posts['id'])?>" class="btn btn-outline-success"><i class='bx bx-redo'></i></a>
                                                             &nbsp;
-                                                            <a href="#deletePost" class="btn btn-outline-danger m-1"><i class='bx bx-trash-alt' ></i></a>
+                                                            <a href="<?php echo BASE_ADMIN.'/posts/trash-post.php?delPS_ID='?><?php echo htmlentities($posts['id'])?>" class="btn btn-outline-danger m-1"><i class='bx bx-trash-alt' ></i></a>
                                                         </td>
                                                     </tr>
                                                     <?php endforeach;?>

@@ -17,9 +17,9 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=7">
-    <meta name="description" content="Travel Add Post">
+    <meta name="description" content="Travel Edit Post">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Travel | Add Post</title>
+    <title>Travel | Edit Post</title>
     <?php include(ROOT_PATH."/app/includes/header.php");?>
     <!--Summernote BS4-->
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
@@ -34,11 +34,11 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
             <main class="content px-3 py-4">
                 <div class="container-fluid mb-2">
                     <div class="d-flex justify-content-between  px-2 py-2" aria-label="breadcrumb">
-                        <h3 class="fw-bold fs-4 mb-3">Add Post</h3>
+                        <h3 class="fw-bold fs-4 mb-3">Edit Post</h3>
                         <ol class="breadcrumb p-0 m-0 ">
                             <li class="breadcrumb-item"><a href="#">Travel</a></li>
-                            <li class="breadcrumb-item"><a href="#"><?php echo $_SESSION['role']?></a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Add Post</li>
+                            <li class="breadcrumb-item"><a href="#"><?php echo htmlentities($_SESSION['role'])?></a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Edit Post</li>
                         </ol>
                     </div>
                 </div>
@@ -48,36 +48,27 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                             <div class="col-sm-12">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h4 class="card-title">Add Post</h4>
+                                        <h4 class="card-title">Edit Post Information</h4>
                                         <hr />
                                         <div class="row">
                                             <div class="col-sm-12">
                                                <!--Alert start-->
-                                                <?php #include(ROOT_PATH.'/app/helpers/formAlert.php');?>
-                                                <?php #include(ROOT_PATH.'/app/helpers/messageAlert.php');?>
+                                                <?php include(ROOT_PATH.'/app/helpers/formAlert.php');?>
+                                                <?php include(ROOT_PATH.'/app/helpers/messageAlert.php');?>
                                                <!--Alert end-->
                                             </div>
-                                         </div>
-                                         <form action="edit-post.php" class="row gx-2 gy-3" autocomplete="on" name="addPost" method="post" enctype="multipart/form-data">
-                                            <input type="hidden" name="user_id" value="<?php echo $_SESSION['id']?>">
+                                        </div>
+                                        <form action="edit-post.php" class="row gx-2 gy-3" autocomplete="on" name="editPost" method="post" enctype="multipart/form-data">
+                                            <input type="hidden" name="id" value="<?php echo htmlentities($id)?>">
                                             <div class="mb-1 col-md-6 form-group">
                                                 <label for="title" class="form-label">Post Title:</label>
-                                                <input type="text" class="form-control" name="title" placeholder="Enter Title">
+                                                <input type="text" class="form-control" name="title" placeholder="Enter Title" value="<?php echo htmlentities($title)?>" required>
+                                                <p class="text-danger fs-6 px-2">required</p>
                                             </div>
                                             <div class="mb-1 col-md-6 form-group">
                                                 <label for="categoryDescription" class="form-label">Category:</label>
-                                                <select name="category" class="form-select">
-                                                <?php if(!isset($_POST['category'])):?>
-                                                    <option value="" selected>Select Categories: </option>
-                                                    <!--Category List-->
-                                                    <?php 
-                                                    $query = mysqli_query($conn, "SELECT * FROM category WHERE Is_Active = 1 ORDER BY categName");
-                                                    while($categories = mysqli_fetch_array($query))
-                                                    {
-                                                    ?>
-                                                    <option value="<?php echo $categories['categName'];?>"><?php echo $categories['categName'];?></option>
-                                                    <?php }?>
-                                                    <?php else:?>
+                                                <select name="category" class="form-select" required>
+                                                <?php if(!empty($category) && $category == $category):?>
                                                     <option value="<?php echo $category?>" selected>Selected Categories: <?php echo $category?></option>
                                                     <!--Category List-->
                                                     <?php 
@@ -85,25 +76,26 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                                     while($categories = mysqli_fetch_array($query))
                                                     {
                                                     ?>
-                                                    <option value="<?php echo $categories['categName'];?>"><?php echo $categories['categName'];?></option>
+                                                    <option value="<?php echo htmlentities($categories['categName']);?>"><?php echo htmlentities($categories['categName']);?></option>
+                                                    <?php }?>
+                                                    <?php else:?>
+                                                    <option value="" selected>Select Categories: </option>
+                                                    <!--Category List-->
+                                                    <?php 
+                                                    $query = mysqli_query($conn, "SELECT * FROM category WHERE Is_Active = 1 ORDER BY categName ASC");
+                                                    while($categories = mysqli_fetch_array($query))
+                                                    {
+                                                    ?>
+                                                    <option value="<?php echo htmlentities($categories['categName']);?>"><?php echo htmlentities($categories['categName']);?></option>
                                                     <?php }?>
                                                     <?php endif;?>
                                                 </select>
+                                                <p class="text-danger fs-6 px-2">required</p>
                                             </div>
                                             <div class="mb-1 col-md-6 form-group">
                                                 <label for="subCategory" class="form-label">Sub Category:</label>
-                                                <select name="subcategory" class="form-select">
-                                                <?php if(!isset($_POST['subcategory'])):?>
-                                                    <option value="" selected>Select Sub-Categories: </option>
-                                                    <!--Sub-Category List-->
-                                                    <?php 
-                                                    $query = mysqli_query($conn, "SELECT * FROM subcategory WHERE is_Active = 1 ORDER BY name ASC");
-                                                    while($subcategories = mysqli_fetch_array($query))
-                                                    {
-                                                    ?>
-                                                    <option value="<?php echo $subcategories['name'];?>"><?php echo $subcategories['name'];?></option>
-                                                    <?php }?>
-                                                    <?php else:?>
+                                                <select name="subcategory" class="form-select" required>
+                                                <?php if(!empty($subcategory) && $subcategory == $subcategory):?>
                                                     <option value="<?php echo $subcategory?>" selected>Selected Sub-Categories: <?php echo $subcategory?></option>
                                                     <!--Sub-Category List-->
                                                     <?php 
@@ -111,49 +103,58 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                                     while($subcategories = mysqli_fetch_array($query))
                                                     {
                                                     ?>
-                                                    <option value="<?php echo $subcategories['name'];?>"><?php echo $subcategories['name'];?></option>
+                                                    <option value="<?php echo htmlentities($subcategories['name']);?>"><?php echo htmlentities($subcategories['name']);?></option>
+                                                    <?php }?>
+                                                    <?php else:?>
+                                                    <option value="" selected>Select Sub-Categories: </option>
+                                                    <!--Sub-Category List-->
+                                                    <?php 
+                                                    $query = mysqli_query($conn, "SELECT * FROM subcategory WHERE is_Active = 1 ORDER BY name ASC");
+                                                    while($subcategories = mysqli_fetch_array($query))
+                                                    {
+                                                    ?>
+                                                    <option value="<?php echo htmlentities($subcategories['name']);?>"><?php echo htmlentities($subcategories['name']);?></option>
                                                     <?php }?>
                                                     <?php endif;?>
                                                 </select>
+                                                <p class="text-danger fs-6 px-2">required</p>
                                             </div>
                                             <div class="mb-1 col-md-6 form-group">
                                                 <label for="status" class="form-label">Status:</label>
-                                                <select name="status" class="form-select">
-                                                    <?php if(!isset($_POST['status'])):?>
-                                                    <option value="" selected>Status:</option>
+                                                <select name="status" class="form-select" required>
+                                                    <?php if(!empty($status) && $status == $status):?>
+                                                    <option value="<?php echo htmlentities($status);?>" selected>Status: <?php echo htmlentities($status);?></option>                                                    
                                                     <?php else:?>
-                                                    <option value="<?php echo $status;?>" selected>Status: <?php echo $status?></option>
+                                                    <option value="" selected>Status:</option>
                                                     <?php endif;?>
                                                     <option value="published">Published</option>
                                                     <option value="unpublished">Unpublished</option>
                                                 </select>
-                                            </div>
-                                            <div class="mb-1 col-md-6 form-group">
-                                                <label for="categoryDescription" class="form-label">Post Created:</label>
-                                                <input type="date" class="form-control" name="created_at" value="">
-                                            </div>
-                                            <div class="mb-1 col-sm-6">
-                                                <label for="image" class="form-label">Feature Image:</label>
-                                                <input type="file" class="form-control" name="image" accept="image/*" value="<?php echo $postImage?>">
-                                                <br>
-                                                <?php if(isset($_POST['postImage'])):?>
-                                                <img src="<?php echo BASE_URL.'/app/upload/uploadThumbnail/'.$postImage?>" alt="Post_Thumbnail" width="120" height="120">
-                                                <?php endif;?>
+                                                <p class="text-danger fs-6 px-2">required</p>
                                             </div>
                                             <div class="mb-1 col-sm-12">
                                                 <label for="description" class="mb-3 form-label">Post description:</label>
-                                                <?php if(!isset($_POST['details'])):?>
-                                                <textarea name="description" id="mytextarea" class="form-control">Hi!, always make your content justify</textarea>
-                                                <?php else:?>
-                                                <textarea name="description" id="mytextarea" class="form-control"><?php echo $description?></textarea>
-                                                <?php endif;?>
+                                                <textarea name="description" id="mytextarea" class="form-control"><?php echo htmlentities($description);?></textarea>
+                                                <p class="text-danger fs-6 px-2">required</p>
                                             </div>
                                             <div class="mb-1 col-md-12 form-group">
                                                 <label for="googleWidget" class="form-label">Google Widgets:</label>
-                                                <textarea name="googleWidget" class="summernote fs-6">Google widgets</textarea>
+                                                <textarea name="googleWidget" id="editor" class="form-control"><?php echo htmlentities($googleWidget);?></textarea>
+                                                <p class="text-danger fs-6 px-2">required</p>
+                                            </div>
+                                            <div class="mb-1 col-sm-6">
+                                                <label for="image" class="form-label">Feature Image:</label>
+                                                <input type="file" class="form-control" name="image" accept="image/*" value="<?php echo htmlentities($postImage);?>" required>
+                                                <p class="text-danger fs-6 px-2">required</p>
+                                                <img src="<?php echo BASE_URL.'/app/upload/uploadThumbnail/'.$postImage?>" alt="Thumbnail_Post" width="220" height="160">
+                                            </div>
+                                            <div class="mb-1 col-md-4 form-group">
+                                                <label for="categoryDescription" class="form-label">Post Updated:</label>
+                                                <input type="datetime-local" class="form-control" name="updated_at" value="<?php echo htmlentities($updated_at);?>" required>
+                                                <p class="text-danger fs-6 px-2">required</p>
                                             </div>
                                             <div class="mb-1 col-md-6 form-group">
-                                                <button type="submit" class="btn btn-outline-primary" name="submitPost">Save and Post</button>
+                                                <button type="submit" class="btn btn-outline-success" name="updatePost">Update</button>
                                                 <button type="reset" class="btn btn-outline-danger" name="discard">Discard</button>
                                             </div>
                                         </form>
@@ -170,21 +171,5 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
     </div>
     <!--Scripts-->
     <?php include(ROOT_PATH."/app/includes/scripts.php");?>
-    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
-    <script>
-      $('.summernote').summernote({
-        tabsize: 2,
-        height: 120,
-        toolbar: [
-          ['style', ['style']],
-          ['font', ['bold', 'underline', 'clear']],
-          ['color', ['color']],
-          ['para', ['ul', 'ol', 'paragraph']],
-          ['table', ['table']],
-          ['insert', ['link', 'picture', 'video']],
-          ['view', ['codeview', 'help']]
-        ]
-      });
-    </script>
 </body>
 </html>

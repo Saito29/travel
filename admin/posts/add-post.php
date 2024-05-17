@@ -36,7 +36,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                         <h3 class="fw-bold fs-4 mb-3">Add Post</h3>
                         <ol class="breadcrumb p-0 m-0 ">
                             <li class="breadcrumb-item"><a href="#">Travel</a></li>
-                            <li class="breadcrumb-item"><a href="#"><?php echo $_SESSION['role']?></a></li>
+                            <li class="breadcrumb-item"><a href="#"><?php echo htmlentities($_SESSION['role']);?></a></li>
                             <li class="breadcrumb-item active" aria-current="page">Add Post</li>
                         </ol>
                     </div>
@@ -53,27 +53,29 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                             <div class="col-sm-12">
                                                <!--Alert start-->
                                                 <?php include(ROOT_PATH.'/app/helpers/formAlert.php');?>
-                                                <?php include(ROOT_PATH.'/app/helpers/messageAlert.php');?>
+                                                <?php include(ROOT_PATH.'/app/helpers/updateAlert.php');?>
                                                <!--Alert end-->
                                             </div>
                                          </div>
                                         <form action="add-post.php" class="row gx-2 gy-3" autocomplete="on" name="addPost" method="post" enctype="multipart/form-data">
+                                            <input type="hidden" name="postedBy" value="<?php echo htmlentities($_SESSION['username']);?>" readonly>
                                             <div class="mb-1 col-md-6 form-group">
                                                 <label for="title" class="form-label">Post Title:</label>
-                                                <input type="text" class="form-control" name="title" placeholder="Enter Title">
+                                                <input type="text" class="form-control" name="title" placeholder="Enter Title" value="<?php echo htmlentities($title)?>" required>
+                                                <p class="text-danger fs-6 px-2">required</p>
                                             </div>
                                             <div class="mb-1 col-md-6 form-group">
                                                 <label for="categoryDescription" class="form-label">Category:</label>
-                                                <select name="category" class="form-select">
+                                                <select name="category" class="form-select" required>
                                                 <?php if(!isset($_POST['category'])):?>
                                                     <option value="" selected>Select Categories: </option>
                                                     <!--Category List-->
                                                     <?php 
-                                                    $query = mysqli_query($conn, "SELECT * FROM category WHERE Is_Active = 1 ORDER BY categName");
+                                                    $query = mysqli_query($conn, "SELECT * FROM category WHERE Is_Active = 1 ORDER BY categName ASC");
                                                     while($categories = mysqli_fetch_array($query))
                                                     {
                                                     ?>
-                                                    <option value="<?php echo $categories['categName'];?>"><?php echo $categories['categName'];?></option>
+                                                    <option value="<?php echo htmlentities($categories['categName']);?>"><?php echo htmlentities($categories['categName']);?></option>
                                                     <?php }?>
                                                     <?php else:?>
                                                     <option value="<?php echo $category?>" selected>Selected Categories: <?php echo $category?></option>
@@ -83,14 +85,15 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                                     while($categories = mysqli_fetch_array($query))
                                                     {
                                                     ?>
-                                                    <option value="<?php echo $categories['categName'];?>"><?php echo $categories['categName'];?></option>
+                                                    <option value="<?php echo htmlentities($categories['categName']);?>"><?php echo htmlentities($categories['categName']);?></option>
                                                     <?php }?>
                                                     <?php endif;?>
                                                 </select>
+                                                <p class="text-danger fs-6 px-2">required</p>
                                             </div>
                                             <div class="mb-1 col-md-6 form-group">
                                                 <label for="subCategory" class="form-label">Sub Category:</label>
-                                                <select name="subcategory" class="form-select">
+                                                <select name="subcategory" class="form-select" required>
                                                 <?php if(!isset($_POST['subcategory'])):?>
                                                     <option value="" selected>Select Sub-Categories: </option>
                                                     <!--Sub-Category List-->
@@ -99,7 +102,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                                     while($subcategories = mysqli_fetch_array($query))
                                                     {
                                                     ?>
-                                                    <option value="<?php echo $subcategories['name'];?>"><?php echo $subcategories['name'];?></option>
+                                                    <option value="<?php echo htmlentities($subcategories['name']);?>"><?php echo htmlentities($subcategories['name']);?></option>
                                                     <?php }?>
                                                     <?php else:?>
                                                     <option value="<?php echo $subcategory?>" selected>Selected Sub-Categories: <?php echo $subcategory?></option>
@@ -109,41 +112,47 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                                     while($subcategories = mysqli_fetch_array($query))
                                                     {
                                                     ?>
-                                                    <option value="<?php echo $subcategories['name'];?>"><?php echo $subcategories['name'];?></option>
+                                                    <option value="<?php echo htmlentities($subcategories['name']);?>"><?php echo htmlentities($subcategories['name']);?></option>
                                                     <?php }?>
                                                     <?php endif;?>
                                                 </select>
+                                                <p class="text-danger fs-6 px-2">required</p>
                                             </div>
                                             <div class="mb-1 col-md-6 form-group">
                                                 <label for="status" class="form-label">Status:</label>
-                                                <select name="status" class="form-select">
+                                                <select name="status" class="form-select" required>
                                                     <?php if(!isset($_POST['status'])):?>
                                                     <option value="" selected>Status:</option>
                                                     <?php else:?>
-                                                    <option value="<?php echo $status;?>" selected>Status: <?php echo $status?></option>
+                                                    <option value="<?php echo htmlentities($status);?>" selected>Status: <?php echo htmlentities($status);?></option>
                                                     <?php endif;?>
                                                     <option value="published">Published</option>
                                                     <option value="unpublished">Unpublished</option>
                                                 </select>
+                                                <p class="text-danger fs-6 px-2">required</p>
                                             </div>
                                             <div class="mb-1 col-sm-12">
                                                 <label for="description" class="mb-3 form-label">Post description:</label>
-                                                <textarea name="description" id="mytextarea" class="form-control"><?php echo $description?></textarea>
+                                                <textarea name="description" id="mytextarea" class="form-control"><?php echo htmlentities($description);?></textarea>
+                                                <p class="text-danger fs-6 px-2">required</p>
                                             </div>
                                             <div class="mb-1 col-md-12 form-group">
                                                 <label for="googleWidget" class="form-label">Google Widgets:</label>
-                                                <textarea name="googleWidget" class="summernote fs-6 bg-dark"><?php echo $googleWidget?></textarea>
+                                                <textarea name="googleWidget" id="editor" class="form-control"><?php echo htmlentities($googleWidget);?></textarea>
+                                                <p class="text-danger fs-6 px-2">required</p>
                                             </div>
                                             <div class="mb-1 col-sm-6">
                                                 <label for="image" class="form-label">Feature Image:</label>
-                                                <input type="file" class="form-control" name="image" accept="image/*" value="<?php echo $postImage?>">
+                                                <input type="file" class="form-control" name="image" accept="image/*" value="<?php echo htmlentities($postImage);?>" required>
+                                                <p class="text-danger fs-6 px-2">required</p>
                                             </div>
-                                            <div class="mb-1 col-md-6 form-group">
+                                            <div class="mb-1 col-md-4 form-group">
                                                 <label for="categoryDescription" class="form-label">Post Created:</label>
-                                                <input type="datetime-local" class="form-control" name="created_at" value="<?php echo $created_at?>">
+                                                <input type="datetime-local" class="form-control" name="created_at" value="<?php echo htmlentities($created_at);?>" required>
+                                                <p class="text-danger fs-6 px-2">required</p>
                                             </div>
                                             <div class="mb-1 col-md-6 form-group">
-                                                <button type="submit" class="btn btn-outline-primary" name="submitPost">Save and Post</button>
+                                                <button type="submit" class="btn btn-outline-primary" name="submitPost">Post</button>
                                                 <button type="reset" class="btn btn-outline-danger" name="discard">Discard</button>
                                             </div>
                                         </form>

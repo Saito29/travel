@@ -48,7 +48,77 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                             <div class="col-md-12">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h4 class="card-title">Post Management</h4>
+                                        <h4 class="card-title"><i class='bx bxs-archive' style='color:#e915ef'></i>Post Management</h4>
+                                        <hr />
+                                        <div class="row">
+                                        <div class="container-fluid p-2 mt-3">
+                                            <div class="col-sm-8">
+                                                <a href="<?php echo BASE_ADMIN.'/posts/add-post.php'?>">
+                                                    <button type="button" class="btn btn-outline-primary">Add Post</button>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-12">
+                                                <!--Alert start here -->
+                                                <?php include(ROOT_PATH."/app/helpers/updateAlert.php")?>
+                                                <!--Alert end here -->
+                                            </div>
+                                        </div>
+                                        <!--============= Table User Management  ===============-->
+                                        <div class="table-responsive p-2">
+                                            <table class="table m-0 table-responsive-md table-bordered" style="width: 100%;" id="myTable">
+                                                <thead>
+                                                    <!--============ Table Header ================-->
+                                                    <tr>
+                                                        <th>PSID</th>
+                                                        <th>Posted by</th>
+                                                        <th>Post Title</th>
+                                                        <th>Category</th>
+                                                        <th>Sub-Category</th>
+                                                        <th>Status</th>
+                                                        <th>Post Created</th>                                                        
+                                                        <th>Post Updated</th>
+                                                        <th>Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <!--========== End of Table header ================-->
+                                                <tbody>
+                                                    <!--========= Table Data =====================-->
+                                                    <?php
+                                                        $post = "SELECT * FROM post WHERE status = 'published' AND is_Active = 1";
+                                                        $post_run = mysqli_query($conn, $post);
+                                                    ?>
+                                                    <?php if(mysqli_num_rows($post_run) > 0):?>
+                                                        <?php foreach($post_run as $keys => $posts):?>
+                                                    <tr>
+                                                        <td><?php echo htmlentities($keys + 1);?></td>
+                                                        <td><?php echo htmlentities($posts['postedBy']);?></td>
+                                                        <td><?php echo htmlentities($posts['title']);?></td>
+                                                        <td><?php echo htmlentities($posts['category']);?></td>
+                                                        <td><?php echo htmlentities($posts['subcategory']);?></td>
+                                                        <td><?php echo htmlentities($posts['status']);?></td>
+                                                        <td><?php echo htmlentities($posts['created_at']);?></td>
+                                                        <td><?php echo htmlentities($posts['updated_at']);?></td>
+                                                        <td>
+                                                            <a href="<?php echo BASE_ADMIN.'/posts/edit-post.php?psID='?><?php echo htmlentities($posts['id']);?>" class="btn btn-outline-primary m-1"><i class='bx bx-edit'></i></a>
+                                                            &nbsp;
+                                                            <a href="<?php echo BASE_ADMIN.'/posts/manage-post.php?delArcPS_ID='?><?php echo htmlentities($posts['id']);?>" class="btn btn-outline-danger m-1"><i class='bx bx-trash-alt' ></i></a>
+                                                        </td>
+                                                    </tr>
+                                                    <?php endforeach;?>
+                                                    <?php endif;?>
+                                                    <!--============= End of Table Data ===============-->
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!--=========================== End of Table Post Management ========================-->
+                                   </div>
+                                </div>
+                            </div>
+                            <!--Unpublished Post Management -->
+                            <div class="col-md-12 mt-4">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="card-title"><i class='bx bxs-message-alt-edit' style='color:#ce1337'></i>Unpublished Management</h4>
                                         <hr />
                                         <div class="row">
                                             <div class="col-sm-12">
@@ -64,6 +134,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                                     <!--============ Table Header ================-->
                                                     <tr>
                                                         <th>PSID</th>
+                                                        <th>Posted by</th>
                                                         <th>Post Title</th>
                                                         <th>Category</th>
                                                         <th>Sub-Category</th>
@@ -77,23 +148,24 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                                 <tbody>
                                                     <!--========= Table Data =====================-->
                                                     <?php
-                                                        $post = "SELECT * FROM post WHERE is_Active != '0'";
+                                                        $post = "SELECT * FROM post WHERE status = 'unpublished' AND is_Active = 1";
                                                         $post_run = mysqli_query($conn, $post);
                                                     ?>
                                                     <?php if(mysqli_num_rows($post_run) > 0):?>
                                                         <?php foreach($post_run as $keys => $posts):?>
                                                     <tr>
-                                                        <td><?php echo $keys + 1?></td>
-                                                        <td><?php echo $posts['title']?></td>
-                                                        <td><?php echo $posts['category']?></td>
-                                                        <td><?php echo $posts['subcategory']?></td>
-                                                        <td><?php echo $posts['status']?></td>
-                                                        <td><?php echo $posts['created_at']?></td>
-                                                        <td><?php echo $posts['updated_at']?></td>
+                                                        <td><?php echo htmlentities($keys + 1);?></td>
+                                                        <td><?php echo htmlentities($posts['postedBy']);?></td>
+                                                        <td><?php echo htmlentities($posts['title']);?></td>
+                                                        <td><?php echo htmlentities($posts['category']);?></td>
+                                                        <td><?php echo htmlentities($posts['subcategory']);?></td>
+                                                        <td><?php echo htmlentities($posts['status']);?></td>
+                                                        <td><?php echo htmlentities($posts['created_at']);?></td>
+                                                        <td><?php echo htmlentities($posts['updated_at']);?></td>
                                                         <td>
-                                                            <a href="<?php echo BASE_ADMIN.'/posts/edit-post.php?psID='?><?php echo $posts['ps_id']?>" class="btn btn-outline-primary m-1"><i class='bx bx-edit'></i></a>
+                                                            <a href="<?php echo BASE_ADMIN.'/posts/edit-post.php?psID='?><?php echo htmlentities($posts['id']);?>" class="btn btn-outline-primary m-1"><i class='bx bx-edit'></i></a>
                                                             &nbsp;
-                                                            <a href="#deletePost" class="btn btn-outline-danger m-1"><i class='bx bx-trash-alt' ></i></a>
+                                                            <a href="<?php echo BASE_ADMIN.'/posts/manage-post.php?delArcPS_ID='?><?php echo htmlentities($posts['id']);?>" class="btn btn-outline-danger m-1"><i class='bx bx-trash-alt' ></i></a>
                                                         </td>
                                                     </tr>
                                                     <?php endforeach;?>
@@ -109,6 +181,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                         </div>
                     </div>
                 </div>
+                <!--End of Post Management-->
             </main>
             <!--Footer-->
             <?php include(ROOT_PATH."/app/includes/footer.php");?>

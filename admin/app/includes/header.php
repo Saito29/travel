@@ -26,5 +26,14 @@
 <!--Tinymce initializer-->
 <script src="<?php echo BASE_ADMIN.'/vendor/tinymce_7.0.0/tinymce/js/tinymce/tinymceFullOpen-Source.js'?>"></script>
 
-<!--- Summernote CSS -->
-<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+<style>
+.ck-editor__editable[role="textbox"] {
+    /* Editing area */
+    min-height: 200px;
+}
+.ck-content .image {
+    /* Block images */
+    max-width: 80%;
+    margin: 20px auto;  
+}
+</style>

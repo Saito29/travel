@@ -37,7 +37,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                         <h3 class="fw-bold fs-4 mb-3">Manage Category</h3>
                         <ol class="breadcrumb p-0 m-0 ">
                             <li class="breadcrumb-item"><a href="#">Travel</a></li>
-                            <li class="breadcrumb-item"><a href="#"><?php echo $_SESSION['role']?></a></li>
+                            <li class="breadcrumb-item"><a href="#"><?php echo htmlentities($_SESSION['role']);?></a></li>
                             <li class="breadcrumb-item active" aria-current="page">Manage Category</li>
                         </ol>
                     </div>
@@ -49,7 +49,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                             <div class="col-md-12">
                                 <div class="card">
                                     <div class="card-body mb-4">
-                                        <h4 class="card-title">Manage Categories</h4>
+                                        <h4 class="card-title"><i class='bx bxs-box' style='color:#e915ef'></i>Manage Categories</h4>
                                         <hr />
                                         <div class="row">
                                             <div class="col-sm-12 col-md-12">
@@ -89,15 +89,15 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                                     <?php if(mysqli_num_rows($category_run) > 0):?>
                                                         <?php foreach ($category_run as $keys => $categories):?>
                                                     <tr>
-                                                        <td><?Php echo $keys + 1; ?></td>
-                                                        <td><?php echo $categories['categName'];?></td>
-                                                        <td><?php echo $categories['categDesc'];?></td>
-                                                        <td><?php echo $categories['categCreated_at'];?></td>
-                                                        <td><?php echo $categories['categUpt_at'];?></td>
+                                                        <td><?Php echo htmlentities($keys + 1);?></td>
+                                                        <td><?php echo htmlentities($categories['categName']);?></td>
+                                                        <td><?php echo htmlentities($categories['categDesc']);?></td>
+                                                        <td><?php echo htmlentities($categories['categCreated_at']);?></td>
+                                                        <td><?php echo htmlentities($categories['categUpt_at']);?></td>
                                                         <td>
-                                                            <a href="edit-category.php?id=<?php echo $categories['id'];?>" class="btn btn-outline-primary m-1"><i class='bx bx-edit'></i></a>
+                                                            <a href="<?php echo BASE_ADMIN.'/category/edit-category.php?id='?><?php echo htmlentities($categories['id']);?>" class="btn btn-outline-primary m-1"><i class='bx bx-edit'></i></a>
                                                             &nbsp;
-                                                            <a href="manage-category.php?del_id=<?php echo $categories['id']?>" class="btn btn-outline-danger m-1"><i class='bx bx-trash-alt' ></i></a>
+                                                            <a href="<?php echo BASE_ADMIN.'/category/manage-category.php?del_id='?><?php echo htmlentities($categories['id'])?>" class="btn btn-outline-danger m-1"><i class='bx bx-trash-alt' ></i></a>
                                                         </td>
                                                     </tr>
                                                         <?php endforeach; ?>
@@ -112,7 +112,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
 
                                    <!--================= Deleted Manage Category Start here ==================-->
                                    <div class="card-body">
-                                        <h4 class="card-title"><i class='bx bx-trash'></i>Deleted Categories</h4>
+                                        <h4 class="card-title"><i class='bx bx-trash' style='color:#ce1337'></i>Deleted Categories</h4>
                                         <hr />
                                         <!--============= Table Category Management  ===============-->
                                         <div class="table-responsive p-2">
@@ -139,15 +139,15 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                                     <?php if(mysqli_num_rows($category_run) > 0):?>
                                                         <?php foreach($category_run as $keys => $categories):?>
                                                     <tr>
-                                                        <td><?php echo $keys + 1?></td>
-                                                        <td><?php echo $categories['categName']?></td>
-                                                        <td><?php echo $categories['categDesc']?></td>
-                                                        <td><?php echo $categories['categCreated_at']?></td>
-                                                        <td><?php echo $categories['categUpt_at']?></td>
+                                                        <td><?php echo htmlentities($keys + 1);?></td>
+                                                        <td><?php echo htmlentities($categories['categName']);?></td>
+                                                        <td><?php echo htmlentities($categories['categDesc']);?></td>
+                                                        <td><?php echo htmlentities($categories['categCreated_at']);?></td>
+                                                        <td><?php echo htmlentities($categories['categUpt_at']);?></td>
                                                         <td>
-                                                            <a href="manage-category.php?id_rec=<?php echo $categories['id']?>" class="btn btn-outline-success m-1"><i class='bx bx-redo'></i></a>
+                                                            <a href="<?php echo BASE_ADMIN.'/category/manage-category.php?id_rec='?><?php echo htmlentities($categories['id']);?>" class="btn btn-outline-success m-1"><i class='bx bx-redo'></i></a>
                                                             &nbsp;
-                                                            <a href="manage-category.php?id_del=<?php echo $categories['id']?>" class="btn btn-outline-danger m-1"><i class='bx bx-trash-alt' ></i></a>
+                                                            <a href="<?php echo BASE_ADMIN.'/category/manage-category.php?id_del='?><?php echo htmlentities($categories['id']);?>" class="btn btn-outline-danger m-1"><i class='bx bx-trash-alt' ></i></a>
                                                         </td>
                                                     </tr>
                                                         <?php endforeach;?>
@@ -156,8 +156,8 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                                 </tbody>
                                             </table>
                                         </div>
-                                        <!--=========================== End of Table Category Management ========================-->
                                     </div>
+                                    <!--=========================== End of Table Category Management ========================-->
                                 </div>
                             </div>
                         </div>

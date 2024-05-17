@@ -7,16 +7,22 @@ tinymce.init({
   editimage_cors_hosts: ['picsum.photos'],
   menubar: 'file edit view insert format tools table help',
   toolbar: "undo redo | accordion accordionremove | blocks fontfamily fontsize | bold italic underline strikethrough | align numlist bullist | link image | table media | lineheight outdent indent| forecolor backcolor removeformat | charmap emoticons | code fullscreen preview | save print | pagebreak anchor codesample | ltr rtl",
-  tabsize: 56,
-  menubar: false,
+  tabsize: 66,
+  menubar: true,  
+  
   autosave_ask_before_unload: true,
   autosave_interval: '30s',
   autosave_prefix: '{path}{query}-{id}-',
-  autosave_restore_when_empty: false,
+  autosave_restore_when_empty: true,
   autosave_retention: '2m',
   image_advtab: true,
-  license_key: 'gpl',
+  license_key: 'no-api-key',
+  media_filter_html: true,
   importcss_append: true,
+  media_live_embeds: true,
+  //iFrame
+  iframe_template_callback: (data) =>
+    `<iframe title="${data.title}" width="${data.width}" height="${data.height}" src="${data.source}"></iframe>`,
   //Audio template callback function
   audio_template_callback: (data) =>
   '<audio controls>\n' +
@@ -26,13 +32,18 @@ tinymce.init({
   //media url resolver
   media_url_resolver: (data) => {
     return new Promise((resolve) => {
-      if (data.url.indexOf('YOUR_SPECIAL_VIDEO_URL') !== -1) {
-        const embedHtml = `<iframe src="${data.url}" width="400" height="400" ></iframe>`;
+      if (data.url.indexOf('/index.php') !== -1) {
+        const embedHtml = `<iframe src="${data.url}" width="${data.width}" height="${data.height}" ></iframe>`;
         resolve({ html: embedHtml });
       } else {
         resolve({ html: '' });
       }
     })},
+    video_template_callback: (data) =>
+      `<video width="${data.width}" height="${data.height}"${data.poster ? ` poster="${data.poster}"` : ''} controls="controls">\n` +
+      `<source src="${data.source}"${data.sourcemime ? ` type="${data.sourcemime}"` : ''} />\n` +
+      (data.altsource ? `<source src="${data.altsource}"${data.altsourcemime ? ` type="${data.altsourcemime}"` : ''} />\n` : '') +
+      '</video>',
   /* enable title field in the Image dialog*/
   image_title: true,
   /* enable automatic uploads of images represented by blob or data URIs*/
@@ -48,6 +59,7 @@ tinymce.init({
     const input = document.createElement('input');
     input.setAttribute('type', 'file');
     input.setAttribute('accept', 'image/*');
+    input.setAttribute('accept', 'media/*');
 
     input.addEventListener('change', (e) => {
       const file = e.target.files[0];

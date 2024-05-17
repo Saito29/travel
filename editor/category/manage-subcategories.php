@@ -36,7 +36,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                         <h3 class="fw-bold fs-4 mb-3">Manage Sub-Categroies</h3>
                         <ol class="breadcrumb p-0 m-0 ">
                             <li class="breadcrumb-item"><a href="#">Travel</a></li>
-                            <li class="breadcrumb-item"><a href="#"><?php echo $_SESSION['role']?></a></li>
+                            <li class="breadcrumb-item"><a href="#"><?php echo htmlentities($_SESSION['role'])?></a></li>
                             <li class="breadcrumb-item active" aria-current="page">Manage Sub-Categories</li>
                         </ol>
                     </div>
@@ -90,15 +90,15 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                                     <?php if(mysqli_num_rows($subcategory_run) > 0):?>
                                                         <?php foreach($subcategory_run as $keys => $subcategories):?>
                                                     <tr>
-                                                        <td><?php echo $keys + 1?></td>
-                                                        <td><?php echo $subcategories['name']?></td>
-                                                        <td><?php echo $subcategories['description']?></td>
-                                                        <td><?php echo $subcategories['created_at']?></td>
-                                                        <td><?php echo $subcategories['updated_at']?></td>
+                                                        <td><?php echo htmlentities($keys + 1)?></td>
+                                                        <td><?php echo htmlentities($subcategories['name'])?></td>
+                                                        <td><?php echo htmlentities($subcategories['description'])?></td>
+                                                        <td><?php echo htmlentities($subcategories['created_at'])?></td>
+                                                        <td><?php echo htmlentities($subcategories['updated_at'])?></td>
                                                         <td>
-                                                            <a href="edit-subcategories.php?id=<?php echo $subcategories['id']?>/SNID?=<?php echo $_SESSION['id']?>" class="btn btn-outline-primary m-1"><i class='bx bx-edit'></i></a>
+                                                            <a href="<?php echo BASE_EDITOR.'/category/edit-subcategories.php?id='?><?php echo htmlentities($subcategories['id'])?>" class="btn btn-outline-primary m-1"><i class='bx bx-edit'></i></a>
                                                             &nbsp;
-                                                            <a href="manage-subcategories.php?del_id=<?php echo $subcategories['id']?>" class="btn btn-outline-danger m-1"><i class='bx bx-trash-alt' ></i></a>
+                                                            <a href="<?php echo BASE_EDITOR.'/category/manage-subcategories.php?del_id='?><?php echo htmlentities($subcategories['id'])?>" class="btn btn-outline-danger m-1"><i class='bx bx-trash-alt' ></i></a>
                                                         </td>
                                                     </tr>
                                                         <?php endforeach;?>
@@ -140,15 +140,15 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                                     <?php if(mysqli_num_rows($subcategory_run) > 0):?>
                                                         <?php foreach($subcategory_run as $keys => $subcategories):?>
                                                     <tr>
-                                                        <td><?php echo $keys + 1?></td>
-                                                        <td><?php echo $subcategories['name']?></td>
-                                                        <td><?php echo $subcategories['description']?></td>
-                                                        <td><?php echo $subcategories['created_at']?></td>
-                                                        <td><?php echo $subcategories['updated_at']?></td>
+                                                        <td><?php echo htmlentities($keys + 1)?></td>
+                                                        <td><?php echo htmlentities($subcategories['name'])?></td>
+                                                        <td><?php echo htmlentities($subcategories['description'])?></td>
+                                                        <td><?php echo htmlentities($subcategories['created_at'])?></td>
+                                                        <td><?php echo htmlentities($subcategories['updated_at'])?></td>
                                                         <td>
-                                                            <a href="manage-subcategories.php?id_rec=<?php echo $subcategories['id']?>" class="btn btn-outline-success m-1"><i class='bx bx-redo'></i></a>
+                                                            <a href="<?php echo BASE_EDITOR.'/category/manage-subcategories.php?id_rec='?><?php echo htmlentities($subcategories['id'])?>" class="btn btn-outline-success m-1"><i class='bx bx-redo'></i></a>
                                                             &nbsp;
-                                                            <a href="manage-subcategories.php?id_del=<?php echo $subcategories['id']?>" class="btn btn-outline-danger m-1"><i class='bx bx-trash-alt' ></i></a>
+                                                            <a href="<?php echo BASE_EDITOR.'/category/manage-subcategories.php?id_del='?><?php echo htmlentities($subcategories['id'])?>" class="btn btn-outline-danger m-1"><i class='bx bx-trash-alt' ></i></a>
                                                         </td>
                                                     </tr>
                                                         <?php endforeach;?>

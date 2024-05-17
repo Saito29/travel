@@ -18,10 +18,6 @@
 <!--Data Tables-->
 <link rel="stylesheet" href="https://cdn.datatables.net/2.0.1/css/dataTables.bootstrap5.css">
 
-<!--SummerNote CSS
-<link rel="stylesheet" href="./plugin/Summernote-0.8.18-dist/summernote.min.css">
-<link rel="stylesheet" href="./plugin/Summernote-0.8.18-dist/summernote-lite.min.css">-->
-
 <!--Tinymce Text Editor This is for CDN need to be configured in Admin
 <script src="https://cdn.tiny.cloud/1/ibwzlzvtiue1cnl2kujwtewutyd1oegqob2svdnyv38tndmq/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>-->
 <script src="<?php echo BASE_EDITOR.'/vendor/tinymce_7.0.0/tinymce/js/tinymce/tinymce.min.js" referrerpolicy="origin'?>"></script>
@@ -29,3 +25,15 @@
 <link rel="stylesheet" href="<?php echo BASE_EDITOR.'/vendor/tinymce_7.0.0/tinymce/js/tinymce/skins/ui/tinymce-5-dark/content.inline.js'?>">
 <!--Tinymce initializer-->
 <script src="<?php echo BASE_EDITOR.'/vendor/tinymce_7.0.0/tinymce/js/tinymce/tinymceFullOpen-Source.js'?>"></script>
+
+<style>
+.ck-editor__editable[role="textbox"] {
+    /* Editing area */
+    min-height: 200px;
+}
+.ck-content .image {
+    /* Block images */
+    max-width: 80%;
+    margin: 20px auto;  
+}
+</style>

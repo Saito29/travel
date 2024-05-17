@@ -25,7 +25,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
     <title>Travel | Manage Users</title>
     <?php include(ROOT_PATH."/app/includes/header.php");?>
 </head>
-<body onload="manageUser();">
+<body>
     <div class="wrapper">
         <!--Sidebar-->
         <?php include(ROOT_PATH."/app/includes/sidebar.php");?>
@@ -40,7 +40,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                         <h3 class="fw-bold fs-4 mb-3">Manage User</h3>
                         <ol class="breadcrumb p-0 m-0 ">
                             <li class="breadcrumb-item"><a href="#">Travel</a></li>
-                            <li class="breadcrumb-item"><a href="#"><?php echo $_SESSION['role']?></a></li>
+                            <li class="breadcrumb-item"><a href="#"><?php echo htmlentities($_SESSION['role'])?></a></li>
                             <li class="breadcrumb-item active" aria-current="page">Manage User</li>
                         </ol>
                     </div>
@@ -52,7 +52,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                             <div class="col-md-12">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h4 class="card-title">Manage User</h4>
+                                        <h4 class="card-title"><i class='bx bxs-group' style='color:#e915ef'></i>Manage User</h4>
                                         <hr />
                                         <div class="row">
                                             <div class="col-sm-12 col-md-12">
@@ -92,22 +92,22 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                                     <!--========= Table Data =====================-->
                                                     <?php foreach($user as $keys => $users): ?> 
                                                     <tr>
-                                                        <td><?php echo $keys + 1?></td>
+                                                        <td><?php echo htmlentities($keys + 1)?></td>
                                                         <td class="tb-image">
-                                                            <img src="<?php echo BASE_URL.'/app/upload/uploadProfile/'?><?php echo $users['profileImage']?>" width="32" height="32" alt="User_profile" class="rounded-circle">
+                                                            <img src="<?php echo BASE_URL.'/app/upload/uploadProfile/'?><?php echo htmlentities($users['profileImage'])?>" width="32" height="32" alt="User_profile" class="rounded-circle">
                                                         </td>
-                                                        <td><?php echo $users['firstName']?></td>
-                                                        <td><?php echo $users['lastName']?></td>
-                                                        <td><?php echo $users['username']?></td>
-                                                        <td><?php echo $users['email']?></td>
-                                                        <td class="text-break"><?php echo $users['password']?></td>
-                                                        <td><?php echo $users['role']?></td>
-                                                        <td class="text-truncate"><?php echo $users['created_at']?></td>
-                                                        <td class="text-truncate"><?php echo $users['updated_at']?></td>
+                                                        <td><?php echo htmlentities($users['firstName'])?></td>
+                                                        <td><?php echo htmlentities($users['lastName'])?></td>
+                                                        <td><?php echo htmlentities($users['username'])?></td>
+                                                        <td><?php echo htmlentities($users['email'])?></td>
+                                                        <td class="text-break"><?php echo htmlentities($users['password'])?></td>
+                                                        <td><?php echo htmlentities($users['role'])?></td>
+                                                        <td class="text-truncate"><?php echo htmlentities($users['created_at'])?></td>
+                                                        <td class="text-truncate"><?php echo htmlentities($users['updated_at'])?></td>
                                                         <td>
-                                                            <a href="edit-user.php?id=<?php echo $users['id']?>" class="btn btn-outline-primary m-1"><i class='bx bx-edit'></i></a>
+                                                            <a href="edit-user.php?id=<?php echo htmlentities($users['id'])?>" class="btn btn-outline-primary m-1"><i class='bx bx-edit'></i></a>
                                                             &nbsp;
-                                                            <a href="manage-user.php?del_id=<?php echo $users['id']?>" class="btn btn-outline-danger m-1"><i class='bx bx-trash-alt' ></i></a>
+                                                            <a href="manage-user.php?del_id=<?php echo htmlentities($users['id'])?>" class="btn btn-outline-danger m-1"><i class='bx bx-trash-alt' ></i></a>
                                                         </td>
                                                     </tr>
                                                     <?php endforeach; ?>
@@ -130,18 +130,5 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
     </div>
     <!--Scripts-->
     <?php include(ROOT_PATH.'/app/includes/Scripts.php');?>
-    <script type="text/javascript">
-        function manageUser(){
-            const xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function(){
-                
-            }
-            xhttp.open('GET', "./app/controller/user.php");
-            xhttp.send();
-        }
-        setInterval(function() {
-            manageUser();
-        }, 1)
-    </script>
 </body>
 </html>

@@ -36,7 +36,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                         <h3 class="fw-bold fs-4 mb-3">Update Sub-Category</h3>
                         <ol class="breadcrumb p-0 m-0 ">
                             <li class="breadcrumb-item"><a href="#">Travel</a></li>
-                            <li class="breadcrumb-item"><a href="#"><?php echo $_SESSION['role']?></a></li>
+                            <li class="breadcrumb-item"><a href="#"><?php echo htmlentities($_SESSION['role'])?></a></li>
                             <li class="breadcrumb-item active" aria-current="page">Update Sub-Category</li>
                         </ol>
                     </div>
@@ -56,18 +56,18 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                             </div>
                                         </div>
                                         <form action="edit-subcategories.php" class="row gx-2 gy-3" name="addUser" method="post" enctype="application/x-www-form-urlencoded">
-                                            <input type="hidden" name="id" value="<?php echo $id?>">
+                                            <input type="hidden" name="id" value="<?php echo htmlentities($id)?>">
                                             <div class="mb-1 col-md-6 form-group">
                                                 <label for="name" class="form-label">Sub-Category:</label>
-                                                <input type="text" class="form-control" name="name" value="<?php echo $name?>" placeholder="Sub-Category Name">
+                                                <input type="text" class="form-control" name="name" value="<?php echo htmlentities($name)?>" placeholder="Sub-Category Name">
                                             </div>
                                             <div class="mb-1 col-md-6 form-group">
                                                 <label for="description" class="form-label">Sub-Category Description:</label>
-                                                <textarea name="description" class="form-control" rows="4" placeholder="Sub-Category Description"><?php echo $description?></textarea>
+                                                <textarea name="description" class="form-control" rows="4" placeholder="Sub-Category Description"><?php echo htmlentities($description)?></textarea>
                                             </div>
                                             <div class="mb-1 col-md-4 form-group">
                                                 <label for="updated_at" class="form-label">Sub-Category Update DateTime:</label>
-                                                <input type="datetime-local" name="updated_at" class="form-control form-control-sm" value="<?php echo $updated_at?>">
+                                                <input type="datetime-local" name="updated_at" class="form-control form-control-sm" value="<?php echo htmlentities($updated_at)?>">
                                             </div>
                                             <div class="mb-2 col-md-12 form-group">
                                                 <button type="submit" class="btn btn-outline-success" name="upt-btn">Update Sub-Category</button>

@@ -90,6 +90,11 @@ if (isset($_POST['addUser-btn']) && isset($_FILES['profileImage']))
     #Array of error messages
     $errors = validateUser($_POST);
 
+    #Function for image
+    if(empty($_FILES['image']['name'])){
+        array_push($errors, "User image is required.");
+    }
+
     #if image error and alert error is equal 0
     if(count($errors) === 0 && $imageError === 0)
     {
@@ -111,7 +116,7 @@ if (isset($_POST['addUser-btn']) && isset($_FILES['profileImage']))
             if(in_array($imageEx_Lc, $allowed_exs))
             {
                 #The uniqid() function generates a unique ID based on the microtime
-                $newImgName = uniqid("IMG-", true).'-'.$username.'.'.$imageEx_Lc; #Create unique id and insert the username in the image
+                $newImgName = uniqid("IMG-", false).'-'.$username.'.'.$imageEx_Lc; #Create unique id and insert the username in the image
                 $imagePath = ROOT_PATH.'../../app/upload/uploadProfile/'.$newImgName; #Get the image path
                 move_uploaded_file($imageTmp, $imagePath); #Upload the image to the folder and database
 
@@ -192,7 +197,7 @@ if (isset($_POST['addUser-btn']) && isset($_FILES['profileImage']))
         #$msg = "Something went wrong, please validate your username and email.";
         #$msg2 = "Once no alert message of any user information requirements.";
         #$msg3 = "Please upload your profile picture.";
-        $msg4 = "Something went wrong!, Profile Image is required.";
+        $msg4 = "Something went wrong!, Try again.";
         $css_class = "alert-danger";
         $icon = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(179, 18, 20, 1);transform: ;msFilter:;">
         <path d="M12.884 2.532c-.346-.654-1.422-.654-1.768 0l-9 17A.999.999 0 0 0 3 21h18a.998.998 0 0 0 .883-1.467L12.884 2.532zM13 18h-2v-2h2v2zm-2-4V9h2l.001 5H11z"></path></svg>'; 
@@ -244,6 +249,11 @@ if(isset($_POST['updateUser-btn'])){
 
     #errors
     $errors = validateUpdateUser($_POST);
+
+    #Function for image
+    if(empty($_FILES['image']['name'])){
+        array_push($errors, "User image is required.");
+    }
 
     #if image error and alert error is equal 0
     if(count($errors) === 0)
@@ -351,7 +361,7 @@ if(isset($_POST['updateUser-btn'])){
         #$msg = "Something went wrong, please validate your username and email.";
         #$msg2 = "Once no alert message of any user information requirements.";
         #$msg3 = "Please upload your profile picture.";
-        $msg4 = "Something went wrong!, Profile Image is required.";
+        $msg4 = "Something went wrong!, Try again.";
         $css_class = "alert-danger";
         $icon = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(179, 18, 20, 1);transform: ;msFilter:;">
         <path d="M12.884 2.532c-.346-.654-1.422-.654-1.768 0l-9 17A.999.999 0 0 0 3 21h18a.998.998 0 0 0 .883-1.467L12.884 2.532zM13 18h-2v-2h2v2zm-2-4V9h2l.001 5H11z"></path></svg>'; 
