@@ -1,4 +1,7 @@
-<?php include("path.php") ?>
+<?php 
+include("path.php");
+include(ROOT_PATH.'/app/config/db.php');
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -10,36 +13,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Travel | Terms & Conditions</title>
 
-    <!--Customized CSS Section-->
-    <link rel="stylesheet" href="./asset/css/skin.css">
-    <link rel="stylesheet" href="./asset/css/index.css">
-    <link rel="stylesheet" href="./asset/css/main.css">
-
-     <!--favicon logo-->
-     <link rel="shortcut icon" href="./asset/img/logo/travel.png" type="image/x-icon">
-
-     <!--Google Fonts-->
-     <link rel="preconnect" href="https://fonts.googleapis.com">
-     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
- 
-     <!--Box Icon-->
-     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
- 
-     <!--Bootsrap 5 exception-->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-
-    <!--Pagination JS-->
-    <link rel="stylesheet" href="./asset/vendor/Pagination/pagination.css">
-    <link rel="stylesheet" href="./asset/vendor/Pagination/pagination.less">
+    <?php include(ROOT_PATH.'/app/includes/css.php')?>
 
 </head>
 
 <body>
     <!--Header-->
     <?php
-        include (ROOT_PATH . "/app/includes/nav2.php");
+        include (ROOT_PATH . "/app/includes/nav.php");
     ?>
 
     <main>
@@ -83,21 +64,7 @@
      
 </main>
 
-  <!--=============== MAIN JS ===============-->
-  <script src="./asset/js/main.js"></script>
-
-<!--================= JQuery Min js =================-->
-<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-
-<!--=============== Pagination JS ================-->
-<script src="./asset/vendor/Pagination/pagination.js"></script>
-<script src="./asset/vendor/Pagination/pagination.min.js"></script>
-
-<!--=============== Slick JS jquery ===============-->
-<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-
-<!--============== Customized JS ======================-->
-<script src="./asset/js/script.js"></script>
+<?php include(ROOT_PATH.'/app/includes/scripts.php');?>
 
 </body>
 </html>

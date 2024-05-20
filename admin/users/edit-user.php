@@ -49,7 +49,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                             <div class="col-md-12">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h4 class="card-title">Edit User</h4>
+                                        <h4 class="card-title"><i class='bx bxs-group' style='color:#e915ef'></i>Edit User</h4>
                                         <hr />
                                         <div class="row">
                                             <div class="col-sm-12 col-md-12">

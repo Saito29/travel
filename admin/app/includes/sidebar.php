@@ -96,13 +96,10 @@
             </a>
             <ul id="pages" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                 <li class="sidebar-item">
-                    <a href="<?php echo BASE_ADMIN.'/pages/aboutUs.php?SNID='?><?php echo htmlentities($_SESSION['id'])?>" class="sidebar-link">About us</a>
-                </li>   
-                <li class="sidebar-item">
-                    <a href="<?php echo BASE_ADMIN.'/pages/terms.php?SNID='?><?php echo htmlentities($_SESSION['id'])?>" class="sidebar-link">Terms</a>
+                    <a href="<?php echo BASE_ADMIN.'/pages/aboutpage.php?SNID='?><?php echo htmlentities($_SESSION['id'])?>" class="sidebar-link">About page</a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="<?php echo BASE_ADMIN.'/pages/aboutpage.php?SNID='?><?php echo htmlentities($_SESSION['id'])?>" class="sidebar-link">About page</a>
+                    <a href="<?php echo BASE_ADMIN.'/pages/manage-page.php?SNID='?><?php echo htmlentities($_SESSION['id'])?>" class="sidebar-link">Manage Page</a>
                 </li>
             </ul>
         </li>
@@ -118,7 +115,7 @@
                 </li>
                 <li class="sidebar-item">
                     <a href="<?php echo BASE_ADMIN.'/comments/disapproved-comment.php?SNID='?><?php echo htmlentities($_SESSION['id'])?>" class="sidebar-link">Disapproved Comments</a>
-                </li>   
+                </li>
             </ul>
         </li>
         <li class="sidebar-item">
@@ -129,7 +126,7 @@
             </a>
             <ul id="settings" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                 <li class="sidebar-item">
-                    <a href="<?php echo BASE_ADMIN.'/general-setting.php?SNID='?><?php echo htmlentities($_SESSION['id'])?>" class="sidebar-link">General</a>
+                    <a href="<?php echo BASE_ADMIN.'/settings/general-setting.php?SNID='?><?php echo htmlentities($_SESSION['id'])?>" class="sidebar-link">General</a>
                 </li>
                 <li class="sidebar-item">
                     <a href="<?php echo BASE_ADMIN.'/profile.php?SNID='?><?php echo htmlentities($_SESSION['id'])?>" class="sidebar-link">Profile</a>

@@ -95,7 +95,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                                         <td><?php echo htmlentities($posts['title']);?></td>
                                                         <td><?php echo htmlentities($posts['category']);?></td>
                                                         <td><?php echo htmlentities($posts['subcategory']);?></td>
-                                                        <td><?php echo htmlentities($posts['status']);?></td>
+                                                        <td class="text-success"><?php echo htmlentities($posts['status']);?></td>
                                                         <td><?php echo htmlentities($posts['created_at']);?></td>
                                                         <td><?php echo htmlentities($posts['updated_at']);?></td>
                                                         <td>
@@ -159,7 +159,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                                         <td><?php echo htmlentities($posts['title']);?></td>
                                                         <td><?php echo htmlentities($posts['category']);?></td>
                                                         <td><?php echo htmlentities($posts['subcategory']);?></td>
-                                                        <td><?php echo htmlentities($posts['status']);?></td>
+                                                        <td class="text-warning"><?php echo htmlentities($posts['status']);?></td>
                                                         <td><?php echo htmlentities($posts['created_at']);?></td>
                                                         <td><?php echo htmlentities($posts['updated_at']);?></td>
                                                         <td>

@@ -49,7 +49,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                 <div class="card">
                                     <!--============ Start Sub category Management ===================-->
                                     <div class="card-body mb-4">
-                                        <h4 class="card-title">Manage Sub-Categories</h4>
+                                        <h4 class="card-title"><i class='bx bxs-box' style='color:#e915ef'></i>Manage Sub-Categories</h4>
                                         <hr />
                                         <div class="row">
                                             <div class="col-sm-6">
@@ -113,7 +113,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
 
                                    <!--============== Start Deleted Sub category Management ===================-->
                                     <div class="card-body">
-                                        <h4 class="card-title"><i class='bx bx-trash'></i>Deleted Sub-Categories Management</h4>
+                                        <h4 class="card-title"><i class='bx bx-trash' style='color:#ce1337'></i>Deleted Sub-Categories Management</h4>
                                         <hr />
                                     <!--============= Table Sub category Management  ===============-->
                                         <div class="table-responsive p-2">

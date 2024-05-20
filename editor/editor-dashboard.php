@@ -86,7 +86,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-body">
-                                    <h4 class="card-title">Recent Post</h4>
+                                    <h4 class="card-title"><i class='bx bxs-cabinet' style='color:#e915ef'></i>Recent Post</h4>
                                     <hr />
                                     <!--============= Table User Management  ===============-->
                                     <div class="table-responsive p-2">
@@ -138,7 +138,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                                     <td><?php echo htmlentities($posts['title'])?></td>
                                                     <td><?php echo htmlentities($posts['category'])?></td>
                                                     <td><?php echo htmlentities($posts['subcategory'])?></td>
-                                                    <td><?php echo htmlentities($posts['status'])?></td>
+                                                    <td class="text-success"><?php echo htmlentities($posts['status'])?></td>
                                                     <td><?php echo htmlentities($posts['created_at'])?></td>
                                                     <td><?php echo htmlentities($posts['updated_at'])?></td>
                                                     <td>

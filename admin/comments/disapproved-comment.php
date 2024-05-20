@@ -1,11 +1,15 @@
 <?php 
 include("../path.php");
+include(ROOT_PATH.'/app/controllers/dsrcomments.php');
 
 #if session id not login direct to home page
 if(!isset($_SESSION['id'])){
     header("Location: ".BASE_URL."/index.php");
 }
-
+if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] === 'editor'){
+    header("Location: ".BASE_URL."/index.php");
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
@@ -45,7 +49,7 @@ if(!isset($_SESSION['id'])){
                             <div class="col-md-12">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h4 class="card-title">Manage Unapproved Comments</h4>
+                                        <h4 class="card-title"><i class='bx bx-error-circle' style='color:#e915ef'></i>Manage Unapproved Comments</h4>
                                         <hr />
                                         <div class="row">
                                             <div class="col-sm-6 ">

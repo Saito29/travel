@@ -1,11 +1,15 @@
 <?php 
 include("../path.php");
+include(ROOT_PATH.'/app/controllers/aprcomment.php');
 
 #if session id not login direct to home page
 if(!isset($_SESSION['id'])){
     header("Location: ".BASE_URL."/index.php");
 }
-
+if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] === 'editor'){
+    header("Location: ".BASE_URL."/index.php");
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
@@ -45,7 +49,7 @@ if(!isset($_SESSION['id'])){
                             <div class="col-md-12">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h4 class="card-title">Manage Approved Comments</h4>
+                                        <h4 class="card-title"><i class='bx bxs-check-square' style='color:#e915ef'></i>Manage Approved Comments</h4>
                                         <hr />
                                         <div class="row">
                                             <div class="col-sm-6 ">
@@ -65,9 +69,9 @@ if(!isset($_SESSION['id'])){
                                                 <!--============ Table Header ================-->
                                                 <thead>
                                                     <tr>
-                                                        <th>#</th>
+                                                        <th>SNID</th>
                                                         <th>Name</th>
-                                                        <th>Email Id</th>
+                                                        <th>Email</th>
                                                         <th>Comment</th>
                                                         <th>Status</th>                                                        
                                                         <th>Post Title</th>
@@ -93,34 +97,6 @@ if(!isset($_SESSION['id'])){
                                                             <a href="#deleteUser" class="btn btn-outline-danger m-1"><i class='bx bx-trash-alt'></i></a>
                                                         </td>
                                                     </tr>
-                                                    <tr>
-                                                        <td>2</td>
-                                                        <td>Mark Kinnedy</td>
-                                                        <td>saito29@gmail.com</td>
-                                                        <td>The content was very informative</td>
-                                                        <td class="text-success">Approved</td>
-                                                        <td>SQL Basic Fundamental</td>
-                                                        <td>2024-03-02 15:20:12</td>
-                                                        <td>
-                                                            <a href="#disapprove" class="btn btn-outline-primary m-1"><i class='bx bx-redo'></i></a>
-                                                            &nbsp;
-                                                            <a href="#deleteUser" class="btn btn-outline-danger m-1"><i class='bx bx-trash-alt' ></i></a>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>3</td>
-                                                        <td>Mark Kinnedy</td>
-                                                        <td>saito29@gmail.com</td>
-                                                        <td>The content was very informative</td>
-                                                        <td class="text-success">Approved</td>
-                                                        <td>Tech Hacks part 3</td>
-                                                        <td>2024-03-02 15:20:12</td>
-                                                        <td>
-                                                            <a href="#disapprove" class="btn btn-outline-primary m-1"><i class='bx bx-redo'></i></a>
-                                                            &nbsp;
-                                                            <a href="#deleteUser" class="btn btn-outline-danger m-1"><i class='bx bx-trash-alt' ></i></a>
-                                                        </td>
-                                                    </tr>
                                                     <!--============= End of Table Data ===============-->
                                                 </tbody>
                                             </table>
@@ -129,6 +105,7 @@ if(!isset($_SESSION['id'])){
                                    </div>
                                 </div>
                             </div>
+                            <!--End of table comments-->
                         </div>
                     </div>
                 </div>

@@ -49,7 +49,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                             <div class="col-md-12">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h4 class="card-title">Trash Post</h4>
+                                        <h4 class="card-title"><i class='bx bx-trash' style='color:#ce1337'></i>Trash Post</h4>
                                         <hr />
                                         <div class="row">
                                             <div class="col-sm-12">
@@ -89,7 +89,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                                         <td><?php echo htmlentities($posts['title']);?></td>
                                                         <td><?php echo htmlentities($posts['category']);?></td>
                                                         <td><?php echo htmlentities($posts['subcategory']);?></td>
-                                                        <td><?php echo htmlentities($posts['status']);?></td>
+                                                        <td class="text-danger"><?php echo htmlentities($posts['status']);?></td>
                                                         <td><?php echo htmlentities($posts['created_at']);?></td>
                                                         <td><?php echo htmlentities($posts['updated_at']);?></td>
                                                         <td>

@@ -3,11 +3,12 @@ include (ROOT_PATH."/app/config/db.php");
 include (ROOT_PATH."/app/helpers/validateProfile.php");
 
 #User information in session
-$firstName = $_SESSION['firstName'];
-$lastName = $_SESSION['lastName'];
-$username = $_SESSION['username'];
-$email = $_SESSION['email'];
-$profileImage = $_SESSION['profileImage'];
+$id = '';
+$firstName = '';
+$lastName = '';
+$username = '';
+$email = '';
+$profileImage = '';
 $updated_at = '';
 
 #Table name for the user datbase
@@ -29,19 +30,6 @@ function sessionUpdateUser($user){
     $_SESSION['css_class'] = 'alert-success';
     $_SESSION['icon'] = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(30, 197, 111, 1);transform: ;msFilter:;">
     <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm-1.999 14.413-3.713-3.705L7.7 11.292l2.299 2.295 5.294-5.294 1.414 1.414-6.706 6.706z"></path></svg>';
-    header('location:'.BASE_ADMIN.'/profile.php');
-    exit();
-}
-
-#
-function sessionUser($user){
-    $_SESSION['id'] = $user['id'];
-    $_SESSION['firstName'] = $user['firstName'];
-    $_SESSION['lastName'] = $user['lastName'];
-    $_SESSION['username'] = $user['username'];
-    $_SESSION['email'] = $user['email'];
-    $_SESSION['profileImage'] = $user['profileImage'];
-    
     header('location:'.BASE_ADMIN.'/profile.php');
     exit();
 }
@@ -108,42 +96,29 @@ if(isset($_POST['uptProf-btn'])){
                 #The uniqid() function generates a unique ID based on the microtime
                 $newImgName = uniqid("IMG-", false)."-".$username.'.'.$imageEx_Lc; #Create unique id and insert the username in the image
                 $imagePath = ROOT_PATH.'../../app/upload/uploadProfile/'.$newImgName; #Get the image path
-
-                #Select the image
-                $profileImage =  selectOne($table, ['profileImage' => $imagePath]);
-
-                #Delete old profile image
-                $old_image_des = ROOT_PATH.'../../app/upload/uploadProfile/'.$profileImage; #Old path of profile image
-                if(unlink($old_image_des)){
-                    #Deleted recently
-                    move_uploaded_file($imageTmp, $imagePath); #Upload the image to the folder and database
+                $result = move_uploaded_file($imageTmp, $imagePath); #Upload the image to the folder and database
+                
+                #if image path moved to thumbnail directory
+                if($result){
+                    $_POST['profileImage'] = $newImgName;
                 }else{
-                    #Error or already deleted
-                    move_uploaded_file($imageTmp, $imagePath); #Upload the image to the folder and database
-                }
-
-                #Validate the user image already exists 
-                if(file_exists($newImgName)){
-                    $msg = "The uploaded image already exists";
-                    $css_class = "alert-warning";
-                    $icon = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(236, 243, 53, 1);transform: ;msFilter:;">
-                    <path d="M16.707 2.293A.996.996 0 0 0 16 2H8a.996.996 0 0 0-.707.293l-5 5A.996.996 0 0 0 2 8v8c0 .266.105.52.293.707l5 5A.996.996 0 0 0 8 22h8c.266 0 .52-.105.707-.293l5-5A.996.996 0 0 0 22 16V8a.996.996 0 0 0-.293-.707l-5-5zM13 17h-2v-2h2v2zm0-4h-2V7h2v6z"></path></svg>';
+                    array_push($errors, 'Failed to upload the Post image.');
                 }
 
                 #Update user account in the database
-                $query = "UPDATE users SET firstName=?, lastName=?, username=?, email=?, profileImage=?, updated_at=?
-                        WHERE id=?";
-                $stmt_profile = $conn->prepare($query);
-                $stmt_profile->execute([$firstName, $lastName, $username, $email, $newImgName, $updated_at, $id]);
+                $query_user = update($table, $id, $_POST);
+                #$query = "UPDATE users SET firstName=?, lastName=?, username=?, email=?, profileImage=?, updated_at=? WHERE id=?";
+                #$stmt_profile = $conn->prepare($query);
+                #$stmt_profile->execute([$firstName, $lastName, $username, $email, $newImgName, $updated_at, $id]);
 
                 #Select the user that has make account
                 $user = selectOne($table,['id' => $id]);
 
                 #validate the user information and profile image information when submitting the query to the database
-                if($stmt_profile)
+                if($user)
                 {
                     #Alert the user success and uploading the image to the database successfully
-                    sessionUpdateUser($stmt_profile);
+                    sessionUpdateUser($user);
                 }else
                 {
                     #Alert the user failed to upload and create account
@@ -177,10 +152,7 @@ if(isset($_POST['uptProf-btn'])){
         $updated_at = $_POST['updated_at'];
 
         #Alert Error message and direct again to register page
-        #$msg = "Something went wrong, please validate your username and email.";
-        #$msg2 = "Once no alert message of any user information requirements.";
-        #$msg3 = "Please upload your profile picture.";
-        $msg4 = "Something went wrong!, Profile Image is required.";
+        $msg = "Something went wrong!, Profile Image is required.";
         $css_class = "alert-danger";
         $icon = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(179, 18, 20, 1);transform: ;msFilter:;">
         <path d="M12.884 2.532c-.346-.654-1.422-.654-1.768 0l-9 17A.999.999 0 0 0 3 21h18a.998.998 0 0 0 .883-1.467L12.884 2.532zM13 18h-2v-2h2v2zm-2-4V9h2l.001 5H11z"></path></svg>'; 
