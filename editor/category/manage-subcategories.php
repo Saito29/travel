@@ -52,7 +52,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                         <h4 class="card-title"><i class='bx bxs-box' style='color:#e915ef'></i>Manage Sub-Categories</h4>
                                         <hr />
                                         <div class="row">
-                                            <div class="col-sm-6">
+                                            <div class="col-sm-12">
                                                 <!--Alert start here -->
                                                 <?php include(ROOT_PATH."/app/helpers/updateAlert.php")?>
                                                  <!--Alert end here -->

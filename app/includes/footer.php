@@ -19,7 +19,7 @@
                         </div>
                         <div class="social">
                             <a href="#facebook" target="_blank"><i class='bx bxl-facebook-circle'></i></a>
-                            <a href="#github" target="_blank"><i class='bx bxl-instagram'></i></a>
+                            <a href="#instagram" target="_blank"><i class='bx bxl-instagram-alt'></i></a>
                             <a href="#tiktok" target="_blank"><i class='bx bxl-tiktok'></i></a>
                             <a href="#youtube" target="_blank"><i class='bx bxl-youtube'></i></a>
                         </div>

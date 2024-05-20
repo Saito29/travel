@@ -89,6 +89,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                                 <?php else:?>
                                                 <input type="text" name="contact" class="form-control" placeholder="Contact No." value="<?php echo htmlentities($contact)?>">
                                                 <?php endif;?>
+                                                <p class="text-warning-emphasis fs-6">(optional)</p>
                                             </div>
                                             <div class="mb-1 col-md-6 form-group">
                                                 <label for="email" class="form-label"><i class='bx bxl-gmail'></i>Email Contact:</label>
@@ -97,6 +98,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                                 <?php else:?>
                                                 <input type="email" name="email" class="form-control" placeholder="Email Contact" value="<?php echo htmlentities($email)?>">
                                                 <?php endif;?>
+                                                <p class="text-warning-emphasis fs-6">(optional)</p>
                                             </div>
                                             <div class="mb-2 col-md-6 form-group">
                                                 <button type="submit" class="btn btn-outline-primary" name="create-btn">Post publish</button>

@@ -84,8 +84,12 @@ if(isset($_SESSION['id'])){
                         </div>
                         <div class="col-md-6 col-sm-6 mb-3">
                             <label class="form-label">Select user type:</label>
-                            <select name="role" class="form-select form-select-sm bg-body-secondary">
-                                <option value="<?php echo $role?>" selected>Choose type of user</option>
+                            <select name="role" class="form-select form-select-sm">
+                                <?php if(!isset($_POST['role'])):?>
+                                <option value="<?php echo $role;?>" selected>Choose type of user</option>
+                                <?php else:?>
+                                <option value="<?php echo $role;?>" selected>User type: <?php echo $role;?></option>
+                                <?php endif;?>
                                 <option value="editor">Editor User</option>
                                 <option value="user">Guest User</option>
                             </select>

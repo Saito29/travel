@@ -1,6 +1,6 @@
 <?php 
 include("path.php");
-include(ROOT_PATH."/app/config/db.php");
+include(ROOT_PATH."/app/controllers/comment.php");
 ?>
 
 <!DOCTYPE html>
@@ -12,20 +12,14 @@ include(ROOT_PATH."/app/config/db.php");
     <meta name="author" content="Saito">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Basic Fundamental SQL tutorial</title>
-
     <?php include(ROOT_PATH.'/app/includes/sg-css.php');?>
-
 </head>
 <body>
     <!--Header here-->
-    <?php
-        include (ROOT_PATH . "/app/includes/nav.php");
-    ?>
-
+    <?php include (ROOT_PATH . "/app/includes/nav.php");?>
     <main>
         <!--Body-->
         <section class="container-fluid clearfix section section__height mb-3">
-
             <!--Content Page Details-->
             <div class="wrapper">
                 <div class="row d-flex flex-grow-1">
@@ -73,32 +67,48 @@ include(ROOT_PATH."/app/config/db.php");
                                 <div class="card col-md-8 col-xl-8 col-sm-8 col-xxl-8 w-100 h-100 border-0">
                                     <div class="card-header bg-transparent border-success text-secondary fw-bold fs-5">Comments</div>
                                     <div class="card-body">
-                                        <?php if(!isset($_SESSION['id'], $_SESSION['username'], $_SESSION['email'])):?>
+                                        <?php include(ROOT_PATH.'/app/helpers/formAlert.php');?>
                                         <!--Comments required to identify user-->
-                                        <form action="#" method="post" name="Comment" class="row gx-2 gy-2 p-2" autocomplete="on" enctype="application/x-www-form-urlencoded">
+                                        <?php if(!isset($_SESSION['id'])):?>
+                                        <form action="single-page.php" method="post" name="Comment" class="row gx-2 gy-2 p-2" autocomplete="on" enctype="application/x-www-form-urlencoded">
+                                            <input type="hidden" name="id" value="<?php echo htmlentities($id)?>">
                                             <div class="mb-1 col-md-4 form-group w-50">
-                                                <label for="usName" class="form-label">Username:</label>
-                                                <input type="text" name="usName" placeholder="Username" value="" class="form-control" required>
+                                                <label for="username" class="form-label">Username:</label>
+                                                <?php if(!isset($_POST['username'])):?>
+                                                <input type="text" name="username" placeholder="Username" value="" class="form-control">
+                                                <?php else:?>
+                                                <input type="text" name="username" placeholder="Username" value="<?php echo htmlentities($username)?>" class="form-control">
+                                                <?php endif;?>
                                                 <p class="text-success">(required)</p>
                                             </div>
                                             <div class="mb-1 col-md-4 form-group w-50">
-                                                <label for="emailAdd" class="form-label">Email:</label>
-                                                <input type="email" name="emailAdd" placeholder="Email:" value="" class="form-control">
+                                                <label for="email" class="form-label">Email Address:</label>
+                                                <?php if(!isset($_POST['email'])):?>
+                                                <input type="email" name="email" placeholder="Email" value="" class="form-control">
+                                                <?php else:?>
+                                                <input type="email" name="email" placeholder="Email" value="<?php echo htmlentities($email)?>" class="form-control">
+                                                <?php endif;?>
                                                 <p class="text-warning-emphasis">(optional)</p>
                                             </div>
                                             <div class="mb-1 col-md-8 form-group w-100">
                                                 <label for="comments" class="form-label">Comment:</label>
-                                                <textarea name="comment" id="summernote" class="form-control" required></textarea>
+                                                <?php if(!isset($_POST['comment'])):?>
+                                                <textarea name="comment" id="editor" class="form-control"></textarea>
+                                                <?php else:?>
+                                                <textarea name="comment" id="editor" class="form-control"><?php echo htmlentities($comment)?></textarea>
+                                                <?php endif;?>
                                             </div>
                                             <div class="mb-1 col-md-4 form-group">
                                                 <button type="submit" name="submitComment" class="btn read-more">Post Comment</button>
                                             </div>
+                                        </form>
                                             <?php else:?>
-                                            <input type="hidden" name="username" value="<?php echo $_SESSION['username']?>">
-                                            <input type="hidden" name="email" value="<?php echo $_SESSION['email']?>">
+                                        <form action="single-page.php" method="post" class="row gx-2 gy-2 p-2" autocomplete="on" enctype="application/x-www-form-urlencoded">
+                                            <input type="hidden" name="username" value="<?php echo htmlentities($_SESSION['username'])?>">
+                                            <input type="hidden" name="email" value="<?php echo htmlentities($_SESSION['email'])?>">
                                             <div class="mb-3 col-md-8 form-group w-100">
                                                 <label for="comments" class="form-label">Comment:</label>
-                                                <textarea name="comment" id="summernote" class="form-control" required></textarea>
+                                                <textarea name="comment" id="editor" class="form-control" required></textarea>
                                             </div>
                                             <div class="mb-1 col-md-4 form-group">
                                                 <button type="submit" name="submitComment" class="btn read-more">Post comment</button>
@@ -108,24 +118,29 @@ include(ROOT_PATH."/app/config/db.php");
                                     </div>
 
                                     <!--Post comment here-->
-                                    <?php if(isset($_SESSION['id'])):?>
+                                    <?php
+                                        $comment = mysqli_query($conn, "SELECT * FROM comments WHERE status = 'approved'");
+                                    ?>
+                                    <?php while($comment_query = mysqli_fetch_assoc($comment)):?>
                                     <div class="row mt-5 mb-3 my-3 py-2 px-4 col-md-8 w-100 h-100">
                                         <div class="d-flex justify-content-center">
                                             <div class="card w-100 h-100 bg-transparent border-0">
                                                 <div class="card-body">
-                                                    <img src="<?php echo BASE_URL.'/app/upload/uploadProfile/'.$_SESSION['profileImage']?>" alt="User_profile" class="rounded-circle" style="height: 44px; width: 44px;" width="44" height="44" >
+                                                    <?php if(isset($_SESSION['id'])):?>
+                                                    <img src="<?php echo BASE_URL.'/app/upload/uploadProfile/'.htmlentities($_SESSION['profileImage'])?>" alt="User_profile" class="rounded-circle" style="height: 44px; width: 44px;" width="44" height="44" >
+                                                    <?php else:?>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;"><path d="M12 2C6.579 2 2 6.579 2 12s4.579 10 10 10 10-4.579 10-10S17.421 2 12 2zm0 5c1.727 0 3 1.272 3 3s-1.273 3-3 3c-1.726 0-3-1.272-3-3s1.274-3 3-3zm-5.106 9.772c.897-1.32 2.393-2.2 4.106-2.2h2c1.714 0 3.209.88 4.106 2.2C15.828 18.14 14.015 19 12 19s-3.828-.86-5.106-2.228z"></path></svg>
+                                                    <?php endif;?>
                                                     <div class="card-text" style="text-align: justify;">
-                                                        <h5 class="fw-bold text-secondary"><?php echo $_SESSION['username']?></h5>
-                                                        <p class="small text-muted">March 24, 2024</p>
-                                                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                                                        A, voluptatibus commodi repudiandae maxime nulla magnam reiciendis ratione nesciunt possimus beatae inventore doloremque 
-                                                        animi minus temporibus molestiae deleniti adipisci suscipit modi!</p>
+                                                        <h5 class="fw-bold text-secondary"><?php echo htmlentities($comment_query['username'])?></h5>
+                                                        <p class="small text-muted"><?php echo htmlentities(date('M/d/Y', $comment_query['username']))?></p>
+                                                        <p><?php echo htmlentities($comment_query['comment'])?></p>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <?php endif;?>
+                                    <?php endwhile;?>
                                     <!--End of comment here-->
                                 </div>
                             </div>
@@ -148,24 +163,17 @@ include(ROOT_PATH."/app/config/db.php");
                         <div class="card h-auto w-100">
                             <h5 class="card-header bg-transparent">Popular Post</h5>
                             <div class="card-body">
+                                <?php
+                                    $postImage = mysqli_query($conn, "SELECT * FROM post WHERE is_Active = 1 LIMIT 5");
+                                ?>
+                                <?php while($post_query = mysqli_fetch_assoc($postImage)):?>
                                 <div class="card mb-2 border-0">
-                                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/bf/Quezon_Provincial_Capitol_right_side_view_(Quezon_Avenue,_Lucena,_Quezon;_10-09-2022).jpg" class="card-img-top" alt="Thumbnail_post">
+                                    <img src="<?php echo BASE_URL.'/app/upload/uploadThumbnail/'?><?php echo htmlentities($post_query['image'])?>" class="card-img-top w-50" alt="Thumbnail_post" width="75" height="75">
                                     <div class="card-body">
-                                        <a class="card-text" href="<?php echo BASE_URL.'/single-page.php'?>"><p>Lucena Park</p></a>    
+                                        <a class="card-text" href="<?php echo BASE_URL.'/single-page.php?psID='?><?php echo htmlentities($post_query['id'])?>"><p><?php echo htmlentities($post_query['title'])?></p></a>    
                                     </div>
                                 </div>
-                                <div class="card mb-2 border-0">
-                                    <img src="https://jangotshome.files.wordpress.com/2018/11/cuasay.jpg?w=1100" class="card-img-top" alt="Thumbnail_post">
-                                    <div class="card-body">
-                                        <a class="card-text" href="<?php echo BASE_URL.'/single-page.php'?>"><p>Pinagbanderahan Atimonan, Quezon</p></a>
-                                    </div>
-                                </div>
-                                <div class="card mb-2 border-0">
-                                    <img src="https://www.tutorialspoint.com/cplusplus/images/cpp-mini-logo.jpg" class="card-img-top" alt="Thumbnail_post">
-                                    <div class="card-body">
-                                        <a class="card-text" href="<?php echo BASE_URL.'/single-page.php'?>"><p>C++ Programming Tutorials</p></a>
-                                    </div>
-                                </div>
+                                <?php endwhile;?>
                             </div>
                         </div>
                         
@@ -173,15 +181,12 @@ include(ROOT_PATH."/app/config/db.php");
                         <div class="card mt-3 clearfix" id="category">
                             <h5 class="card-header">Recent Blog Post</h5>
                             <ul class="list-group list-group-flush px-2 py-3">
-                                <li class="list-group-item"><a href="<?php echo BASE_URL.'/single-page.php'?>" class="text-success px-2">How to Create a connection for database</a></li>
-                                <li class="list-group-item"><a href="<?php echo BASE_URL.'/single-page.php'?>" class="text-success px-2">Basic Fundamentals of C++</a></li>
-                                <li class="list-group-item"><a href="<?php echo BASE_URL.'/single-page.php'?>" class="text-success px-2">Educational gaming  for kids</a></li>
-                                <li class="list-group-item"><a href="<?php echo BASE_URL.'/single-page.php'?>" class="text-success px-2">Effect of games on students learning progress</a></li>
-                                <li class="list-group-item"><a href="<?php echo BASE_URL.'/single-page.php'?>" class="text-success px-2">How to build a website using WordPress</a></li>
-                                <li class="list-group-item"><a href="<?php echo BASE_URL.'/single-page.php'?>" class="text-success px-2">Hiking in Pinagbanderahan Atimonan, Quezon</a></li>
-                                <li class="list-group-item"><a href="<?php echo BASE_URL.'/single-page.php'?>" class="text-success px-2">Beach Resort in Atimonan, Quezon</a></li>
-                                <li class="list-group-item"><a href="<?php echo BASE_URL.'/single-page.php'?>" class="text-success px-2">Lucena Municipality Capitolyo</a></li>
-                                <li class="list-group-item"><a href="<?php echo BASE_URL.'/single-page.php'?>" class="text-success px-2">Lucena Park Atimonan, Quezon</a></li>
+                                <?php
+                                    $postTitle = mysqli_query($conn, "SELECT * FROM `post` WHERE is_Active = 1 LIMIT 10");
+                                ?>
+                                <?php while($title = mysqli_fetch_array($postTitle)):?>
+                                <li class="list-group-item"><a href="<?php echo BASE_URL.'/single-page.php?psID='?><?php echo htmlentities($title['id'])?>" class="text-success px-2"><?php echo htmlentities($title['title'])?></a></li>
+                                <?php endwhile;?>
                             </ul>
                         </div>
                         <!--============= End of Sidebar category ================-->
@@ -191,12 +196,8 @@ include(ROOT_PATH."/app/config/db.php");
             </div>
         </section>
     <!--Footer-->
-    <?php
-        include (ROOT_PATH . "/app/includes/footer.php");
-    ?>        
+    <?php include (ROOT_PATH . "/app/includes/footer.php");?>        
 </main>
-
 <?php include(ROOT_PATH.'/app/includes/scripts.php');?>
-
 </body>
 </html>

@@ -66,26 +66,27 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                             </div>
                                             <h5 class="card-title">Social Link:</h5>
                                             <div class="mb-2 col-sm-6">
-                                                <label for="facebookLinks" class="form-label"><i class='bx bxl-facebook-circle'></i>Facebook Link:</label>
+                                                <label for="facebookLinks" class="form-label"><i class='bx bxl-facebook-circle'></i>Facebook:</label>
                                                 <input type="url" class="form-control" name="facebookLinks" placeholder="Facebook link" >
                                             </div>
                                             <div class="mb-2 col-sm-6">
-                                                <label for="githubLinks" class="form-label"><i class='bx bxl-github'></i>GitHub Link:</label>
-                                                <input type="url" class="form-control" name="githubLinks" placeholder="Github link" >
+                                                <label for="githubLinks" class="form-label"><i class='bx bxl-instagram-alt'></i>Instagram:</label>
+                                                <input type="url" class="form-control" name="instagram" placeholder="Instagram link" >
                                             </div>
                                             <div class="mb-2 col-sm-6">
-                                                <label for="tiktokLinks" class="form-label"><i class='bx bxl-tiktok'></i>Tiktok Link:</label>
+                                                <label for="tiktokLinks" class="form-label"><i class='bx bxl-tiktok'></i>Tiktok:</label>
                                                 <input type="url" class="form-control" name="tiktokLinks" placeholder="Tiktok link" >
                                             </div>
                                             <div class="mb-2 col-sm-6">
-                                                <label for="youtubeLinks" class="form-label"><i class='bx bxl-youtube'></i>Youtube Link:</label>
+                                                <label for="youtubeLinks" class="form-label"><i class='bx bxl-youtube'></i>Youtube:</label>
                                                 <input type="url" class="form-control" name="youtubeLinks" placeholder="Youtube link" >
                                             </div>
                                             <div class="mb-2 col-sm-8">
                                                 <button type="submit" class="btn btn-outline-success px-3 py-2 text-center" name="updateSettings">Update</button>
-                                                <a href="<?php echo BASE_ADMIN.'/settings/general-setting.php'?>" class="text-primary-emphasis px-3 py-2">Return</a>
+                                                <button type="submit" class="btn btn-outline-primary px-3 py-2 text-center" name="createSettings">Post</button>
                                             </div>
                                         </form>
+                                        <a href="<?php echo BASE_ADMIN.'/settings/general-setting.php'?>" class="text-primary-emphasis px-3 py-2">Return</a>
                                     </div>
                                 </div>
                             </div>

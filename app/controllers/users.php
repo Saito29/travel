@@ -3,6 +3,7 @@ include(ROOT_PATH ."/app/config/db.php");
 include(ROOT_PATH ."/app/helpers/validateUser.php");
 
 #empty information details of user information
+$id = '';
 $role = '';
 $firstName = '';
 $lastName = '';
@@ -58,7 +59,6 @@ function sessionDeletedCategory($user){
 $user = selectAll($table);
 
 #This is for Register user information
-#If user click the button create and submit a profile image
 if (isset($_POST['addUser-btn']) && isset($_FILES['profileImage']))
 {   
     #Show user information and profile image details
@@ -91,7 +91,7 @@ if (isset($_POST['addUser-btn']) && isset($_FILES['profileImage']))
     $errors = validateUser($_POST);
 
     #Function for image
-    if(empty($_FILES['image']['name'])){
+    if(empty($_FILES['profileImage']['name'])){
         array_push($errors, "User image is required.");
     }
 
@@ -118,25 +118,25 @@ if (isset($_POST['addUser-btn']) && isset($_FILES['profileImage']))
                 #The uniqid() function generates a unique ID based on the microtime
                 $newImgName = uniqid("IMG-", false).'-'.$username.'.'.$imageEx_Lc; #Create unique id and insert the username in the image
                 $imagePath = ROOT_PATH.'../../app/upload/uploadProfile/'.$newImgName; #Get the image path
-                move_uploaded_file($imageTmp, $imagePath); #Upload the image to the folder and database
+                $result = move_uploaded_file($imageTmp, $imagePath); #Upload the image to the folder and database
 
-                #Validate the user image already exists 
-                if(file_exists($newImgName)){
-                    $msg = "The uploaded image already exists";
-                    $css_class = "alert-warning";
-                    $icon = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(236, 243, 53, 1);transform: ;msFilter:;">
-                    <path d="M16.707 2.293A.996.996 0 0 0 16 2H8a.996.996 0 0 0-.707.293l-5 5A.996.996 0 0 0 2 8v8c0 .266.105.52.293.707l5 5A.996.996 0 0 0 8 22h8c.266 0 .52-.105.707-.293l5-5A.996.996 0 0 0 22 16V8a.996.996 0 0 0-.293-.707l-5-5zM13 17h-2v-2h2v2zm0-4h-2V7h2v6z"></path></svg>';
+                #if image path moved to thumbnail directory
+                if($result){
+                    $_POST['profileImage'] = $newImgName;
+                }else{
+                    array_push($errors, 'Failed to upload the Post image.');
                 }
 
                 #Insert the image into the database alongside the user information using MYSQLI
-                $query = "INSERT INTO users (role, firstName, lastName, username, email, password, profileImage, created_at) VALUES ('$role','$firstName', '$lastName','$username', '$email', '$password', '$newImgName', '$created_at')";
-                $result = mysqli_query($conn, $query);
+                $query_user = create($table, $_POST);
+                #$query = "INSERT INTO users (role, firstName, lastName, username, email, password, profileImage, created_at) VALUES ('$role','$firstName', '$lastName','$username', '$email', '$password', '$newImgName', '$created_at')";
+                #$result = mysqli_query($conn, $query);
 
                 #Select the user that has make account
-                $user = selectOne($table,['id' => $result]);
+                $users = selectOne($table,['id' => $query_user]);
 
                 #validate the user information and profile image information when submitting the query to the database
-                if($result)
+                if($users)
                 {
                     #Alert the user success and uploading the image to the database successfully
                     $msg = "Account Successfully created.";
@@ -194,10 +194,7 @@ if (isset($_POST['addUser-btn']) && isset($_FILES['profileImage']))
         $created_at = $_POST['created_at'];
 
         #Alert Error message and direct again to register page
-        #$msg = "Something went wrong, please validate your username and email.";
-        #$msg2 = "Once no alert message of any user information requirements.";
-        #$msg3 = "Please upload your profile picture.";
-        $msg4 = "Something went wrong!, Try again.";
+        $msg = "Something went wrong!, Try again.";
         $css_class = "alert-danger";
         $icon = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(179, 18, 20, 1);transform: ;msFilter:;">
         <path d="M12.884 2.532c-.346-.654-1.422-.654-1.768 0l-9 17A.999.999 0 0 0 3 21h18a.998.998 0 0 0 .883-1.467L12.884 2.532zM13 18h-2v-2h2v2zm-2-4V9h2l.001 5H11z"></path></svg>'; 
@@ -251,7 +248,7 @@ if(isset($_POST['updateUser-btn'])){
     $errors = validateUpdateUser($_POST);
 
     #Function for image
-    if(empty($_FILES['image']['name'])){
+    if(empty($_FILES['profileImage']['name'])){
         array_push($errors, "User image is required.");
     }
 
@@ -278,15 +275,13 @@ if(isset($_POST['updateUser-btn'])){
                 #The uniqid() function generates a unique ID based on the microtime
                 $newImgName = uniqid("IMG-", false)."-".$username.'.'.$imageEx_Lc; #Create unique id and insert the username in the image
                 $imagePath = ROOT_PATH.'../../app/upload/uploadProfile/'.$newImgName; #Get the image path
-
-                #Delete old profile image
-                $old_image_des = ROOT_PATH.'../../app/upload/uploadProfile/'.$profileImage; #Old path of profile image
-                if(unlink($old_image_des)){
-                    #Deleted recently
-                    move_uploaded_file($imageTmp, $imagePath); #Upload the image to the folder and database
+                $result = move_uploaded_file($imageTmp, $imagePath); #Upload the image to the folder and database
+                
+                #if image path moved to thumbnail directory
+                if($result){
+                    $_POST['profileImage'] = $newImgName;
                 }else{
-                    #Error or already deleted
-                    move_uploaded_file($imageTmp, $imagePath); #Upload the image to the folder and database
+                    array_push($errors, 'Failed to upload the Post image.');
                 }
 
                 #Validate the user image already exists 
@@ -298,21 +293,22 @@ if(isset($_POST['updateUser-btn'])){
                 }
 
                 #Update user account in the database
-                $query = "UPDATE users SET role=?, firstName=?, lastName=?, username=?, email=?, profileImage=?, updated_at=?
-                        WHERE id=?";
-                $stmt_user = $conn->prepare($query);
-                $stmt_user->execute([$role, $firstName, $lastName, $username, $email, $newImgName, $updated_at, $id]);
+                $query_user = update($table, $id, $_POST);
+                #$query = "UPDATE users SET role=?, firstName=?, lastName=?, username=?, email=?, profileImage=?, updated_at=? WHERE id=?";
+                #$stmt_user = $conn->prepare($query);
+                #$stmt_user->execute([$role, $firstName, $lastName, $username, $email, $newImgName, $updated_at, $id]);
 
                 #Select the user that has make account
-                $user = selectOne($table,['id' => $id]);
+                $users = selectOne($table,['id' => $id]);
 
                 #validate the user information and profile image information when submitting the query to the database
-                if($stmt_user)
+                if($users)
                 {
                     #Alert the user success and uploading the image to the database successfully
-                    sessionUpdateUser($stmt_user);
+                    sessionUpdateUser($users);
 
                     #Once successfuly created empty every field
+                    $id = '';
                     $role = '';
                     $firstName = '';
                     $lastName = '';
@@ -324,7 +320,7 @@ if(isset($_POST['updateUser-btn'])){
                 }else
                 {
                     #Alert the user failed to upload and create account
-                    sessionFailedUser($stmt_user);
+                    sessionFailedUser($users);
                 }
             } else
             {

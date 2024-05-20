@@ -133,7 +133,7 @@ if (isset($_POST['addUser-btn']) && isset($_FILES['profileImage']))
                 #$result = mysqli_query($conn, $query);
 
                 #Select the user that has make account
-                $users = selectOne($table,['id' => $result]);
+                $users = selectOne($table,['id' => $query_user]);
 
                 #validate the user information and profile image information when submitting the query to the database
                 if($users)

@@ -25,5 +25,14 @@
     <!--Pagination JS-->
     <link rel="stylesheet" href="<?php echo BASE_URL.'/asset/vendor/Pagination/pagination.css'?>">
 
-    <!--Summernote BS4-->
-    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+    <style type="text/css">
+        .ck-editor__editable[role="textbox"] {
+            /* Editing area */
+            min-height: 200px;
+        }
+        .ck-content .image {
+            /* Block images */
+            max-width: 80%;
+            margin: 20px auto;
+        }
+    </style>

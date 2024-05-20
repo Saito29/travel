@@ -209,9 +209,12 @@ include(ROOT_PATH."/app/controllers/category.php");
                                 <h4 class="card-header bg-transparent text-success">Categories</h4>
                                 <div class="card-body border-success">
                                     <ul class="list-group list-group-flush">
-                                    <?php foreach($category as $key => $categories):?>
-                                        <li class="list-group-item list-group-flush"><a href="#"><?php echo $categories['categName'];?></a></li>
-                                    <?php endforeach;?>
+                                    <?php 
+                                        $category_query = mysqli_query($conn, 'SELECT * FROM category WHERE Is_Active = 1 ORDER BY categName ASC');  
+                                    ?>
+                                    <?php while($categories = mysqli_fetch_array($category_query)):?>
+                                        <li class="list-group-item list-group-flush"><a href="#"><?php echo htmlentities($categories['categName']);?></a></li>
+                                    <?php endwhile;?>
                                     </ul>
                                 </div>
                             </div>

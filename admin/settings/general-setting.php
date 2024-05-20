@@ -62,23 +62,23 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                             </div>
                                             <div class="mb-2 col-sm-6">
                                                 <label for="systemURL" class="form-label"><i class='bx bx-server'></i>Website URL</label>
-                                                <input type="url" class="form-control" name="systemURL" placeholder="System URL (not recommend to update)">
+                                                <input type="url" class="form-control" name="systemURL" placeholder="System URL (not recommend to update)" disabled>
                                             </div>
                                             <h5 class="card-title">Social Link:</h5>
                                             <div class="mb-2 col-sm-6">
-                                                <label for="facebookLinks" class="form-label"><i class='bx bxl-facebook-circle'></i>Facebook Link:</label>
+                                                <label for="facebookLinks" class="form-label"><i class='bx bxl-facebook-circle'></i>Facebook:</label>
                                                 <input type="url" class="form-control" name="facebookLinks" placeholder="Facebook link" disabled>
                                             </div>
                                             <div class="mb-2 col-sm-6">
-                                                <label for="githubLinks" class="form-label"><i class='bx bxl-github'></i>GitHub Link:</label>
-                                                <input type="url" class="form-control" name="githubLinks" placeholder="Github link" disabled>
+                                                <label for="githubLinks" class="form-label"><i class='bx bxl-instagram-alt'></i>Instagram:</label>
+                                                <input type="url" class="form-control" name="instagram" placeholder="Instagram link" disabled>
                                             </div>
                                             <div class="mb-2 col-sm-6">
-                                                <label for="tiktokLinks" class="form-label"><i class='bx bxl-tiktok'></i>Tiktok Link:</label>
+                                                <label for="tiktokLinks" class="form-label"><i class='bx bxl-tiktok'></i>Tiktok:</label>
                                                 <input type="url" class="form-control" name="tiktokLinks" placeholder="Tiktok link" disabled>
                                             </div>
                                             <div class="mb-2 col-sm-6">
-                                                <label for="youtubeLinks" class="form-label"><i class='bx bxl-youtube'></i>Youtube Link:</label>
+                                                <label for="youtubeLinks" class="form-label"><i class='bx bxl-youtube'></i>Youtube:</label>
                                                 <input type="url" class="form-control" name="youtubeLinks" placeholder="Youtube link" disabled>
                                             </div>
                                             <div class="mb-2 col-sm-8">
