@@ -17,9 +17,9 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=7">
-    <meta name="description" content="Travel Settings">
+    <meta name="description" content="Travel Link">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Travel | General Settings</title>
+    <title>Travel | Edit Link</title>
     <?php include(ROOT_PATH."/app/includes/header.php");?>
 </head>
 <body>
@@ -33,11 +33,11 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
             <main class="content px-3 py-4">
                 <div class="container-fluid mb-2">
                     <div class="d-flex justify-content-between  px-2 py-2" aria-label="breadcrumb">
-                        <h3 class="fw-bold fs-4 mb-3">General Settings</h3>
+                        <h3 class="fw-bold fs-4 mb-3">Update Link</h3>
                         <ol class="breadcrumb p-0 m-0 ">
                             <li class="breadcrumb-item"><a href="#">Travel</a></li>
                             <li class="breadcrumb-item"><a href="#"><?php echo htmlentities($_SESSION['role'])?></a></li>
-                            <li class="breadcrumb-item active" aria-current="page">General Settings</li>
+                            <li class="breadcrumb-item active" aria-current="page">Update Settings</li>
                         </ol>
                     </div>
                 </div>
@@ -47,43 +47,54 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                             <div class="col-md-12">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h4 class="card-title"><i class='bx bx-cog'></i>Website Settings</h4>
+                                        <h4 class="card-title"><i class='bx bx-cog'></i>Website Links</h4>
                                         <hr />
-                                        <form action="#" class="row gx-2 gy-3" name="editSystem" method="post" enctype="multipart/form-data">
+                                        <?php include(ROOT_PATH.'/app/helpers/formAlert.php');?>
+                                        <?php include(ROOT_PATH.'/app/helpers/updateAlert.php');?>
+                                        <form action="edit-settings.php" class="row gx-2 gy-3" name="editSystem" method="post" enctype="multipart/form-data">
+                                            <input type="hidden" name="id" value="<?php echo htmlentities($id)?>">
                                             <div class="mb-2 col-sm-3">                                                
-                                                <label for="featureLogoFavicon" class="form-label">Logo Favicon:</label>
-                                                <input type="file" class="d-none" name="featureLogoFavicon" onchange="displayImage(this)" id="featureLogoFavicon">
-                                                <img src="<?php echo BASE_ADMIN.'/asset/images/profile/placeholder.webp'?>" onclick="triggerClick()" id="logoFavIcon" class="d-block border" alt="logoFavIcon" style="cursor:pointer" width="75">
+                                                <label for="favicon" class="form-label">Logo Favicon:</label>
+                                                <input type="file" class="d-none" name="favicon" onchange="displayImage(this)" id="featureLogoFavicon">
+                                                <?php if(!isset($_POST['favicoon'])):?>
+                                                <img src="<?php echo BASE_URL.'/app/upload/uploadSettingURL/uploadFavicon/'?><?php echo htmlentities($favicon)?>" onclick="triggerClick()" id="logoFavIcon" class="d-block rounded-circle" alt="logoFavIcon" style="cursor:pointer;" height="85" width="85">
+                                                <?php else:?>
+                                                <img src="<?php echo BASE_ADMIN.'/asset/images/profile/placeholder.webp'?>" onclick="triggerClick()" id="logoFavIcon" class="d-block rounded-circle" alt="logoFavIcon" style="cursor:pointer;" height="85" width="85">
+                                                <?php endif;?>
                                             </div>
                                             <div class="mb-2 col-sm-3">
-                                                <label for="featureSystemLogo" class="form-label">Website Logo:</label>
-                                                <input type="file" class="d-none" name="featureSystemLogo" onchange="displaySystem(this)" id="featureSystemLogo">
-                                                <img src="<?php echo BASE_ADMIN.'/asset/images/profile/placeholder.webp'?>" onclick="systemClick()" id="systemLogo" class="d-block border" alt="logoFavIcon" style="cursor:pointer" width="75">
+                                                <label for="logo" class="form-label">Website Logo:</label>
+                                                <input type="file" class="d-none" name="logo" onchange="displaySystem(this)" id="featureSystemLogo">
+                                                <?php if(!isset($_POST['logo'])):?>
+                                                <img src="<?php echo BASE_URL.'/app/upload/uploadSettingURL/uploadLogo/'?><?php echo htmlentities($logo)?>" onclick="systemClick()" id="systemLogo" class="d-block rounded-circle" alt="logoFavIcon" style="cursor:pointer" height="85" width="85">
+                                                <?php else:?>
+                                                <img src="<?php echo BASE_ADMIN.'/asset/images/profile/placeholder.webp'?>" onclick="systemClick()" id="systemLogo" class="d-block rounded-circle" alt="logoFavIcon" style="cursor:pointer" height="85" width="85">
+                                                <?php endif;?>
                                             </div>
                                             <div class="mb-2 col-sm-6">
-                                                <label for="systemURL" class="form-label"><i class='bx bx-server'></i>Website URL</label>
-                                                <input type="url" class="form-control" name="systemURL" placeholder="System URL (not recommend to update)">
+                                                <label for="url" class="form-label"><i class='bx bx-server'></i>Website URL</label>
+                                                <input type="url" class="form-control" name="url" placeholder="System URL (not recommend to update)" value="<?php echo urldecode($url)?>">
                                             </div>
                                             <h5 class="card-title">Social Link:</h5>
                                             <div class="mb-2 col-sm-6">
-                                                <label for="facebookLinks" class="form-label"><i class='bx bxl-facebook-circle'></i>Facebook:</label>
-                                                <input type="url" class="form-control" name="facebookLinks" placeholder="Facebook link" >
+                                                <label for="fb" class="form-label"><i class='bx bxl-facebook-circle'></i>Facebook:</label>
+                                                <input type="url" class="form-control" name="fb" placeholder="Facebook link" value="<?php echo urldecode($fb)?>">
                                             </div>
                                             <div class="mb-2 col-sm-6">
-                                                <label for="githubLinks" class="form-label"><i class='bx bxl-instagram-alt'></i>Instagram:</label>
-                                                <input type="url" class="form-control" name="instagram" placeholder="Instagram link" >
+                                                <label for="instagram" class="form-label"><i class='bx bxl-instagram-alt'></i>Instagram:</label>
+                                                <input type="url" class="form-control" name="instagram" placeholder="Instagram link" value="<?php echo urldecode($instagram)?>">
                                             </div>
                                             <div class="mb-2 col-sm-6">
-                                                <label for="tiktokLinks" class="form-label"><i class='bx bxl-tiktok'></i>Tiktok:</label>
-                                                <input type="url" class="form-control" name="tiktokLinks" placeholder="Tiktok link" >
+                                                <label for="tiktok" class="form-label"><i class='bx bxl-tiktok'></i>Tiktok:</label>
+                                                <input type="url" class="form-control" name="tiktok" placeholder="Tiktok link" <?php echo urldecode($tiktok)?>>
                                             </div>
                                             <div class="mb-2 col-sm-6">
-                                                <label for="youtubeLinks" class="form-label"><i class='bx bxl-youtube'></i>Youtube:</label>
-                                                <input type="url" class="form-control" name="youtubeLinks" placeholder="Youtube link" >
+                                                <label for="youtube" class="form-label"><i class='bx bxl-youtube'></i>Youtube:</label>
+                                                <input type="url" class="form-control" name="youtube" placeholder="Youtube link" value="<?php echo urldecode($youtube)?>">
                                             </div>
                                             <div class="mb-2 col-sm-8">
                                                 <button type="submit" class="btn btn-outline-success px-3 py-2 text-center" name="updateSettings">Update</button>
-                                                <button type="submit" class="btn btn-outline-primary px-3 py-2 text-center" name="createSettings">Post</button>
+                                                <!--<button type="submit" class="btn btn-outline-primary px-3 py-2 text-center" name="createSettings">Post</button>-->
                                             </div>
                                         </form>
                                         <a href="<?php echo BASE_ADMIN.'/settings/general-setting.php'?>" class="text-primary-emphasis px-3 py-2">Return</a>

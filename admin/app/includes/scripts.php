@@ -17,8 +17,7 @@
 <script src="<?php echo BASE_ADMIN.'/asset/js/script.js'?>"></script>
 
 <!--CKEditor 5 -->
-<script src="https://cdn.ckeditor.com/ckeditor5/41.4.2/classic/ckeditor.js"></script>
-
+<script src="https://cdn.ckeditor.com/ckeditor5/41.3.1/super-build/ckeditor.js"></script>
 <script>
 CKEDITOR.ClassicEditor.create(document.getElementById("editor"), {
     toolbar: 

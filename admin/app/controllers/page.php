@@ -70,7 +70,7 @@ if(isset($_POST['create-btn'])){
     $email = filter_var(trim($_POST['email']), FILTER_SANITIZE_EMAIL);
 
     #Date format
-    $created_at = date('M/d/Y', strtotime($_POST['created_at']));
+    $created_at = $_POST['created_at'];
 
     #Array of errors
     $errors = validatePage($_POST);
@@ -107,7 +107,7 @@ if(isset($_POST['create-btn'])){
 #get the id and the data submitted
 if(isset($_GET['pg_Id'])){
     #Select the id from the database table
-    $page = selectOne($tblPage, ['id' => $id]);
+    $page = selectOne($tblPage, ['id' => $_GET['pg_Id']]);
 
     #Set the data
     $id = $page['id'];
@@ -131,7 +131,7 @@ if(isset($_POST['update-btn'])){
     $details = htmlentities($_POST['details']);
 
     #Date format
-    $updated_at = date('M/d/Y', strtotime($_POST['updated_at']));
+    $updated_at = $_POST['updated_at'];
 
     #errors array
     $errors = validatePageUpt($_POST);
@@ -157,7 +157,7 @@ if(isset($_POST['update-btn'])){
         $details = htmlentities($_POST['details']);
         $contact = htmlentities($_POST['contact']);
         $email = htmlentities($_POST['email']);
-        $updated_at = date('M/d/Y', strtotime($_POST['_updated_at']));
+        $updated_at = $_POST['updated_at'];
 
         #Session failed to update
         sessionPageFailed($page_query);

@@ -221,7 +221,7 @@ if(isset($_POST['updateSettings'])){
     #Url webiste
     $url = mysqli_real_escape_string($conn, urlencode($_POST['url'])); #url website 
     $fb = mysqli_real_escape_string($conn, urlencode($_POST['fb'])); # facebook url
-    $instagram = mysqli_real_escape_string($conn, urlencode($_POST['instagram'])); #instagram
+    $instagram = mysqli_real_escape_string($conn, urldecode($_POST['instagram'])); #instagram
     $tiktok = mysqli_real_escape_string($conn, urlencode($_POST['tiktok'])); #tiktok
     $youtube = mysqli_real_escape_string($conn, urlencode($_POST['youtube'])); #youtube
 

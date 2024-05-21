@@ -1,6 +1,6 @@
 <?php 
 include("path.php");
-include(ROOT_PATH.'/app/config/db.php');
+include(ROOT_PATH.'/app/controllers/page.php');
 ?>
 
 <!DOCTYPE html>
@@ -24,37 +24,28 @@ include(ROOT_PATH.'/app/config/db.php');
     ?>
 
     <main>
+        <?php
+            $pgtitle = 'Terms and Conditions';
+            $title = 'terms and conditions';
+            $page_query = mysqli_query($conn, "SELECT * FROM pages WHERE title = '$pgtitle' OR title = '$title'");
+        ?>
         <!--=============== HOME ===============-->
         <section class="container section section__height" id="home">
             <!--============ Page Wrapper =============-->
-            <div class="d-flex justify-content-between fs-6 mx-3 py-4" aria-label="breadcrumb">                
+            <div class="d-flex justify-content-between fs-6 mx-auto my-3 py-2" aria-label="breadcrumb">                
                 <ol class="breadcrumb p-0 m-0 ">
                     <li class="breadcrumb-item text-primary"><a href="<?php echo BASE_URL.'/index.php'?>">Home</a></li>
                     <li class="breadcrumb-item active text-primary-emphasis" aria-current="page">Terms & Conditions</li>
                 </ol>
             </div>
-            <div class="card my-3 py-2 px-2 mx-auto border-0">
-                <h4 class="card-header bg-transparent border-success-subtle">Terms & Conditions</h4>
+            <?php while($page = mysqli_fetch_assoc($page_query)):?>
+            <div class="card mx-auto border-0">
+                <h4 class="card-header bg-transparent border-success-subtle"><?php echo htmlentities($page['title'])?></h4>
                 <div class="card-body">
-                    <div class="card-text" name="aboutUs-details" align="justify">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                        Vitae cum voluptatibus porro quibusdam accusantium tempora impedit atque id laudantium consequatur, debitis, repudiandae corrupti maxime delectus provident animi. 
-                        Laudantium, vero autem?</p>
-                        <h5>Session Data</h5>
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
-                        Laboriosam, aspernatur dolore accusantium sint rerum voluptates culpa molestiae at soluta. 
-                        Dolor, quae modi reprehenderit rerum itaque aliquam! Dignissimos recusandae nemo quisquam.</p>
-                        <h5>Privacy Policy</h5>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                        Cum voluptate eos tenetur suscipit mollitia laudantium id nam velit, tempore saepe voluptatem perspiciatis quod nemo dignissimos. 
-                        Temporibus est quasi quis aliquam.</p>
-                        <h5>Account Security</h5>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                        Labore, ullam temporibus ut corrupti incidunt unde quaerat quo mollitia nihil. 
-                        Corporis voluptatum non ullam dolor fuga dignissimos, eos soluta in repellat.</p>
-                    </div>
+                    <div class="card-text" name="aboutUs-details" align="justify"><?php echo html_entity_decode($page['details'])?></div>
                 </div>
             </div>
+            <?php endwhile;?>
         </section>
 
       <!--Footer here-->

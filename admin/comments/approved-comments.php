@@ -1,6 +1,6 @@
 <?php 
 include("../path.php");
-include(ROOT_PATH.'/app/controllers/aprcomment.php');
+include(ROOT_PATH.'/app/controllers/comment.php');
 
 #if session id not login direct to home page
 if(!isset($_SESSION['id'])){
@@ -37,7 +37,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                         <h3 class="fw-bold fs-4 mb-3">Comments</h3>
                         <ol class="breadcrumb p-0 m-0 ">
                             <li class="breadcrumb-item"><a href="#">Travel</a></li>
-                            <li class="breadcrumb-item"><a href="#"><?php echo $_SESSION['role']?></a></li>
+                            <li class="breadcrumb-item"><a href="#"><?php echo htmlentities($_SESSION['role'])?></a></li>
                             <li class="breadcrumb-item active" aria-current="page">Approved Comments</li>
                         </ol>
                     </div>
@@ -52,15 +52,8 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                         <h4 class="card-title"><i class='bx bxs-check-square' style='color:#e915ef'></i>Manage Approved Comments</h4>
                                         <hr />
                                         <div class="row">
-                                            <div class="col-sm-6 ">
-                                               <!---Success Message--->  
-                                               <div class="alert alert-success" role="alert">
-                                                  <strong>Well done comment has been Disapproved!</strong>
-                                               </div>
-                                               <!---Error Message--->
-                                               <div class="alert alert-danger" role="alert">
-                                                  <strong>The comment was deleted Permanently!</strong>
-                                               </div>
+                                            <div class="col-sm-12">
+                                               <?php include(ROOT_PATH.'/app/helpers/updateAlert.php');?>
                                             </div>
                                          </div>
                                         <!--============= Table User Management  ===============-->
@@ -69,9 +62,9 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                                 <!--============ Table Header ================-->
                                                 <thead>
                                                     <tr>
-                                                        <th>SNID</th>
-                                                        <th>Name</th>
-                                                        <th>Email</th>
+                                                        <th>CMID</th>
+                                                        <th>Username</th>
+                                                        <th>Email Address</th>
                                                         <th>Comment</th>
                                                         <th>Status</th>                                                        
                                                         <th>Post Title</th>
@@ -80,23 +73,30 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                                     </tr>
                                                 </thead>
                                                 <!--========== End of Table header ================-->
-
                                                 <!--========= Table Data Body =====================-->
                                                 <tbody>
+                                                <?php 
+                                                    $comment = "SELECT * FROM comments WHERE status != 'disapproved'";
+                                                    $comment_query = mysqli_query($conn, $comment);
+                                                ?>
+                                                <?php if(mysqli_num_rows($comment_query) > 0):?>
+                                                    <?php foreach($comment_query as $keys => $comments):?>
                                                     <tr>
-                                                        <td>1</td>
-                                                        <td>Mark Kinnedy</td>
-                                                        <td>saito29@gmail.com</td>
-                                                        <td>The content was very informative.</td>
-                                                        <td class="text-success">Approved</td>
-                                                        <td>Travel and Tour</td>
-                                                        <td>2024-03-02 15:20:12</td>
+                                                        <td><?php echo htmlentities($keys + 1)?></td>
+                                                        <td><?php echo htmlentities($comments['username'])?></td>
+                                                        <td><?php echo htmlentities($comments['email'])?></td>
+                                                        <td><?php echo $comments['comment']?></td>
+                                                        <td class="text-success"><?php echo htmlentities($comments['status'])?></td>
+                                                        <td><?php echo htmlentities($comments['title'])?></td>
+                                                        <td><?php echo htmlentities($comments['posted'])?></td>
                                                         <td>
-                                                            <a href="#disapprove" class="btn btn-outline-primary m-1"><i class='bx bx-redo'></i></a>
+                                                            <a href="<?php echo BASE_ADMIN.'/comments/approved-comments.php?dm_Id='?><?php echo htmlentities($comments['id'])?>" class="btn btn-outline-primary m-1"><i class='bx bx-redo'></i></a>
                                                             &nbsp;
-                                                            <a href="#deleteUser" class="btn btn-outline-danger m-1"><i class='bx bx-trash-alt'></i></a>
+                                                            <a href="<?php echo BASE_ADMIN.'/comments/approved-comments.php?del_id='?><?php echo htmlentities($comments['id'])?>" class="btn btn-outline-danger m-1"><i class='bx bx-trash-alt'></i></a>
                                                         </td>
                                                     </tr>
+                                                        <?php endforeach;?>
+                                                    <?php endif;?>
                                                     <!--============= End of Table Data ===============-->
                                                 </tbody>
                                             </table>

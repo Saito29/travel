@@ -107,7 +107,7 @@ if(isset($_POST['create-btn'])){
 #get the id and the data submitted
 if(isset($_GET['pg_Id'])){
     #Select the id from the database table
-    $page = selectOne($tblPage, ['id' => $id]);
+    $page = selectOne($tblPage, ['id' => $_GET['pg_Id']]);
 
     #Set the data
     $id = $page['id'];

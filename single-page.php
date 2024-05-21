@@ -67,7 +67,7 @@ include(ROOT_PATH."/app/controllers/comment.php");
                                 <div class="card col-md-8 col-xl-8 col-sm-8 col-xxl-8 w-100 h-100 border-0">
                                     <div class="card-header bg-transparent border-success text-secondary fw-bold fs-5">Comments</div>
                                     <div class="card-body">
-                                        <?php include(ROOT_PATH.'/app/helpers/formAlert.php');?>
+                                        <?php include(ROOT_PATH.'/app/helpers/updateAlert.php');?>
                                         <!--Comments required to identify user-->
                                         <?php if(!isset($_SESSION['id'])):?>
                                         <form action="single-page.php" method="post" name="Comment" class="row gx-2 gy-2 p-2" autocomplete="on" enctype="application/x-www-form-urlencoded">
@@ -75,9 +75,9 @@ include(ROOT_PATH."/app/controllers/comment.php");
                                             <div class="mb-1 col-md-4 form-group w-50">
                                                 <label for="username" class="form-label">Username:</label>
                                                 <?php if(!isset($_POST['username'])):?>
-                                                <input type="text" name="username" placeholder="Username" value="" class="form-control">
+                                                <input type="text" name="username" placeholder="Username" value="" class="form-control" required>
                                                 <?php else:?>
-                                                <input type="text" name="username" placeholder="Username" value="<?php echo htmlentities($username)?>" class="form-control">
+                                                <input type="text" name="username" placeholder="Username" value="<?php echo htmlentities($username)?>" class="form-control" required>
                                                 <?php endif;?>
                                                 <p class="text-success">(required)</p>
                                             </div>
@@ -108,7 +108,11 @@ include(ROOT_PATH."/app/controllers/comment.php");
                                             <input type="hidden" name="email" value="<?php echo htmlentities($_SESSION['email'])?>">
                                             <div class="mb-3 col-md-8 form-group w-100">
                                                 <label for="comments" class="form-label">Comment:</label>
-                                                <textarea name="comment" id="editor" class="form-control" required></textarea>
+                                                <?php if(!isset($_POST['comment'])):?>
+                                                <textarea name="comment" id="editor" class="form-control"></textarea>
+                                                <?php else:?>
+                                                <textarea name="comment" id="editor" class="form-control"><?php echo htmlentities($comment)?></textarea>
+                                                <?php endif;?>
                                             </div>
                                             <div class="mb-1 col-md-4 form-group">
                                                 <button type="submit" name="submitComment" class="btn read-more">Post comment</button>
@@ -122,19 +126,19 @@ include(ROOT_PATH."/app/controllers/comment.php");
                                         $comment = mysqli_query($conn, "SELECT * FROM comments WHERE status = 'approved'");
                                     ?>
                                     <?php while($comment_query = mysqli_fetch_assoc($comment)):?>
-                                    <div class="row mt-5 mb-3 my-3 py-2 px-4 col-md-8 w-100 h-100">
+                                    <div class="row mb-1 py-2 px-4 col-md-8 w-100 h-100">
                                         <div class="d-flex justify-content-center">
                                             <div class="card w-100 h-100 bg-transparent border-0">
                                                 <div class="card-body">
-                                                    <?php if(isset($_SESSION['id'])):?>
+                                                    <?php if(isset($_POST['submitComment'])):?>
                                                     <img src="<?php echo BASE_URL.'/app/upload/uploadProfile/'.htmlentities($_SESSION['profileImage'])?>" alt="User_profile" class="rounded-circle" style="height: 44px; width: 44px;" width="44" height="44" >
                                                     <?php else:?>
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;"><path d="M12 2C6.579 2 2 6.579 2 12s4.579 10 10 10 10-4.579 10-10S17.421 2 12 2zm0 5c1.727 0 3 1.272 3 3s-1.273 3-3 3c-1.726 0-3-1.272-3-3s1.274-3 3-3zm-5.106 9.772c.897-1.32 2.393-2.2 4.106-2.2h2c1.714 0 3.209.88 4.106 2.2C15.828 18.14 14.015 19 12 19s-3.828-.86-5.106-2.228z"></path></svg>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;"><path d="M12 2C6.579 2 2 6.579 2 12s4.579 10 10 10 10-4.579 10-10S17.421 2 12 2zm0 5c1.727 0 3 1.272 3 3s-1.273 3-3 3c-1.726 0-3-1.272-3-3s1.274-3 3-3zm-5.106 9.772c.897-1.32 2.393-2.2 4.106-2.2h2c1.714 0 3.209.88 4.106 2.2C15.828 18.14 14.015 19 12 19s-3.828-.86-5.106-2.228z"></path></svg>
                                                     <?php endif;?>
                                                     <div class="card-text" style="text-align: justify;">
                                                         <h5 class="fw-bold text-secondary"><?php echo htmlentities($comment_query['username'])?></h5>
-                                                        <p class="small text-muted"><?php echo htmlentities(date('M/d/Y', $comment_query['username']))?></p>
-                                                        <p><?php echo htmlentities($comment_query['comment'])?></p>
+                                                        <p class="small text-muted"><?php echo htmlentities($comment_query['posted'])?></p>
+                                                        <p><?php echo html_entity_decode($comment_query['comment'])?></p>
                                                     </div>
                                                 </div>
                                             </div>

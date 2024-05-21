@@ -60,25 +60,25 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                             <div class="mb-1 col-md-6 form-group">
                                                 <label for="title" class="form-label">Page Title:</label>
                                                 <?php if(!isset($_POST['title'])):?>
-                                                <input type="text" class="form-control" name="title" placeholder="Page Title" value="">
+                                                <input type="text" class="form-control" name="title" placeholder="Page Title" value="<?php echo htmlentities($title)?>" required>
                                                 <?php else:?>
-                                                <input type="text" class="form-control" name="title" placeholder="Page Title" value="<?php echo htmlentities($title)?>">
+                                                <input type="text" class="form-control" name="title" placeholder="Page Title" value="">
                                                 <?php endif;?>
                                             </div>
                                             <div class="mb-2 col-md-6 form-group">
-                                                <label for="created_at" class="form-label">Posted on:</label>
-                                                <?php if(!isset($_POST['created_at'])):?>
-                                                <input type="date" class="form-control" name="created_at" value="">
+                                                <label for="created_at" class="form-label">Posted updated:</label>
+                                                <?php if(!isset($_POST['updated_at'])):?>
+                                                <input type="date" class="form-control" name="updated_at" value="<?php echo htmlentities($updated_at)?>" required>
                                                 <?php else:?>
-                                                <input type="date" class="form-control" name="created_at" value="<?php echo htmlentities($created_at)?>">
+                                                <input type="date" class="form-control" name="updated_at" value="">
                                                 <?php endif;?>
                                             </div>
                                             <div class="mb-1 col-md-12 form-group">
                                                 <label for="pageTitle" class="form-label">About Page Details:</label>
                                                 <?php if(!isset($_POST['details'])):?>
-                                                <textarea name="details" id="mytextarea" class="form-control"></textarea>
-                                                <?php else:?>
                                                 <textarea name="details" id="mytextarea" class="form-control"><?php echo htmlentities($details)?></textarea>
+                                                <?php else:?>
+                                                <textarea name="details" id="mytextarea" class="form-control"></textarea>
                                                 <?php endif;?>
                                             </div>
                                             <h4 class="mb-1 mt-2 card-title">Page Contact Info:</h4>
@@ -86,18 +86,20 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                             <div class="mb-1 col-md-6 form-group">                                                    
                                                 <label for="contact" class="form-label"><i class='bx bx-phone'></i>Contact No.:</label>
                                                 <?php if(!isset($_POST['contact'])):?>
-                                                <input type="text" name="contact" class="form-control" placeholder="Contact No.">
-                                                <?php else:?>
                                                 <input type="text" name="contact" class="form-control" placeholder="Contact No." value="<?php echo htmlentities($contact)?>">
+                                                <?php else:?>
+                                                <input type="text" name="contact" class="form-control" placeholder="Contact No.">
                                                 <?php endif;?>
+                                                <p class="text-warning-emphasis fs-6">(optional)</p>
                                             </div>
                                             <div class="mb-1 col-md-6 form-group">
                                                 <label for="email" class="form-label"><i class='bx bxl-gmail'></i>Email Contact:</label>
                                                 <?php if(!isset($_POST['email'])):?>
-                                                <input type="email" name="email" class="form-control" placeholder="Email Contact">
-                                                <?php else:?>
                                                 <input type="email" name="email" class="form-control" placeholder="Email Contact" value="<?php echo htmlentities($email)?>">
+                                                <?php else:?>
+                                                <input type="email" name="email" class="form-control" placeholder="Email Contact">
                                                 <?php endif;?>
+                                                <p class="text-warning-emphasis fs-6">(optional)</p>
                                             </div>
                                             <div class="mb-2 col-md-6 form-group">
                                                 <button type="submit" class="btn btn-outline-success" name="update-btn">Update</button>

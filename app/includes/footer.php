@@ -4,24 +4,32 @@
             <div class="footer container-fluid">
                 <div class="footer-content">
                     <div class="footer-section about">
+                        <?php 
+                            $settings_query = mysqli_query($conn, "SELECT * FROM settings WHERE id = 1");
+                        ?>
                         <div class="logo-content mb-2">
-                            <img src="./asset/img/logo/travel.png" alt="Logo" width="40px" height="40px">
+                            <?php while($setting = mysqli_fetch_assoc($settings_query)):?>
+                            <img src="<?php echo BASE_URL.'/app/upload/uploadSettingURL/uploadLogo/'?><?php echo htmlentities($setting['logo'])?>" alt="Logo" width="40px" height="40px">
+                            <?php endwhile;?>
                             <h4 class="nav__logo"><span style="color: #af8fb6;">Tra</span>vel</h4>
                         </div>
-                        <p style="text-align: justify;">
-                            Travel is a capstone project that researchers propose a web-app system for educational blog with category for user interest.
-                            However it is still in a development to be reviewed by other end users and only had a limit of end user to be
-                            tester of the web-app project.
-                        </p>
+                        <?php
+                            $pageTitle = 'About Page';
+                            $title = 'About';
+                            $page_query = mysqli_query($conn, "SELECT * FROM pages WHERE title = '$pageTitle' OR title = '$title'");
+                        ?>
+                        <?php while($page = mysqli_fetch_assoc($page_query)):?>
+                        <p style="text-align: justify;"><?php echo html_entity_decode($page['details'])?></p>
                         <div class="contact-details">
-                            <span><i class='bx bxs-phone'></i>&nbsp; +639092307202</span>
-                            <span><i class='bx bxs-envelope'></i>&nbsp; info@travel.com</span>
+                            <span><i class='bx bxs-phone'></i>&nbsp; <?php echo html_entity_decode($page['contact'])?></span>
+                            <span><i class='bx bxs-envelope'></i>&nbsp; <?php echo html_entity_decode($page['email'])?></span>
                         </div>
+                        <?php endwhile;?>
                         <div class="social">
-                            <a href="#facebook" target="_blank"><i class='bx bxl-facebook-circle'></i></a>
-                            <a href="#instagram" target="_blank"><i class='bx bxl-instagram-alt'></i></a>
-                            <a href="#tiktok" target="_blank"><i class='bx bxl-tiktok'></i></a>
-                            <a href="#youtube" target="_blank"><i class='bx bxl-youtube'></i></a>
+                            <a href="<?php echo urlencode($setting['fb'])?>" target="_blank"><i class='bx bxl-facebook-circle'></i></a>
+                            <a href="<?php echo urldecode($setting['instagram'])?>" target="_blank"><i class='bx bxl-instagram-alt'></i></a>
+                            <a href="<?php echo urldecode($setting['tiktok'])?>" target="_blank"><i class='bx bxl-tiktok'></i></a>
+                            <a href="<?php echo urldecode($setting['youtube '])?>" target="_blank"><i class='bx bxl-youtube'></i></a>
                         </div>
                     </div>
                     <div class="footer-section links">
