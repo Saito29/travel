@@ -5,7 +5,7 @@
             $settignLogo = mysqli_query($conn, "SELECT * FROM settings WHERE id = 1");
         ?>
         <?php while($settings = mysqli_fetch_assoc($settignLogo)):?>
-        <button id="toggle-btn" type="button"><img src="<?php echo BASE_URL.'/app/upload/uploadSettingURL/uploadLogo/'?><?php echo $settings['logo']?>" width="30px" alt="Cube.io_logo"></button>
+        <button id="toggle-btn" type="button"><img src="<?php echo BASE_URL.'/app/upload/uploadSettingURL/uploadLogo/'?><?php echo $settings['logo']?>" height="30px" width="30px" alt="Cube.io_logo"></button>
         <?php endwhile;?>
         <div class="sidebar-logo">
             <a href="#Dashboard"><span style="color: #af8fb6;">Tra</span>vel</a>
