@@ -72,12 +72,12 @@ if (isset($_POST['addUser-btn']) && isset($_FILES['profileImage']))
     unset($_POST['addUser-btn']);
 
     #identify user information and profile image
+    $role = $_POST['role'];
     $firstName = trim($_POST['firstName']); 
     $lastName = trim($_POST['lastName']);
     $username = trim($_POST['username']);
     $email = filter_var(trim($_POST['email']), FILTER_SANITIZE_EMAIL);
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT); #Password hash Encyption Algorithm for security purposes
-    $role = $_POST['role'];
     $created_at = $_POST['created_at'];
 
     #Image identification
@@ -128,12 +128,12 @@ if (isset($_POST['addUser-btn']) && isset($_FILES['profileImage']))
                 }
 
                 #Insert the image into the database alongside the user information using MYSQLI
-                $query_user = create($table, $_POST);
-                #$query = "INSERT INTO users (role, firstName, lastName, username, email, password, profileImage, created_at) VALUES ('$role','$firstName', '$lastName','$username', '$email', '$password', '$newImgName', '$created_at')";
-                #$result = mysqli_query($conn, $query);
+                #$query_user = create($table, $_POST);
+                $query = "INSERT INTO users (role, firstName, lastName, username, email, password, profileImage, created_at) VALUES ('$role','$firstName', '$lastName','$username', '$email', '$password', '$newImgName', '$created_at')";
+                $query_result = mysqli_query($conn, $query);
 
                 #Select the user that has make account
-                $users = selectOne($table,['id' => $query_user]);
+                $users = selectOne($table,['id' => $query_result]);
 
                 #validate the user information and profile image information when submitting the query to the database
                 if($users)
@@ -165,13 +165,13 @@ if (isset($_POST['addUser-btn']) && isset($_FILES['profileImage']))
             } else
             {
                 #Return array of user information if encountered errors
+                $role = $_POST['role'];
                 $firstName = $_POST['firstName']; 
                 $lastName = $_POST['lastName'];
                 $username = $_POST['username'];
                 $email = $_POST['email'];
                 $password = $_POST['password'];
                 $profileImage = $_FILES['profileImage']['name'];
-                $role = $_POST['role'];
                 $created_at = $_POST['created_at'];
 
                 #Alert error message if the file type is not supported and return it to current page
@@ -184,13 +184,13 @@ if (isset($_POST['addUser-btn']) && isset($_FILES['profileImage']))
     } else
     {
         #Return array of user information if encountered errors
+        $role = $_POST['role'];
         $firstName = $_POST['firstName']; 
         $lastName = $_POST['lastName'];
         $username = $_POST['username'];
         $email = $_POST['email'];
         $password = $_POST['password'];
         $profileImage = $_FILES['profileImage']['name'];
-        $role = $_POST['role'];
         $created_at = $_POST['created_at'];
 
         #Alert Error message and direct again to register page
@@ -293,10 +293,10 @@ if(isset($_POST['updateUser-btn'])){
                 }
 
                 #Update user account in the database
-                $query_user = update($table, $id, $_POST);
-                #$query = "UPDATE users SET role=?, firstName=?, lastName=?, username=?, email=?, profileImage=?, updated_at=? WHERE id=?";
-                #$stmt_user = $conn->prepare($query);
-                #$stmt_user->execute([$role, $firstName, $lastName, $username, $email, $newImgName, $updated_at, $id]);
+                #$query_user = update($table, $id, $_POST);
+                $query = "UPDATE users SET role=?, firstName=?, lastName=?, username=?, email=?, profileImage=?, updated_at=? WHERE id=?";
+                $stmt_user = $conn->prepare($query);
+                $stmt_user->execute([$role, $firstName, $lastName, $username, $email, $newImgName, $updated_at, $id]);
 
                 #Select the user that has make account
                 $users = selectOne($table,['id' => $id]);

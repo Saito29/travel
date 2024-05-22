@@ -73,24 +73,24 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                             </div>
                                             <div class="mb-2 col-sm-6">
                                                 <label for="url" class="form-label"><i class='bx bx-server'></i>Website URL</label>
-                                                <input type="url" class="form-control" name="url" placeholder="System URL (not recommend to update)" value="<?php echo urldecode($url)?>">
+                                                <input type="url" class="form-control" name="url" placeholder="System URL (not recommend to update)" value="<?php echo urlencode($url)?>">
                                             </div>
                                             <h5 class="card-title">Social Link:</h5>
                                             <div class="mb-2 col-sm-6">
                                                 <label for="fb" class="form-label"><i class='bx bxl-facebook-circle'></i>Facebook:</label>
-                                                <input type="url" class="form-control" name="fb" placeholder="Facebook link" value="<?php echo urldecode($fb)?>">
+                                                <input type="url" class="form-control" name="fb" placeholder="Facebook link" value="<?php echo urlencode($fb)?>">
                                             </div>
                                             <div class="mb-2 col-sm-6">
                                                 <label for="instagram" class="form-label"><i class='bx bxl-instagram-alt'></i>Instagram:</label>
-                                                <input type="url" class="form-control" name="instagram" placeholder="Instagram link" value="<?php echo urldecode($instagram)?>">
+                                                <input type="url" class="form-control" name="instagram" placeholder="Instagram link" value="<?php echo urlencode($instagram)?>">
                                             </div>
                                             <div class="mb-2 col-sm-6">
                                                 <label for="tiktok" class="form-label"><i class='bx bxl-tiktok'></i>Tiktok:</label>
-                                                <input type="url" class="form-control" name="tiktok" placeholder="Tiktok link" <?php echo urldecode($tiktok)?>>
+                                                <input type="url" class="form-control" name="tiktok" placeholder="Tiktok link" <?php echo urlencode($tiktok)?>>
                                             </div>
                                             <div class="mb-2 col-sm-6">
                                                 <label for="youtube" class="form-label"><i class='bx bxl-youtube'></i>Youtube:</label>
-                                                <input type="url" class="form-control" name="youtube" placeholder="Youtube link" value="<?php echo urldecode($youtube)?>">
+                                                <input type="url" class="form-control" name="youtube" placeholder="Youtube link" value="<?php echo urlencode($youtube)?>">
                                             </div>
                                             <div class="mb-2 col-sm-8">
                                                 <button type="submit" class="btn btn-outline-success px-3 py-2 text-center" name="updateSettings">Update</button>

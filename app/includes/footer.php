@@ -26,10 +26,10 @@
                         </div>
                         <?php endwhile;?>
                         <div class="social">
-                            <a href="<?php echo urlencode($setting['fb'])?>" target="_blank"><i class='bx bxl-facebook-circle'></i></a>
+                            <a href="<?php echo urldecode($setting['fb'])?>" target="_blank"><i class='bx bxl-facebook-circle'></i></a>
                             <a href="<?php echo urldecode($setting['instagram'])?>" target="_blank"><i class='bx bxl-instagram-alt'></i></a>
                             <a href="<?php echo urldecode($setting['tiktok'])?>" target="_blank"><i class='bx bxl-tiktok'></i></a>
-                            <a href="<?php echo urldecode($setting['youtube '])?>" target="_blank"><i class='bx bxl-youtube'></i></a>
+                            <a href="<?php echo urldecode($setting['youtube'])?>" target="_blank"><i class='bx bxl-youtube'></i></a>
                         </div>
                     </div>
                     <div class="footer-section links">

@@ -219,11 +219,11 @@ if(isset($_POST['updateSettings'])){
     $logoType = $_FILES['logo']['type']; #Image type of the image
 
     #Url webiste
-    $url = mysqli_real_escape_string($conn, urlencode($_POST['url'])); #url website 
-    $fb = mysqli_real_escape_string($conn, urlencode($_POST['fb'])); # facebook url
-    $instagram = mysqli_real_escape_string($conn, urlencode($_POST['instagram'])); #instagram
-    $tiktok = mysqli_real_escape_string($conn, urlencode($_POST['tiktok'])); #tiktok
-    $youtube = mysqli_real_escape_string($conn, urlencode($_POST['youtube'])); #youtube
+    $url = urlencode($_POST['url']); #url website 
+    $fb = urlencode($_POST['fb']); # facebook url
+    $instagram = urlencode($_POST['instagram']); #instagram
+    $tiktok = urlencode($_POST['tiktok']); #tiktok
+    $youtube = $_POST['youtube']; #youtube
 
     #Favicon
     if($faviconError === 0){
@@ -300,6 +300,9 @@ if(isset($_POST['updateSettings'])){
         $instagram = '';
         $tiktok = '';
         $youtube = '';
+        
+        #close connection after updating
+        mysqli_close($conn);
     }else{
         #Alert message
         sessionFailed($settings_query);
@@ -314,3 +317,4 @@ if(isset($_POST['updateSettings'])){
         $youtube = $_POST['youtube'];
     }
 }
+

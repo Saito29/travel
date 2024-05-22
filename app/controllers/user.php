@@ -124,12 +124,12 @@ if (isset($_POST['register-btn']) && isset($_FILES['profileImage']))
                 }
 
                 #Insert the image into the database alongside the user information using MYSQLI
-                $query_user = create($table, $_POST);
-                #$sql = "INSERT INTO users (role, firstName, lastName, username, email, password, profileImage, created_at) VALUES ('$role','$firstName', '$lastName','$username', '$email', '$password', '$newImgName', '$created_at')";
-                #$result = mysqli_query($conn, $sql);
+                #$query_user = create($table, $_POST);
+                $sql = "INSERT INTO users (role, firstName, lastName, username, email, password, profileImage, created_at) VALUES ('$role','$firstName', '$lastName','$username', '$email', '$password', '$newImgName', '$created_at')";
+                $query_result = mysqli_query($conn, $sql);
 
                 #Select the user that has make account
-                $user = selectOne($table,['id' => $query_user]);
+                $user = selectOne($table,['id' => $query_result]);
 
                 #validate the user information and profile image information when submitting the query to the database
                 if($user)

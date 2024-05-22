@@ -78,7 +78,7 @@ if(isset($_SESSION['id'])){
                         </div>
                         <div class="col-md-6 col-sm-6">
                             <label for="profileImage" class="form-label">Profile Image:</label>
-                            <img src="<?php echo BASE_URL.'/asset/img/profile/placeholder.webp'?>" onclick="imgClick()" id="profileDisplay" class="rounded-circle d-block border" alt="profile-user" style="cursor:pointer" width="70">
+                            <img src="<?php echo BASE_URL.'/asset/img/profile/placeholder.webp'?>" onclick="imgClick()" id="profileDisplay" class="rounded-circle d-block border" alt="profile-user" style="cursor:pointer" height="70" width="70">
                             <input type="file" class="d-none" name="profileImage" onchange="displayImg(this)" id="profileImage" on value="<?php echo $profileImage?>">
                             <p class="signup-ps">Profile Image should at least 10mb</p>
                         </div>
@@ -90,6 +90,8 @@ if(isset($_SESSION['id'])){
                                 <?php else:?>
                                 <option value="<?php echo $role;?>" selected>User type: <?php echo $role;?></option>
                                 <?php endif;?>
+                                <option value="admin">Admin User</option>
+                                <option value="sub-admin">Sub-Admin User</option>
                                 <option value="editor">Editor User</option>
                                 <option value="user">Guest User</option>
                             </select>
