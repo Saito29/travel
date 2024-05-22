@@ -74,19 +74,21 @@ if(isset($_POST['submitComment'])){
 
     #Sanitize the email
     $email = filter_var(trim($_POST['email']), FILTER_SANITIZE_EMAIL);
-    $comment = html_entity_decode($_POST['comment']);
+    $comment = htmlentities($_POST['comment']);
     $_POST['status'] = 'approved';
 
     #publish the comment
-    $comment_query = create($tblComment, $_POST);
-    if($comment_query){
+    #$comment_query = create($tblComment, $_POST);
+    $comment_query = "INSERT INTO $tblComment (username, email, comment, title, status, posted) VALUES ('$username', '$email', '$comment', '$status', '$posted)";
+    $stmt_comment = mysqli_query($conn, $comment_query);
+    if($stmt_comment){
         #clear all the fields
         $username = '';
         $email = '';
         $comment = '';
 
         #Session the comment
-        sessionComment($comment_query);
+        sessionComment($stmt_comment);
     }else{
         #Alert error
         $msg = "Error occured, please try again.";

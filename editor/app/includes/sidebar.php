@@ -1,7 +1,10 @@
 <!--Sidebar-->
 <aside id="sidebar">
     <div class="d-flex">
-        <button id="toggle-btn" type="button"><img src="<?php echo BASE_EDITOR.'/asset/images/icon/travel.png'?>" width="30px" alt="Travel Logo"></button>
+        <?php $settignLogo = mysqli_query($conn, "SELECT * FROM settings WHERE id = 1")?>
+        <?php while($settings = mysqli_fetch_assoc($settignLogo)):?>
+        <button id="toggle-btn" type="button"><img src="<?php echo BASE_URL.'/app/upload/uploadSettingURL/uploadLogo/'?><?php echo htmlentities($settings['logo'])?>" width="30px" alt="Travel Logo"></button>
+        <?php endwhile;?>
         <div class="sidebar-logo">
             <a href="#Dashboard"><span style="color: #af8fb6;">Tra</span>vel</a>
         </div>

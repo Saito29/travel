@@ -1,8 +1,11 @@
 <!--Customized CSS Section-->
 <link rel="stylesheet" href="<?php echo BASE_EDITOR.'/asset/css/style.css'?>">
 
-<!--favicon logo-->
-<link rel="shortcut icon" href="<?php echo BASE_EDITOR.'/asset/images/icon/travel.png'?>" type="image/x-icon">
+<!--favicon logo--> 
+<?php $settingFavicon = mysqli_query($conn, "SELECT * FROM settings WHERE id = 1")?>
+<?php while($settings = mysqli_fetch_assoc($settingFavicon)):?>
+<link rel="shortcut icon" href="<?php echo BASE_URL.'/app/upload/uploadSettingURL/uploadFavicon/'?><?php echo htmlentities($settings['favicon'])?>" type="image/x-icon">
+<?php endwhile;?>
 
 <!--Google Fonts-->
 <link rel="preconnect" href="https://fonts.googleapis.com">

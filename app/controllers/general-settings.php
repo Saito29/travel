@@ -13,7 +13,7 @@ $youtube = '';
 
 #Table variables
 $tblsetting = 'settings';
-$settings = selectAll($tblsetting);
+$settings = selectOne($tblsetting, ['id' => $id]);
 
 #Global variables
 $msg = '';
@@ -219,11 +219,11 @@ if(isset($_POST['updateSettings'])){
     $logoType = $_FILES['logo']['type']; #Image type of the image
 
     #Url webiste
-    $url = mysqli_real_escape_string($conn, urlencode($_POST['url'])); #url website 
-    $fb = mysqli_real_escape_string($conn, urlencode($_POST['fb'])); # facebook url
-    $instagram = mysqli_real_escape_string($conn, urldecode($_POST['instagram'])); #instagram
-    $tiktok = mysqli_real_escape_string($conn, urlencode($_POST['tiktok'])); #tiktok
-    $youtube = mysqli_real_escape_string($conn, urlencode($_POST['youtube'])); #youtube
+    $url = urlencode($_POST['url']); #url website 
+    $fb = urlencode($_POST['fb']); # facebook url
+    $instagram = urlencode($_POST['instagram']); #instagram
+    $tiktok = urlencode($_POST['tiktok']); #tiktok
+    $youtube = urlencode($_POST['youtube']); #youtube
 
     #Favicon
     if($faviconError === 0){
@@ -285,12 +285,15 @@ if(isset($_POST['updateSettings'])){
     }
 
     #Update the database
-    $settings_query = update($tblsetting, $id, $_POST);
+    #$settings_query = update($tblsetting, $id, $_POST);
+    $query = "UPDATE $tblsetting SET favicon=?, logo=?, url=?, fb=?, instagram=?, tiktok=?, youtube=? WHERE id=?";
+    $stmt_setting = $conn->prepare($query);
+    $stmt_setting->execute([$faviconImg, $logoImg, $url, $fb, $instagram, $tiktok, $youtube, $id]);
     
     #check if insert was successful
-    if($settings_query){
+    if($stmt_setting){
         #session the data
-        sessionUpdate($settings_query);
+        sessionUpdate($stmt_setting);
 
         #Clear all the fields
         $favicon = '';
@@ -300,9 +303,12 @@ if(isset($_POST['updateSettings'])){
         $instagram = '';
         $tiktok = '';
         $youtube = '';
+        
+        #close connection after updating
+        mysqli_close($conn);
     }else{
         #Alert message
-        sessionFailed($settings_query);
+        sessionFailed($stmt_setting);
 
         #Return data from the fields
         $favicon = $_FILES['favicon']['name'];
@@ -314,3 +320,4 @@ if(isset($_POST['updateSettings'])){
         $youtube = $_POST['youtube'];
     }
 }
+
