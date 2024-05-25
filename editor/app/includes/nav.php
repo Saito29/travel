@@ -7,7 +7,7 @@
         <!--end of toggle button dark mode-->
         <div class="navbar-nav ms-auto dropdown">
             <a href="#" class="nav-icon pe-md-0" data-bs-toggle="dropdown" aria-expanded="false">
-                <img src="<?php echo BASE_URL.'/app/upload/uploadProfile/'?><?php echo $_SESSION['profileImage']?>" alt="profile" width="40" height="40" class="avatar img-fluid rounded-circle">
+                <img src="<?php echo BASE_URL.'/app/upload/uploadProfile/'?><?php echo $_SESSION['profileImage']?>" alt="profile" style="width: 40px; height: 40px;" width="40" height="40" class="avatar img-fluid rounded-circle">
             </a>
             <ul class="dropdown-menu dropdown-menu-end rounded">
                 <li><p class="dropdown-item text-center">Hi <?php echo $_SESSION['role']?></p></li>

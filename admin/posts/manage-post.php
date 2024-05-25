@@ -84,28 +84,53 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                                 <tbody>
                                                     <!--========= Table Data =====================-->
                                                     <?php
-                                                        $post = "SELECT * FROM post WHERE status = 'published' AND is_Active = 1";
-                                                        $post_run = mysqli_query($conn, $post);
+                                                        $sql = "SELECT p.id, p.title, u.username AS postedBy, c.categName AS categoryName, sc.name AS subcategoryName, p.status, p.created_at, p.updated_at
+                                                        FROM post p
+                                                        INNER JOIN users u ON p.postedBy = u.id
+                                                        INNER JOIN category c ON p.category = c.id
+                                                        LEFT JOIN subcategory sc ON p.subcategory = sc.id
+                                                        WHERE p.status = 'published'
+                                                        AND p.is_Active = 1"; // Review if relevant for published posts
+
+                                                        $stmt = mysqli_prepare($conn, $sql); // Prepare statement
+
+                                                        if ($stmt) {
+                                                            // Execute prepared statement
+                                                            mysqli_stmt_execute($stmt);
+
+                                                            $result = mysqli_stmt_get_result($stmt);
+
+                                                            if (mysqli_num_rows($result) > 0) {
+                                                                while ($post = mysqli_fetch_assoc($result)) {
+                                                                    echo "<tr>";
+                                                                    echo "<td>" . htmlentities($post['id']) . "</td>";
+                                                                    echo "<td>" . htmlentities($post['postedBy']) . "</td>";
+                                                                    echo "<td>" . htmlentities($post['title']) . "</td>";
+                                                                    echo "<td>" . htmlentities($post['categoryName']) . "</td>";
+                                                                    echo "<td>" . (isset($post['subcategoryName']) ? htmlentities($post['subcategoryName']) : 'N/A') . "</td>"; // Handle optional subcategory
+                                                                    echo "<td class='text-success'>" . htmlentities($post['status']) . "</td>";
+                                                                    echo "<td>" . date('F j, Y', strtotime($post['created_at'])) . "</td>";
+                                                                    echo "<td>" . date('F j, Y', strtotime($post['updated_at'])) . "</td>";
+                                                                    echo "<td>";
+                                                                    echo "<a href='" . BASE_ADMIN . "/posts/edit-post.php?psID=" . htmlentities($post['id']) . "' class='btn btn-outline-primary m-1'><i class='bx bx-edit'></i></a>";
+                                                                    echo "&nbsp;";
+                                                                    echo "<a href='" . BASE_ADMIN . "/posts/manage-post.php?delArcPS_ID=" . htmlentities($post['id']) . "' class='btn btn-outline-danger m-1'><i class='bx bx-trash-alt' ></i></a>";
+                                                                    echo "</td>";
+                                                                    echo "</tr>";
+                                                                }
+                                                            } else {
+                                                                echo "No published posts found.";
+                                                            }
+
+                                                            mysqli_stmt_close($stmt); // Close prepared statement
+                                                        } else {
+                                                            // Handle statement preparation error (log or display an error message)
+                                                            error_log("Failed to prepare statement: " . mysqli_error($conn));
+                                                        }
+
+                                                        // Close the connection if necessary (optional)
+                                                        #mysqli_close($conn);
                                                     ?>
-                                                    <?php if(mysqli_num_rows($post_run) > 0):?>
-                                                        <?php foreach($post_run as $keys => $posts):?>
-                                                    <tr>
-                                                        <td><?php echo htmlentities($keys + 1);?></td>
-                                                        <td><?php echo htmlentities($posts['postedBy']);?></td>
-                                                        <td><?php echo htmlentities($posts['title']);?></td>
-                                                        <td><?php echo htmlentities($posts['category']);?></td>
-                                                        <td><?php echo htmlentities($posts['subcategory']);?></td>
-                                                        <td class="text-success"><?php echo htmlentities($posts['status']);?></td>
-                                                        <td><?php echo htmlentities($posts['created_at']);?></td>
-                                                        <td><?php echo htmlentities($posts['updated_at']);?></td>
-                                                        <td>
-                                                            <a href="<?php echo BASE_ADMIN.'/posts/edit-post.php?psID='?><?php echo htmlentities($posts['id']);?>" class="btn btn-outline-primary m-1"><i class='bx bx-edit'></i></a>
-                                                            &nbsp;
-                                                            <a href="<?php echo BASE_ADMIN.'/posts/manage-post.php?delArcPS_ID='?><?php echo htmlentities($posts['id']);?>" class="btn btn-outline-danger m-1"><i class='bx bx-trash-alt' ></i></a>
-                                                        </td>
-                                                    </tr>
-                                                    <?php endforeach;?>
-                                                    <?php endif;?>
                                                     <!--============= End of Table Data ===============-->
                                                 </tbody>
                                             </table>
@@ -148,28 +173,41 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                                 <tbody>
                                                     <!--========= Table Data =====================-->
                                                     <?php
-                                                        $post = "SELECT * FROM post WHERE status = 'unpublished' AND is_Active = 1";
-                                                        $post_run = mysqli_query($conn, $post);
+                                                        $sql = "SELECT p.id, u.username, c.categName AS categoryName, sc.name AS subcategoryName
+                                                        FROM post p
+                                                        INNER JOIN users u ON p.postedBy = u.id
+                                                        INNER JOIN category c ON p.category = c.id
+                                                        LEFT JOIN subcategory sc ON p.subcategory = sc.id  
+                                                        WHERE p.status = 'unpublished'
+                                                        AND p.is_Active = 1"; // Review if relevant for unpublished posts
+
+                                                        $post_run = mysqli_query($conn, $sql);
+
+                                                        if ($post_run && mysqli_num_rows($post_run) > 0) {
+                                                            while ($post = mysqli_fetch_assoc($post_run)) {
+                                                                echo "<tr>";
+                                                                echo "<td>" . htmlentities($post['id']) . "</td>";
+                                                                echo "<td?>" . htmlentities($post['title']). "</td>";
+                                                                echo "<td>" . htmlentities($post['username']) . "</td>";
+                                                                echo "<td>" . htmlentities($post['categoryName']) . "</td>";
+                                                                echo "<td>" . (isset($post['subcategoryName']) ? htmlentities($post['subcategoryName']) : 'N/A') . "</td>"; // Handle optional subcategory
+                                                                echo "<td>" . htmlentities($post['status']) . "</td>";
+                                                                echo "<td>" . date('F j, Y', strtotime($post['created_at'])) . "</td>";
+                                                                echo "<td>" . date('F j, Y', strtotime($post['updated_at'])) . "</td>";
+                                                                echo "<td>";
+                                                                    echo "<a href='" . BASE_ADMIN . "/posts/edit-post.php?psID=" . htmlentities($post['id']) . "' class='btn btn-outline-primary m-1'><i class='bx bx-edit'></i></a>";
+                                                                    echo "&nbsp;";
+                                                                    echo "<a href='" . BASE_ADMIN . "/posts/manage-post.php?delArcPS_ID=" . htmlentities($post['id']) . "' class='btn btn-outline-danger m-1'><i class='bx bx-trash-alt' ></i></a>";
+                                                                    echo "</td>";
+                                                                echo "</tr>";
+                                                            }
+                                                        } else {
+                                                            echo "No unpublished posts found.";
+                                                        }
+
+                                                        // Close the connection if necessary (optional)
+                                                        mysqli_close($conn);
                                                     ?>
-                                                    <?php if(mysqli_num_rows($post_run) > 0):?>
-                                                        <?php foreach($post_run as $keys => $posts):?>
-                                                    <tr>
-                                                        <td><?php echo htmlentities($keys + 1);?></td>
-                                                        <td><?php echo htmlentities($posts['postedBy']);?></td>
-                                                        <td><?php echo htmlentities($posts['title']);?></td>
-                                                        <td><?php echo htmlentities($posts['category']);?></td>
-                                                        <td><?php echo htmlentities($posts['subcategory']);?></td>
-                                                        <td class="text-warning"><?php echo htmlentities($posts['status']);?></td>
-                                                        <td><?php echo htmlentities($posts['created_at']);?></td>
-                                                        <td><?php echo htmlentities($posts['updated_at']);?></td>
-                                                        <td>
-                                                            <a href="<?php echo BASE_ADMIN.'/posts/edit-post.php?psID='?><?php echo htmlentities($posts['id']);?>" class="btn btn-outline-primary m-1"><i class='bx bx-edit'></i></a>
-                                                            &nbsp;
-                                                            <a href="<?php echo BASE_ADMIN.'/posts/manage-post.php?delArcPS_ID='?><?php echo htmlentities($posts['id']);?>" class="btn btn-outline-danger m-1"><i class='bx bx-trash-alt' ></i></a>
-                                                        </td>
-                                                    </tr>
-                                                    <?php endforeach;?>
-                                                    <?php endif;?>
                                                     <!--============= End of Table Data ===============-->
                                                 </tbody>
                                             </table>

@@ -93,7 +93,7 @@ if(isset($_POST['submitPost'])){
     unset($_POST['submitPost']);
 
     #All fields data
-    $postedBy = $_SESSION['username'];
+    $postedBy = $_SESSION['id'];
     $title = $_POST['title'];
     $category = $_POST['category'];
     $subcategory = $_POST['subcategory'];
@@ -239,7 +239,7 @@ if(isset($_POST['updatePost'])){
     unset($_POST['updatePost'], $_POST['id']);
 
     #All fields data
-    $postedBy = $_SESSION['username'];
+    $postedBy = $_SESSION['id'];
     $title = $_POST['title'];
     $category = $_POST['category'];
     $subcategory = $_POST['subcategory'];

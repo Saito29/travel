@@ -55,7 +55,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                             </div>
                                          </div>
                                          <form action="add-post.php" class="row gx-2 gy-3" autocomplete="on" name="addPost" method="post" enctype="multipart/form-data">
-                                            <input type="hidden" name="postedBy" value="<?php echo htmlentities($_SESSION['username']);?>" readonly>
+                                            <input type="hidden" name="postedBy" value="<?php echo htmlentities($_SESSION['id']);?>" readonly>
                                             <div class="mb-1 col-md-6 form-group">
                                                 <label for="title" class="form-label">Post Title:</label>
                                                 <input type="text" class="form-control" name="title" placeholder="Enter Title" value="<?php echo htmlentities($title)?>" required>
@@ -64,54 +64,48 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                             <div class="mb-1 col-md-6 form-group">
                                                 <label for="categoryDescription" class="form-label">Category:</label>
                                                 <select name="category" class="form-select" required>
-                                                <?php if(!isset($_POST['category'])):?>
-                                                    <option value="" selected>Select Categories: </option>
-                                                    <!--Category List-->
-                                                    <?php 
-                                                    $query = mysqli_query($conn, "SELECT * FROM category WHERE Is_Active = 1 ORDER BY categName");
-                                                    while($categories = mysqli_fetch_array($query))
-                                                    {
+                                                    <?php if (!isset($_POST['category'])): ?>
+                                                        <option value="" selected>Select Category: </option>
+                                                    <?php endif; ?>
+                                                    <?php
+                                                        $query = mysqli_query($conn, "SELECT * FROM category WHERE Is_Active = 1 ORDER BY categName ASC");
+                                                        if ($query) { // Check if query execution was successful
+                                                            while ($categories = mysqli_fetch_array($query)) {
+                                                                $selected = (isset($_POST['category']) && $_POST['category'] == $categories['id']) ? 'selected' : '';
+                                                                echo "<option value='" . htmlentities($categories['id']) . "' $selected>" . htmlentities($categories['categName']) . "</option>";
+                                                            }
+                                                            mysqli_free_result($query); // Free the result set (optional)
+                                                        } else {
+                                                            echo '<option value="">Error fetching categories</option>'; // Handle error
+                                                        }
                                                     ?>
-                                                    <option value="<?php echo htmlentities($categories['categName']);?>"><?php echo htmlentities($categories['categName']);?></option>
-                                                    <?php }?>
-                                                    <?php else:?>
-                                                    <option value="<?php echo $category?>" selected>Selected Categories: <?php echo $category?></option>
-                                                    <!--Category List-->
-                                                    <?php 
-                                                    $query = mysqli_query($conn, "SELECT * FROM category WHERE Is_Active = 1 ORDER BY categName ASC");  
-                                                    while($categories = mysqli_fetch_array($query))
-                                                    {
-                                                    ?>
-                                                    <option value="<?php echo htmlentities($categories['categName']);?>"><?php echo htmlentities($categories['categName']);?></option>
-                                                    <?php }?>
-                                                    <?php endif;?>
+                                                    <?php if (isset($_POST['category'])): ?>
+                                                        <option value="<?php echo htmlentities($_POST['category']) ?>" selected>Selected Category: <?php echo htmlentities($_POST['category']) ?></option>
+                                                    <?php endif; ?>
                                                 </select>
                                                 <p class="text-danger fs-6 px-2">required</p>
                                             </div>
                                             <div class="mb-1 col-md-6 form-group">
                                                 <label for="subCategory" class="form-label">Sub Category:</label>
                                                 <select name="subcategory" class="form-select" required>
-                                                <?php if(!isset($_POST['subcategory'])):?>
-                                                    <option value="" selected>Select Sub-Categories: </option>
-                                                    <!--Sub-Category List-->
-                                                    <?php 
-                                                    $query = mysqli_query($conn, "SELECT * FROM subcategory WHERE is_Active = 1 ORDER BY name ASC");
-                                                    while($subcategories = mysqli_fetch_array($query))
-                                                    {
+                                                    <?php if (!isset($_POST['subcategory'])): ?>
+                                                        <option value="" selected>Select Sub-Category: </option>
+                                                    <?php endif; ?>
+                                                    <?php
+                                                        $query = mysqli_query($conn, "SELECT * FROM subcategory WHERE is_Active = 1 ORDER BY name ASC");
+                                                        if ($query) { // Check if query execution was successful
+                                                            while ($subcategories = mysqli_fetch_array($query)) {
+                                                                $selected = (isset($_POST['subcategory']) && $_POST['subcategory'] == $subcategories['id']) ? 'selected' : '';
+                                                                    echo "<option value='" . htmlentities($subcategories['id']) . "' $selected>" . htmlentities($subcategories['name']) . "</option>";
+                                                            }
+                                                            mysqli_free_result($query); // Free the result set (optional)
+                                                        } else {
+                                                            echo '<option value="">Error fetching subcategories</option>'; // Handle error
+                                                        }
                                                     ?>
-                                                    <option value="<?php echo htmlentities($subcategories['name']);?>"><?php echo htmlentities($subcategories['name']);?></option>
-                                                    <?php }?>
-                                                    <?php else:?>
-                                                    <option value="<?php echo $subcategory?>" selected>Selected Sub-Categories: <?php echo $subcategory?></option>
-                                                    <!--Sub-Category List-->
-                                                    <?php 
-                                                    $query = mysqli_query($conn, "SELECT * FROM subcategory WHERE is_Active = 1 ORDER BY name ASC");
-                                                    while($subcategories = mysqli_fetch_array($query))
-                                                    {
-                                                    ?>
-                                                    <option value="<?php echo htmlentities($subcategories['name']);?>"><?php echo htmlentities($subcategories['name']);?></option>
-                                                    <?php }?>
-                                                    <?php endif;?>
+                                                    <?php if (isset($_POST['subcategory'])): ?>
+                                                        <option value="<?php echo htmlentities($_POST['subcategory']) ?>" selected>Selected Sub-Category: <?php echo htmlentities($_POST['subcategory']) ?></option>
+                                                    <?php endif; ?>
                                                 </select>
                                                 <p class="text-danger fs-6 px-2">required</p>
                                             </div>
@@ -130,11 +124,12 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                             </div>
                                             <div class="mb-1 col-sm-12">
                                                 <label for="description" class="mb-3 form-label">Post description:</label>
-                                                <textarea name="description" id="mytextarea" class="form-control" ><?php echo htmlentities($description);?></textarea>
+                                                <textarea name="description" id="mytextarea" class="form-control mytextarea" ><?php echo htmlentities($description);?></textarea>
+                                                <p class="text-danger fs-6 px-2">required</p>
                                             </div>
                                             <div class="mb-1 col-md-12 form-group">
                                                 <label for="googleWidget" class="form-label">Google Widgets:</label>
-                                                <textarea name="googleWidget" id="editor" class="form-control" ><?php echo htmlentities($googleWidget);?></textarea>
+                                                <textarea name="googleWidget" id="mytextarea" class="form-control mytextarea" ><?php echo htmlentities($googleWidget);?></textarea>
                                                 <p class="text-danger fs-6 px-2">required</p>
                                             </div>
                                             <div class="mb-1 col-sm-6">
@@ -144,7 +139,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                             </div>
                                             <div class="mb-1 col-md-4 form-group">
                                                 <label for="categoryDescription" class="form-label">Post Created:</label>
-                                                <input type="datetime-local" class="form-control" name="created_at" value="<?php echo htmlentities($created_at);?>" required>
+                                                <input type="date" class="form-control" name="created_at" value="<?php echo htmlentities($created_at);?>" required>
                                                 <p class="text-danger fs-6 px-2">required</p>
                                             </div>
                                             <div class="mb-1 col-md-6 form-group">

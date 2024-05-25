@@ -40,34 +40,8 @@ $(document).ready(function() {
             // settings: "unslick"
             // instead of a settings object
           ]
+        });
     });
-          /*Pagination JS*/
-          $('#pagination').pagination({
-            dataSource:['settings','slidetoshow','1','2','3','4'],
-            pageSize: 5,
-            showGoInput: true,
-            showGoButton: true,
-            autoHidePrevious: true,
-            autoHideNext: true,
-            showSizeChanger: true,
-            showNavigator: true,
-            formatNavigator: '<%= rangeStart %>-<%= rangeEnd %> of <%= totalNumber %> post items',
-            hideFirstOnEllipsisShow: true,
-            pageRange: 5,
-            ajax: {
-                beforeSend: function() {
-                    dataContainer.html('Loading data from Cube.io....');
-                }
-            },
-            callback: function(data, pagination) {
-                // template method of yourself
-                var html = template(data);
-                $('.data-container').html(html);
-            }
-        })
-});
-
-$('.alert').alert()
 
  //User image dropdown
  function toggleDropdown() {
@@ -77,3 +51,4 @@ $('.alert').alert()
   } else {
       dropdownContent.style.display = "none";
   }};
+

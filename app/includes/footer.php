@@ -16,21 +16,39 @@
                         <?php
                             $pageTitle = 'About Page';
                             $title = 'About';
-                            $page_query = mysqli_query($conn, "SELECT * FROM pages WHERE title = '$pageTitle' OR title = '$title'");
+
+                            // ... (Database connection code)
+
+                            $stmt = $conn->prepare("SELECT p.*, s.fb, s.instagram, s.tiktok, s.youtube
+                                FROM pages p
+                                LEFT JOIN settings s ON 1 = 1
+                                WHERE p.title = ? OR p.title = ?");
+                            $stmt->bind_param("ss", $pageTitle, $title);
+                            $stmt->execute();
+                            $result = $stmt->get_result();
+
+                            if ($result->num_rows > 0) {
+                                $row = $result->fetch_assoc();
+
+                                echo "<p style='text-align: justify'>" . html_entity_decode($row['details']) . "</p>";
+                                echo "<div class='contact-details'>";
+                                echo "<span><i class='bx bxs-phone'></i>&nbsp;" . html_entity_decode($row['contact']) . "</span>";
+                                echo "<span><i class='bx bxs-envelope'></i>&nbsp;" . html_entity_decode($row['email']) . "</span>";
+                                echo "</div>";
+
+                                echo "<div class='social'>";
+                                echo "<a href='" . urldecode($row['fb']) . "' target='_blank'><i class='bx bxl-facebook-circle'></i></a>";
+                                echo "<a href='" . urldecode($row['instagram']) . "' target='_blank'><i class='bx bxl-instagram-alt'></i></a>";
+                                echo "<a href='" . urldecode($row['tiktok']) . "' target='_blank'><i class='bx bxl-tiktok'></i></a>";
+                                echo "<a href='" . urldecode($row['youtube']) . "' target='_blank'><i class='bx bxl-youtube'></i></a>";
+                                echo "</div>";
+                            } else {
+                                echo "No page details found.";
+                            }
+
+                            $stmt->close();
+                            $conn->close();
                         ?>
-                        <?php while($page = mysqli_fetch_assoc($page_query)):?>
-                        <p style="text-align: justify;"><?php echo html_entity_decode($page['details'])?></p>
-                        <div class="contact-details">
-                            <span><i class='bx bxs-phone'></i>&nbsp; <?php echo html_entity_decode($page['contact'])?></span>
-                            <span><i class='bx bxs-envelope'></i>&nbsp; <?php echo html_entity_decode($page['email'])?></span>
-                        </div>
-                        <?php endwhile;?>
-                        <div class="social">
-                            <a href="<?php echo urldecode($setting['fb'])?>" target="_blank"><i class='bx bxl-facebook-circle'></i></a>
-                            <a href="<?php echo urldecode($setting['instagram'])?>" target="_blank"><i class='bx bxl-instagram-alt'></i></a>
-                            <a href="<?php echo urldecode($setting['tiktok'])?>" target="_blank"><i class='bx bxl-tiktok'></i></a>
-                            <a href="<?php echo urldecode($setting['youtube'])?>" target="_blank"><i class='bx bxl-youtube'></i></a>
-                        </div>
                     </div>
                     <div class="footer-section links">
                         <h4 class="card-title mb-3">Quick Links</h4>

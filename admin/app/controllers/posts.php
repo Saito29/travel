@@ -96,7 +96,7 @@ if(isset($_POST['submitPost'])){
     unset($_POST['submitPost']);
 
     #All fields data
-    $user_id = $_SESSION['username'];
+    $user_id = $_SESSION['id'];
     $title = $_POST['title'];
     $category = $_POST['category'];
     $subcategory = $_POST['subcategory'];
@@ -104,7 +104,7 @@ if(isset($_POST['submitPost'])){
     $description = htmlentities($_POST['description']);
     $googleWidget = htmlentities($_POST['googleWidget']);
     $postImage = $_FILES['image'];
-    $created_at = date('M-d-Y', strtotime($_POST['created']));
+    $created_at = $_POST['created_at'];
 
     #Image identification
     $postImage = $_FILES['image']['name']; #image name
@@ -188,7 +188,7 @@ if(isset($_POST['submitPost'])){
                 $description = $_POST['description'];
                 $postImage = $_FILES['image'];
                 $googleWidget = $_POST['googleWidget'];
-                $created_at = date('M-d-Y', strtotime($_POST['created']));
+                $created_at = $_POST['created_at'];
                 
                 #Alert error message if the file type is not supported and return it to current page
                 $msg = "You can't upload this type of file, Please check the file type again ['jpeg, jpg, png, webp'].";
@@ -229,7 +229,7 @@ if(isset($_GET['psID'])){
     $description = $ps_id['description'];
     $postImage = $ps_id['image'];
     $googleWidget = $ps_id['googleWidget'];
-    $updated_at = date('M-d-Y', strtotime($ps_id['updated_at']));
+    $updated_at = $ps_id['updated_at'];
 }
 
 #This is for the update the post
@@ -241,7 +241,7 @@ if(isset($_POST['updatePost'])){
     unset($_POST['updatePost'], $_POST['id']);
 
     #All data information
-    $user_id = $_SESSION['username'];
+    $user_id = $_SESSION['id'];
     $title = $_POST['title'];
     $category = $_POST['category'];
     $subcategory = $_POST['subcategory'];
@@ -249,7 +249,7 @@ if(isset($_POST['updatePost'])){
     $description = htmlentities($_POST['description']);
     $googleWidget = htmlentities($_POST['googleWidget']);
     $postImage = $_FILES['image'];
-    $updated_at = date('M-d-Y', strtotime($_POST['updated_at']));
+    $updated_at = $_POST['updated_at'];
 
     #Image identification
     $postImage = $_FILES['image']['name']; #image name
@@ -331,7 +331,7 @@ if(isset($_POST['updatePost'])){
                 $description = $_POST['description'];
                 $postImage = $_FILES['image'];
                 $googleWidget = $_POST['googleWidget'];
-                $updated_at = date('M-d-Y', strtotime($_POST['updated_at']));
+                $updated_at = $_POST['updated_at'];
                 
                 #Alert error message if the file type is not supported and return it to current page
                 $msg = "You can't upload this type of file, Please check the file type again ['jpeg, jpg, png, webp'].";

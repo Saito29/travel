@@ -90,8 +90,6 @@ if(isset($_SESSION['id'])){
                                 <?php else:?>
                                 <option value="<?php echo $role;?>" selected>User type: <?php echo $role;?></option>
                                 <?php endif;?>
-                                <option value="admin">Admin User</option>
-                                <option value="sub-admin">Sub-Admin User</option>
                                 <option value="editor">Editor User</option>
                                 <option value="user">Guest User</option>
                             </select>

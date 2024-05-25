@@ -23,19 +23,19 @@ function executeQuery($sql, $data)
     return $stmt;
 }
 
-function selectAll($table, $data = [])
+function selectAll($table, $conditions = [])
 {
     global $conn;
     // prepare and bind
     $sql = "SELECT * FROM $table";
-    if (empty($data)) {
+    if (empty($conditions)) {
         $stmt = $conn->prepare($sql);
         $stmt->execute();
         $records = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
         return $records;
     } else {
         $i = 0;
-        foreach ($data as $key => $value) {
+        foreach ($conditions as $key => $value) {
             if ($i === 0) {
                 $sql = $sql . " WHERE $key=?";
             } else {
@@ -43,7 +43,7 @@ function selectAll($table, $data = [])
             }
             $i++;
         }
-        $stmt = executeQuery($sql, $data);
+        $stmt = executeQuery($sql, $conditions);
         $records = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
         return $records;
     }
@@ -127,16 +127,30 @@ function deleted($table, $id)
     return $stmt->affected_rows;
 }
 
-/*
-$data = [
-    'admin' => 0,
-    'firstName' => 'Barry',
-    'lastName' => 'Allen',
-    'username' => 'Flash',
-    'email' => 'flashAdmin@gmail.com',
-    'password' => 'flash292',
-    'profileImage' => ''
-];
+#Getting the publish post
+function getPublishPost(){
+    global $conn;
 
-$id = update('users', 2, $data);
-dd($id); */
+    #sql = SELECT * FROM post WHERE status='published AND is_Active = 1
+    $sql = "SELECT p.*, u.username, FROM post AS p JOIN users AS u ON p.postedBy=u.username WHERE p.status='published' AND p.is_Active = ?";
+
+    $stmt = executeQuery($sql, ['is_Active' => 1]);
+    $records = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+    return $records;
+}
+
+#Getting the publish post
+function searchPosts($term){
+    $match = '%'. $term . '%';
+
+    global $conn;
+
+    #sql = SELECT * FROM post WHERE status='published AND is_Active = 1
+    $sql = "SELECT * FROM post 
+            WHERE status='published', is_Active = ? 
+            AND title LIKE ? OR description LIKE ?";
+
+    $stmt = executeQuery($sql, ['is_Active' => 1, 'title' => $match, 'description' => $match]);
+    $records = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+    return $records;
+}

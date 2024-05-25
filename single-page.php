@@ -1,6 +1,13 @@
 <?php 
 include("path.php");
 include(ROOT_PATH."/app/controllers/comment.php");
+
+if(isset($_GET['psId'])){
+    #select the id of the post
+    $post = selectOne('post', ['id' => $_GET['psId']]);
+    #$posts = getPublishedPosts();
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -8,10 +15,10 @@ include(ROOT_PATH."/app/controllers/comment.php");
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=7">
-    <meta name="description" content="Basic Fundamental SQL Tutorial">
-    <meta name="author" content="Saito">
+    <meta name="description" content="<?php echo $post['title']?> | Travel">
+    <meta name="author" content="<?php echo $post['postedBy']?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Basic Fundamental SQL tutorial</title>
+    <title><?php echo $post['title']?> | Travel</title>
     <?php include(ROOT_PATH.'/app/includes/sg-css.php');?>
 </head>
 <body>
@@ -25,36 +32,20 @@ include(ROOT_PATH."/app/controllers/comment.php");
                 <div class="row d-flex flex-grow-1">
                     <!--Main Content-->
                     <div class="container-fluid mt-3 col-md-8 clearfix h-100 mh-100">
+                        <!--Content start-->
                         <div class="card h-auto w-100 border-0">
-                            <div class="card-header bg-transparent border-success d-flex gap-1">
-                                <p class="card-text text-primary">Category: Programming Related</p>
-                                |
-                                <p class="card-text text-info">Sub-categories: Tutorial</p>
+                            <div class="card-header bg-transparent border-success hstack gap-2">
+                                <h6 class="card-title"><?php echo htmlspecialchars($post['title'])?></h6>
+                                <p class="text-muted ms-auto">Posted: <?php echo date('F j, Y', strtotime($post['created_at']))?></p>
+                                <div class="vr"></div>
+                                <p class="text-muted"><i class='bx bx-show-alt'></i><?php echo $post['viewer']?></p>
                             </div>
                             <div class="card-body">
                                 <div class="card border-0">
-                                    <h5 class="card-title">Basic Fundamental of MySQL</h5>
-                                    <div class="d-flex justify-content-between px-2">
-                                            <p class="text-muted">Posted: March 20, 2024</p>
-                                            <p class="text-muted"><i class='bx bx-show-alt'></i>201</p>
-                                        </div>
-                                    <div class="card-body">
-                                        <p class="card-text" style="text-align: justify;">A complete Tutorial for learning a basic fundamental of SQL. This blog will help
-                                            you to know the basic of sql and how to use and what is role in back end.
-                                        </p>
-                                        <div class="card-img-top d-flex align-items-center justify-content-center mb-3">
-                                            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhKkw4-fakWFEGyhNp6BDcpB7mMtDR25wW2tisWYnCpY94h2zla9hpx4mJ_J9esSGIZVPmefrf_0cO9sGX97x0j4MvE64-6lFAZhV35dDMLh2PS6aikW2WxtmlRU0PMHJSd1GRYf7Y-HPI/s1600/mt-pinagbanderahan-bantakay-falls-05.jpg" alt="Thumbnail_post" class=" w-75 h-100 object-fit-md-cover">
-                                        </div>
-                                        <div class="card-text h-100 w-100">
-                                            <p>This chapter we will now tackle about Basic Fundamental of MySQL</p>
-                                            <p>1. What is SQL?</p>
-                                            <p>2. What do i need to know about SQl</p>
-                                            <p>3. Entity Relationship Diagram</p>
-                                            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Id sequi ullam, 
-                                            culpa cupiditate asperiores at consequuntur minus cumque doloremque illo! Ut consequuntur voluptates fugit vitae atque? 
-                                            Nam quasi assumenda reiciendis.</p>
-                                        </div>
+                                    <div class="card-img-top d-flex align-items-center justify-content-center mb-3">
+                                        <img src="<?php echo BASE_URL.'/app/upload/uploadThumbnail/'?><?php echo htmlspecialchars($post['image'])?>" alt="Thumbnail_post" class=" w-75 h-100 object-fit-md-cover">
                                     </div>
+                                    <p class="card-text h-100 w-100"><?php echo html_entity_decode($post['description'])?></p>
                                 </div>                                
                             </div>
                         </div>
@@ -71,7 +62,7 @@ include(ROOT_PATH."/app/controllers/comment.php");
                                         <!--Comments required to identify user-->
                                         <?php if(!isset($_SESSION['id'])):?>
                                         <form action="single-page.php" method="post" name="Comment" class="row gx-2 gy-2 p-2" autocomplete="on" enctype="application/x-www-form-urlencoded">
-                                            <input type="hidden" name="id" value="<?php echo htmlentities($id)?>">
+                                            <input type="hidden" name="id" value="<?php echo htmlentities($post['id'])?>">
                                             <div class="mb-1 col-md-4 form-group w-50">
                                                 <label for="username" class="form-label">Username:</label>
                                                 <?php if(!isset($_POST['username'])):?>
@@ -104,6 +95,7 @@ include(ROOT_PATH."/app/controllers/comment.php");
                                         </form>
                                             <?php else:?>
                                         <form action="single-page.php" method="post" class="row gx-2 gy-2 p-2" autocomplete="on" enctype="application/x-www-form-urlencoded">
+                                            <input type="hidden" name="id" value="<?php echo htmlentities($post['id'])?>">
                                             <input type="hidden" name="username" value="<?php echo htmlentities($_SESSION['username'])?>">
                                             <input type="hidden" name="email" value="<?php echo htmlentities($_SESSION['email'])?>">
                                             <div class="mb-3 col-md-8 form-group w-100">
@@ -159,7 +151,7 @@ include(ROOT_PATH."/app/controllers/comment.php");
                         <div class="card mb-3 w-auto">
                             <h5 class="card-header bg-transparent text-secondary">Google Widgets</h5>
                             <div class="card-body">
-                                <iframe src="https://www.google.com/maps/embed?pb=!4v1713517214188!6m8!1m7!1sCAoSLEFGMVFpcE44c2tibXJCRnRoeHpJdnJoY1VrSTBhbTZyemhFVzFQRUpoLW5y!2m2!1d13.99581128727167!2d121.8106086619177!3f318.0102210969411!4f6.2145195050297275!5f0.7820865974627469" width="370" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                <?php echo html_entity_decode($post['googleWidget'])?>
                             </div>
                         </div>
                         <!--End o google widgets-->
@@ -168,29 +160,79 @@ include(ROOT_PATH."/app/controllers/comment.php");
                             <h5 class="card-header bg-transparent">Popular Post</h5>
                             <div class="card-body">
                                 <?php
-                                    $postImage = mysqli_query($conn, "SELECT * FROM post WHERE is_Active = 1 LIMIT 5");
+                                    // Prepare the SQL statement with placeholders for LIMIT and escaping field names
+                                    $sql = "SELECT p.id, p.title, p.image FROM post p WHERE p.is_Active = 1 LIMIT ?";
+
+                                    // Create a prepared statement
+                                    $stmt = mysqli_prepare($conn, $sql);
+
+                                    // Bind parameter (limit) to prevent SQL injection
+                                    if ($stmt) {
+                                        $limit = 5; // Adjust the limit as needed
+                                        mysqli_stmt_bind_param($stmt, 'i', $limit);
+
+                                        // Execute the prepared statement
+                                        mysqli_stmt_execute($stmt);
+
+                                        // Get the result set
+                                        $result = mysqli_stmt_get_result($stmt);
+
+                                        // Fetch all results as associative arrays
+                                        while ($post = mysqli_fetch_assoc($result)) {
+                                            echo '<div class="card mb-2 border-0">';
+                                            echo '  <img src="' . BASE_URL . '/app/upload/uploadThumbnail/' . htmlentities($post['image']) . '" class="card-img-top w-50" alt="Thumbnail_post" width="75" height="75">';
+                                            echo '  <div class="card-body">';
+                                            echo '    <a class="card-text" href="' . BASE_URL . '/single-page.php?psId=' . htmlentities($post['id']) . '"><p>' . htmlentities($post['title']) . '</p></a>';
+                                            echo '  </div>';
+                                            echo '</div>';
+                                        }
+
+                                        // Close the result set and statement (optional)
+                                        mysqli_stmt_close($stmt);
+                                    } else {
+                                        // Handle statement preparation error (log or display an error message)
+                                        error_log("Failed to prepare statement: " . mysqli_error($conn));
+                                    }
                                 ?>
-                                <?php while($post_query = mysqli_fetch_assoc($postImage)):?>
-                                <div class="card mb-2 border-0">
-                                    <img src="<?php echo BASE_URL.'/app/upload/uploadThumbnail/'?><?php echo htmlentities($post_query['image'])?>" class="card-img-top w-50" alt="Thumbnail_post" width="75" height="75">
-                                    <div class="card-body">
-                                        <a class="card-text" href="<?php echo BASE_URL.'/single-page.php?psID='?><?php echo htmlentities($post_query['id'])?>"><p><?php echo htmlentities($post_query['title'])?></p></a>    
-                                    </div>
-                                </div>
-                                <?php endwhile;?>
                             </div>
                         </div>
-                        
+                        <!--End of Post Content-->
                         <!--============= Sidebar Category ==============-->
                         <div class="card mt-3 clearfix" id="category">
                             <h5 class="card-header">Recent Blog Post</h5>
                             <ul class="list-group list-group-flush px-2 py-3">
                                 <?php
-                                    $postTitle = mysqli_query($conn, "SELECT * FROM `post` WHERE is_Active = 1 LIMIT 10");
+                                    // Prepare the SQL statement with a placeholder for LIMIT
+                                    $sql = "SELECT * FROM `post` WHERE is_Active = 1 LIMIT ?";
+
+                                    // Create a prepared statement
+                                    $stmt = mysqli_prepare($conn, $sql);
+
+                                    // Bind parameter (limit) to prevent SQL injection
+                                    if ($stmt) {
+                                        $limit = 10; // Adjust the limit as needed
+                                        mysqli_stmt_bind_param($stmt, 'i', $limit);
+
+                                        // Execute the prepared statement
+                                        mysqli_stmt_execute($stmt);
+
+                                        // Get the result set
+                                        $result = mysqli_stmt_get_result($stmt);
+
+                                        // Fetch all results as associative arrays
+                                        while ($title = mysqli_fetch_assoc($result)) {
+                                            echo '<li class="list-group-item">';
+                                            echo '  <a href="' . BASE_URL . '/single-page.php?psId=' . htmlentities($title['id']) . '" class="text-success px-2">' . htmlentities($title['title']) . '</a>';
+                                            echo '</li>';
+                                        }
+
+                                        // Close the result set and statement (optional)
+                                        mysqli_stmt_close($stmt);
+                                    } else {
+                                        // Handle statement preparation error (log or display an error message)
+                                        error_log("Failed to prepare statement: " . mysqli_error($conn));
+                                    }
                                 ?>
-                                <?php while($title = mysqli_fetch_array($postTitle)):?>
-                                <li class="list-group-item"><a href="<?php echo BASE_URL.'/single-page.php?psID='?><?php echo htmlentities($title['id'])?>" class="text-success px-2"><?php echo htmlentities($title['title'])?></a></li>
-                                <?php endwhile;?>
                             </ul>
                         </div>
                         <!--============= End of Sidebar category ================-->

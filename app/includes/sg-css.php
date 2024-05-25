@@ -4,7 +4,10 @@
     <link rel="stylesheet" href="<?php echo BASE_URL.'/asset/css/index.css'?>">
 
      <!--favicon logo-->
-     <link rel="shortcut icon" href="<?php echo BASE_URL.'/asset/img/logo/travel.png'?>" type="image/x-icon">
+    <?php $settingFavicon = mysqli_query($conn,"SELECT * FROM settings WHERE id = 1");?>
+    <?php while($settings = mysqli_fetch_assoc($settingFavicon)):?>
+    <link rel="shortcut icon" href="<?php echo BASE_URL.'/app/upload/uploadSettingURL/uploadFavicon/'?><?php echo $settings['favicon']?>" type="image/x-icon">
+    <?php endwhile;?>
 
      <!--Google Fonts-->
      <link rel="preconnect" href="https://fonts.googleapis.com">

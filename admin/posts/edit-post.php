@@ -54,7 +54,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                             <div class="col-sm-12">
                                                <!--Alert start-->
                                                 <?php include(ROOT_PATH.'/app/helpers/formAlert.php');?>
-                                                <?php include(ROOT_PATH.'/app/helpers/messageAlert.php');?>
+                                                <?php include(ROOT_PATH.'/app/helpers/updateAlert.php');?>
                                                <!--Alert end-->
                                             </div>
                                         </div>
@@ -76,7 +76,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                                     while($categories = mysqli_fetch_array($query))
                                                     {
                                                     ?>
-                                                    <option value="<?php echo htmlentities($categories['categName']);?>"><?php echo htmlentities($categories['categName']);?></option>
+                                                    <option value="<?php echo htmlentities($categories['id']);?>"><?php echo htmlentities($categories['categName']);?></option>
                                                     <?php }?>
                                                     <?php else:?>
                                                     <option value="" selected>Select Categories: </option>
@@ -86,7 +86,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                                     while($categories = mysqli_fetch_array($query))
                                                     {
                                                     ?>
-                                                    <option value="<?php echo htmlentities($categories['categName']);?>"><?php echo htmlentities($categories['categName']);?></option>
+                                                    <option value="<?php echo htmlentities($categories['id']);?>"><?php echo htmlentities($categories['categName']);?></option>
                                                     <?php }?>
                                                     <?php endif;?>
                                                 </select>
@@ -103,7 +103,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                                     while($subcategories = mysqli_fetch_array($query))
                                                     {
                                                     ?>
-                                                    <option value="<?php echo htmlentities($subcategories['name']);?>"><?php echo htmlentities($subcategories['name']);?></option>
+                                                    <option value="<?php echo htmlentities($subcategories['id']);?>"><?php echo htmlentities($subcategories['name']);?></option>
                                                     <?php }?>
                                                     <?php else:?>
                                                     <option value="" selected>Select Sub-Categories: </option>
@@ -113,7 +113,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                                     while($subcategories = mysqli_fetch_array($query))
                                                     {
                                                     ?>
-                                                    <option value="<?php echo htmlentities($subcategories['name']);?>"><?php echo htmlentities($subcategories['name']);?></option>
+                                                    <option value="<?php echo htmlentities($subcategories['id']);?>"><?php echo htmlentities($subcategories['name']);?></option>
                                                     <?php }?>
                                                     <?php endif;?>
                                                 </select>
@@ -134,12 +134,12 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                             </div>
                                             <div class="mb-1 col-sm-12">
                                                 <label for="description" class="mb-3 form-label">Post description:</label>
-                                                <textarea name="description" id="mytextarea" class="form-control"><?php echo htmlentities($description);?></textarea>
+                                                <textarea name="description" id="mytextarea" class="form-control mytextarea"><?php echo htmlentities($description);?></textarea>
                                                 <p class="text-danger fs-6 px-2">required</p>
                                             </div>
                                             <div class="mb-1 col-md-12 form-group">
                                                 <label for="googleWidget" class="form-label">Google Widgets:</label>
-                                                <textarea name="googleWidget" id="editor" class="form-control"><?php echo htmlentities($googleWidget);?></textarea>
+                                                <textarea name="googleWidget" id="mytextarea" class="form-control mytextarea"><?php echo htmlentities($googleWidget);?></textarea>
                                                 <p class="text-danger fs-6 px-2">required</p>
                                             </div>
                                             <div class="mb-1 col-sm-6">
@@ -150,7 +150,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                             </div>
                                             <div class="mb-1 col-md-4 form-group">
                                                 <label for="categoryDescription" class="form-label">Post Updated:</label>
-                                                <input type="datetime-local" class="form-control" name="updated_at" value="<?php echo htmlentities($updated_at);?>" required>
+                                                <input type="date" class="form-control" name="updated_at" value="<?php echo htmlentities($updated_at);?>" required>
                                                 <p class="text-danger fs-6 px-2">required</p>
                                             </div>
                                             <div class="mb-1 col-md-6 form-group">

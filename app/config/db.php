@@ -23,19 +23,19 @@ function executeQuery($sql, $data)
     return $stmt;
 }
 
-function selectAll($table, $data = [])
+function selectAll($table, $conditions = [])
 {
     global $conn;
     // prepare and bind
     $sql = "SELECT * FROM $table";
-    if (empty($data)) {
+    if (empty($conditions)) {
         $stmt = $conn->prepare($sql);
         $stmt->execute();
         $records = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
         return $records;
     } else {
         $i = 0;
-        foreach ($data as $key => $value) {
+        foreach ($conditions as $key => $value) {
             if ($i === 0) {
                 $sql = $sql . " WHERE $key=?";
             } else {
@@ -43,7 +43,7 @@ function selectAll($table, $data = [])
             }
             $i++;
         }
-        $stmt = executeQuery($sql, $data);
+        $stmt = executeQuery($sql, $conditions);
         $records = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
         return $records;
     }
@@ -127,16 +127,115 @@ function deleted($table, $id)
     return $stmt->affected_rows;
 }
 
-/*
-$data = [
-    'admin' => 0,
-    'firstName' => 'Barry',
-    'lastName' => 'Allen',
-    'username' => 'Flash',
-    'email' => 'flashAdmin@gmail.com',
-    'password' => 'flash292',
-    'profileImage' => ''
-];
+#Getting the publish post
 
-$id = update('users', 2, $data);
-dd($id); */
+function getPublishPost(){
+    global $conn;
+
+    #sql = SELECT * FROM post WHERE status='published AND is_Active = 1
+    $sql = "SELECT p.*, u.username, u.profileImage 
+    FROM post AS p 
+    JOIN users AS u 
+    ON p.postedBy=u.id 
+    WHERE p.status='published' 
+    AND p.is_Active = ?";
+
+    $stmt = executeQuery($sql, ['is_Active' => 1]); 
+    $records = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+    return $records;
+}
+
+#Search the publish post
+function searchPosts($term) {
+    $match = '%' . $term . '%';
+  
+    global $conn;
+  
+    // Prepare the SQL statement with parameterized queries for security
+    $sql = "SELECT p.*, u.username, u.profileImage 
+    FROM post AS p
+    JOIN users AS u 
+    ON p.postedBy=u.id
+    WHERE p.status='published' 
+    AND p.is_Active = 1 
+    AND (title LIKE ? OR description LIKE ? OR username LIKE ?)";
+  
+    // Create a prepared statement
+    $stmt = mysqli_prepare($conn, $sql);
+  
+    // Bind parameters to prevent SQL injection vulnerabilities
+    if ($stmt) {
+      mysqli_stmt_bind_param($stmt, 'sss', $match, $match, $match);
+  
+      // Execute the prepared statement
+      mysqli_stmt_execute($stmt);
+  
+      // Get the result set
+      $result = mysqli_stmt_get_result($stmt);
+  
+      // Close the prepared statement (optional)
+      mysqli_stmt_close($stmt);
+  
+      // Fetch all results as associative arrays
+      return $result->fetch_all(MYSQLI_ASSOC);
+    } else {
+      // Handle statement preparation error (log or display an error message)
+      error_log("Failed to prepare statement: " . mysqli_error($conn));
+      return [];
+    }
+  }
+
+
+  #Get category post data
+  function getCategoryPost($category_Id){
+    global $conn; // Assuming you have a global $conn variable for database connection
+  
+    // Prepare the SQL statement with placeholders for security
+    $sql = "SELECT p.*
+            FROM post p
+            INNER JOIN category c ON p.category = c.categName
+            WHERE p.status = 'published'
+            AND p.is_Active = 1
+            AND c.categName = ?";
+  
+    // Create a prepared statement
+    $stmt = mysqli_prepare($conn, $sql);
+  
+    // Bind parameter (category ID) to prevent SQL injection
+    if ($stmt) {
+      mysqli_stmt_bind_param($stmt, 's', $category_Id);
+  
+      // Execute the prepared statement
+      mysqli_stmt_execute($stmt);
+  
+      // Get the result set
+      $result = mysqli_stmt_get_result($stmt);
+  
+      // Fetch all results as associative arrays
+      $records = $result->fetch_all(MYSQLI_ASSOC);
+  
+      // Close result set (optional)
+      mysqli_stmt_close($stmt);
+  
+      return $records;
+    } else {
+      // Handle statement preparation error (log or display an error message)
+      error_log("Failed to prepare statement: " . mysqli_error($conn));
+      return []; // Or return an empty array or some error indicator
+    }
+}
+
+#Single post
+function getPublishedPosts() {
+    $sql = "SELECT p.*, u.username, u.profileImage, c.categName, sc.subcategoryName 
+            FROM post AS p 
+            JOIN users AS u ON p.postedBy=u.id 
+            JOIN category AS c ON p.category = c.id
+            JOIN subcategory AS sc ON p.subcategory = sc.id
+            WHERE p.status='published' 
+            AND p.is_Active = ?";
+
+    $stmt = executeQuery($sql, ['is_Active' => 1]); 
+    $records = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+    return $records;
+  }

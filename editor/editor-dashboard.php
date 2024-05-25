@@ -108,46 +108,59 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                             <!--========== End of Table header ================-->
                                             <tbody>
                                                 <!--========= Table Data =====================-->
-                                                <?php 
-                                                    // Escape the session username to prevent SQL injection
-                                                    $username = mysqli_real_escape_string($conn, $_SESSION['username']);
+                                                <?php
+                                                        // Escape the session username to prevent SQL injection
+                                                        $username = mysqli_real_escape_string($conn, $_SESSION['username']);
 
-                                                    #Construct the prepared statement (recommended for security)
-                                                    $post = "SELECT * FROM post WHERE postedBy = ? AND status = 'published' AND is_Active = ?";
+                                                        # Construct the prepared statement (recommended for security)
+                                                        $sql = "SELECT p.*, u.username, u.profileImage, c.categName, sc.name
+                                                                FROM post AS p
+                                                                JOIN users AS u ON p.postedBy = u.id
+                                                                JOIN category AS c ON p.category = c.id
+                                                                JOIN subcategory AS sc ON p.subcategory = sc.id
+                                                                WHERE p.postedBy = ? AND p.status = 'published' AND p.is_Active = 1";
 
-                                                    #prepare the statement
-                                                    $stmt = mysqli_prepare($conn, $post);
+                                                        # Prepare the statement
+                                                        $stmt = mysqli_prepare($conn, $sql);
 
-                                                    #Bind the parameters (improve security against SQL injection)
-                                                    mysqli_stmt_bind_param($stmt, "ss", $username, $is_Active_status);
+                                                        # Bind the parameters (improve security against SQL injection)
+                                                        mysqli_stmt_bind_param($stmt, "s", $username); // Assuming active status is 1
 
-                                                    // Set the value of the active status parameter (assuming '2')
-                                                    $is_Active_status = 1;
+                                                        # Execute the statement
+                                                        mysqli_stmt_execute($stmt);
 
-                                                    #Exceture the statement
-                                                    mysqli_stmt_execute($stmt);
+                                                        $result = $stmt->get_result(); // Get the results
 
-                                                    // Get the results (if needed)
-                                                    $result = mysqli_stmt_get_result($stmt);
-                                                    #$post_run = mysqli_query($conn, $post);
-                                                ?>
-                                                <?php foreach($result as $key => $posts):?>
-                                                <tr>
-                                                    <td><?php echo htmlentities($key + 1)?></td>
-                                                    <td><?php echo htmlentities($posts['postedBy'])?></td>
-                                                    <td><?php echo htmlentities($posts['title'])?></td>
-                                                    <td><?php echo htmlentities($posts['category'])?></td>
-                                                    <td><?php echo htmlentities($posts['subcategory'])?></td>
-                                                    <td class="text-success"><?php echo htmlentities($posts['status'])?></td>
-                                                    <td><?php echo htmlentities($posts['created_at'])?></td>
-                                                    <td><?php echo htmlentities($posts['updated_at'])?></td>
-                                                    <td>
-                                                        <a href="<?php echo BASE_EDITOR.'/post/edit-post.php?psID='?><?php echo htmlentities($posts['id'])?>" class="btn btn-outline-primary m-1"><i class='bx bx-edit'></i></a>
-                                                        &nbsp;
-                                                        <a href="<?php echo BASE_EDITOR.'/editor-dashboard.php?delArcPS_ID='?><?php echo htmlentities($posts['id'])?>" class="btn btn-outline-danger m-1"><i class='bx bx-trash-alt' ></i></a>
-                                                    </td>
-                                                </tr>
-                                                <?php endforeach;?>
+                                                        // Error handling (example)
+                                                        if (!$stmt->execute()) {
+                                                        echo "Error fetching posts: " . mysqli_stmt_error($stmt);
+                                                        } else if (mysqli_num_rows($result) == 0) {
+                                                        echo "No published posts found.";
+                                                        } else {
+                                                            // Display the posts
+                                                            while ($posts = $result->fetch_assoc()) {
+                                                                echo '<tr>';
+                                                                echo '<td>' . htmlentities($posts['id']) . '</td>'; // Assuming you want to display the post ID
+                                                                echo '<td>' . htmlentities($posts['username']) . '</td>';
+                                                                echo '<td class="text-break">' . htmlentities($posts['title']) . '</td>';
+                                                                echo '<td>' . htmlentities($posts['categName']) . '</td>';
+                                                                echo '<td>' . htmlentities($posts['subcategoryName']) . '</td>';
+                                                                echo '<td class="text-success">' . htmlentities($posts['status']) . '</td>';
+                                                                echo '<td>' . date('F j, Y', strtotime($posts['created_at'])) . '</td>';
+                                                                echo '<td>' . date('F j, Y', strtotime($posts['updated_at'])) . '</td>';
+                                                                echo '<td class="text-break">';
+                                                                echo '<a href="' . BASE_EDITOR . '/post/edit-post.php?psID=' . htmlentities($posts['id']) . '" class="btn btn-outline-primary m-1"><i class=\'bx bx-edit\'></i></a>';
+                                                                echo '&nbsp;';
+                                                                echo '<a href="' . BASE_EDITOR . '/post/manage-post.php?delArcPS_ID=' . htmlentities($posts['id']) . '" class="btn btn-outline-danger m-1"><i class=\'bx bx-trash-alt\' ></i></a>';
+                                                                echo '</td>';
+                                                                echo '</tr>';
+                                                            }
+                                                        }
+
+                                                        // Close resources
+                                                        mysqli_stmt_close($stmt);
+                                                        mysqli_free_result($result);
+                                                    ?>
                                                 <!--============= End of Table Data ===============-->
                                             </tbody>
                                         </table>

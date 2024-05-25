@@ -55,7 +55,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                             <input type="hidden" name="id" value="<?php echo htmlentities($settings['id'])?>">
                                             <div class="mb-2 col-sm-3">                                                
                                                 <label for="favicon" class="form-label">Logo Favicon:</label>
-                                                <input type="file" class="d-none" name="favicon" onchange="displayImage(this)" id="featureLogoFavicon">
+                                                <input type="file" class="d-none" name="favicon" onchange="displayImage(this)" id="featureLogoFavicon" disabled>
                                                 <?php if(!isset($_POST['favicon'])):?>
                                                 <img src="<?php echo BASE_URL.'/app/upload/uploadSettingURL/uploadFavicon/'?><?php echo htmlentities($settings['favicon'])?>" onclick="triggerClick()" id="logoFavIcon" class="d-block rounded-circle" alt="logoFavIcon" style="cursor:pointer" height="85" width="85">
                                                 <?php else:?>
@@ -64,7 +64,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                             </div>
                                             <div class="mb-2 col-sm-3">
                                                 <label for="logo" class="form-label">Website Logo:</label>
-                                                <input type="file" class="d-none" name="logo" onchange="displaySystem(this)" id="featureSystemLogo">
+                                                <input type="file" class="d-none" name="logo" onchange="displaySystem(this)" id="featureSystemLogo" disabled>
                                                 <?php if(!isset($_POST['logo'])):?>
                                                 <img src="<?php echo BASE_URL.'/app/upload/uploadSettingURL/uploadLogo/'?><?php echo htmlentities($settings['logo'])?>" onclick="systemClick()" id="systemLogo" class="d-block rounded-circle" alt="logoFavIcon" style="cursor:pointer" height="85" width="85">
                                                 <?php else:?>

@@ -91,8 +91,8 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                                         <td><?php echo htmlentities($posts['category']);?></td>
                                                         <td><?php echo htmlentities($posts['subcategory']);?></td>
                                                         <td class="text-danger"><?php echo htmlentities($posts['status']);?></td>
-                                                        <td><?php echo htmlentities($posts['created_at']);?></td>
-                                                        <td><?php echo htmlentities($posts['updated_at']);?></td>
+                                                        <td><?php echo date('F j, Y', strtotime($posts['created_at']));?></td>
+                                                        <td><?php echo date('F j, Y', strtotime($posts['updated_at']));?></td>
                                                         <td>
                                                             <a href="<?php echo BASE_ADMIN.'/posts/trash-post.php?recPS_ID='?><?php echo htmlentities($posts['id'])?>" class="btn btn-outline-success"><i class='bx bx-redo'></i></a>
                                                             &nbsp;
