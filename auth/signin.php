@@ -4,11 +4,14 @@ include(ROOT_PATH.'/app/controllers/user.php');
 
 #if session already login can't access the login page again
 if(isset($_SESSION['id'])){
-    header('location: '.BASE_URL.'/index.php?id='.$_SESSION['id']);
-    exit();
+    $_SESSION['messages'] = "You're already login.";
+    $_SESSION['css_class'] = 'alert-success';
+    $_SESSION['icon'] = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(30, 197, 111, 1);transform: ;msFilter:;">
+    <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm-1.999 14.413-3.713-3.705L7.7 11.292l2.299 2.295 5.294-5.294 1.414 1.414-6.706 6.706z"></path></svg>';
+    header('location: '.BASE_URL.'/index.php?SNID='.$_SESSION['id']);
+    exit(0);
 }
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -19,31 +22,18 @@ if(isset($_SESSION['id'])){
     <meta name="keywords" content="Travel and Tour blog spot">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Travel | Signin Page</title>
-
-    <!--Customized CSS-->
-    <link rel="stylesheet" href="<?php echo BASE_URL.'/asset/css/auth.css'?>">
-
-    <!--favicon logo-->
-    <link rel="shortcut icon" href="<?php echo BASE_URL.'/asset/img/logo/travel.png'?>" type="image/x-icon">
-
-    <!--Google Fonts-->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-
-    <!--Box Icon-->
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-
-    <!--Bootsrap 5-->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-
+    <?php include(ROOT_PATH.'/app/includes/auth-css.php');?>
 </head>
 <body>
     <div class="card-signin">
         <div class="card card-pd-signin h-auto">
             <div class="logo-content-signin">
-                <img src="<?php echo BASE_URL.'/asset/img/logo/travel.png'?>" alt="travel_Logo">
+                <?php 
+                    $settings_query = mysqli_query($conn, "SELECT * FROM settings WHERE id = 1");
+                ?>
+                <?php while($setting = mysqli_fetch_assoc($settings_query)):?>
+                <img src="<?php echo BASE_URL.'/app/upload/uploadSettingURL/uploadLogo/'?><?php echo htmlentities($setting['logo'])?>" alt="Logo" width="40px" height="40px">
+                <?php endwhile;?>
                 <h2 class="txt-signin">Travel</span>
             </div>
             <div class="card-body card-body-signin">

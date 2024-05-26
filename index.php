@@ -1,15 +1,15 @@
 <?php 
 include("path.php");
-include(ROOT_PATH."/app/controllers/category.php");
+include(ROOT_PATH."/app/controllers/posts.php");
 
 #Empty array of post variables
 $post = array();
 $postTitle = 'Recent Posts';
 
 #Categories selected
-if(isset($_GET['ctid'])){
-    $category = getCategoryPost($_GET['ctId']);
-    $postTitle = "Category search found under: '" . $_GET['name']. "'";
+if(isset($_GET['ctId'])){
+    $post = getCategoryPost($_GET['ctId']);
+    $postTitle = "Category post search found under: '" . $_GET['name']. "'";
 }else if(isset($_POST ['search'])){
     #Search bar
     #Unset the search button
@@ -47,6 +47,7 @@ if(isset($_GET['ctid'])){
 
             <!--Alert Message Success-->
             <?php include(ROOT_PATH."/app/helpers/messageAlert.php");?>
+            <?php include(ROOT_PATH."/app/helpers/updateAlert.php");?>
             <!--End of alert -->
 
             <div class="page-wrapper mx-auto h-100 w-100">
@@ -94,7 +95,7 @@ if(isset($_GET['ctid'])){
                     <div class="row mt-5">
                         <!--============ Start of Main content ================-->
                         <div class="col-md-8 col-sm-8 col-xl-8 col-xxl-8">
-                            <h4 class="card-title text-secondary">-<?php echo htmlentities($postTitle)?></h4>
+                            <h5 class="card-title text-secondary">-<?php echo htmlentities($postTitle)?></h5>
                             
                             <!--========= Post Content Start Here =================-->
                             <div class="card-group d-block">

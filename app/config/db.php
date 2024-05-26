@@ -188,41 +188,19 @@ function searchPosts($term) {
 
   #Get category post data
   function getCategoryPost($category_Id){
-    global $conn; // Assuming you have a global $conn variable for database connection
+    global $conn; 
   
-    // Prepare the SQL statement with placeholders for security
-    $sql = "SELECT p.*
-            FROM post p
-            INNER JOIN category c ON p.category = c.categName
-            WHERE p.status = 'published'
-            AND p.is_Active = 1
-            AND c.categName = ?";
-  
-    // Create a prepared statement
-    $stmt = mysqli_prepare($conn, $sql);
-  
-    // Bind parameter (category ID) to prevent SQL injection
-    if ($stmt) {
-      mysqli_stmt_bind_param($stmt, 's', $category_Id);
-  
-      // Execute the prepared statement
-      mysqli_stmt_execute($stmt);
-  
-      // Get the result set
-      $result = mysqli_stmt_get_result($stmt);
-  
-      // Fetch all results as associative arrays
-      $records = $result->fetch_all(MYSQLI_ASSOC);
-  
-      // Close result set (optional)
-      mysqli_stmt_close($stmt);
-  
-      return $records;
-    } else {
-      // Handle statement preparation error (log or display an error message)
-      error_log("Failed to prepare statement: " . mysqli_error($conn));
-      return []; // Or return an empty array or some error indicator
-    }
+    $sql = "SELECT p.*, u.username, u.profileImage 
+            FROM post AS p 
+            JOIN users AS u
+            ON p.postedBy=u.id 
+            WHERE p.status='published' 
+            AND p.is_Active = ?
+            AND p.category = ?";
+
+    $stmt = executeQuery($sql, ['is_Active' => 1, 'category' => $category_Id]); 
+    $records = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+    return $records;
 }
 
 #Single post

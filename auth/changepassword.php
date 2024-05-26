@@ -1,10 +1,15 @@
 <?php 
 include("../path.php");
-include(ROOT_PATH.'/app/config/db.php'); 
+include(ROOT_PATH.'/app/controllers/user.php'); 
 
 #if session not login send header to homepage
 if(!isset($_SESSION['id'])){
+    $_SESSION['messages'] = "You're need to login.";
+    $_SESSION['css_class'] = 'alert-success';
+    $_SESSION['icon'] = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(30, 197, 111, 1);transform: ;msFilter:;">
+    <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm-1.999 14.413-3.713-3.705L7.7 11.292l2.299 2.295 5.294-5.294 1.414 1.414-6.706 6.706z"></path></svg>';
     header('location: '.BASE_URL.'/index.php');
+    exit(0);
 }
 
 ?>
@@ -18,31 +23,18 @@ if(!isset($_SESSION['id'])){
     <meta name="keywords" content="Travel and Tour blog spot">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Travel | Change Password</title>
-
-    <!--Customized CSS-->
-    <link rel="stylesheet" href="../asset/css/auth.css">
-
-    <!--Favicon-->
-    <link rel="shortcut icon" href="../asset/img/logo/travel.png" type="image/x-icon">
-
-    <!--Google Fonts-->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-
-    <!--Box Icon-->
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-
-    <!--Bootsrap 5-->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-
+    <?php include(ROOT_PATH.'/app/includes/auth-css.php');?>
 </head>
 <body>
     <div class="card-fgp">
         <div class="card card-pd-fgp">
             <div class="logo-content-fgp">
-                <img src="../asset/img/logo/travel.png" alt="travel_logo">
+                <?php 
+                    $settings_query = mysqli_query($conn, "SELECT * FROM settings WHERE id = 1");
+                ?>
+                <?php while($setting = mysqli_fetch_assoc($settings_query)):?>
+                <img src="<?php echo BASE_URL.'/app/upload/uploadSettingURL/uploadLogo/'?><?php echo htmlentities($setting['logo'])?>" alt="Logo" width="40px" height="40px">
+                <?php endwhile;?>
                 <h2 class="txt-fgp">Travel</h2>
             </div>
             <div class="card-body card-body-fgp">
@@ -52,10 +44,7 @@ if(!isset($_SESSION['id'])){
                 </div>
                 <div class="row gy-4">
                     <form action="/#" method="post" autocomplete="off" class="form-fgp" enctype="application/x-www-form-urlencoded">
-                        <div class="col-xxl-4 col-md-6">
-                            <label for="email-fgp" class="forget-password">Usename | Email</label><br>
-                            <input type="email" class="input-fgp" name="Username" id="email-fgp" placeholder="Enter Username | Email" required><br>
-                        </div>
+                        <input type="hidden" name="id" value="<?php echo htmlentities($id)?>">    
                         <div class="col-xxl-4 col-md-6">
                             <label class="forget-password">New password</label><br>
                             <input type="password" class="input-fgp password" name="password" minlength="8" placeholder="Enter new password" required><br>
@@ -78,6 +67,6 @@ if(!isset($_SESSION['id'])){
             </div>
         </div>
     </div>
-    <script src="../asset/js/togglePassword.js"></script>
+    <script src="<?php echo BASE_URL.'/asset/js/togglePassword.js'?>"></script>
 </body>
 </html>

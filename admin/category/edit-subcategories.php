@@ -4,11 +4,20 @@ include(ROOT_PATH."/app/controllers/sub-category.php");
 
 #if session id not login direct to home page
 if(!isset($_SESSION['id'])){
+    $_SESSION['messages'] = "You need to login.";
+    $_SESSION['css_class'] = "alert-danger";
+    $_SESSION['icon'] = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(179, 18, 20, 1);transform: ;msFilter:;">
+    <path d="M12.884 2.532c-.346-.654-1.422-.654-1.768 0l-9 17A.999.999 0 0 0 3 21h18a.998.998 0 0 0 .883-1.467L12.884 2.532zM13 18h-2v-2h2v2zm-2-4V9h2l.001 5H11z"></path></svg>';
     header("Location: ".BASE_URL."/index.php");
+    exit(0);
 }
 if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] === 'editor'){
+    $_SESSION['messages'] = "You are not authorized to access this page.";
+    $_SESSION['css_class'] = "alert-danger";
+    $_SESSION['icon'] = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(179, 18, 20, 1);transform: ;msFilter:;">
+    <path d="M12.884 2.532c-.346-.654-1.422-.654-1.768 0l-9 17A.999.999 0 0 0 3 21h18a.998.998 0 0 0 .883-1.467L12.884 2.532zM13 18h-2v-2h2v2zm-2-4V9h2l.001 5H11z"></path></svg>';
     header("Location: ".BASE_URL."/index.php");
-    exit();
+    exit(0);
 }
 ?>
 
