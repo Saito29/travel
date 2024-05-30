@@ -7,6 +7,9 @@ require(ROOT_PATH."/vendor/autoload.php");
 $email = '';
 $token = '';
 $token_hash = '';
+$password = '';
+$cfpassword = '';
+
 
 #Table user
 $table = 'users';
@@ -105,29 +108,83 @@ if(isset($_POST['forget-btn'])){
     }   
 }
 
+#Get token
 if(isset($_GET['token'])){
     $token = $_GET['token'];
 
+    // Hash the received token for comparison
     $token_hash = hash('sha256', $token);
 
-    $sql = "SELECT * FROM users
-    WHERE reset_token_hash = ? ";
+    $user = selectOne($table, ['reset_token_hash' => $token_hash]);
+}
 
-    $stmt = $conn->prepare($sql);
+#if user click the update password button
+if (isset($_POST['rsPassword'])) {
 
-    $stmt->bind_param("s", $token_hash);
+    // Token Retrieval and Validation
+    $token = trim($_POST['token']); // Remove leading/trailing whitespace
+    if (empty($token)) {
+        array_push($errors, "Please provide a token.");
+    } else {
+        $token_hash = hash('sha256', $token);
+        $sql = "SELECT * FROM $table WHERE reset_token_hash = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("s", $token_hash);
+        $stmt->execute();
 
-    $stmt->execute();
+        $result = $stmt->get_result();
+        $user = $result->fetch_assoc();
 
-    $result = $stmt->get_result();
+        if ($user === NULL) {
+            array_push($errors, "Invalid or expired token."); // Combined message
+        } else {
+            // Token is valid
+            $current_time = time();
 
-    $user = $result->fetch_assoc();
+            if ($user['reset_token_expires_at'] <= $current_time) {
+                array_push($errors, "Token has expired.");
+            } else {
+                // User has a valid token, proceed with password reset
 
-    if($user === null) {
-        die("Token could not found");
+                // Password and Confirmation Validation
+                $password = trim($_POST['password']);
+                $cfpassword = trim($_POST['cfpassword']);
+
+                if (empty($password)) {
+                    array_push($errors, "Please enter a new password.");
+                }else if(empty($cfpassword)){
+                    array_push($errors, "Please enter confirmation password.");
+                } else if (strlen($password) < 8) {
+                    array_push($errors, "Password must be at least 8 characters long.");
+                } else if (!preg_match("/[A-Za-z]/", $password)) {
+                    array_push($errors, "Password must contain at least one letter.");
+                } else if (!preg_match("/[0-9]/", $password)) {
+                    array_push($errors, "Password must contain at least one number.");
+                } else if ($password !== $cfpassword) {
+                    array_push($errors, "Passwords do not match.");
+                }            
+
+                if (count($errors) === 0) {
+                    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+                    // Update User Password in Database
+                    $sql = "UPDATE $table SET password = ?, reset_token_hash = NULL, reset_token_expires_at = NULL WHERE id = ?";
+                    $stmt = $conn->prepare($sql);
+                    $stmt->bind_param("ss", $hashed_password, $user['id']);
+                    $stmt->execute();
+
+                    // Success Message or Redirect
+                    $_SESSION['message'] = "Password successfully changed. You can now close this page.";
+                    $_SESSION['css_class'] = "alert-success";
+                    $_SESSION['icon'] = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(30, 197, 111, 1);transform: ;msFilter:;">
+                    <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm-1.999 14.413-3.713-3.705L7.7 11.292l2.299 2.295 5.294-5.294 1.414 1.414-6.706 6.706z"></path></svg>';
+                    header("location: ".BASE_URL_LINKS.'/reset-password.php');
+                    exit(0);
+                }
+            }
+        }
     }
 
-    if (strtotime($user['reset_token_expires_at']) <= time()){
-        die("Token has expired!");
-    }
+    // Unset Button Fields
+    unset($_POST['rsPassword']);
 }
