@@ -20,7 +20,7 @@ $mail->SMTPAuth = true;
 $mail->Host = 'your_host';
 $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
 $mail->Port = '587';
-$mail->Username = "your_gmail";
+$mail->Username = "your_email";
 $mail->Password = "your_password";
 
 $mail->isHTML(true);

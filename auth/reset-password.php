@@ -2,13 +2,18 @@
 include("../path.php");
 include(ROOT_PATH."/app/controllers/auth/forgot-password.php");
 
-if(!isset($_GET['token'])){
-    $_SESSION['messages'] = "Token has not found";
-    $_SESSION['css_class'] = "alert-danger";
-    $_SESSION['icon'] = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(179, 18, 20, 1);transform: ;msFilter:;">
-    <path d="M12.884 2.532c-.346-.654-1.422-.654-1.768 0l-9 17A.999.999 0 0 0 3 21h18a.998.998 0 0 0 .883-1.467L12.884 2.532zM13 18h-2v-2h2v2zm-2-4V9h2l.001 5H11z"></path></svg>'; 
-    header('location: '.BASE_URL_LINKS.'/forgetpassword.php');
-    exit(0);
+$sql = "SELECT id, email, reset_token_hash, reset_token_expires_at FROM users WHERE reset_token_hash = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("s", $_GET['token']); // "s" for string type
+$stmt->execute();
+$result = $stmt->get_result();
+
+if ($result->num_rows === 1) {
+    $row = $result->fetch_assoc();
+    $user_id = $row['id'];
+    $email = $row['email'];
+    $hashed_token = $row['reset_token_hash'];
+    $expires_at = $row['reset_token_expires_at']; // Optional: Check for expired token
 }
     
 ?>
@@ -47,7 +52,7 @@ if(!isset($_GET['token'])){
                 <?php include(ROOT_PATH.'/app/helpers/updateAlert.php');?>
                 <div class="row gy-4">
                     <form action="reset-password.php" method="post" autocomplete="on" class="form-fgp" enctype="application/x-www-form-urlencoded">
-                        <input type="text" name="token" value="<?php if (isset($_POST['token'])) echo htmlspecialchars($_POST['token'])?>">
+                        <input type="hidden" name="token" value="<?php echo htmlspecialchars($hashed_token); ?>">
                         <div class="col-xxl-4 col-md-6">
                             <label class="forget-password" for="password">New password</label><br>
                             <input type="password" class="input-fgp password" id="password" name="password" placeholder="Enter new password" value="<?php echo htmlspecialchars($password)?>"><br>

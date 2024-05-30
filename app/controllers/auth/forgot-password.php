@@ -6,7 +6,7 @@ require(ROOT_PATH."/vendor/autoload.php");
 #Global Variables
 $email = '';
 $token = '';
-$token_hash = '';
+$hashed_token = '';
 $password = '';
 $cfpassword = '';
 
@@ -70,7 +70,7 @@ if(isset($_POST['forget-btn'])){
                 $mail->Body = "<b>Dear User.</b>
                 <p>We noticed you want to reset your password, in order to reset your password click the link below.</p>                
                 <p>It will direct you to a new page to reset your password page.</p>
-                Click <a href='http://localhost/travel/auth/reset-password.php?token=$token'>reset password here</a>
+                Click <a href='http://localhost/travel/auth/reset-password.php?token=$token_hash'>reset password here</a>
                 to reset your password.
                 <br>
                 <p>If you ever encounter a problem on our website, please contact us at our page. We will do our best to
@@ -110,38 +110,43 @@ if(isset($_POST['forget-btn'])){
 
 #Get token
 if(isset($_GET['token'])){
-    $token = $_GET['token'];
+    $sql = "SELECT reset_token_hash FROM users WHERE id = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $user_id); // "i" for integer type
+    $stmt->execute();
+    $result = $stmt->get_result();
 
-    // Hash the received token for comparison
-    $token_hash = hash('sha256', $token);
-
-    $user = selectOne($table, ['reset_token_hash' => $token_hash]);
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        $database_token = $row['token'];
+    } else {
+    // Handle invalid user ID or missing token in database
+    }
+    $stmt->close(); 
 }
 
 #if user click the update password button
 if (isset($_POST['rsPassword'])) {
+    $token = $_POST['token']; 
+    $sql = "SELECT id, email, reset_token_hash, reset_token_expires_at FROM users WHERE reset_token_hash = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("s", $token); // "s" for string type
+    $stmt->execute();
+    $result = $stmt->get_result();
 
-    // Token Retrieval and Validation
-    $token = trim($_POST['token']); // Remove leading/trailing whitespace
-    if (empty($token)) {
-        array_push($errors, "Please provide a token.");
-    } else {
-        $token_hash = hash('sha256', $token);
-        $sql = "SELECT * FROM $table WHERE reset_token_hash = ?";
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param("s", $token_hash);
-        $stmt->execute();
-
-        $result = $stmt->get_result();
-        $user = $result->fetch_assoc();
-
-        if ($user === NULL) {
+    if ($result->num_rows === 1) {
+        $row = $result->fetch_assoc();
+        $user_id = $row['id'];
+        $email = $row['email'];
+        $hashed_token = $row['reset_token_hash'];
+        $expires_at = $row['reset_token_expires_at']; // Optional: Check for expired token
+        if ($user_id === NULL) {
             array_push($errors, "Invalid or expired token."); // Combined message
         } else {
             // Token is valid
             $current_time = time();
 
-            if ($user['reset_token_expires_at'] <= $current_time) {
+            if ($expires_at <= $current_time) {
                 array_push($errors, "Token has expired.");
             } else {
                 // User has a valid token, proceed with password reset
@@ -162,24 +167,25 @@ if (isset($_POST['rsPassword'])) {
                     array_push($errors, "Password must contain at least one number.");
                 } else if ($password !== $cfpassword) {
                     array_push($errors, "Passwords do not match.");
-                }            
+                }                
 
                 if (count($errors) === 0) {
                     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+                    if (isset($hashed_token) && $hashed_token === $_POST['token']){
+                        // Update User Password in Database
+                        $sql = "UPDATE $table SET password = ?, reset_token_hash = NULL, reset_token_expires_at = NULL WHERE id = ?";
+                        $stmt = $conn->prepare($sql);
+                        $stmt->bind_param("si", $hashed_password, $user_id);
+                        $stmt->execute();
 
-                    // Update User Password in Database
-                    $sql = "UPDATE $table SET password = ?, reset_token_hash = NULL, reset_token_expires_at = NULL WHERE id = ?";
-                    $stmt = $conn->prepare($sql);
-                    $stmt->bind_param("ss", $hashed_password, $user['id']);
-                    $stmt->execute();
-
-                    // Success Message or Redirect
-                    $_SESSION['message'] = "Password successfully changed. You can now close this page.";
-                    $_SESSION['css_class'] = "alert-success";
-                    $_SESSION['icon'] = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(30, 197, 111, 1);transform: ;msFilter:;">
-                    <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm-1.999 14.413-3.713-3.705L7.7 11.292l2.299 2.295 5.294-5.294 1.414 1.414-6.706 6.706z"></path></svg>';
-                    header("location: ".BASE_URL_LINKS.'/reset-password.php');
-                    exit(0);
+                        // Success Message or Redirect
+                        $_SESSION['messages'] = "Password successfully changed. You can now close this page.";
+                        $_SESSION['css_class'] = "alert-success";
+                        $_SESSION['icon'] = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(30, 197, 111, 1);transform: ;msFilter:;">
+                        <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm-1.999 14.413-3.713-3.705L7.7 11.292l2.299 2.295 5.294-5.294 1.414 1.414-6.706 6.706z"></path></svg>';
+                        header("location: ".BASE_URL_LINKS.'/reset-password.php');
+                        exit(0);
+                    }
                 }
             }
         }
