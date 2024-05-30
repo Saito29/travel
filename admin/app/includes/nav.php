@@ -19,7 +19,7 @@
                     </a>
                 </li>
                 <li>
-                    <a class="dropdown-item" href="<?php echo BASE_URL_LINKS.'/changepassword.php'?>">
+                    <a class="dropdown-item" href="<?php echo BASE_URL_LINKS.'/changepassword.php?SNID='.htmlentities($_SESSION['id'])?>">
                         <i class='bx bxs-key' ></i> 
                         <span>Change Password</span>
                     </a>

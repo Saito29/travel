@@ -85,9 +85,9 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                             <div class="mb-1 col-md-12 form-group">
                                                 <label for="pageTitle" class="form-label">About Page Details:</label>
                                                 <?php if(!isset($_POST['details'])):?>
-                                                <textarea name="details" id="mytextarea" class="form-control"><?php echo htmlentities($details)?></textarea>
+                                                <textarea name="details" id="mytextarea" class="form-control mytextarea"><?php echo htmlentities($details)?></textarea>
                                                 <?php else:?>
-                                                <textarea name="details" id="mytextarea" class="form-control"></textarea>
+                                                <textarea name="details" id="mytextarea" class="form-control mytextarea"></textarea>
                                                 <?php endif;?>
                                             </div>
                                             <h4 class="mb-1 mt-2 card-title">Page Contact Info:</h4>

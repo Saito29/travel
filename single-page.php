@@ -1,6 +1,7 @@
 <?php 
 include("path.php");
 include(ROOT_PATH."/app/controllers/comment.php");
+require_once(ROOT_PATH.'/vendor/autoload.php');
 
 if(isset($_GET['psId'])){
     #select the id of the post

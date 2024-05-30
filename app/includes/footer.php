@@ -1,8 +1,8 @@
 <!--======================== Contact ===========-->
 <section class="container-fluid section section__height" id="contact">
             <!--============================= Footer and Contact ===========================-->
-            <div class="footer container-fluid">
-                <div class="footer-content">
+            <div class="footer container-fluid h-auto w-100">
+                <div class="footer-content h-auto w-100">
                     <div class="footer-section about">
                         <?php 
                             $settings_query = mysqli_query($conn, "SELECT * FROM settings WHERE id = 1");
@@ -59,21 +59,27 @@
                     </div>
                     <div class="footer-section contact-form">
                         <h4 class="card-title mb-3">Contact Us</h4>
-                        <form action="#" method="post" class="form-group" autocomplete="on">
+                        <form action="index.php" method="post" class="form-group" autocomplete="on" enctype="application/x-www-form-urlencoded">
                             <div class="mb-2 form-group">
-                                <input type="email" name="email" class="form-control bg-dark-subtle" placeholder="Email address.." required>
+                                <input type="text" name="name" class="form-control bg-dark-subtle" placeholder="Name.." >
                             </div>
                             <div class="mb-2 form-group">
-                                <textarea rows="4" name="message" class="form-control bg-dark-subtle" placeholder="Your message....." required></textarea>
+                                <input type="email" name="email" class="form-control bg-dark-subtle" placeholder="Email address.." >
+                            </div>
+                            <div class="mb-2 form-group">
+                                <input type="text" name="subject" class="form-control bg-dark-subtle" placeholder="Subject.." >
+                            </div>
+                            <div class="mb-2 form-group">
+                                <textarea rows="4" name="message" class="form-control bg-dark-subtle" placeholder="Your message....." ></textarea>
                             </div>
                             <div class="mb-1 form-group">
-                                <button type="submit" class="btn read-more"><i class='bx bxs-paper-plane'></i>Send</button>
+                                <button type="submit" name="contact-btn" class="btn read-more"><i class='bx bxs-paper-plane'></i>Send</button>
                             </div>
                         </form>
                     </div>
                 </div>
 
-                <div class="footer-bottom" align="center">
+                <div class="footer-bottom h-auto w-100" align="center">
                     &copy;Copyright <?php echo date('Y')?> Travel, All right reserved.
                 </div>
             </div>

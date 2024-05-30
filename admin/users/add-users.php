@@ -109,7 +109,8 @@ if(isset($_SESSION['id']) && $_SESSION['role'] == 'sub-admin'){
                                                 <input type="password" class="form-control" name="password" minlength="8" id="password" value="<?php echo $password;?>" placeholder="Password" >
                                                 <label for="checkPassword" class="form-check-label">Show password</label>
                                                 <input type="checkbox" class="form-check-input bg-primary toggle-password" minlength="8">
-                                                <span class="form-text px-2 py-3">Password must be at least minimum of 8 characters long</span>
+                                                <span class="form-text px-2 py-3">Password must be at least minimum of 8 characters,
+                                                ['one letter', 'one number'].</span>
                                             </div>
                                             <div class="mb-1 col-sm-6">
                                                 <label for="profileImage" class="form-label">Profile Image:</label>

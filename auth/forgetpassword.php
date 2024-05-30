@@ -1,15 +1,6 @@
 <?php 
 include("../path.php"); 
-include(ROOT_PATH."/app/controllers/user.php");
-#if session already login can't access the login page again
-if(isset($_SESSION['id'])){
-    $_SESSION['messages'] = "You're already login.";
-    $_SESSION['css_class'] = 'alert-success';
-    $_SESSION['icon'] = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(30, 197, 111, 1);transform: ;msFilter:;">
-    <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm-1.999 14.413-3.713-3.705L7.7 11.292l2.299 2.295 5.294-5.294 1.414 1.414-6.706 6.706z"></path></svg>';
-    header('location: '.BASE_URL.'/index.php?SNID='.$_SESSION['id']);
-    exit(0);
-}
+include(ROOT_PATH."/app/controllers/auth/forgot-password.php");
 ?>
 
 
@@ -39,16 +30,19 @@ if(isset($_SESSION['id'])){
             <div class="card-body card-body-fgp">
                 <div class="card-content-fgp">
                     <h3 class="card-title card-title-fgp">Forgot password</h3>
-                    <p class="card-text card-text-fgp"><span class="text-warning">NOTE:</span> Enter your email adress and your password will be reset and emailed to you.</p>
+                    <p class="card-text card-text-fgp"><span class="text-warning">NOTE:</span> Enter your email adress, your password will be reset and verification code will be emailed to you.</p>
                 </div>
+                <br>
+                <?php include(ROOT_PATH.'/app/helpers/formAlert.php');?>
+                <?php include(ROOT_PATH.'/app/helpers/updateAlert.php');?>
                 <div class="row gy-4">
                     <form action="forgetpassword.php" method="post" autocomplete="on" class="form-fgp" enctype="application/x-www-form-urlencoded">
                         <div class="col-xxl-4 col-md-6">
                             <label for="email" class="forget-password">Email address</label><br>
-                            <input type="email" class="input-fgp" name="email" id="email-fgp" placeholder="Enter Email address" required><br>
+                            <input type="email" class="input-fgp" name="email" id="email" placeholder="Enter Email address" autocomplete="on"><br>
                         </div>
                         <div class="col-xxl-8 col-md-8">
-                            <button type="submit" id="submit-fgp" name="forget-btn"><i class='bx bx-envelope icon'></i>Send me new password</button>
+                            <button type="submit" id="submit-fgp" name="forget-btn"><i class='bx bx-envelope icon'></i>Forgot Password</button>
                         </div>
                     </form>
                 </div>

@@ -94,7 +94,6 @@ if(isset($_SESSION['id']) && $_SESSION['role'] == 'sub-admin'){
                                                         <th>Last Name</th>
                                                         <th>Username</th>                                                        
                                                         <th>Email Address</th>
-                                                        <th>Password</th>
                                                         <th>Role</th>
                                                         <th>Creation Date</th>
                                                         <th>Last Update Date</th>
@@ -114,7 +113,6 @@ if(isset($_SESSION['id']) && $_SESSION['role'] == 'sub-admin'){
                                                         <td><?php echo htmlentities($users['lastName'])?></td>
                                                         <td><?php echo htmlentities($users['username'])?></td>
                                                         <td><?php echo htmlentities($users['email'])?></td>
-                                                        <td class="text-break"><?php echo htmlentities($users['password'])?></td>
                                                         <td><?php echo htmlentities($users['role'])?></td>
                                                         <td class="text-truncate"><?php echo htmlentities($users['created_at'])?></td>
                                                         <td class="text-truncate"><?php echo htmlentities($users['updated_at'])?></td>

@@ -63,9 +63,10 @@ if(isset($_SESSION['id'])){
                         </div>
                         <div class="col-md-6 col-sm-6">
                             <label for="password" class="signup">Password <span class="colon">*</span></label><br>
-                            <input type="password" class="input-signup password" minlength="8" name="password" value="<?php echo $password?>" placeholder="Password"><br>
+                            <input type="password" class="input-signup password" name="password" value="<?php echo $password?>" placeholder="Password"><br>
                             <i class='bx bx-low-vision toggle-icon toggle-password'></i><br>
-                            <p class="signup-ps">Password must be at least minimum of 8 characters.</p>
+                            <p class="signup-ps">Password must be at least minimum of 8 characters,
+                                 ['one letter', 'one number'].</p>
                         </div>
                         <div class="col-md-6 col-sm-6">
                             <label for="profileImage" class="form-label">Profile Image:</label>

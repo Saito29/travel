@@ -1,6 +1,7 @@
 <?php 
 include("../path.php"); 
 include(ROOT_PATH.'/app/controllers/user.php');
+require_once(ROOT_PATH.'/vendor/autoload.php');
 
 #if session already login can't access the login page again
 if(isset($_SESSION['id'])){
@@ -45,11 +46,11 @@ if(isset($_SESSION['id'])){
                         <!--End of Alert-->
                         <div class="col-xxl-8 col-md-8">
                             <label for="email" class="signin form-label">Email<span class="colon">*</span></label>
-                            <input type="email" class="input-signin" id="username" name="email" value="<?php echo $email?>" placeholder="Email address"><br>
+                            <input type="email" class="input-signin" id="email" name="email" value="<?php echo $email?>" placeholder="Email address" autocomplete="on"><br>
                         </div>
                         <div class="col-xxl-8 col-md-8">
                             <label for="password" class="signin form-label">Password <span class="colon">*</span></label>
-                            <input type="password" name="password" minlength="8" class="input-signin password" value="<?php echo $password?>" placeholder="Password">
+                            <input type="password" name="password" id="password" minlength="8" class="input-signin password" value="<?php echo $password?>" placeholder="Password" autocomplete="on">
                             <i class='bx bx-low-vision field-icon toggle-password'></i><br>
                         </div>
                         <div class="col-xxl-8 col-md-8">

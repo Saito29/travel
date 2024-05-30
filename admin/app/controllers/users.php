@@ -61,13 +61,6 @@ $user = selectAll($table);
 #This is for Register user information
 if (isset($_POST['addUser-btn']) && isset($_FILES['profileImage']))
 {   
-    #Show user information and profile image details
-    /*
-    echo "<pre>", print_r($_POST, true), "</pre>";
-    echo "<pre>", print_r($_FILES['profileImage'],true), "</pre>";
-    echo "<pre>", print_r($_FILES['profileImage']['name'],true), "</pre>";  
-    */
-
     #Clear the registration buttons when submitting
     unset($_POST['addUser-btn']);
 
@@ -86,6 +79,27 @@ if (isset($_POST['addUser-btn']) && isset($_FILES['profileImage']))
     $imageTmp = $_FILES['profileImage']['tmp_name']; #image name of the image temporary
     $imageError = $_FILES['profileImage']['error']; #Image error either 1 or 0
     $imageType = $_FILES['profileImage']['type']; #Image type of the image
+
+    #Function for image
+    if(empty($_FILES['profileImage']['name'])){
+        array_push($errors, "User image is required.");
+    }
+
+    #Validate the password before submitting
+    #password length
+    if(strlen($_POST['password']) < 8){
+        array_push($errors, "Password must be at least 8 characters.");
+    }
+
+    #for letters
+    if(!preg_match("/[A-Za-z]/i", $_POST['password'])){
+        array_push($errors, "Password must contain at least one letter");
+    }
+
+    #number
+    if(!preg_match("/[0-9]/", $_POST['password'])){
+        array_push($errors, "Password must contain at least one Number");
+    }
 
     #Array of error messages
     $errors = validateUser($_POST);
@@ -244,13 +258,33 @@ if(isset($_POST['updateUser-btn'])){
     $imageError = $_FILES['profileImage']['error']; #Image error either 1 or 0
     $imageType = $_FILES['profileImage']['type']; #Image type of the image
 
-    #errors
-    $errors = validateUpdateUser($_POST);
-
     #Function for image
     if(empty($_FILES['profileImage']['name'])){
         array_push($errors, "User image is required.");
     }
+
+    if(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)){
+        array_push($errors, "Valid email is required.");
+    }
+
+    #Validate the password before submitting
+    #password length
+    if(strlen($_POST['password']) < 8){
+        array_push($errors, "Password must be at least 8 characters.");
+    }
+
+    #for letters
+    if(!preg_match("/[A-Za-z]/i", $_POST['password'])){
+        array_push($errors, "Password must contain at least one letter");
+    }
+
+    #number
+    if(!preg_match("/[0-9]/", $_POST['password'])){
+        array_push($errors, "Password must contain at least one Number");
+    }
+
+    #errors
+    $errors = validateUpdateUser($_POST);
 
     #if image error and alert error is equal 0
     if(count($errors) === 0)

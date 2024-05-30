@@ -74,18 +74,18 @@ if(isset($_SESSION['id']) && $_SESSION['role'] == 'sub-admin'){
                                             </div>
                                          </div>
                                         <form action="edit-user.php" class="row gx-2 gy-2" autocomplete="on" name="editUser" method="post" enctype="multipart/form-data">
-                                            <input type="hidden" name="id" value="<?php echo $id?>">
+                                            <input type="hidden" name="id" value="<?php echo htmlentities($id)?>">
                                             <div class="mb-1 col-sm-6">
                                                 <label for="fname" class="form-label">First Name:</label>
-                                                <input type="text" class="form-control" name="firstName" value="<?php echo $firstName?>" placeholder="First Name" >
+                                                <input type="text" class="form-control" name="firstName" value="<?php echo htmlentities($firstName)?>" placeholder="First Name" >
                                             </div>
                                             <div class="mb-1 col-sm-6">
                                                 <label for="fname" class="form-label">Last Name:</label>
-                                                <input type="text" class="form-control" name="lastName" value="<?php echo $lastName?>" placeholder="Last Name">
+                                                <input type="text" class="form-control" name="lastName" value="<?php echo htmlentities($lastName)?>" placeholder="Last Name">
                                             </div>
                                             <div class="mb-1 col-sm-6">
                                                 <label for="username" class="form-label">Username:</label>
-                                                <input type="text" class="form-control" name="username" value="<?php echo $username?>" placeholder="Username">
+                                                <input type="text" class="form-control" name="username" value="<?php echo htmlentities( $username)?>" placeholder="Username">
                                             </div>
                                             <div class="mb-1 col-sm-6">
                                                 <label for="role" class="form-label">Role type:</label>
@@ -99,19 +99,20 @@ if(isset($_SESSION['id']) && $_SESSION['role'] == 'sub-admin'){
                                             </div>
                                             <div class="mb-1 col-sm-6">
                                                 <label for="email-address" class="form-label">Email:</label>
-                                                <input type="email" class="form-control" name="email" value="<?php echo $email?>" placeholder="Email Address" >
+                                                <input type="email" class="form-control" name="email" value="<?php echo htmlentities($email)?>" placeholder="Email Address" >
                                             </div>
                                             <div class="mb-1 col-sm-6">
                                                 <label class="form-label" for="password">Password:</label>
-                                                <input type="password" class="form-control" name="password" minlength="8" id="password" value="<?php echo $password?>"  placeholder="Password" >
+                                                <input type="password" class="form-control" name="password" minlength="8" id="password" value="<?php echo htmlentities($password)?>"  placeholder="Password" >
                                                 <label for="checkPassword" class="form-check-label">Show password</label>
                                                 <input type="checkbox" class="form-check-input bg-primary toggle-password">
-                                                <span class="form-text px-2 py-3">Password must be at least minimum of 8 characters long</span>
+                                                <span class="form-text px-2 py-3">Password must be at least minimum of 8 characters,
+                                                ['one letter', 'one number'].</span>
                                             </div>
                                             <div class="mb-1 col-sm-6">
                                                 <label for="profileImage" class="form-label">Profile Image:</label>
                                                 <?php if(isset($_GET['id'])):?>
-                                                <img src="<?php echo BASE_URL.'/app/upload/uploadProfile/'?><?php echo $profileImage?>" onclick="triggerProfileClick()" id="profileDisplay" class="rounded-circle d-block border" alt="profile-user" style="cursor:pointer" height="75" width="75">
+                                                <img src="<?php echo BASE_URL.'/app/upload/uploadProfile/'?><?php echo htmlentities($profileImage)?>" onclick="triggerProfileClick()" id="profileDisplay" class="rounded-circle d-block border" alt="profile-user" style="cursor:pointer" height="75" width="75">
                                                 <?php elseif(empty(!isset($_GET['id']))):?>
                                                 <img src="<?php echo BASE_URL.'/asset/img/profile/placeholder.webp'?>" onclick="triggerProfileClick()" id="profileDisplay" class="rounded-circle d-block border" alt="profile-user" style="cursor:pointer" height="75" width="75">
                                                 <?php endif;?>
@@ -120,7 +121,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] == 'sub-admin'){
                                             </div>
                                             <div class="mb-1 col-sm-4">
                                                 <label for="updated_at" class="form-label">Date Updated:</label>
-                                                <input type="datetime-local" class="form-control form-control-sm" name="updated_at" value="<?php echo $updated_at?>">
+                                                <input type="datetime-local" class="form-control form-control-sm" name="updated_at" value="<?php echo htmlentities($updated_at)?>">
                                             </div>
                                             <div class="mb-2 col-sm-8">
                                                 <button type="submit" class="btn btn-outline-success p-2 text-center" name="updateUser-btn">Update Users</button>

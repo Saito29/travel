@@ -106,7 +106,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                                         $stmt = mysqli_prepare($conn, $sql);
 
                                                         # Bind the parameters (improve security against SQL injection)
-                                                        mysqli_stmt_bind_param($stmt, "s", $username); // Assuming active status is 1
+                                                        mysqli_stmt_bind_param($stmt, "s", $username); 
 
                                                         # Execute the statement
                                                         mysqli_stmt_execute($stmt);
@@ -122,7 +122,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                                             // Display the posts
                                                             while ($posts = $result->fetch_assoc()) {
                                                                 echo '<tr>';
-                                                                echo '<td>' . htmlentities($posts['id']) . '</td>'; // Assuming you want to display the post ID
+                                                                echo '<td>' . htmlentities($posts['id']) . '</td>'; 
                                                                 echo '<td>' . htmlentities($posts['username']) . '</td>';
                                                                 echo '<td class="text-break">' . htmlentities($posts['title']) . '</td>';
                                                                 echo '<td>' . htmlentities($posts['categName']) . '</td>';
@@ -194,7 +194,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                                         $stmt = mysqli_prepare($conn, $sql);
 
                                                         # Bind the parameters (improve security against SQL injection)
-                                                        mysqli_stmt_bind_param($stmt, "s", $username); // Assuming active status is 1
+                                                        mysqli_stmt_bind_param($stmt, "s", $username); 
 
                                                         # Execute the statement
                                                         mysqli_stmt_execute($stmt);
@@ -210,7 +210,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                                             // Display the posts
                                                             while ($posts = $result->fetch_assoc()) {
                                                                 echo '<tr>';
-                                                                echo '<td>' . htmlentities($posts['id']) . '</td>'; // Assuming you want to display the post ID
+                                                                echo '<td>' . htmlentities($posts['id']) . '</td>'; 
                                                                 echo '<td>' . htmlentities($posts['username']) . '</td>';
                                                                 echo '<td class="text-break">' . htmlentities($posts['title']) . '</td>';
                                                                 echo '<td>' . htmlentities($posts['categName']) . '</td>';

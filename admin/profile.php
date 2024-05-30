@@ -95,7 +95,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                             </div>
                                             <div class="mb-1 col-sm-6">
                                                 <label for="password" class="form-label">Change Password:</label>
-                                                <a href="<?php echo BASE_URL_LINKS.'/Changepassword.php'?>" class="link-success">Change password</a>
+                                                <a href="<?php echo BASE_URL_LINKS.'/Changepassword.php?SNID='?><?php echo htmlspecialchars($_SESSION['id'])?>" class="link-success">Change password</a>
                                             </div>
                                             <div class="mb-2 col-sm-8">
                                                 <button type="submit" class="btn btn-outline-success text-center" name="uptProf-btn">Update Profile</button>

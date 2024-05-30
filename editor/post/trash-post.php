@@ -85,30 +85,44 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                                 <!--========== End of Table header ================-->
                                                 <tbody>
                                                     <!--========= Table Data =====================-->
-                                                    <?php 
-                                                        $post = "SELECT * FROM post WHERE is_Active = 0";
-                                                        $post_run = mysqli_query($conn, $post);
-                                                    ?>
+                                                    <?php
+                                                        // Join tables to fetch post details with category, subcategory, and user information
+                                                        $sql = "SELECT p.*, c.categName, sc.name, u.username
+                                                        FROM post p
+                                                        INNER JOIN category c ON p.category = c.id
+                                                        INNER JOIN subcategory sc ON p.subcategory = sc.id
+                                                        INNER JOIN users u ON p.postedBy = u.id
+                                                        WHERE p.is_Active = 0";
 
-                                                    <?php if(mysqli_num_rows($post_run) >= 0):?>
-                                                        <?php foreach($post_run as $keys => $posts):?>
-                                                    <tr>
-                                                        <td><?php echo htmlentities($keys + 1);?></td>
-                                                        <td><?php echo htmlentities($posts['postedBy']);?></td>
-                                                        <td><?php echo htmlentities($posts['title']);?></td>
-                                                        <td><?php echo htmlentities($posts['category']);?></td>
-                                                        <td><?php echo htmlentities($posts['subcategory']);?></td>
-                                                        <td class="text-danger"><?php echo htmlentities($posts['status']);?></td>
-                                                        <td><?php echo htmlentities($posts['created_at']);?></td>
-                                                        <td><?php echo htmlentities($posts['updated_at']);?></td>
-                                                        <td>
-                                                            <a href="<?php echo BASE_EDITOR.'/post/trash-post.php?recPS_ID='?><?php echo htmlentities($posts['id'])?>" class="btn btn-outline-success"><i class='bx bx-redo'></i></a>
-                                                            &nbsp;
-                                                            <a href="<?php echo BASE_EDITOR.'/post/trash-post.php?delPS_ID='?><?php echo htmlentities($posts['id'])?>" class="btn btn-outline-danger m-1"><i class='bx bx-trash-alt' ></i></a>
-                                                        </td>
-                                                    </tr>
-                                                    <?php endforeach;?>
-                                                    <?php endif;?>
+                                                        // Prepare the statement (optional for extra security)
+                                                        #$stmt = mysqli_prepare($conn, $sql);
+
+                                                        // Execute the query (without prepared statement for simplicity)
+                                                        $post_run = mysqli_query($conn, $sql);
+
+                                                        // Check if results are available
+                                                        if (mysqli_num_rows($post_run) > 0) {
+                                                            while ($posts = mysqli_fetch_assoc($post_run)) {
+                                                                echo "<tr>";
+                                                                echo "<td>", htmlentities($posts['id'] + 1), "</td>";
+                                                                echo "<td>", htmlentities($posts['username']), "</td>"; 
+                                                                echo "<td>", htmlentities($posts['title']), "</td>";
+                                                                echo "<td>", htmlentities($posts['categName']), "</td>"; 
+                                                                echo "<td>", htmlentities($posts['name']), "</td>"; 
+                                                                echo "<td class='text-danger'>", htmlentities($posts['status']), "</td>";
+                                                                echo "<td>", htmlentities($posts['created_at']), "</td>";
+                                                                echo "<td>", htmlentities($posts['updated_at']), "</td>";
+                                                                echo "<td>";
+                                                                echo "<a href='" . BASE_EDITOR . "/post/trash-post.php?recPS_ID=" . htmlentities($posts['id']) . "' class='btn btn-outline-success'><i class='bx bx-redo'></i></a>";
+                                                                echo "&nbsp;";
+                                                                echo "<a href='" . BASE_EDITOR . "/post/trash-post.php?delPS_ID=" . htmlentities($posts['id']) . "' class='btn btn-outline-danger m-1'><i class='bx bx-trash-alt' ></i></a>";
+                                                                echo "</td>";
+                                                                echo "</tr>";
+                                                            }
+                                                        }
+                                                        // Close connection
+                                                        mysqli_close($conn);
+                                                    ?>
                                                     <!--============= End of Table Data ===============-->
                                                 </tbody>
                                             </table>

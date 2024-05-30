@@ -1,6 +1,8 @@
 <?php 
 include("path.php");
 include(ROOT_PATH."/app/controllers/posts.php");
+include(ROOT_PATH."/app/controllers/contact.php");
+require_once(ROOT_PATH.'/vendor/autoload.php');
 
 #Empty array of post variables
 $post = array();
@@ -9,7 +11,7 @@ $postTitle = 'Recent Posts';
 #Categories selected
 if(isset($_GET['ctId'])){
     $post = getCategoryPost($_GET['ctId']);
-    $postTitle = "Category post search found under: '" . $_GET['name']. "'";
+    $postTitle = "Category post search found under: '" . $_GET['name']. "' are: ". count($post). " results";
 }else if(isset($_POST ['search'])){
     #Search bar
     #Unset the search button

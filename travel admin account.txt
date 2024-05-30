@@ -2,3 +2,7 @@ travel admin account
 username: Admin	
 email: admin@gmail.com	
 password: @admin0423
+
+smtp server gmail
+App name: Travel.com
+App password: bhpp kuyh ybba jymy

@@ -1,6 +1,7 @@
 <?php 
 include("path.php");
 include(ROOT_PATH.'/app/controllers/page.php');
+require_once(ROOT_PATH.'/vendor/autoload.php');
 ?>
 
 <!DOCTYPE html>

@@ -24,3 +24,14 @@ rtToggle.addEventListener("click", () => {
         rtToggle.classList.replace("bx-show-alt","bx-low-vision");
     }
 });
+
+//Toggle Password
+const check = document.querySelector('.check');
+const oldPassword = document.querySelector('#oldPassword');
+check.addEventListener("click", () => {
+    if(oldPassword.type === "password"){
+        oldPassword.type = "text";
+    }else{
+        oldPassword.type = "password";
+    }
+});
