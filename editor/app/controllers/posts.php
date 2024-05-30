@@ -360,9 +360,9 @@ if(isset($_POST['updatePost'])){
 
 
 #delete data, transform it into archives data
-if(isset($_GET['delArcPS_ID'])){
+if(isset($_GET['trashPost'])){
     #Get the id of the data post
-    $id = $_GET['delArcPS_ID'];
+    $id = $_GET['trashPost'];
 
     #Select the id of the data
     $post_id = selectOne($tblPost, ['id' => $id]);

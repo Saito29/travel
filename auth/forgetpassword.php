@@ -29,8 +29,8 @@ include(ROOT_PATH."/app/controllers/auth/forgot-password.php");
             </div>
             <div class="card-body card-body-fgp">
                 <div class="card-content-fgp">
-                    <h3 class="card-title card-title-fgp">Forgot password</h3>
-                    <p class="card-text card-text-fgp"><span class="text-warning">NOTE:</span> Enter your email adress, your password will be reset and verification code will be emailed to you.</p>
+                    <h3 class="card-title card-title-fgp">Forget password</h3>
+                    <p class="card-text card-text-fgp"><span class="text-warning">NOTE:</span> Enter your email adress, your password will be reset and link will be emailed to you.</p>
                 </div>
                 <br>
                 <?php include(ROOT_PATH.'/app/helpers/formAlert.php');?>

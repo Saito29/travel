@@ -87,12 +87,18 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                                     <!--========= Table Data =====================-->
                                                     <?php
                                                         // Join tables to fetch post details with category, subcategory, and user information
+
+                                                        #Loggin user 
+                                                        $loggedInUserId = $_SESSION['id'];
+
+                                                        #Query posts
                                                         $sql = "SELECT p.*, c.categName, sc.name, u.username
                                                         FROM post p
                                                         INNER JOIN category c ON p.category = c.id
                                                         INNER JOIN subcategory sc ON p.subcategory = sc.id
                                                         INNER JOIN users u ON p.postedBy = u.id
-                                                        WHERE p.is_Active = 0";
+                                                        WHERE p.is_Active = 0
+                                                        AND postedBy = $loggedInUserId";
 
                                                         // Prepare the statement (optional for extra security)
                                                         #$stmt = mysqli_prepare($conn, $sql);

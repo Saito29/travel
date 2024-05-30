@@ -17,11 +17,19 @@ function validateUser($user)
 
     if(empty($user['email'])){
         array_push($errors, "Email address is required.");
+    }else if(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)){
+        array_push($errors, "Valid email is required.");
     }
 
     if(empty($user['password'])){
         array_push($errors, "Password is required.");
-    }  
+    } else if (strlen($user['password']) < 8) {
+        array_push($errors, "Password must be at least 8 characters long.");
+    } else if (!preg_match("/[A-Za-z]/", $user['password'])) {
+        array_push($errors, "Password must contain at least one letter.");
+    } else if (!preg_match("/[0-9]/", $user['password'])) {
+        array_push($errors, "Password must contain at least one number.");
+    }      
 
     if(empty($user['role'])){
         array_push($errors, "Please select user type.");

@@ -92,15 +92,9 @@ if (isset($_POST['register-btn']) && isset($_FILES['profileImage']))
     #password length
     if(strlen($_POST['password']) < 8){
         array_push($errors, "Password must be at least 8 characters.");
-    }
-
-    #for letters
-    if(!preg_match("/[A-Za-z]/i", $_POST['password'])){
+    }else if(!preg_match("/[A-Za-z]/i", $_POST['password'])){
         array_push($errors, "Password must contain at least one letter");
-    }
-
-    #number
-    if(!preg_match("/[0-9]/", $_POST['password'])){
+    }else if(!preg_match("/[0-9]/", $_POST['password'])){
         array_push($errors, "Password must contain at least one Number");
     }
 

@@ -77,19 +77,19 @@ if(isset($_SESSION['id']) && $_SESSION['role'] == 'sub-admin'){
                                             <input type="hidden" name="id" value="<?php echo htmlentities($id)?>">
                                             <div class="mb-1 col-sm-6">
                                                 <label for="fname" class="form-label">First Name:</label>
-                                                <input type="text" class="form-control" name="firstName" value="<?php echo htmlentities($firstName)?>" placeholder="First Name" >
+                                                <input type="text" class="form-control" name="firstName" id="fname" value="<?php echo htmlentities($firstName)?>" placeholder="First Name" >
                                             </div>
                                             <div class="mb-1 col-sm-6">
-                                                <label for="fname" class="form-label">Last Name:</label>
-                                                <input type="text" class="form-control" name="lastName" value="<?php echo htmlentities($lastName)?>" placeholder="Last Name">
+                                                <label for="lname" class="form-label">Last Name:</label>
+                                                <input type="text" class="form-control" name="lastName" id="lname" value="<?php echo htmlentities($lastName)?>" placeholder="Last Name">
                                             </div>
                                             <div class="mb-1 col-sm-6">
                                                 <label for="username" class="form-label">Username:</label>
-                                                <input type="text" class="form-control" name="username" value="<?php echo htmlentities( $username)?>" placeholder="Username">
+                                                <input type="text" class="form-control" name="username" id="username" value="<?php echo htmlentities( $username)?>" placeholder="Username">
                                             </div>
                                             <div class="mb-1 col-sm-6">
                                                 <label for="role" class="form-label">Role type:</label>
-                                                <select name="role" class="form-select form-select-sm">
+                                                <select name="role" class="form-select form-select-sm" id="role">
                                                     <option value="<?php echo $role?>" selected><?php echo $role?></option>
                                                     <option value="admin">Admin User</option>
                                                     <option value="sub-admin">Sub-Admin User</option>
@@ -98,14 +98,14 @@ if(isset($_SESSION['id']) && $_SESSION['role'] == 'sub-admin'){
                                                 </select>
                                             </div>
                                             <div class="mb-1 col-sm-6">
-                                                <label for="email-address" class="form-label">Email:</label>
-                                                <input type="email" class="form-control" name="email" value="<?php echo htmlentities($email)?>" placeholder="Email Address" >
+                                                <label for="email" class="form-label">Email:</label>
+                                                <input type="email" class="form-control" name="email" id="email" value="<?php echo htmlentities($email)?>" placeholder="Email Address" >
                                             </div>
                                             <div class="mb-1 col-sm-6">
                                                 <label class="form-label" for="password">Password:</label>
-                                                <input type="password" class="form-control" name="password" minlength="8" id="password" value="<?php echo htmlentities($password)?>"  placeholder="Password" >
+                                                <input type="password" class="form-control" name="password" id="password" value="<?php echo htmlentities($password)?>"  placeholder="Password" >
                                                 <label for="checkPassword" class="form-check-label">Show password</label>
-                                                <input type="checkbox" class="form-check-input bg-primary toggle-password">
+                                                <input type="checkbox" class="form-check-input bg-primary toggle-password" id="checkPassword">
                                                 <span class="form-text px-2 py-3">Password must be at least minimum of 8 characters,
                                                 ['one letter', 'one number'].</span>
                                             </div>
@@ -121,7 +121,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] == 'sub-admin'){
                                             </div>
                                             <div class="mb-1 col-sm-4">
                                                 <label for="updated_at" class="form-label">Date Updated:</label>
-                                                <input type="datetime-local" class="form-control form-control-sm" name="updated_at" value="<?php echo htmlentities($updated_at)?>">
+                                                <input type="datetime-local" class="form-control form-control-sm" name="updated_at" id="updated_at" value="<?php echo htmlentities($updated_at)?>">
                                             </div>
                                             <div class="mb-2 col-sm-8">
                                                 <button type="submit" class="btn btn-outline-success p-2 text-center" name="updateUser-btn">Update Users</button>

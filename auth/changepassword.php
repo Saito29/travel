@@ -2,16 +2,17 @@
 include("../path.php"); 
 include(ROOT_PATH.'/app/controllers/auth/chPassword.php');
 
-#if session not login send header to homepage
-if(!isset($_SESSION['id'])){
-    $_SESSION['messages'] = "You're need to login.";
-    $_SESSION['css_class'] = 'alert-success';
-    $_SESSION['icon'] = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(30, 197, 111, 1);transform: ;msFilter:;">
-    <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm-1.999 14.413-3.713-3.705L7.7 11.292l2.299 2.295 5.294-5.294 1.414 1.414-6.706 6.706z"></path></svg>';
-    header('location: '.BASE_URL.'/index.php');
-    exit(0);
+#query the user id
+$sql = "SELECT * from users WHERE id = ?";
+$stmt = $conn->prepare($sql); //prepare the query
+$stmt->bind_param("i", $_GET['SNID']); // bind the user session id in the url
+$stmt->execute(); //execute the query
+$result = $stmt->get_result(); // get the result
+if($result->num_rows === 1){ // if the user id found
+    $row = $result->fetch_assoc(); // fetch the user session id
+    $user_id = $row['id']; // id in the table row
+    $username = $row['username']; // username in the table row
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -46,15 +47,15 @@ if(!isset($_SESSION['id'])){
                 <?php include(ROOT_PATH.'/app/helpers/updateAlert.php');?>
                 <div class="row gy-4">
                     <form action="changepassword.php" method="post" autocomplete="on" class="form-fgp" enctype="application/x-www-form-urlencoded">
-                        <input type="hidden" name="id" value="<?php echo htmlspecialchars($id)?>">
+                        <input type="hidden" name="id" value="<?php echo htmlspecialchars($user_id)?>">
                         <div class="col-xxl-4 col-md-6">
                             <label class="forget-password" for="password">New password</label><br>
-                            <input type="password" class="input-fgp password" id="password" name="password" minlength="8" placeholder="Enter new password"><br>
+                            <input type="password" class="input-fgp password" id="password" name="password" id="password" value="<?php echo htmlspecialchars($password)?>" placeholder="Enter new password"><br>
                             <i class='bx bx-low-vision eye-icon toggle-password'></i><br>
                         </div>
                         <div class="col-xxl-4 col-md-6">
                             <label class="forget-password" for="cfpassword">Re-enter password</label><br>
-                            <input type="password" class="input-fgp rtPassword" id="cfpassword" name="cfpassword" minlength="8" placeholder="Re-enter new password"><br>
+                            <input type="password" class="input-fgp rtPassword" id="cfpassword" name="cfpassword" id="cfpassword" value="<?php echo htmlspecialchars($cfpassword)?>" placeholder="Re-enter new password"><br>
                             <i class='bx bx-low-vision eye-icon togglePassword'></i><br>
                         </div>
                         <p class="card-text"><a href="<?php echo BASE_URL_LINKS.'/forgetpassword.php'?>" class="text-decoration-none text-success">Forgot Password</a></p>
