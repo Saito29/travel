@@ -24,10 +24,10 @@ if ($result->num_rows === 1) {
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=7">
-    <meta name="description" content="Travel | Reset Password Page">
+    <meta name="description" content="Reset Password | Travel">
     <meta name="keywords" content="Travel and Tour blog spot">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Travel | Reset Password</title>
+    <title>Reset Password | Travel</title>
     <?php include(ROOT_PATH.'/app/includes/auth-css.php');?>
 </head>
 <body>

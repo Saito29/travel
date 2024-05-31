@@ -9,10 +9,10 @@ include(ROOT_PATH."/app/controllers/auth/forgot-password.php");
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=7">
-    <meta name="description" content="Travel | Forgot Password">
+    <meta name="description" content="Forget Password | Travel">
     <meta name="keywords" content="Travel and Tour blog spot">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Travel | Forgot Password</title>
+    <title>Forget Password | Travel</title>
     <?php include(ROOT_PATH.'/app/includes/auth-css.php');?>
 </head>
 <body>  

@@ -17,10 +17,10 @@ if(isset($_SESSION['id'])){
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=7">
-    <meta name="description" content="Travel | Register Page">
+    <meta name="description" content="Signup | Travel">
     <meta name="keywords" content="Travel and Tour blog spot">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Travel | Signup Page</title>
+    <title>Signup | Travel</title>
     <?php include(ROOT_PATH.'/app/includes/auth-css.php');?>
 </head>
 <body>
@@ -44,26 +44,27 @@ if(isset($_SESSION['id'])){
                     <form action="signup.php" method="post"  autocomplete="on" class="form-signup h-auto" enctype="multipart/form-data">
                         <!--Alert-->
                         <?php include(ROOT_PATH."/app/helpers/formAlert.php");?>
+                        <?php include(ROOT_PATH."/app/helpers/updateAlert.php");?>
                         <!--End of Alert-->
                         <div class="col-md-6 col-sm-6">
                             <label for="firstName" class="signup">First Name <span class="colon">*</span></label><br>
-                            <input type="text" class="input-signup" id="fname" name="firstName" value="<?php echo $firstName?>" placeholder="First Name"><br>
+                            <input type="text" class="input-signup" id="fname" name="firstName" value="<?php echo htmlspecialchars($firstName)?>" placeholder="First Name"><br>
                         </div>
                         <div class="col-md-6 col-sm-6">
                             <label for="lastName" class="signup">Last Name <span class="colon">*</span></label><br>
-                            <input type="text" class="input-signup" id="lname" name="lastName" value="<?php echo $lastName?>" placeholder="Last Name"><br>
+                            <input type="text" class="input-signup" id="lname" name="lastName" value="<?php echo htmlspecialchars($lastName)?>" placeholder="Last Name"><br>
                         </div>
                         <div class="col-md-6 col-sm-6">
                             <label for="username" class="signup">Username <span class="colon">*</span></label><br>
-                            <input type="text" class="input-signup" id="username" name="username" value="<?php echo $username?>" placeholder="Username"><br>
+                            <input type="text" class="input-signup" id="username" name="username" value="<?php echo htmlspecialchars($username)?>" placeholder="Username"><br>
                         </div>
                         <div class="col-md-6 col-sm-6">
                             <label for="email" class="signup">Email address <span class="colon">*</span></label><br>
-                            <input type="email" class="input-signup" id="email" name="email" value="<?php echo $email?>" placeholder="Email Address"><br>
+                            <input type="email" class="input-signup" id="email" name="email" value="<?php echo htmlspecialchars($email)?>" placeholder="Email Address"><br>
                         </div>
                         <div class="col-md-6 col-sm-6">
                             <label for="password" class="signup">Password <span class="colon">*</span></label><br>
-                            <input type="password" class="input-signup password" name="password" value="<?php echo $password?>" placeholder="Password"><br>
+                            <input type="password" class="input-signup password" name="password" value="<?php echo htmlspecialchars($password)?>" placeholder="Password"><br>
                             <i class='bx bx-low-vision toggle-icon toggle-password'></i><br>
                             <p class="signup-ps">Password must be at least minimum of 8 characters,
                                  ['one letter', 'one number'].</p>
@@ -78,9 +79,9 @@ if(isset($_SESSION['id'])){
                             <label class="form-label">Select user type:</label>
                             <select name="role" class="form-select form-select-sm">
                                 <?php if(!isset($_POST['role'])):?>
-                                <option value="<?php echo $role;?>" selected>Choose type of user</option>
+                                <option value="<?php echo htmlspecialchars($role);?>" selected>Choose type of user</option>
                                 <?php else:?>
-                                <option value="<?php echo $role;?>" selected>User type: <?php echo $role;?></option>
+                                <option value="<?php echo htmlspecialchars($role);?>" selected>User type: <?php echo htmlspecialchars($role);?></option>
                                 <?php endif;?>
                                 <option value="editor">Editor User</option>
                                 <option value="user">Guest User</option>
@@ -88,7 +89,7 @@ if(isset($_SESSION['id'])){
                         </div>
                         <div class="mb-1 col-sm-5 mb-3 px-2">
                             <label for="created_at" class="form-label">Date Created:</label>
-                            <input type="datetime-local" class="form-control form-control-sm" name="created_at" value="<?php echo $created_at?>">
+                            <input type="datetime-local" class="form-control form-control-sm" name="created_at" value="<?php echo htmlspecialchars($created_at)?>">
                         </div>
                         <div class="col-md-8 col-md-8">
                             <button type="submit" name="register-btn" id="submit-signup" class="submit-signup">Create account</button>

@@ -64,6 +64,10 @@ if (isset($_POST['addUser-btn']) && isset($_FILES['profileImage']))
     #Clear the registration buttons when submitting
     unset($_POST['addUser-btn']);
 
+    #acitivation token for email registration
+    $activation_token = bin2hex(random_bytes(16));
+    $activation_token_hash = hash('sha256', $activation_token);
+
     #identify user information and profile image
     $role = $_POST['role'];
     $firstName = trim($_POST['firstName']); 
@@ -122,7 +126,7 @@ if (isset($_POST['addUser-btn']) && isset($_FILES['profileImage']))
 
                 #Insert the image into the database alongside the user information using MYSQLI
                 #$query_user = create($table, $_POST);
-                $query = "INSERT INTO users (role, firstName, lastName, username, email, password, profileImage, created_at) VALUES ('$role','$firstName', '$lastName','$username', '$email', '$password', '$newImgName', '$created_at')";
+                $query = "INSERT INTO users (role, firstName, lastName, username, email, password, profileImage, created_at, account_activation_hash) VALUES ('$role','$firstName', '$lastName','$username', '$email', '$password', '$newImgName', '$created_at', '$activation_token_hash')";
                 $query_result = mysqli_query($conn, $query);
 
                 #Select the user that has make account

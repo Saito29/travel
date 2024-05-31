@@ -10,7 +10,7 @@ require(ROOT_PATH.'/vendor/autoload.php');
 $mail = new PHPMailer(true);
 
 #Debugger mailer (optional if not working)
-$mail->SMTPDebug = SMTP::DEBUG_SERVER;
+# $mail->SMTPDebug = SMTP::DEBUG_SERVER;
 
 #call SMTP authentication
 $mail->isSMTP();
