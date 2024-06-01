@@ -65,10 +65,6 @@ if (isset($_POST['register-btn']) && isset($_FILES['profileImage']))
     #Clear the registration buttons when submitting
     unset($_POST['register-btn']);
 
-    #acitivation token for email registration
-    $activation_token = bin2hex(random_bytes(16));
-    $activation_token_hash = hash('sha256', $activation_token);
-
     #identify user information and profile image
     $firstName = trim($_POST['firstName']); 
     $lastName = trim($_POST['lastName']);
@@ -138,6 +134,10 @@ if (isset($_POST['register-btn']) && isset($_FILES['profileImage']))
                 }else{
                     array_push($errors, 'Failed to upload the Post image.');
                 }
+
+                #acitivation token for email registration
+                $activation_token = bin2hex(random_bytes(16));
+                $activation_token_hash = hash('sha256', $activation_token);
 
                 #Insert the image into the database alongside the user information using MYSQLI
                 #$query_user = create($table, $_POST);
@@ -268,7 +268,7 @@ if(isset($_POST['signin-btn']))
             $email = $_POST['email'];
             $password = $_POST['password'];
 
-            $msg = "Email is not registered and verified, please register and verify first!";
+            $msg = "Email is not registered or not verified.";
             $css_class = 'alert-danger';
             $icon = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(179, 18, 20, 1);transform: ;msFilter:;">
             <path d="M12.884 2.532c-.346-.654-1.422-.654-1.768 0l-9 17A.999.999 0 0 0 3 21h18a.998.998 0 0 0 .883-1.467L12.884 2.532zM13 18h-2v-2h2v2zm-2-4V9h2l.001 5H11z"></path></svg>'; 

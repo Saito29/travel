@@ -1,5 +1,5 @@
 <!--======================== Contact ===========-->
-<section class="container-fluid section section__height" id="contact">
+<section class="container-fluid section section__height h-auto w-100" id="contact">
             <!--============================= Footer and Contact ===========================-->
             <div class="footer container-fluid h-auto w-100">
                 <div class="footer-content h-auto w-100">
@@ -59,9 +59,9 @@
                     </div>
                     <div class="footer-section contact-form">
                         <h4 class="card-title mb-3">Contact Us</h4>
-                        <form action="index.php" method="post" class="form-group" autocomplete="on" enctype="application/x-www-form-urlencoded">
+                        <form action="contact.php" method="post" class="form-group" autocomplete="on" enctype="application/x-www-form-urlencoded">
                             <div class="mb-2 form-group">
-                                <input type="text" name="name" class="form-control bg-dark-subtle" placeholder="Name.." >
+                                <input type="text" name="name" class="form-control bg-dark-subtle" placeholder="Name..">
                             </div>
                             <div class="mb-2 form-group">
                                 <input type="email" name="email" class="form-control bg-dark-subtle" placeholder="Email address.." >

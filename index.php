@@ -1,8 +1,7 @@
 <?php 
 include("path.php");
 include(ROOT_PATH."/app/controllers/posts.php");
-include(ROOT_PATH."/app/controllers/contact.php");
-require_once(ROOT_PATH.'/vendor/autoload.php');
+include(ROOT_PATH."/vendor/autoload.php");
 
 #Empty array of post variables
 $post = array();
@@ -45,22 +44,22 @@ if(isset($_GET['ctId'])){
     <?php include (ROOT_PATH."/app/includes/header.php");?>
     <main>
         <!--=============== HOME ===============-->
-        <section class="container section section__height" id="home">
+        <section class="container section section__height h-auto w-100" id="home">
 
             <!--Alert Message Success-->
             <?php include(ROOT_PATH."/app/helpers/messageAlert.php");?>
             <?php include(ROOT_PATH."/app/helpers/updateAlert.php");?>
             <!--End of alert -->
 
-            <div class="page-wrapper mx-auto h-100 w-100">
+            <div class="page-wrapper mx-auto h-auto w-100">
                 <!--========= Post Slider Title =================-->
-                <div class="container mx-auto my-3 py-3 h-100 post-slider">
+                <div class="container mx-auto my-3 py-3 mb-4 h-auto w-100 post-slider">
                     <h3 class="card-title text-center">Trends Blog</h3>
                     <i class='bx bxs-left-arrow prev'></i>
                     <i class='bx bxs-right-arrow next'></i>
 
                     <!--================= Post Wrapper ====================-->
-                    <div class="post-wrapper h-100">
+                    <div class="post-wrapper h-auto">
 
                         <!--======= Post Content Card ==================-->
                         <?php foreach ($post as $posts): ?>

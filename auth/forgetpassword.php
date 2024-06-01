@@ -3,7 +3,6 @@ include("../path.php");
 include(ROOT_PATH."/app/controllers/auth/forgot-password.php");
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
