@@ -29,14 +29,9 @@
 <!--Tinymce initializer-->
 <script src="<?php echo BASE_EDITOR.'/vendor/tinymce_7.0.0/tinymce/js/tinymce/tinymceFullOpen-Source.js'?>"></script>
 
-<style>
-.ck-editor__editable[role="textbox"] {
-    /* Editing area */
-    min-height: 200px;
-}
-.ck-content .image {
-    /* Block images */
-    max-width: 80%;
-    margin: 20px auto;  
-}
-</style>
+<!--Pannellum-->
+<script type="text/javascript" src="https://pannellum.org/js/bootstrap-native.min.js"></script>
+<link rel="stylesheet" href="https://pannellum.org/css/pygments.css">
+<link rel="stylesheet" href="https://cdn.pannellum.org/2.5/pannellum.css" />
+<script type="text/javascript" src="https://cdn.pannellum.org/2.5/pannellum.js"></script>
+<link rel="stylesheet" href="https://pannellum.org/css/style.css">

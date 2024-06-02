@@ -16,7 +16,7 @@ tinymce.init({
   autosave_restore_when_empty: true,
   autosave_retention: '2m',
   image_advtab: true,
-  license_key: 'no-api-key',
+  license_key: 'gpl',
   media_filter_html: true,
   importcss_append: true,
   media_live_embeds: true,

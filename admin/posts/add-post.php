@@ -70,12 +70,12 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                             <input type="hidden" name="postedBy" value="<?php echo htmlentities($_SESSION['id']);?>" readonly>
                                             <div class="mb-1 col-md-6 form-group">
                                                 <label for="title" class="form-label">Post Title:</label>
-                                                <input type="text" class="form-control" name="title" placeholder="Enter Title" value="<?php echo htmlentities($title)?>" required>
+                                                <input type="text" class="form-control" name="title" placeholder="Enter Title" id="title" value="<?php echo htmlentities($title)?>" required>
                                                 <p class="text-danger fs-6 px-2">required</p>
                                             </div>
                                             <div class="mb-1 col-md-6 form-group">
-                                                <label for="categoryDescription" class="form-label">Category:</label>
-                                                <select name="category" class="form-select" required>
+                                                <label for="Category" class="form-label">Category:</label>
+                                                <select name="category" class="form-select" id="Category" required>
                                                     <?php if (!isset($_POST['category'])): ?>
                                                         <option value="" selected>Select Category: </option>
                                                     <?php endif; ?>
@@ -99,7 +99,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                             </div>
                                             <div class="mb-1 col-md-6 form-group">
                                                 <label for="subCategory" class="form-label">Sub Category:</label>
-                                                <select name="subcategory" class="form-select" required>
+                                                <select name="subcategory" class="form-select" id="subCategory" required>
                                                     <?php if (!isset($_POST['subcategory'])): ?>
                                                         <option value="" selected>Select Sub-Category: </option>
                                                     <?php endif; ?>
@@ -123,7 +123,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                             </div>
                                             <div class="mb-1 col-md-6 form-group">
                                                 <label for="status" class="form-label">Status:</label>
-                                                <select name="status" class="form-select" required>
+                                                <select name="status" class="form-select" id="status" required>
                                                     <?php if(!isset($_POST['status'])):?>
                                                     <option value="" selected>Status:</option>
                                                     <?php else:?>
@@ -136,22 +136,22 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                             </div>
                                             <div class="mb-1 col-sm-12">
                                                 <label for="description" class="mb-3 form-label">Post description:</label>
-                                                <textarea name="description" id="mytextarea" class="form-control mytextarea" ><?php echo htmlentities($description);?></textarea>
+                                                <textarea name="description" id="description" class="form-control mytextarea" ><?php echo htmlentities($description);?></textarea>
                                                 <p class="text-danger fs-6 px-2">required</p>
                                             </div>
                                             <div class="mb-1 col-md-12 form-group">
                                                 <label for="googleWidget" class="form-label">Google Widgets:</label>
-                                                <textarea name="googleWidget" id="mytextarea" class="form-control mytextarea" ><?php echo htmlentities($googleWidget);?></textarea>
+                                                <textarea name="googleWidget" id="googleWidget" class="form-control mytextarea" ><?php echo htmlentities($googleWidget);?></textarea>
                                                 <p class="text-danger fs-6 px-2">required</p>
                                             </div>
                                             <div class="mb-1 col-sm-6">
                                                 <label for="image" class="form-label">Feature Image:</label>
-                                                <input type="file" class="form-control" name="image" accept="image/*" value="<?php echo htmlentities($postImage);?>" required>
+                                                <input type="file" class="form-control" name="image" id="image" accept="image/*" value="<?php echo htmlentities($postImage);?>" required>
                                                 <p class="text-danger fs-6 px-2">required</p>
                                             </div>
                                             <div class="mb-1 col-md-4 form-group">
-                                                <label for="categoryDescription" class="form-label">Post Created:</label>
-                                                <input type="date" class="form-control" name="created_at" value="<?php echo htmlentities($created_at);?>" required>
+                                                <label for="created_at" class="form-label">Post Created:</label>
+                                                <input type="date" class="form-control" id="created_at" name="created_at" value="<?php echo htmlentities($created_at);?>" required>
                                                 <p class="text-danger fs-6 px-2">required</p>
                                             </div>
                                             <div class="mb-1 col-md-6 form-group">

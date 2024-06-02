@@ -68,6 +68,12 @@
                 </li>   
             </ul>
         </li>
+        <li class="sidebar-item">
+            <a href="<?php echo BASE_EDITOR.'/panorama.php?SNID='?><?php echo htmlentities($_SESSION['id'])?>" class="sidebar-link">
+            <i class='bx bxs-landscape'></i>
+                <span>Panorama</span>
+            </a>
+        </li>
     </ul>
     <div class="sidebar-footer">
         <a href="<?php echo BASE_EDITOR.'/logout.php'?>" class="sidebar-link">
