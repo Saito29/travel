@@ -17,11 +17,11 @@ $mail->isSMTP();
 $mail->SMTPAuth = true;
 
 #Configure 
-$mail->Host = 'your_host';
+$mail->Host = 'smtp.gmail.com';
 $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
 $mail->Port = '587';
-$mail->Username = "your_email";
-$mail->Password = "your_password";
+$mail->Username = "message.travel.com@gmail.com";
+$mail->Password = "sdqh dcig ubnf umtl";
 
 $mail->isHTML(true);
 

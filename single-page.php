@@ -11,28 +11,19 @@ if(isset($_GET['psId'])){
 }
 
 #view counter
-$sql = "SELECT * FROM post";
-$result = mysqli_query($conn, $sql);
-
-$count = 0;
-
-if(mysqli_num_rows($result) > 0){
-    #record exists get the current post count
-    $row = mysqli_fetch_assoc($result);
-    $count = $row['viewer'];
-}else{
-    # if no record found, create a new one record wit count 0
-    $sql = "INSET INTO post (viewer) VALUES (0)";
-    mysqli_query($conn, $sql);
+$postid = intval($_GET['psId']);
+   
+$sql = "SELECT viewer FROM post WHERE id = '$postid'";
+$result = $conn->query($sql);
+   
+if ($result->num_rows > 0) {
+    while($row = $result->fetch_assoc()) {
+        $visits = $row["viewer"];
+        $sql = "UPDATE post SET viewer = $visits+1 WHERE id ='$postid'";
+        $conn->query($sql);  
+    }
 }
-
-#Increment the counter
-$count++;
-
-#update the table
-$post_id = $_GET['psId'];
-$sql = "UPDATE post SET viewer = $count WHERE id = $post_id";
-mysqli_query($conn, $sql);
+   
 
 ?>
 
