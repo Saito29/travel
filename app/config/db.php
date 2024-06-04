@@ -216,4 +216,16 @@ function getPublishedPosts() {
     $stmt = executeQuery($sql, ['is_Active' => 1]); 
     $records = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
     return $records;
-  }
+}
+
+#get the comments 
+function getComments(){
+    $sql = "SELECT c.* u.profileImage p.id
+            FROM comments AS c
+            JOIN post AS p ON c.post_id = p.id
+            WHERE c.status = ?";
+
+    $stmt = executeQuery($sql, ['status' => 1]);
+    $records = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+    return $records;
+}

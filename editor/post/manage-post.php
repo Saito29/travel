@@ -62,7 +62,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                         <hr />
                                         <div class="row">
                                             <div class="col-sm-8">
-                                                <a href="<?php echo BASE_EDITOR.'/post/add-post.php?SNID='?><?php echo htmlentities($_SESSION['id'])?>">
+                                                <a href="<?php echo BASE_EDITOR.'/post/add-post.php?SNID='?><?php echo htmlspecialchars($_SESSION['id'])?>">
                                                     <button type="button" class="btn btn-outline-primary">Add Post</button>
                                                 </a>
                                             </div>
@@ -95,7 +95,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                                         $username = mysqli_real_escape_string($conn, $_SESSION['username']);
 
                                                         # Construct the prepared statement (recommended for security)
-                                                        $sql = "SELECT p.*, u.username, u.profileImage, c.categName, sc.name
+                                                        $sql = "SELECT p.*, u.username AS postedyBy, c.categName AS categoryName, sc.name AS subcategoryName
                                                                 FROM post AS p
                                                                 JOIN users AS u ON p.postedBy = u.id
                                                                 JOIN category AS c ON p.category = c.id
@@ -122,18 +122,18 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                                             // Display the posts
                                                             while ($posts = $result->fetch_assoc()) {
                                                                 echo '<tr>';
-                                                                echo '<td>' . htmlentities($posts['id']) . '</td>'; 
-                                                                echo '<td>' . htmlentities($posts['username']) . '</td>';
-                                                                echo '<td class="text-break">' . htmlentities($posts['title']) . '</td>';
-                                                                echo '<td>' . htmlentities($posts['categName']) . '</td>';
-                                                                echo '<td>' . htmlentities($posts['subcategoryName']) . '</td>';
-                                                                echo '<td class="text-success">' . htmlentities($posts['status']) . '</td>';
+                                                                echo '<td>' . htmlspecialchars($posts['id']) . '</td>'; 
+                                                                echo '<td>' . htmlspecialchars($posts['postedyBy']) . '</td>';
+                                                                echo '<td class="text-break">' . htmlspecialchars($posts['title']) . '</td>';
+                                                                echo '<td>' . htmlspecialchars($posts['categoryName']) . '</td>';
+                                                                echo '<td>' . htmlspecialchars($posts['subcategoryName']) . '</td>';
+                                                                echo '<td class="text-success">' . htmlspecialchars($posts['status']) . '</td>';
                                                                 echo '<td>' . date('F j, Y', strtotime($posts['created_at'])) . '</td>';
                                                                 echo '<td>' . date('F j, Y', strtotime($posts['updated_at'])) . '</td>';
                                                                 echo '<td class="text-break">';
-                                                                echo '<a href="' . BASE_EDITOR . '/post/edit-post.php?psID=' . htmlentities($posts['id']) . '" class="btn btn-outline-primary m-1"><i class=\'bx bx-edit\'></i></a>';
+                                                                echo '<a href="' . BASE_EDITOR . '/post/edit-post.php?psID=' . htmlspecialchars($posts['id']) . '" class="btn btn-outline-primary m-1"><i class=\'bx bx-edit\'></i></a>';
                                                                 echo '&nbsp;';
-                                                                echo '<a href="' . BASE_EDITOR . '/post/manage-post.php?trashPost=' . htmlentities($posts['id']) . '" class="btn btn-outline-danger m-1"><i class=\'bx bx-trash-alt\' ></i></a>';
+                                                                echo '<a href="' . BASE_EDITOR . '/post/manage-post.php?trashPost=' . htmlspecialchars($posts['id']) . '" class="btn btn-outline-danger m-1"><i class=\'bx bx-trash-alt\' ></i></a>';
                                                                 echo '</td>';
                                                                 echo '</tr>';
                                                             }

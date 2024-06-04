@@ -25,6 +25,12 @@
                             <span class="nav__name">Contact</span>
                         </a>
                     </li>
+                    <li class="nav__item">
+                        <a href="#post" class="nav__link">
+                            <i class='bx bxs-news nav__icon'></i>
+                            <span class="nav__name">Post</span>
+                        </a>
+                    </li>
                     <?php if(isset($_SESSION['id'])): ?>
                         <?php if($_SESSION['role'] === 'admin' || $_SESSION['role'] === 'sub-admin'): ?>
                     <!--If user login as admin display dashboard and logout if not display login-->

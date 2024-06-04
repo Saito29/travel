@@ -46,7 +46,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                         <h3 class="fw-bold fs-4 mb-3">Comments</h3>
                         <ol class="breadcrumb p-0 m-0 ">
                             <li class="breadcrumb-item"><a href="#">Travel</a></li>
-                            <li class="breadcrumb-item"><a href="#"><?php echo htmlentities($_SESSION['role'])?></a></li>
+                            <li class="breadcrumb-item"><a href="#"><?php echo htmlspecialchars($_SESSION['role'])?></a></li>
                             <li class="breadcrumb-item active" aria-current="page">Approved Comments</li>
                         </ol>
                     </div>
@@ -72,7 +72,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                                 <thead>
                                                     <tr>
                                                         <th>CMID</th>
-                                                        <th>Username</th>
+                                                        <th>Name</th>
                                                         <th>Email Address</th>
                                                         <th>Comment</th>
                                                         <th>Status</th>                                                        
@@ -84,28 +84,38 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                                 <!--========== End of Table header ================-->
                                                 <!--========= Table Data Body =====================-->
                                                 <tbody>
-                                                <?php 
-                                                    $comment = "SELECT * FROM comments WHERE status != 'disapproved'";
-                                                    $comment_query = mysqli_query($conn, $comment);
+                                                <?php
+                                                    $sql = "SELECT c.*, p.title AS title 
+                                                            FROM comments c
+                                                            INNER JOIN post AS p ON c.post_id = p.id
+                                                            WHERE c.status = 1";
+                                                    $stmt = $conn->query($sql);
+
+                                                    while ($row = mysqli_fetch_assoc($stmt)) {
+                                                        echo "<tr>
+                                                            <td>" . htmlspecialchars($row['id']) . "</td>
+                                                            <td>" . htmlspecialchars($row['username']) . "</td>
+                                                            <td>" . htmlspecialchars($row['email']) . "</td>
+                                                            <td style='font-size: 12px'>" . htmlspecialchars_decode($row['comments']) . "</td>
+                                                            <td class='text-success'>" . htmlspecialchars($row['status']) . 
+                                                                ( $row['status'] == 1 ? "approved" : "disapproved" ) . 
+                                                            "</td>
+                                                            <td>" . htmlspecialchars($row['title']) . "</td>
+                                                            <td>" . htmlspecialchars(date("Fj Y | h:i:a", strtotime($row['created_at']))) . "</td>
+                                                            <td>
+                                                                <a href='" . BASE_ADMIN . "/comments/disapproved-comment.php?dm_Id=" . htmlspecialchars($row['id']) . "' class='btn btn-outline-primary m-1' data-bs-toggle='tooltip' data-bs-title='disapproved comment'><i class='bx bx-redo'></i></a>
+                                                                &nbsp;
+                                                                <a href='" . BASE_ADMIN . "/comments/approved-comments.php?del_id=" . htmlspecialchars($row['id']) . "' class='btn btn-outline-danger m-1' data-bs-toggle='tooltip' data-bs-title='permanent delete comment'><i class='bx bx-trash-alt'></i></a>
+                                                            </td>
+                                                        </tr>";
+                                                    }
+
+                                                    if (mysqli_num_rows($stmt) == 0) {
+                                                        echo "No approved comments found.";
+                                                    }
+
+                                                    mysqli_close($conn); // Assuming you have a connection close statement
                                                 ?>
-                                                <?php if(mysqli_num_rows($comment_query) > 0):?>
-                                                    <?php foreach($comment_query as $keys => $comments):?>
-                                                    <tr>
-                                                        <td><?php echo htmlentities($keys + 1)?></td>
-                                                        <td><?php echo htmlentities($comments['username'])?></td>
-                                                        <td><?php echo htmlentities($comments['email'])?></td>
-                                                        <td><?php echo $comments['comment']?></td>
-                                                        <td class="text-success"><?php echo htmlentities($comments['status'])?></td>
-                                                        <td><?php echo htmlentities($comments['title'])?></td>
-                                                        <td><?php echo htmlentities($comments['posted'])?></td>
-                                                        <td>
-                                                            <a href="<?php echo BASE_ADMIN.'/comments/approved-comments.php?dm_Id='?><?php echo htmlentities($comments['id'])?>" class="btn btn-outline-primary m-1"><i class='bx bx-redo'></i></a>
-                                                            &nbsp;
-                                                            <a href="<?php echo BASE_ADMIN.'/comments/approved-comments.php?del_id='?><?php echo htmlentities($comments['id'])?>" class="btn btn-outline-danger m-1"><i class='bx bx-trash-alt'></i></a>
-                                                        </td>
-                                                    </tr>
-                                                        <?php endforeach;?>
-                                                    <?php endif;?>
                                                     <!--============= End of Table Data ===============-->
                                                 </tbody>
                                             </table>

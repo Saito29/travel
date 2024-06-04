@@ -1,13 +1,38 @@
 <?php 
 include("path.php");
-include(ROOT_PATH."/app/controllers/comment.php");
-require_once(ROOT_PATH.'/vendor/autoload.php');
+include(ROOT_PATH.'/app/controllers/comment.php');
+
+$comment = array();
 
 if(isset($_GET['psId'])){
     #select the id of the post
     $post = selectOne('post', ['id' => $_GET['psId']]);
     #$posts = getPublishedPosts();
 }
+
+#view counter
+$sql = "SELECT * FROM post";
+$result = mysqli_query($conn, $sql);
+
+$count = 0;
+
+if(mysqli_num_rows($result) > 0){
+    #record exists get the current post count
+    $row = mysqli_fetch_assoc($result);
+    $count = $row['viewer'];
+}else{
+    # if no record found, create a new one record wit count 0
+    $sql = "INSET INTO post (viewer) VALUES (0)";
+    mysqli_query($conn, $sql);
+}
+
+#Increment the counter
+$count++;
+
+#update the table
+$post_id = $_GET['psId'];
+$sql = "UPDATE post SET viewer = $count WHERE id = $post_id";
+mysqli_query($conn, $sql);
 
 ?>
 
@@ -27,19 +52,19 @@ if(isset($_GET['psId'])){
     <?php include (ROOT_PATH . "/app/includes/nav.php");?>
     <main>
         <!--Body-->
-        <section class="container-fluid clearfix section section__height mb-3">
+        <section class="container-fluid h-auto w-100 clearfix section section__height mb-3">
             <!--Content Page Details-->
             <div class="wrapper">
                 <div class="row d-flex flex-grow-1">
                     <!--Main Content-->
-                    <div class="container-fluid mt-3 col-md-8 clearfix h-100 mh-100">
+                    <div class="container-fluid mt-3 col-md-8 clearfix h-auto mh-100">
                         <!--Content start-->
                         <div class="card h-auto w-100 border-0">
                             <div class="card-header bg-transparent border-success hstack gap-2">
                                 <h6 class="card-title"><?php echo htmlspecialchars($post['title'])?></h6>
                                 <p class="text-muted ms-auto">Posted: <?php echo date('F j, Y', strtotime($post['created_at']))?></p>
                                 <div class="vr"></div>
-                                <p class="text-muted"><i class='bx bx-show-alt'></i><?php echo $post['viewer']?></p>
+                                <p class="text-muted"><i class='bx bx-show-alt'></i><?php echo htmlspecialchars($post['viewer'])?></p>
                             </div>
                             <div class="card-body">
                                 <div class="card border-0">
@@ -55,89 +80,98 @@ if(isset($_GET['psId'])){
 
                         <!--Start Of comments Section here-->
                         <div class="row mt-3" id="comments">
-                            <div class="col-md-8 container-fluid clearfix w-100 h-100">
-                                <div class="card col-md-8 col-xl-8 col-sm-8 col-xxl-8 w-100 h-100 border-0">
+                            <div class="col-md-8 clearfix w-100 h-auto">
+                                <div class="card w-100 h-auto border-0">
                                     <div class="card-header bg-transparent border-success text-secondary fw-bold fs-5">Comments</div>
                                     <div class="card-body">
                                         <?php include(ROOT_PATH.'/app/helpers/updateAlert.php');?>
+                                        <?php include(ROOT_PATH.'/app/helpers/formAlert.php');?>
                                         <!--Comments required to identify user-->
-                                        <?php if(!isset($_SESSION['id'])):?>
-                                        <form action="single-page.php" method="post" name="Comment" class="row gx-2 gy-2 p-2" autocomplete="on" enctype="application/x-www-form-urlencoded">
-                                            <input type="hidden" name="id" value="<?php echo htmlentities($post['id'])?>">
-                                            <div class="mb-1 col-md-4 form-group w-50">
-                                                <label for="username" class="form-label">Username:</label>
-                                                <?php if(!isset($_POST['username'])):?>
-                                                <input type="text" name="username" placeholder="Username" value="" class="form-control" required>
-                                                <?php else:?>
-                                                <input type="text" name="username" placeholder="Username" value="<?php echo htmlentities($username)?>" class="form-control" required>
-                                                <?php endif;?>
-                                                <p class="text-success">(required)</p>
+                                        <?php if(!isset($_SESSION['username']) && !isset($_SESSION['email'])):?>
+                                        <form action="single-page.php" method="post" class="row g-3" enctype="application/x-www-form-urlencoded">
+                                            <input type="hidden" name="post_id" value="<?php echo htmlspecialchars($_GET['psId'])?>">
+                                            <div class="mb-2 col-md-6 form-group">
+                                                <label for="username" class="form-label">Username: </label>
+                                                <input type="text" name="username" id="username" class="form-control bg-secondary-subtle" required>
+                                                <p class="text-warning-emphasis">Required</p>
                                             </div>
-                                            <div class="mb-1 col-md-4 form-group w-50">
-                                                <label for="email" class="form-label">Email Address:</label>
-                                                <?php if(!isset($_POST['email'])):?>
-                                                <input type="email" name="email" placeholder="Email" value="" class="form-control">
-                                                <?php else:?>
-                                                <input type="email" name="email" placeholder="Email" value="<?php echo htmlentities($email)?>" class="form-control">
-                                                <?php endif;?>
-                                                <p class="text-warning-emphasis">(optional)</p>
+                                            <div class="mb-2 col-md-6 form-group">
+                                                <label for="email" class="form-label">Email: </label>
+                                                <input type="email" name="email" id="email" class="form-control bg-secondary-subtle">
+                                                <p class="text-warning-emphasis">Optional</p>
                                             </div>
-                                            <div class="mb-1 col-md-8 form-group w-100">
-                                                <label for="comments" class="form-label">Comment:</label>
-                                                <?php if(!isset($_POST['comment'])):?>
-                                                <textarea name="comment" id="editor" class="form-control"></textarea>
-                                                <?php else:?>
-                                                <textarea name="comment" id="editor" class="form-control"><?php echo htmlentities($comment)?></textarea>
-                                                <?php endif;?>
+                                            <div class="col-md-12 form-group">
+                                                <p class="text-secondary-emphasis">Comment: </p>
+                                                <textarea name="comment" class="form-control editor-comment"></textarea>                                                    
+                                                <p class="text-warning-emphasis">Required</p>
                                             </div>
-                                            <div class="mb-1 col-md-4 form-group">
-                                                <button type="submit" name="submitComment" class="btn read-more">Post Comment</button>
+                                            <div class="mb-2 col-md-12 form-group">
+                                                <button type="submit" name="postComment" class="btn read-more">Post<img width="32" height="32" src="https://img.icons8.com/fluency/48/sent.png" alt="sent"/></button>
                                             </div>
                                         </form>
-                                            <?php else:?>
-                                        <form action="single-page.php" method="post" class="row gx-2 gy-2 p-2" autocomplete="on" enctype="application/x-www-form-urlencoded">
-                                            <input type="hidden" name="id" value="<?php echo htmlentities($post['id'])?>">
-                                            <input type="hidden" name="username" value="<?php echo htmlentities($_SESSION['username'])?>">
-                                            <input type="hidden" name="email" value="<?php echo htmlentities($_SESSION['email'])?>">
-                                            <div class="mb-3 col-md-8 form-group w-100">
-                                                <label for="comments" class="form-label">Comment:</label>
-                                                <?php if(!isset($_POST['comment'])):?>
-                                                <textarea name="comment" id="editor" class="form-control"></textarea>
-                                                <?php else:?>
-                                                <textarea name="comment" id="editor" class="form-control"><?php echo htmlentities($comment)?></textarea>
-                                                <?php endif;?>
+                                        <?php endif;?>
+
+                                        <?php if(isset($_SESSION['username']) && isset($_SESSION['email'])):?>
+                                        <form action="single-page.php" method="post" class="row g-3" enctype="application/x-www-form-urlencoded">
+                                            <input type="hidden" name="post_id" value="<?php echo htmlspecialchars($_GET['psId'])?>">
+                                            <input type="hidden" name="username" value="<?php echo htmlspecialchars($_SESSION['username'])?>">
+                                            <input type="hidden" name="email" value="<?php echo htmlspecialchars($_SESSION['email'])?>">
+                                            <div class="col-md-12 form-group">
+                                                <p class="text-secondary-emphasis">Comment: </p>
+                                                <textarea name="comment" class="form-control editor-comment"></textarea>                                                    
+                                                <p class="text-warning-emphasis">Required</p>
                                             </div>
-                                            <div class="mb-1 col-md-4 form-group">
-                                                <button type="submit" name="submitComment" class="btn read-more">Post comment</button>
+                                            <div class="mb-2 col-md-12 form-group">
+                                                <button type="submit" name="postComment" class="btn read-more">Post<img width="32" height="32" src="https://img.icons8.com/fluency/48/sent.png" alt="sent"/></button>
                                             </div>
                                         </form>
                                         <?php endif;?>
                                     </div>
 
                                     <!--Post comment here-->
-                                    <?php
-                                        $comment = mysqli_query($conn, "SELECT * FROM comments WHERE status = 'approved'");
-                                    ?>
-                                    <?php while($comment_query = mysqli_fetch_assoc($comment)):?>
-                                    <div class="row mb-1 py-2 px-4 col-md-8 w-100 h-100">
-                                        <div class="d-flex justify-content-center">
-                                            <div class="card w-100 h-100 bg-transparent border-0">
-                                                <div class="card-body">
-                                                    <?php if(isset($_POST['submitComment'])):?>
-                                                    <img src="<?php echo BASE_URL.'/app/upload/uploadProfile/'.htmlentities($_SESSION['profileImage'])?>" alt="User_profile" class="rounded-circle" style="height: 44px; width: 44px;" width="44" height="44" >
-                                                    <?php else:?>
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;"><path d="M12 2C6.579 2 2 6.579 2 12s4.579 10 10 10 10-4.579 10-10S17.421 2 12 2zm0 5c1.727 0 3 1.272 3 3s-1.273 3-3 3c-1.726 0-3-1.272-3-3s1.274-3 3-3zm-5.106 9.772c.897-1.32 2.393-2.2 4.106-2.2h2c1.714 0 3.209.88 4.106 2.2C15.828 18.14 14.015 19 12 19s-3.828-.86-5.106-2.228z"></path></svg>
-                                                    <?php endif;?>
-                                                    <div class="card-text" style="text-align: justify;">
-                                                        <h5 class="fw-bold text-secondary"><?php echo htmlentities($comment_query['username'])?></h5>
-                                                        <p class="small text-muted"><?php echo htmlentities($comment_query['posted'])?></p>
-                                                        <p><?php echo html_entity_decode($comment_query['comment'])?></p>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                    <div class="row mt-3 py-3">
+                                        <div class="col-md-8 w-100 h-100">
+                                            <!--Start post comment-->
+                                            <?php
+                                                $postId = (isset($_GET['psId']) && is_numeric($_GET['psId'])) ? (int) $_GET['psId'] : null; // Validate the post_id
+
+                                                if (!empty($postId)) {
+                                                    $sql = "SELECT * FROM comments
+                                                            WHERE post_id = ? AND status = 1";  
+
+                                                    $stmt = $conn->prepare($sql);
+                                                    $stmt->bind_param('i', $postId);
+                                                    $stmt->execute();
+                                                    $result = $stmt->get_result();
+
+                                                    if ($result->num_rows > 0) { // Check for comments before displaying the HTML structure
+                                                        echo '<h5 class="text-secondary-emphasis card-title mb-3">Recent Comments: ' . $result->num_rows . '</h5>';
+
+                                                        while ($row = $result->fetch_assoc()) {                                                            
+                                                            echo '<div class="card h-auto w-100 mx-auto my-2 mb-4">';
+                                                            echo '<div class="card-header border-0 bg-transparent border-secondary-subtle hstack gap-2">';
+                                                            echo '<img src="' . BASE_URL . '/asset/img/profile/icons8-people.gif" class="rounded-circle" style="width: 40px; height: 40px;" width="40" height="40" alt="Profile image">';
+                                                            echo '<p class="card-title text-secondary-emphasis fw-bold">' . htmlspecialchars($row['username']) . '</p>';
+                                                            echo '<p class="card-title text-secondary-emphasis fw-medium">Post a comment</p>';
+                                                            echo '<p class="card-text text-secondary ms-auto">' . date("Fj Y | h:i:a", strtotime($row['created_at'])) . '</p>';
+  
+                                                            echo '</div>';
+                                                            echo '<div class="card-body">';
+                                                            echo '<div class="card-text">' . htmlspecialchars_decode($row['comments']) . '</div>'; 
+                                                            echo '</div>';
+                                                            echo '</div>';
+                                                        }
+                                                    } else {
+                                                        echo '<p class="text-secondary-emphasis">No comments found for this post.</p>';
+                                                    }
+
+                                                $result->close();
+                                                $stmt->close();
+                                                } 
+                                            ?>
+                                            <!--end of card content-->
                                         </div>
                                     </div>
-                                    <?php endwhile;?>
                                     <!--End of comment here-->
                                 </div>
                             </div>
@@ -157,7 +191,7 @@ if(isset($_GET['psId'])){
                         </div>
                         <!--End o google widgets-->
                         <!--Post content-->
-                        <div class="card h-auto w-100">
+                        <div class="card h-auto w-100" id="post">
                             <h5 class="card-header bg-transparent">Popular Post</h5>
                             <div class="card-body">
                                 <?php

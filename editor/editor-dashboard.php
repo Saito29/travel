@@ -48,7 +48,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                         <h3 class="fw-bold fs-4 mb-3">Dashboard</h3>
                         <ol class="breadcrumb p-0 m-0 ">
                             <li class="breadcrumb-item"><a href="#">Travel</a></li>
-                            <li class="breadcrumb-item"><a href="#"><?php echo htmlentities($_SESSION['role'])?></a></li>
+                            <li class="breadcrumb-item"><a href="#"><?php echo htmlspecialchars($_SESSION['role'])?></a></li>
                             <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
                         </ol>
                     </div>
@@ -68,23 +68,23 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                 </a>
                             </div>
                             <div class="col-12 col-md-4">
-                                <a href="<?php echo BASE_EDITOR.'/post/manage-post.php?SNID='?><?php echo htmlentities($_SESSION['id'])?>">
+                                <a href="<?php echo BASE_EDITOR.'/post/manage-post.php?SNID='?><?php echo htmlspecialchars($_SESSION['id'])?>">
                                 <div class="card cardh border-0">
                                     <div class="card-body py-4">                                    
                                         <h5 class="mb-2 fw-bold text-uppercase">Posts Listed</h5>
                                         <i class='bx bxs-layer icon'></i>
-                                        <p class="mb-2 fw-bold text-truncate"><?php echo htmlentities($totalPost)?></p>
+                                        <p class="mb-2 fw-bold text-truncate"><?php echo htmlspecialchars($totalPost)?></p>
                                     </div>
                                 </div>
                                 </a>                                
                             </div>
                             <div class="col-12 col-md-4">
-                                <a href="<?php echo BASE_EDITOR.'/post/trash-post.php?SNID='?><?php echo htmlentities($_SESSION['id'])?>">
+                                <a href="<?php echo BASE_EDITOR.'/post/trash-post.php?SNID='?><?php echo htmlspecialchars($_SESSION['id'])?>">
                                 <div class="card cardh border-0">
                                     <div class="card-body py-4">                                    
                                         <h5 class="mb-2 fw-bold text-uppercase">Trash Posts Listed</h5>
                                         <i class='bx bxs-layer icon'></i>
-                                        <p class="mb-2 fw-bold text-truncate"><?php echo htmlentities($totalPostTrash)?></p>
+                                        <p class="mb-2 fw-bold text-truncate"><?php echo htmlspecialchars($totalPostTrash)?></p>
                                     </div>
                                 </div>
                                 </a>                                
@@ -122,12 +122,14 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                                         $username = mysqli_real_escape_string($conn, $_SESSION['username']);
 
                                                         # Construct the prepared statement (recommended for security)
-                                                        $sql = "SELECT p.*, u.username, u.profileImage, c.categName, sc.name
+                                                        $sql = "SELECT p.*, u.username AS postedBy, 
+                                                                `c`.`categName` AS categoryName, `sc`.`name` AS subcategoryName
                                                                 FROM post AS p
-                                                                JOIN users AS u ON p.postedBy = u.id
-                                                                JOIN category AS c ON p.category = c.id
-                                                                JOIN subcategory AS sc ON p.subcategory = sc.id
+                                                                INNER JOIN users AS u ON p.postedBy = u.id
+                                                                INNER JOIN category AS c ON p.category = c.id
+                                                                LEFT JOIN subcategory AS sc ON p.subcategory = sc.id
                                                                 WHERE p.postedBy = ? AND p.status = 'published' AND p.is_Active = 1";
+
 
                                                         # Prepare the statement
                                                         $stmt = mysqli_prepare($conn, $sql);
@@ -149,18 +151,18 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                                             // Display the posts
                                                             while ($posts = $result->fetch_assoc()) {
                                                                 echo '<tr>';
-                                                                echo '<td>' . htmlentities($posts['id']) . '</td>'; // Assuming you want to display the post ID
-                                                                echo '<td>' . htmlentities($posts['username']) . '</td>';
-                                                                echo '<td class="text-break">' . htmlentities($posts['title']) . '</td>';
-                                                                echo '<td>' . htmlentities($posts['categName']) . '</td>';
-                                                                echo '<td>' . htmlentities($posts['subcategoryName']) . '</td>';
-                                                                echo '<td class="text-success">' . htmlentities($posts['status']) . '</td>';
+                                                                echo '<td>' . htmlspecialchars($posts['id']) . '</td>'; // Assuming you want to display the post ID
+                                                                echo '<td>' . htmlspecialchars($posts['postedBy']) . '</td>';
+                                                                echo '<td class="text-break">' . htmlspecialchars($posts['title']) . '</td>';
+                                                                echo '<td>' . htmlspecialchars($posts['categoryName']) . '</td>';
+                                                                echo '<td>' . htmlspecialchars($posts['subcategoryName']) . '</td>';
+                                                                echo '<td class="text-success">' . htmlspecialchars($posts['status']) . '</td>';
                                                                 echo '<td>' . date('F j, Y', strtotime($posts['created_at'])) . '</td>';
                                                                 echo '<td>' . date('F j, Y', strtotime($posts['updated_at'])) . '</td>';
                                                                 echo '<td class="text-break">';
-                                                                echo '<a href="' . BASE_EDITOR . '/post/edit-post.php?psID=' . htmlentities($posts['id']) . '" class="btn btn-outline-primary m-1"><i class=\'bx bx-edit\'></i></a>';
+                                                                echo '<a href="' . BASE_EDITOR . '/post/edit-post.php?psID=' . htmlspecialchars($posts['id']) . '" class="btn btn-outline-primary m-1"><i class=\'bx bx-edit\'></i></a>';
                                                                 echo '&nbsp;';
-                                                                echo '<a href="' . BASE_EDITOR . '/post/manage-post.php?delArcPS_ID=' . htmlentities($posts['id']) . '" class="btn btn-outline-danger m-1"><i class=\'bx bx-trash-alt\' ></i></a>';
+                                                                echo '<a href="' . BASE_EDITOR . '/post/manage-post.php?delArcPS_ID=' . htmlspecialchars($posts['id']) . '" class="btn btn-outline-danger m-1"><i class=\'bx bx-trash-alt\' ></i></a>';
                                                                 echo '</td>';
                                                                 echo '</tr>';
                                                             }
