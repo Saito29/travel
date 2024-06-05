@@ -14,7 +14,7 @@ $user = $result->fetch_assoc();
 
 if(empty($user)) {
     # Missing activation token
-    die("Token has not found");
+    array_push($errors, "Token has not found");
 }
 
 #If user click the activation link update the user information

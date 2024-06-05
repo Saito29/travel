@@ -213,7 +213,7 @@ function getPublishedPosts() {
             WHERE p.status='published' 
             AND p.is_Active = ?";
 
-    $stmt = executeQuery($sql, ['is_Active' => 1]); 
+    $stmt = executeQuery($sql, ['is_Active' => 1]);     
     $records = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
     return $records;
 }

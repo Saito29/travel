@@ -92,9 +92,9 @@ if (isset($_POST['addUser-btn']) && isset($_FILES['profileImage']))
     if(count($errors) === 0 && $imageError === 0)
     {
         #Validate the image size, if its greater than 10mb alert error message
-        if($imageSize > 10000000)
+        if($imageSize > 625000)
         {
-            $msg = "Sorry your Image file is to large, Please upload a new one at least 10mb.";
+            $msg = "Sorry your Image file is to large, Please upload a new one at least 5mb.";
             $css_class = "alert-danger";
             $icon = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(179, 18, 20, 1);transform: ;msFilter:;">
             <path d="M12.884 2.532c-.346-.654-1.422-.654-1.768 0l-9 17A.999.999 0 0 0 3 21h18a.998.998 0 0 0 .883-1.467L12.884 2.532zM13 18h-2v-2h2v2zm-2-4V9h2l.001 5H11z"></path></svg>'; 
@@ -288,9 +288,9 @@ if(isset($_POST['updateUser-btn'])){
     if(count($errors) === 0)
     {
         #Validate the image size, if its greater than 10mb alert error message
-        if($imageSize > 10000000)
+        if($imageSize > 625000)
         {
-            $msg = "Sorry your Image file is to large, Please upload a new one at least 10mb.";
+            $msg = "Sorry your Image file is to large, Please upload a new one at least 5mb.";
             $css_class = "alert-danger";
             $icon = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(179, 18, 20, 1);transform: ;msFilter:;">
             <path d="M12.884 2.532c-.346-.654-1.422-.654-1.768 0l-9 17A.999.999 0 0 0 3 21h18a.998.998 0 0 0 .883-1.467L12.884 2.532zM13 18h-2v-2h2v2zm-2-4V9h2l.001 5H11z"></path></svg>'; 

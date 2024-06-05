@@ -44,8 +44,8 @@ if(isset($_SESSION['id'])){
                         <?php include(ROOT_PATH."/app/helpers/formAlert.php");?>
                         <!--End of Alert-->
                         <div class="col-xxl-8 col-md-8">
-                            <label for="email" class="signin form-label">Email<span class="colon">*</span></label>
-                            <input type="email" class="input-signin" id="email" name="email" value="<?php echo htmlspecialchars($email)?>" placeholder="Email address" autocomplete="on"><br>
+                            <label for="email" class="signin form-label">Email or Username<span class="colon">*</span></label>
+                            <input type="text" class="input-signin" id="email" name="email" value="<?php echo htmlspecialchars($email)?>" placeholder="Email or Username" autocomplete="on"><br>
                         </div>
                         <div class="col-xxl-8 col-md-8">
                             <label for="password" class="signin form-label">Password <span class="colon">*</span></label>

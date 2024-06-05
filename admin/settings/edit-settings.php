@@ -45,7 +45,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                         <h3 class="fw-bold fs-4 mb-3">Update Link</h3>
                         <ol class="breadcrumb p-0 m-0 ">
                             <li class="breadcrumb-item"><a href="#">Travel</a></li>
-                            <li class="breadcrumb-item"><a href="#"><?php echo htmlentities($_SESSION['role'])?></a></li>
+                            <li class="breadcrumb-item"><a href="#"><?php echo htmlspecialchars($_SESSION['role'])?></a></li>
                             <li class="breadcrumb-item active" aria-current="page">Update Settings</li>
                         </ol>
                     </div>
@@ -61,21 +61,21 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                         <?php include(ROOT_PATH.'/app/helpers/formAlert.php');?>
                                         <?php include(ROOT_PATH.'/app/helpers/updateAlert.php');?>
                                         <form action="edit-settings.php" class="row gx-2 gy-3" name="editSystem" method="post" enctype="multipart/form-data">
-                                            <input type="hidden" name="id" value="<?php echo htmlentities($id)?>">
+                                            <input type="hidden" name="id" value="<?php echo htmlspecialchars($id)?>">
                                             <div class="mb-2 col-sm-3">                                                
                                                 <label for="favicon" class="form-label">Logo Favicon:</label>
-                                                <input type="file" class="d-none" name="favicon" onchange="displayImage(this)" id="featureLogoFavicon">
-                                                <?php if(!isset($_POST['favicoon'])):?>
-                                                <img src="<?php echo BASE_URL.'/app/upload/uploadSettingURL/uploadFavicon/'?><?php echo htmlentities($favicon)?>" onclick="triggerClick()" id="logoFavIcon" class="d-block rounded-circle" alt="logoFavIcon" style="cursor:pointer;" height="85" width="85">
+                                                <input type="file" class="d-none" name="favicon" onchange="displayImage(this)" id="featureLogoFavicon" value="<?php echo htmlspecialchars($favicon)?>">
+                                                <?php if(!isset($_POST['favicon'])):?>
+                                                <img src="<?php echo BASE_URL.'/app/upload/uploadSettingURL/uploadFavicon/'?><?php echo htmlspecialchars($favicon)?>" onclick="triggerClick()" id="logoFavIcon" class="d-block rounded-circle" alt="logoFavIcon" style="cursor:pointer;" height="85" width="85">
                                                 <?php else:?>
                                                 <img src="<?php echo BASE_ADMIN.'/asset/images/profile/placeholder.webp'?>" onclick="triggerClick()" id="logoFavIcon" class="d-block rounded-circle" alt="logoFavIcon" style="cursor:pointer;" height="85" width="85">
                                                 <?php endif;?>
                                             </div>
                                             <div class="mb-2 col-sm-3">
                                                 <label for="logo" class="form-label">Website Logo:</label>
-                                                <input type="file" class="d-none" name="logo" onchange="displaySystem(this)" id="featureSystemLogo">
+                                                <input type="file" class="d-none" name="logo" onchange="displaySystem(this)" id="featureSystemLogo" value="<?php echo htmlspecialchars($logo)?>">
                                                 <?php if(!isset($_POST['logo'])):?>
-                                                <img src="<?php echo BASE_URL.'/app/upload/uploadSettingURL/uploadLogo/'?><?php echo htmlentities($logo)?>" onclick="systemClick()" id="systemLogo" class="d-block rounded-circle" alt="logoFavIcon" style="cursor:pointer" height="85" width="85">
+                                                <img src="<?php echo BASE_URL.'/app/upload/uploadSettingURL/uploadLogo/'?><?php echo htmlspecialchars($logo)?>" onclick="systemClick()" id="systemLogo" class="d-block rounded-circle" alt="logoFavIcon" style="cursor:pointer" height="85" width="85">
                                                 <?php else:?>
                                                 <img src="<?php echo BASE_ADMIN.'/asset/images/profile/placeholder.webp'?>" onclick="systemClick()" id="systemLogo" class="d-block rounded-circle" alt="logoFavIcon" style="cursor:pointer" height="85" width="85">
                                                 <?php endif;?>

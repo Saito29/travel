@@ -29,7 +29,7 @@ include(ROOT_PATH."/app/controllers/auth/forgot-password.php");
             <div class="card-body card-body-fgp">
                 <div class="card-content-fgp">
                     <h3 class="card-title card-title-fgp">Forget password</h3>
-                    <p class="card-text card-text-fgp"><span class="text-warning">NOTE:</span> Enter your email adress, your password will be reset and link will be emailed to you.</p>
+                    <p class="card-text card-text-fgp"><span class="text-warning">NOTE:</span> Enter your email address, your password will be reset and link will be emailed to you.</p>
                 </div>
                 <br>
                 <?php include(ROOT_PATH.'/app/helpers/formAlert.php');?>
@@ -41,7 +41,7 @@ include(ROOT_PATH."/app/controllers/auth/forgot-password.php");
                             <input type="email" class="input-fgp" name="email" id="email" placeholder="Enter Email address" autocomplete="on"><br>
                         </div>
                         <div class="col-xxl-8 col-md-8">
-                            <button type="submit" id="submit-fgp" name="forget-btn"><i class='bx bx-envelope icon'></i>Forgot Password</button>
+                            <button type="submit" id="submit-fgp" name="forget-btn"><i class='bx bx-envelope icon'></i>Forget Password</button>
                         </div>
                     </form>
                 </div>
