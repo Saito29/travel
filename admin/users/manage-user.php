@@ -54,7 +54,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] == 'sub-admin'){
                         <h3 class="fw-bold fs-4 mb-3">Manage User</h3>
                         <ol class="breadcrumb p-0 m-0 ">
                             <li class="breadcrumb-item"><a href="#">Travel</a></li>
-                            <li class="breadcrumb-item"><a href="#"><?php echo htmlentities($_SESSION['role'])?></a></li>
+                            <li class="breadcrumb-item"><a href="#"><?php echo htmlspecialchars($_SESSION['role'])?></a></li>
                             <li class="breadcrumb-item active" aria-current="page">Manage User</li>
                         </ol>
                     </div>
@@ -105,21 +105,21 @@ if(isset($_SESSION['id']) && $_SESSION['role'] == 'sub-admin'){
                                                     <!--========= Table Data =====================-->
                                                     <?php foreach($user as $keys => $users): ?> 
                                                     <tr>
-                                                        <td><?php echo htmlentities($keys + 1)?></td>
+                                                        <td><?php echo htmlspecialchars($keys + 1)?></td>
                                                         <td class="tb-image">
-                                                            <img src="<?php echo BASE_URL.'/app/upload/uploadProfile/'?><?php echo htmlentities($users['profileImage'])?>" width="32" height="32" alt="User_profile" class="rounded-circle">
+                                                            <img src="<?php echo BASE_URL.'/app/upload/uploadProfile/'?><?php echo htmlspecialchars($users['profileImage'])?>" width="32" height="32" alt="User_profile" class="rounded-circle">
                                                         </td>
-                                                        <td><?php echo htmlentities($users['firstName'])?></td>
-                                                        <td><?php echo htmlentities($users['lastName'])?></td>
-                                                        <td><?php echo htmlentities($users['username'])?></td>
-                                                        <td><?php echo htmlentities($users['email'])?></td>
-                                                        <td><?php echo htmlentities($users['role'])?></td>
-                                                        <td class="text-truncate"><?php echo htmlentities($users['created_at'])?></td>
-                                                        <td class="text-truncate"><?php echo htmlentities($users['updated_at'])?></td>
+                                                        <td><?php echo htmlspecialchars($users['firstName'])?></td>
+                                                        <td><?php echo htmlspecialchars($users['lastName'])?></td>
+                                                        <td><?php echo htmlspecialchars($users['username'])?></td>
+                                                        <td><?php echo htmlspecialchars($users['email'])?></td>
+                                                        <td><?php echo htmlspecialchars($users['role'])?></td>
+                                                        <td class="text-truncate"><?php echo htmlspecialchars($users['created_at'])?></td>
+                                                        <td class="text-truncate"><?php echo htmlspecialchars($users['updated_at'])?></td>
                                                         <td>
-                                                            <a href="edit-user.php?id=<?php echo htmlentities($users['id'])?>" class="btn btn-outline-primary m-1"><i class='bx bx-edit'></i></a>
+                                                            <a href="edit-user.php?id=<?php echo htmlspecialchars($users['id'])?>" class="btn btn-outline-primary m-1"><i class='bx bx-edit'></i></a>
                                                             &nbsp;
-                                                            <a href="manage-user.php?del_id=<?php echo htmlentities($users['id'])?>" class="btn btn-outline-danger m-1"><i class='bx bx-trash-alt' ></i></a>
+                                                            <a href="manage-user.php?del_id=<?php echo htmlspecialchars($users['id'])?>" class="btn btn-outline-danger m-1"><i class='bx bx-trash-alt' ></i></a>
                                                         </td>
                                                     </tr>
                                                     <?php endforeach; ?>
@@ -141,6 +141,6 @@ if(isset($_SESSION['id']) && $_SESSION['role'] == 'sub-admin'){
         </div>
     </div>
     <!--Scripts-->
-    <?php include(ROOT_PATH.'/app/includes/Scripts.php');?>
+    <?php include(ROOT_PATH.'/app/includes/scscripts.php');?>
 </body>
 </html>

@@ -45,7 +45,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                         <h3 class="fw-bold fs-4 mb-3">Add Category</h3>
                         <ol class="breadcrumb p-0 m-0 ">
                             <li class="breadcrumb-item"><a href="#">Travel</a></li>
-                            <li class="breadcrumb-item"><a href="#"><?php echo $_SESSION['role']?></a></li>
+                            <li class="breadcrumb-item"><a href="#"><?php echo htmlspecialchars($_SESSION['role'])?></a></li>
                             <li class="breadcrumb-item active" aria-current="page">Add Category</li>
                         </ol>
                     </div>
@@ -69,15 +69,15 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                         <form action="add-category.php" class="row gx-2 gy-2" name="addUser" autocomplete="on" method="post" enctype="application/x-www-form-urlencoded">
                                             <div class="mb-1 col-md-6 form-group">
                                                 <label for="categName" class="form-label">Category:</label>
-                                                <input type="text" class="form-control p-2" name="categName" value="<?php echo $categName;?>" placeholder="Category Name">
+                                                <input type="text" class="form-control p-2" name="categName" value="<?php echo htmlspecialchars($categName);?>" placeholder="Category Name">
                                             </div>
                                             <div class="mb-1 col-md-6 form-group">
                                                 <label for="categDesc" class="form-label">Category Description:</label>
-                                                <textarea name="categDesc" class="form-control" rows="4"placeholder="Category Description"><?php echo $categDesc;?></textarea>
-                                            </div>
+                                                <textarea name="categDesc" class="form-control" rows="4"placeholder="Category Description"><?php echo htmlspecialchars($categDesc);?></textarea>
+                                            </div>c
                                             <div class="mb-3 col-md-4 form-group">
                                                 <label for="categCreated_at" class="form-label">Category Created:</label>
-                                                <input type="datetime-local" name="categCreated_at" class="form-control form-control-sm" value="<?php echo $categCreated_at?>">
+                                                <input type="datetime-local" name="categCreated_at" class="form-control form-control-sm" value="<?php echo htmlspecialchars($categCreated_at)?>">
                                             </div>
                                             <div class="mb-2 col-md-12 form-group">
                                                 <button type="submit" class="btn btn-outline-primary" name="addCateg-btn">Add Category</button>
@@ -97,6 +97,6 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
         </div>
     </div>
     <!--Script-->
-    <?php include(ROOT_PATH.'/app/includes/scripts.php');?>
+    <?php include(ROOT_PATH.'/app/includes/scscripts.php');?>
 </body>
 </html>

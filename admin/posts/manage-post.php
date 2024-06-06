@@ -128,7 +128,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                                                     echo "</tr>";
                                                                 }
                                                             } else {
-                                                                echo "No published posts found.";
+                                                                echo '<p class="found" style="font-size: 16px">No published posts found.</p>';
                                                             }
 
                                                             mysqli_stmt_close($stmt); // Close prepared statement
@@ -211,7 +211,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                                                 echo "</tr>";
                                                             }
                                                         } else {
-                                                            echo "No unpublished posts found.";
+                                                            echo '<p class="found" style="font-size: 16px">No unpublished posts found.</p>';
                                                         }
 
                                                         // Close the connection if necessary (optional)
@@ -235,6 +235,6 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
         </div>
     </div>
     <!--Scripts-->
-    <?php include(ROOT_PATH."/app/includes/scripts.php");?>
+    <?php include(ROOT_PATH."/app/includes/scscripts.php");?>
 </body>
 </html>

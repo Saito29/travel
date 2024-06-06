@@ -35,7 +35,7 @@
                         <?php if($_SESSION['role'] === 'admin' || $_SESSION['role'] === 'sub-admin'): ?>
                     <!--If user login as admin display dashboard and logout if not display login-->
                     <li class="nav__item">
-                        <a href="<?php echo BASE_ADMIN.'/dashboard.php?userID='?><?php echo $_SESSION['id']?>" class="nav__link">
+                        <a href="<?php echo BASE_ADMIN.'/dashboard.php?userID='?><?php echo htmlspecialchars($_SESSION['id'])?>" class="nav__link">
                             <i class='bx bxs-dashboard nav__icon'></i>
                             <span class="nav__name">Dashboard</span>
                         </a>
@@ -43,7 +43,7 @@
                         <?php elseif($_SESSION['role'] === 'editor'): ?>
                     <!--if user login as editor display dashboard and logout-->
                     <li class="nav__item">
-                        <a href="<?php echo BASE_EDITOR.'/editor-dashboard.php?userID='?><?php echo $_SESSION['id']?>" class="nav__link">
+                        <a href="<?php echo BASE_EDITOR.'/editor-dashboard.php?userID='?><?php echo htmlspecialchars($_SESSION['id'])?>" class="nav__link">
                             <i class='bx bxs-dashboard nav__icon'></i>
                             <span class="nav__name">Dashboard</span>
                         </a>
@@ -67,29 +67,31 @@
                 </ul>
             </div>
 
+            <?php if(isset($_SESSION['id'])):?>
             <div class="navbar-nav dropdown">
-            <a href="#" class="nav-icon pe-md-0" data-bs-toggle="dropdown" aria-expanded="false">
-                <?php if(isset($_SESSION['id'])):?>
-                <img src="<?php echo BASE_URL.'/app/upload/uploadProfile/'?><?php echo htmlentities($_SESSION['profileImage'])?>" alt="profile" style="width: 32px; height: 32px;" width="32px" height="32px" class="nav__img rounded-circle">
-                <?php else:?>
+                <a href="#" class="nav-icon pe-md-0" data-bs-toggle="dropdown" aria-expanded="false">                
+                    <img src="<?php echo BASE_URL.'/app/upload/uploadProfile/'?><?php echo htmlspecialchars($_SESSION['profileImage'])?>" alt="profile" style="width: 32px; height: 32px;" width="32px" height="32px" class="nav__img rounded-circle">                
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end rounded">
+                    <li>
+                        <a class="dropdown-item" href="<?php echo BASE_URL_LINKS.'/changepassword.php?SNID='?><?php echo htmlspecialchars($_SESSION['id'])?>">
+                            <i class='bx bxs-key' ></i> 
+                            <span>Change Password</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="<?php echo BASE_URL.'/logout.php'?>">
+                            <i class='bx bx-log-out'></i>
+                            <span>Log out</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <?php else:?>
+            <div class="navbar-nav">
                 <img src="<?php echo BASE_URL.'/asset/img/logo/travel.png'?>" alt="profile" width="32px" height="32px" class="nav__img rounded-circle">                    
-                <?php endif;?>
-            </a>
-            <ul class="dropdown-menu dropdown-menu-end rounded">
-                <li>
-                    <a class="dropdown-item" href="<?php echo BASE_URL_LINKS.'/changepassword.php'?>">
-                        <i class='bx bxs-key' ></i> 
-                        <span>Change Password</span>
-                    </a>
-                </li>
-                <li>
-                    <a class="dropdown-item" href="<?php echo BASE_URL.'/logout.php'?>">
-                        <i class='bx bx-log-out'></i>
-                        <span>Log out</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
+            </div>
+            <?php endif;?>
 
         </nav>
     </header>

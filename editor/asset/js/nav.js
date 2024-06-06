@@ -9,11 +9,12 @@ const icon = document.querySelector("#icon");
 icon.onclick = function(){
     document.body.classList.toggle("dark-theme");
     if(document.body.classList.contains("dark-theme")){
-        icon.src = "./asset/images/icon/sun-24.png";
+        icon.src = "../asset/images/icon/sun-24.png";
     }else{
-        icon.src = "./asset/images/icon/moon-solid.png";
+        icon.src = "../asset/images/icon/moon-solid.png";
     }
 }
+
 
 //Toggle Password
 const toggle = document.querySelector('.toggle-password');
@@ -94,6 +95,3 @@ function displaySystem(e){
         reader.readAsDataURL(e.files[0]);
     }
 };
-
-const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
-const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))

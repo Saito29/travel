@@ -205,7 +205,6 @@ if(isset($_POST['signin-btn']))
     if(count($errors) === 0){
         #check the user
         $user = selectOne($table, ['email' => $_POST['email']]);
-        $user = selectOne($table, ['username' => $_POST['email']]);
 
         #Validate the email address
         if($user > 0){

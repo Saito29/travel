@@ -51,7 +51,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                         <h3 class="fw-bold fs-4 mb-3">Dashboard</h3>
                         <ol class="breadcrumb p-0 m-0 ">
                             <li class="breadcrumb-item"><a href="#">Travel</a></li>
-                            <li class="breadcrumb-item"><a href="#"><?php echo htmlentities($_SESSION['role'])?></a></li>
+                            <li class="breadcrumb-item"><a href="#"><?php echo htmlspecialchars($_SESSION['role'])?></a></li>
                             <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
                         </ol>
                     </div>
@@ -66,7 +66,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                         <div class="card-body py-4">
                                             <h5 class="mb-2 fw-bold text-uppercase">Users</h5>
                                             <i class='bx bxs-user icon'></i>
-                                            <p class="mb-2 fw-bold"><?php echo htmlentities($users)?></p>
+                                            <p class="mb-2 fw-bold"><?php echo htmlspecialchars($users)?></p>
                                         </div>
                                     </div>
                                 </a>
@@ -77,7 +77,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                         <div class="card-body py-4">
                                             <h5 class="mb-2 fw-bold text-uppercase">Category listed</h5>
                                             <i class='bx bxs-layer icon'></i>
-                                            <p class="mb-2 fw-bold"><?php echo htmlentities($categories)?></p>
+                                            <p class="mb-2 fw-bold"><?php echo htmlspecialchars($categories)?></p>
                                         </div>
                                     </div>
                                 </a>
@@ -88,7 +88,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                         <div class="card-body py-4">
                                             <h5 class="mb-2 fw-bold text-uppercase">Sub Category listed</h5>
                                             <i class='bx bxs-layer icon'></i>
-                                            <p class="mb-2 fw-bold"><?php echo htmlentities($subcategories)?></p>
+                                            <p class="mb-2 fw-bold"><?php echo htmlspecialchars($subcategories)?></p>
                                         </div>
                                     </div>
                                 </a>
@@ -99,7 +99,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                         <div class="card-body py-4">                                    
                                             <h5 class="mb-2 fw-bold text-uppercase">Posts</h5>
                                             <i class='bx bxs-layer icon'></i>
-                                            <p class="mb-2 fw-bold text-truncate"><?php echo htmlentities($posted)?></p>
+                                            <p class="mb-2 fw-bold text-truncate"><?php echo htmlspecialchars($posted)?></p>
                                         </div>
                                     </div>
                                 </a>                                
@@ -111,7 +111,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                         <div class="card-body py-4">
                                             <h5 class="mb-2 fw-bold text-uppercase">Category listed</h5>
                                             <i class='bx bxs-layer icon'></i>
-                                            <p class="mb-2 fw-bold"><?php echo htmlentities($categories)?></p>
+                                            <p class="mb-2 fw-bold"><?php echo htmlspecialchars($categories)?></p>
                                         </div>
                                     </div>
                                 </a>
@@ -122,7 +122,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                         <div class="card-body py-4">
                                             <h5 class="mb-2 fw-bold text-uppercase">Sub Category listed</h5>
                                             <i class='bx bxs-layer icon'></i>
-                                            <p class="mb-2 fw-bold"><?php echo htmlentities($subcategories)?></p>
+                                            <p class="mb-2 fw-bold"><?php echo htmlspecialchars($subcategories)?></p>
                                         </div>
                                     </div>
                                 </a>
@@ -133,7 +133,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                         <div class="card-body py-4">                                    
                                             <h5 class="mb-2 fw-bold text-uppercase">Posts</h5>
                                             <i class='bx bxs-layer icon'></i>
-                                            <p class="mb-2 fw-bold text-truncate"><?php echo htmlentities($posted)?></p>
+                                            <p class="mb-2 fw-bold text-truncate"><?php echo htmlspecialchars($posted)?></p>
                                         </div>
                                     </div>
                                 </a>                                
@@ -189,18 +189,18 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                                             if (mysqli_num_rows($result) > 0) {
                                                                 while ($post = mysqli_fetch_assoc($result)) {
                                                                     echo "<tr>";
-                                                                    echo "<td>" . htmlentities($post['id']) . "</td>";
-                                                                    echo "<td>" . htmlentities($post['postedBy']) . "</td>";
-                                                                    echo "<td>" . htmlentities($post['title']) . "</td>";
-                                                                    echo "<td>" . htmlentities($post['categoryName']) . "</td>";
-                                                                    echo "<td>" . (isset($post['subcategoryName']) ? htmlentities($post['subcategoryName']) : 'N/A') . "</td>"; // Handle optional subcategory
-                                                                    echo "<td class='text-success'>" . htmlentities($post['status']) . "</td>";
+                                                                    echo "<td>" . htmlspecialchars($post['id']) . "</td>";
+                                                                    echo "<td>" . htmlspecialchars($post['postedBy']) . "</td>";
+                                                                    echo "<td>" . htmlspecialchars($post['title']) . "</td>";
+                                                                    echo "<td>" . htmlspecialchars($post['categoryName']) . "</td>";
+                                                                    echo "<td>" . (isset($post['subcategoryName']) ? htmlspecialchars($post['subcategoryName']) : 'N/A') . "</td>"; // Handle optional subcategory
+                                                                    echo "<td class='text-success'>" . htmlspecialchars($post['status']) . "</td>";
                                                                     echo "<td>" . date('Fj ,Y', strtotime($post['created_at'])) . "</td>";
                                                                     echo "<td>" . date('F j, Y', strtotime($post['updated_at'])) . "</td>";
                                                                     echo "<td>";
-                                                                    echo "<a href='" . BASE_ADMIN . "/posts/edit-post.php?psID=" . htmlentities($post['id']) . "' class='btn btn-outline-primary m-1'><i class='bx bx-edit'></i></a>";
+                                                                    echo "<a href='" . BASE_ADMIN . "/posts/edit-post.php?psID=" . htmlspecialchars($post['id']) . "' class='btn btn-outline-primary m-1'><i class='bx bx-edit'></i></a>";
                                                                     echo "&nbsp;";
-                                                                    echo "<a href='" . BASE_ADMIN . "/posts/manage-post.php?delArcPS_ID=" . htmlentities($post['id']) . "' class='btn btn-outline-danger m-1'><i class='bx bx-trash-alt' ></i></a>";
+                                                                    echo "<a href='" . BASE_ADMIN . "/posts/manage-post.php?delArcPS_ID=" . htmlspecialchars($post['id']) . "' class='btn btn-outline-danger m-1'><i class='bx bx-trash-alt' ></i></a>";
                                                                     echo "</td>";
                                                                     echo "</tr>";
                                                                 }
@@ -260,21 +260,21 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                                     <!--========= Table Data =====================-->
                                                     <?php foreach($selectUser as $keys => $user):?>
                                                     <tr>
-                                                        <td><?php echo htmlentities($keys + 1)?></td>
+                                                        <td><?php echo htmlspecialchars($keys + 1)?></td>
                                                         <td class="tb-image">
-                                                            <img src="<?php echo BASE_URL.'/app/upload/uploadProfile/'?><?php echo htmlentities($user['profileImage'])?>" width="32" height="32" alt="User_profile" class="rounded-circle border">
+                                                            <img src="<?php echo BASE_URL.'/app/upload/uploadProfile/'?><?php echo htmlspecialchars($user['profileImage'])?>" width="32" height="32" alt="User_profile" class="rounded-circle border">
                                                         </td>
-                                                        <td><?php echo htmlentities($user['firstName'])?></td>
-                                                        <td><?php echo htmlentities($user['lastName'])?></td>
-                                                        <td><?php echo htmlentities($user['username'])?></td>
-                                                        <td><?php echo htmlentities($user['email'])?></td>
+                                                        <td><?php echo htmlspecialchars($user['firstName'])?></td>
+                                                        <td><?php echo htmlspecialchars($user['lastName'])?></td>
+                                                        <td><?php echo htmlspecialchars($user['username'])?></td>
+                                                        <td><?php echo htmlspecialchars($user['email'])?></td>
                                                         <td><?php echo date('F j, Y - h:i a', strtotime($user['created_at']))?></td>
                                                         <td><?php echo date('F j, Y - h:i a', strtotime($user['updated_at']))?></td>
-                                                        <td><?php echo htmlentities($user['role'])?></td>
+                                                        <td><?php echo htmlspecialchars($user['role'])?></td>
                                                         <td>
-                                                            <a href="<?php echo BASE_ADMIN.'/users/edit-user.php'?>?id=<?php echo htmlentities($user['id'])?>" class="btn btn-outline-primary m-1"><i class='bx bx-edit'></i></a>
+                                                            <a href="<?php echo BASE_ADMIN.'/users/edit-user.php'?>?id=<?php echo htmlspecialchars($user['id'])?>" class="btn btn-outline-primary m-1"><i class='bx bx-edit'></i></a>
                                                             &nbsp;
-                                                            <a href="<?php echo BASE_ADMIN.'dashboard.php?del_id='?><?php echo htmlentities($user['id'])?>" class="btn btn-outline-danger m-1"><i class='bx bx-trash-alt' ></i></a>
+                                                            <a href="<?php echo BASE_ADMIN.'dashboard.php?del_id='?><?php echo htmlspecialchars($user['id'])?>" class="btn btn-outline-danger m-1"><i class='bx bx-trash-alt' ></i></a>
                                                         </td>
                                                     </tr>
                                                     <?php endforeach; ?>

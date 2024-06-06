@@ -64,18 +64,18 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                             <input type="hidden" name="id" value="<?php echo htmlentities($settings['id'])?>">
                                             <div class="mb-2 col-sm-3">                                                
                                                 <label for="favicon" class="form-label">Logo Favicon:</label>
-                                                <input type="file" class="d-none" name="favicon" onchange="displayImage(this)" id="featureLogoFavicon" disabled>
+                                                <input type="file" class="d-none" name="favicon" onchange="displayImage(this)" id="featureLogoFavicon" disabled value="<?php echo htmlspecialchars($settings['favicon'])?>">
                                                 <?php if(!isset($_POST['favicon'])):?>
-                                                <img src="<?php echo BASE_URL.'/app/upload/uploadSettingURL/uploadFavicon/'?><?php echo htmlentities($settings['favicon'])?>" onclick="triggerClick()" id="logoFavIcon" class="d-block rounded-circle" alt="logoFavIcon" style="cursor:pointer" height="85" width="85">
+                                                <img src="<?php echo BASE_URL.'/app/upload/uploadSettingURL/uploadFavicon/'?><?php echo htmlspecialchars($settings['favicon'])?>" onclick="triggerClick()" id="logoFavIcon" class="d-block rounded-circle" alt="logoFavIcon" style="cursor:pointer" height="85" width="85">
                                                 <?php else:?>
                                                 <img src="<?php echo BASE_ADMIN.'/asset/images/profile/placeholder.webp'?>" onclick="triggerClick()" id="logoFavIcon" class="d-block rounded-circle" alt="logoFavIcon" style="cursor:pointer" height="85" width="85">
                                                 <?php endif;?>
                                             </div>
                                             <div class="mb-2 col-sm-3">
                                                 <label for="logo" class="form-label">Website Logo:</label>
-                                                <input type="file" class="d-none" name="logo" onchange="displaySystem(this)" id="featureSystemLogo" disabled>
+                                                <input type="file" class="d-none" name="logo" onchange="displaySystem(this)" id="featureSystemLogo" disabled value="<?php echo htmlspecialchars($settings['logo'])?>">
                                                 <?php if(!isset($_POST['logo'])):?>
-                                                <img src="<?php echo BASE_URL.'/app/upload/uploadSettingURL/uploadLogo/'?><?php echo htmlentities($settings['logo'])?>" onclick="systemClick()" id="systemLogo" class="d-block rounded-circle" alt="logoFavIcon" style="cursor:pointer" height="85" width="85">
+                                                <img src="<?php echo BASE_URL.'/app/upload/uploadSettingURL/uploadLogo/'?><?php echo htmlspecialchars($settings['logo'])?>" onclick="systemClick()" id="systemLogo" class="d-block rounded-circle" alt="logoFavIcon" style="cursor:pointer" height="85" width="85">
                                                 <?php else:?>
                                                 <img src="<?php echo BASE_ADMIN.'/asset/images/profile/placeholder.webp'?>" onclick="systemClick()" id="systemLogo" class="d-block rounded-circle" alt="logoFavIcon" style="cursor:pointer" height="85" width="85">
                                                 <?php endif;?>
@@ -102,7 +102,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                                 <input type="url" class="form-control" name="youtube" placeholder="Youtube link" value="<?php echo urldecode($settings['youtube'])?>" disabled>
                                             </div>
                                             <div class="mb-2 col-sm-8">
-                                                <a href="<?php echo BASE_ADMIN.'/settings/edit-settings.php?st_Id='?><?php echo htmlentities($settings['id'])?>" class="text-success px-3 py-2">Edit Link</a>
+                                                <a href="<?php echo BASE_ADMIN.'/settings/edit-settings.php?st_Id='?><?php echo htmlspecialchars($settings['id'])?>" class="text-success px-3 py-2">Edit Link</a>
                                             </div>
                                             <?php endwhile;?>
                                         </form>
@@ -119,6 +119,6 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
         </div>
     </div>
 <!--scripts-->
-<?php include(ROOT_PATH."/app/includes/scripts.php");?>
+<?php include(ROOT_PATH."/app/includes/scscripts.php");?>
 </body>
 </html>

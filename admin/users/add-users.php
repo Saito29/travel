@@ -54,7 +54,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] == 'sub-admin'){
                         <h3 class="fw-bold fs-4 mb-3">Add User</h3>
                         <ol class="breadcrumb p-0 m-0 ">
                             <li class="breadcrumb-item"><a href="#">Travel</a></li>
-                            <li class="breadcrumb-item"><a href="#"><?php echo $_SESSION['role']?></a></li>
+                            <li class="breadcrumb-item"><a href="#"><?php echo htmlspecialchars($_SESSION['role'])?></a></li>
                             <li class="breadcrumb-item active" aria-current="page">Add User</li>
                         </ol>
                     </div>
@@ -76,23 +76,23 @@ if(isset($_SESSION['id']) && $_SESSION['role'] == 'sub-admin'){
                                         <form action="add-users.php" class="row gx-2 gy-2 form-group" autocomplete="on" name="addUser" method="post" enctype="multipart/form-data">
                                             <div class="mb-1 col-sm-6">
                                                 <label for="fname" class="form-label">First Name:</label>
-                                                <input type="text" class="form-control" name="firstName" id="fname" value="<?php echo $firstName;?>" placeholder="First Name" >
+                                                <input type="text" class="form-control" name="firstName" id="fname" value="<?php echo htmlspecialchars($firstName);?>" placeholder="First Name" >
                                             </div>
                                             <div class="mb-1 col-sm-6">
                                                 <label for="lname" class="form-label">Last Name:</label>
-                                                <input type="text" class="form-control" name="lastName" id="lname" value="<?php echo $lastName;?>" placeholder="Last Name" >
+                                                <input type="text" class="form-control" name="lastName" id="lname" value="<?php echo htmlspecialchars($lastName);?>" placeholder="Last Name" >
                                             </div>
                                             <div class="mb-1 col-sm-6">
                                                 <label for="username" class="form-label">Username:</label>
-                                                <input type="text" class="form-control" name="username" id="username" value="<?php echo $username;?>" placeholder="Username" >
+                                                <input type="text" class="form-control" name="username" id="username" value="<?php echo htmlspecialchars($username);?>" placeholder="Username" >
                                             </div>
                                             <div class="mb-1 col-sm-6">
                                                 <label for="role" class="form-label">Role type:</label>
                                                 <select name="role" class="form-select form-select-sm" id="role">
                                                     <?php if(!isset($_POST['role'])):?>
-                                                    <option value="<?php echo $role;?>" selected>Choose type of user</option>
+                                                    <option value="<?php echo htmlspecialchars($role);?>" selected>Choose type of user</option>
                                                     <?php else:?>
-                                                    <option value="<?php echo $role;?>" selected>User type: <?php echo $role;?></option>
+                                                    <option value="<?php echo htmlspecialchars($role);?>" selected>User type: <?php echo htmlspecialchars($role);?></option>
                                                     <?php endif;?>
                                                     <option value="admin">Admin User</option>
                                                     <option value="sub-admin">Sub-Admin User</option>
@@ -102,11 +102,11 @@ if(isset($_SESSION['id']) && $_SESSION['role'] == 'sub-admin'){
                                             </div>
                                             <div class="mb-1 col-sm-6">
                                                 <label for="email" class="form-label">Email:</label>
-                                                <input type="email" class="form-control" name="email" id="email" value="<?php echo $email;?>" placeholder="Email Address" >
+                                                <input type="email" class="form-control" name="email" id="email" value="<?php echo htmlspecialchars($email);?>" placeholder="Email Address" >
                                             </div>
                                             <div class="mb-1 col-sm-6">
                                                 <label for="password" class="form-label">Password:</label>
-                                                <input type="password" class="form-control" name="password" id="password" value="<?php echo $password;?>" placeholder="Password" >
+                                                <input type="password" class="form-control" name="password" id="password" value="<?php echo htmlspecialchars($password);?>" placeholder="Password" >
                                                 <label for="checkPassword" class="form-check-label">Show password</label>
                                                 <input type="checkbox" class="form-check-input bg-primary toggle-password" id="checkPassword">
                                                 <span class="form-text px-2 py-3">Password must be at least minimum of 8 characters,
@@ -115,12 +115,12 @@ if(isset($_SESSION['id']) && $_SESSION['role'] == 'sub-admin'){
                                             <div class="mb-1 col-sm-6">
                                                 <label for="profileImage" class="form-label">Profile Image:</label>
                                                 <img src="<?php echo BASE_ADMIN.'/asset/images/profile/placeholder.webp'?>" onclick="triggerProfileClick()" id="profileDisplay" class="rounded-circle d-block border" alt="profile-user" style="cursor:pointer" height="75" width="75">
-                                                <input type="file" class="d-none" name="profileImage" onchange="displayProfileImage(this)" id="profileImage" value="<?php echo $profileImage;?>">
+                                                <input type="file" class="d-none" name="profileImage" onchange="displayProfileImage(this)" id="profileImage" value="<?php echo htmlspecialchars($profileImage);?>">
                                                 <p class="form-text fs-6 py-3">Profile Image should at least 10mb</p>
                                             </div>
                                             <div class="mb-1 col-sm-4">
                                                 <label for="created_at" class="form-label">Date Created:</label>
-                                                <input type="datetime-local" class="form-control form-control-sm" id="created_at" name="created_at" value="<?php echo $created_at?>">
+                                                <input type="datetime-local" class="form-control form-control-sm" id="created_at" name="created_at" value="<?php echo htmlspecialchars($created_at)?>">
                                             </div>
                                             <div class="mb-2 col-sm-8">
                                                 <button type="submit" class="btn btn-outline-primary" name="addUser-btn">Add Users</button>
@@ -139,6 +139,6 @@ if(isset($_SESSION['id']) && $_SESSION['role'] == 'sub-admin'){
         </div>
     </div>
     <!--Scripts-->
-    <?php include(ROOT_PATH.'/app/includes/scripts.php');?>
+    <?php include(ROOT_PATH.'/app/includes/scscripts.php');?>
 </body>
 </html>

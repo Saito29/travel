@@ -44,7 +44,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                         <h3 class="fw-bold fs-4 mb-3">Add Sub-Category</h3>
                         <ol class="breadcrumb p-0 m-0 ">
                             <li class="breadcrumb-item"><a href="#">Travel</a></li>
-                            <li class="breadcrumb-item"><a href="#"><?php echo htmlentities($_SESSION['role'])?></a></li>
+                            <li class="breadcrumb-item"><a href="#"><?php echo htmlspecialchars($_SESSION['role'])?></a></li>
                             <li class="breadcrumb-item active" aria-current="page">Add Sub-Category</li>
                         </ol>
                     </div>
@@ -68,15 +68,15 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                          <form action="add-subcategory.php" class="row gx-2 gy-3" autocomplete="on" name="addUser" method="post" enctype="application/x-www-form-urlencoded">
                                             <div class="mb-1 col-md-6 form-group">
                                                 <label for="name" class="form-label">Sub-Category:</label>
-                                                <input type="text" class="form-control" name="name" value="<?php echo htmlentities($name)?>" placeholder="Sub-Category Name">
+                                                <input type="text" class="form-control" name="name" value="<?php echo htmlspecialchars($name)?>" placeholder="Sub-Category Name">
                                             </div>
                                             <div class="mb-1 col-md-6 form-group">
                                                 <label for="description" class="form-label">Sub-Category Description:</label>
-                                                <textarea name="description" class="form-control" rows="4" placeholder="Sub-Category Description"><?php echo htmlentities($description)?></textarea>
+                                                <textarea name="description" class="form-control" rows="4" placeholder="Sub-Category Description"><?php echo htmlspecialchars($description)?></textarea>
                                             </div>
                                             <div class="mb-1 col-md-4 form-group">
                                                 <label for="created_at" class="form-label">Sub-Category Created:</label>
-                                                <input type="datetime-local" name="created_at" class="form-control form-control-sm" value="<?php echo htmlentities($created_at)?>">
+                                                <input type="datetime-local" name="created_at" class="form-control form-control-sm" value="<?php echo htmlspecialchars($created_at)?>">
                                             </div>
                                             <div class="mb-2 col-md-12 form-group">
                                                 <button type="submit" class="btn btn-outline-primary" name="addSubCateg-btn">Add Sub-Category</button>
@@ -95,6 +95,6 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
         </div>
     </div>
     <!--scripts-->
-    <?php include(ROOT_PATH."/app/includes/scripts.php");?>
+    <?php include(ROOT_PATH."/app/includes/scscripts.php");?>
 </body>
 </html>

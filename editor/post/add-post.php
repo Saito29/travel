@@ -44,7 +44,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                         <h3 class="fw-bold fs-4 mb-3">Add Post</h3>
                         <ol class="breadcrumb p-0 m-0 ">
                             <li class="breadcrumb-item"><a href="#">Travel</a></li>
-                            <li class="breadcrumb-item"><a href="#"><?php echo htmlentities($_SESSION['role'])?></a></li>
+                            <li class="breadcrumb-item"><a href="#"><?php echo htmlspecialchars($_SESSION['role'])?></a></li>
                             <li class="breadcrumb-item active" aria-current="page">Add Post</li>
                         </ol>
                     </div>
@@ -64,10 +64,10 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                             </div>
                                          </div>
                                          <form action="add-post.php" class="row gx-2 gy-3" autocomplete="on" name="addPost" method="post" enctype="multipart/form-data">
-                                            <input type="hidden" name="postedBy" value="<?php echo htmlentities($_SESSION['id']);?>" readonly>
+                                            <input type="hidden" name="postedBy" value="<?php echo htmlspecialchars($_SESSION['id']);?>" readonly>
                                             <div class="mb-1 col-md-6 form-group">
                                                 <label for="title" class="form-label">Post Title:</label>
-                                                <input type="text" class="form-control" name="title" placeholder="Enter Title" value="<?php echo htmlentities($title)?>" required>
+                                                <input type="text" class="form-control" name="title" placeholder="Enter Title" value="<?php echo htmlspecialchars($title)?>" required>
                                                 <p class="text-danger fs-6 px-2">required</p>
                                             </div>
                                             <div class="mb-1 col-md-6 form-group">
@@ -81,7 +81,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                                         if ($query) { // Check if query execution was successful
                                                             while ($categories = mysqli_fetch_array($query)) {
                                                                 $selected = (isset($_POST['category']) && $_POST['category'] == $categories['id']) ? 'selected' : '';
-                                                                echo "<option value='" . htmlentities($categories['id']) . "' $selected>" . htmlentities($categories['categName']) . "</option>";
+                                                                echo "<option value='" . htmlspecialchars($categories['id']) . "' $selected>" . htmlspecialchars($categories['categName']) . "</option>";
                                                             }
                                                             mysqli_free_result($query); // Free the result set (optional)
                                                         } else {
@@ -89,7 +89,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                                         }
                                                     ?>
                                                     <?php if (isset($_POST['category'])): ?>
-                                                        <option value="<?php echo htmlentities($_POST['category']) ?>" selected>Selected Category: <?php echo htmlentities($_POST['category']) ?></option>
+                                                        <option value="<?php echo htmlspecialchars($_POST['category']) ?>" selected>Selected Category: <?php echo htmlspecialchars($_POST['category']) ?></option>
                                                     <?php endif; ?>
                                                 </select>
                                                 <p class="text-danger fs-6 px-2">required</p>
@@ -105,7 +105,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                                         if ($query) { // Check if query execution was successful
                                                             while ($subcategories = mysqli_fetch_array($query)) {
                                                                 $selected = (isset($_POST['subcategory']) && $_POST['subcategory'] == $subcategories['id']) ? 'selected' : '';
-                                                                    echo "<option value='" . htmlentities($subcategories['id']) . "' $selected>" . htmlentities($subcategories['name']) . "</option>";
+                                                                    echo "<option value='" . htmlspecialchars($subcategories['id']) . "' $selected>" . htmlspecialchars($subcategories['name']) . "</option>";
                                                             }
                                                             mysqli_free_result($query); // Free the result set (optional)
                                                         } else {
@@ -113,7 +113,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                                         }
                                                     ?>
                                                     <?php if (isset($_POST['subcategory'])): ?>
-                                                        <option value="<?php echo htmlentities($_POST['subcategory']) ?>" selected>Selected Sub-Category: <?php echo htmlentities($_POST['subcategory']) ?></option>
+                                                        <option value="<?php echo htmlspecialchars($_POST['subcategory']) ?>" selected>Selected Sub-Category: <?php echo htmlspecialchars($_POST['subcategory']) ?></option>
                                                     <?php endif; ?>
                                                 </select>
                                                 <p class="text-danger fs-6 px-2">required</p>
@@ -124,7 +124,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                                     <?php if(!isset($_POST['status'])):?>
                                                     <option value="" selected>Status:</option>
                                                     <?php else:?>
-                                                    <option value="<?php echo htmlentities($status);?>" selected>Status: <?php echo htmlentities($status);?></option>
+                                                    <option value="<?php echo htmlspecialchars($status);?>" selected>Status: <?php echo htmlspecialchars($status);?></option>
                                                     <?php endif;?>
                                                     <option value="published">Published</option>
                                                     <option value="unpublished">Unpublished</option>
@@ -133,22 +133,22 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                             </div>
                                             <div class="mb-1 col-sm-12">
                                                 <label for="description" class="mb-3 form-label">Post description:</label>
-                                                <textarea name="description" id="mytextarea" class="form-control mytextarea" ><?php echo htmlentities($description);?></textarea>
+                                                <textarea name="description" id="mytextarea" class="form-control mytextarea" ><?php echo htmlspecialchars($description);?></textarea>
                                                 <p class="text-danger fs-6 px-2">required</p>
                                             </div>
                                             <div class="mb-1 col-md-12 form-group">
                                                 <label for="googleWidget" class="form-label">Google Widgets:</label>
-                                                <textarea name="googleWidget" id="mytextarea" class="form-control mytextarea" ><?php echo htmlentities($googleWidget);?></textarea>
+                                                <textarea name="googleWidget" id="mytextarea" class="form-control mytextarea" ><?php echo htmlspecialchars($googleWidget);?></textarea>
                                                 <p class="text-danger fs-6 px-2">required</p>
                                             </div>
                                             <div class="mb-1 col-sm-6">
                                                 <label for="image" class="form-label">Feature Image:</label>
-                                                <input type="file" class="form-control" name="image" accept="image/*" value="<?php echo htmlentities($postImage);?>" required>
+                                                <input type="file" class="form-control" name="image" accept="image/*" value="<?php echo htmlspecialchars($postImage);?>" required>
                                                 <p class="text-danger fs-6 px-2">required</p>
                                             </div>
                                             <div class="mb-1 col-md-4 form-group">
                                                 <label for="categoryDescription" class="form-label">Post Created:</label>
-                                                <input type="date" class="form-control" name="created_at" value="<?php echo htmlentities($created_at);?>" required>
+                                                <input type="date" class="form-control" name="created_at" value="<?php echo htmlspecialchars($created_at);?>" required>
                                                 <p class="text-danger fs-6 px-2">required</p>
                                             </div>
                                             <div class="mb-1 col-md-6 form-group">
@@ -168,6 +168,6 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
         </div>
     </div>
     <!--Scripts-->
-    <?php include(ROOT_PATH."/app/includes/scripts.php");?>
+    <?php include(ROOT_PATH."/app/includes/scscripts.php");?>
 </body>
 </html>

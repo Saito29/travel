@@ -106,7 +106,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                                 <!--<button type="submit" class="btn btn-outline-primary px-3 py-2 text-center" name="createSettings">Post</button>-->
                                             </div>
                                         </form>
-                                        <a href="<?php echo BASE_ADMIN.'/settings/general-setting.php'?>" class="text-primary-emphasis px-3 py-2">Return</a>
+                                        <a href="<?php echo BASE_ADMIN.'/settings/general-setting.php'?>" class="text-primary px-3 py-2">Return</a>
                                     </div>
                                 </div>
                             </div>
@@ -119,6 +119,6 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
         </div>
     </div>
 <!--scripts-->
-<?php include(ROOT_PATH."/app/includes/scripts.php");?>
+<?php include(ROOT_PATH."/app/includes/scscripts.php");?>
 </body>
 </html>

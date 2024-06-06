@@ -126,6 +126,6 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
         </div>
     </div>
     <!--Scripts-->
-    <?php include(ROOT_PATH."/app/includes/scripts.php");?>
+    <?php include(ROOT_PATH."/app/includes/scscripts.php");?>
 </body>
 </html>

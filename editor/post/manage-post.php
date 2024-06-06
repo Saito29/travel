@@ -46,7 +46,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                         <h3 class="fw-bold fs-4 mb-3">Post Management</h3>
                         <ol class="breadcrumb p-0 m-0 ">
                             <li class="breadcrumb-item"><a href="#">Travel</a></li>
-                            <li class="breadcrumb-item"><a href="#"><?php echo htmlentities($_SESSION['role'])?></a></li>
+                            <li class="breadcrumb-item"><a href="#"><?php echo htmlspecialchars($_SESSION['role'])?></a></li>
                             <li class="breadcrumb-item active" aria-current="page">Post Management</li>
                         </ol>
                     </div>
@@ -117,7 +117,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                                         if (!$stmt->execute()) {
                                                         echo "Error fetching posts: " . mysqli_stmt_error($stmt);
                                                         } else if (mysqli_num_rows($result) == 0) {
-                                                        echo "No published posts found.";
+                                                        echo "<p class='found' style='font-size: 16px;'>No published posts found.</p>";
                                                         } else {
                                                             // Display the posts
                                                             while ($posts = $result->fetch_assoc()) {
@@ -205,23 +205,23 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                                         if (!$stmt->execute()) {
                                                         echo "Error fetching posts: " . mysqli_stmt_error($stmt);
                                                         } else if (mysqli_num_rows($result) == 0) {
-                                                        echo "No unpublished posts found.";
+                                                        echo "<p class='found' style='font-size: 16px;'>No unpublished posts found.</p>";
                                                         } else {
                                                             // Display the posts
                                                             while ($posts = $result->fetch_assoc()) {
                                                                 echo '<tr>';
-                                                                echo '<td>' . htmlentities($posts['id']) . '</td>'; 
-                                                                echo '<td>' . htmlentities($posts['username']) . '</td>';
-                                                                echo '<td class="text-break">' . htmlentities($posts['title']) . '</td>';
-                                                                echo '<td>' . htmlentities($posts['categName']) . '</td>';
-                                                                echo '<td>' . htmlentities($posts['subcategoryName']) . '</td>';
-                                                                echo '<td class="text-success">' . htmlentities($posts['status']) . '</td>';
+                                                                echo '<td>' . htmlspecialchars($posts['id']) . '</td>'; 
+                                                                echo '<td>' . htmlspecialchars($posts['username']) . '</td>';
+                                                                echo '<td class="text-break">' . htmlspecialchars($posts['title']) . '</td>';
+                                                                echo '<td>' . htmlspecialchars($posts['categName']) . '</td>';
+                                                                echo '<td>' . htmlspecialchars($posts['subcategoryName']) . '</td>';
+                                                                echo '<td class="text-success">' . htmlspecialchars($posts['status']) . '</td>';
                                                                 echo '<td>' . date('F j, Y', strtotime($posts['created_at'])) . '</td>';
                                                                 echo '<td>' . date('F j, Y', strtotime($posts['updated_at'])) . '</td>';
                                                                 echo '<td class="text-break">';
-                                                                echo '<a href="' . BASE_EDITOR . '/post/edit-post.php?psID=' . htmlentities($posts['id']) . '" class="btn btn-outline-primary m-1"><i class=\'bx bx-edit\'></i></a>';
+                                                                echo '<a href="' . BASE_EDITOR . '/post/edit-post.php?psID=' . htmlspecialchars($posts['id']) . '" class="btn btn-outline-primary m-1"><i class=\'bx bx-edit\'></i></a>';
                                                                 echo '&nbsp;';
-                                                                echo '<a href="' . BASE_EDITOR . '/post/manage-post.php?trashPost=' . htmlentities($posts['id']) . '" class="btn btn-outline-danger m-1"><i class=\'bx bx-trash-alt\' ></i></a>';
+                                                                echo '<a href="' . BASE_EDITOR . '/post/manage-post.php?trashPost=' . htmlspecialchars($posts['id']) . '" class="btn btn-outline-danger m-1"><i class=\'bx bx-trash-alt\' ></i></a>';
                                                                 echo '</td>';
                                                                 echo '</tr>';
                                                             }
@@ -248,6 +248,6 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
         </div>
     </div>
     <!--Scripts-->
-    <?php include(ROOT_PATH."/app/includes/scripts.php");?>
+    <?php include(ROOT_PATH."/app/includes/scscripts.php");?>
 </body>
 </html>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 04, 2024 at 09:01 AM
+-- Generation Time: Jun 06, 2024 at 02:56 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -189,7 +189,6 @@ CREATE TABLE `users` (
   `profileImage` varchar(255) DEFAULT NULL,
   `created_at` datetime DEFAULT current_timestamp(),
   `updated_at` datetime DEFAULT NULL ON UPDATE current_timestamp(),
-  `status` tinyint(4) NOT NULL,
   `account_activation_hash` varchar(64) DEFAULT NULL,
   `reset_token_hash` varchar(64) DEFAULT NULL,
   `reset_token_expires_at` datetime DEFAULT NULL
@@ -199,10 +198,10 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `role`, `firstName`, `lastName`, `username`, `email`, `password`, `profileImage`, `created_at`, `updated_at`, `status`, `account_activation_hash`, `reset_token_hash`, `reset_token_expires_at`) VALUES
-(1, 'admin', 'Admin', 'Admin', 'Admin', 'admin@gmail.com', '$2y$10$lMEzInpxPLBUS0Fzj3Ba2OOwx3LrMrroeTztugZSqkPn3mrUEc5m.', 'IMG-664d9a3b8309f-Admin.png', '2024-05-22 15:09:00', '2024-05-31 16:05:09', 0, NULL, NULL, NULL),
-(2, 'admin', 'Mark kinnedy', 'Anda', 'Saito29', 'markkinnedyanda@gmail.com', '$2y$10$zDm826wmos4sO383rHG1v.tcsTVB3SeuOpCIv73o6AY1h.V4OTFTW', 'IMG-664d9a70a7577-Saito29.jpg', '2024-05-22 15:10:00', '2024-06-02 15:45:15', 0, NULL, NULL, NULL),
-(3, 'editor', 'Mark kinnedy', 'Anda', 'Saito', 'saitohiragi29@gmail.com', '$2y$10$iklKjA3CTyJPfoFuq.dM4uAoXMu3O9T8YlnX0n/f.//T6GOBkrioK', 'IMG-6651abf648844-Saito.jpg', '2024-05-25 17:14:00', '2024-06-02 15:38:16', 0, NULL, NULL, NULL);
+INSERT INTO `users` (`id`, `role`, `firstName`, `lastName`, `username`, `email`, `password`, `profileImage`, `created_at`, `updated_at`, `account_activation_hash`, `reset_token_hash`, `reset_token_expires_at`) VALUES
+(1, 'admin', 'Admin', 'Admin', 'Admin', 'admin@gmail.com', '$2y$10$lMEzInpxPLBUS0Fzj3Ba2OOwx3LrMrroeTztugZSqkPn3mrUEc5m.', 'IMG-664d9a3b8309f-Admin.png', '2024-05-22 15:09:00', '2024-05-31 16:05:09', NULL, NULL, NULL),
+(2, 'admin', 'Mark kinnedy', 'Anda', 'Saito29', 'markkinnedyanda@gmail.com', '$2y$10$zDm826wmos4sO383rHG1v.tcsTVB3SeuOpCIv73o6AY1h.V4OTFTW', 'IMG-664d9a70a7577-Saito29.jpg', '2024-05-22 15:10:00', '2024-06-02 15:45:15', NULL, NULL, NULL),
+(3, 'editor', 'Mark kinnedy', 'Anda', 'Saito', 'saitohiragi29@gmail.com', '$2y$10$iklKjA3CTyJPfoFuq.dM4uAoXMu3O9T8YlnX0n/f.//T6GOBkrioK', 'IMG-6651abf648844-Saito.jpg', '2024-05-25 17:14:00', '2024-06-02 15:38:16', NULL, NULL, NULL);
 
 --
 -- Indexes for dumped tables

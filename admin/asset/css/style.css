@@ -112,6 +112,12 @@ h1, h2, h3, h4, h5, h6{
     min-width: 260px;
 }
 
+.found{
+    font-weight: 400;
+    font-family: var(--font-secondary);
+    color: var(--text);
+}
+
 #toggle-btn{
     background: transparent !important;
     cursor: pointer;

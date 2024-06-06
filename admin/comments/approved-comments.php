@@ -111,7 +111,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                                     }
 
                                                     if (mysqli_num_rows($stmt) == 0) {
-                                                        echo "No approved comments found.";
+                                                        echo '<p class="found" style="font-size: 16px">No approved comments found.</p>';
                                                     }
 
                                                     mysqli_close($conn); // Assuming you have a connection close statement
@@ -134,6 +134,6 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
         </div>
     </div>
     <!--Scripts-->
-    <?php include(ROOT_PATH."/app/includes/scripts.php");?>
+    <?php include(ROOT_PATH."/app/includes/scscripts.php");?>
 </body>
 </html>

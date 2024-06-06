@@ -4,7 +4,7 @@
 <!--favicon logo--> 
 <?php $settingFavicon = mysqli_query($conn, "SELECT * FROM settings WHERE id = 1")?>
 <?php while($settings = mysqli_fetch_assoc($settingFavicon)):?>
-<link rel="shortcut icon" href="<?php echo BASE_URL.'/app/upload/uploadSettingURL/uploadFavicon/'?><?php echo htmlentities($settings['favicon'])?>" type="image/x-icon">
+<link rel="shortcut icon" href="<?php echo BASE_URL.'/app/upload/uploadSettingURL/uploadFavicon/'?><?php echo htmlspecialchars($settings['favicon'])?>" type="image/x-icon">
 <?php endwhile;?>
 
 <!--Google Fonts-->

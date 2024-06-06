@@ -92,7 +92,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                                         $loggedInUserId = $_SESSION['id'];
 
                                                         #Query posts
-                                                        $sql = "SELECT p.*, u,username AS postedBy, c.categName AS categoryName, sc.name AS subcategoryName
+                                                        $sql = "SELECT p.*, u.username AS postedBy, c.categName AS categoryName, sc.name AS subcategoryName
                                                         FROM post p
                                                         INNER JOIN category c ON p.category = c.id
                                                         INNER JOIN subcategory sc ON p.subcategory = sc.id
@@ -125,6 +125,8 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                                                 echo "</td>";
                                                                 echo "</tr>";
                                                             }
+                                                        }else{
+                                                            echo "<p class='found' style='font-size: 16px'>No trash post found</p>";
                                                         }
                                                         // Close connection
                                                         mysqli_close($conn);
@@ -146,6 +148,6 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
         </div>
     </div>
     <!--Scripts-->
-    <?php include(ROOT_PATH."/app/includes/scripts.php");?>
+    <?php include(ROOT_PATH."/app/includes/scscripts.php");?>
 </body>
 </html>

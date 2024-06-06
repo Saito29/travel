@@ -136,7 +136,7 @@ if (isset($_POST['addUser-btn']) && isset($_FILES['profileImage']))
                 if($users)
                 {
                     #Email verfication sender
-                    $mail = require(ROOT_PATH.'/app/controllers/auth/mailer.php');
+                    $mail = require(BASE_URL.'/app/controllers/auth/mailer.php');
                     #Set the mail object 
                     $mail->setFrom("noreply@example.com");
                     $mail->addAddress($email);

@@ -57,12 +57,12 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                         <!--Row of dashboard content-->
                         <div class="row">
                             <div class="col-12 col-md-4">
-                                <a href="<?php echo BASE_EDITOR.'/category/manage-subcategories.php?SNID='?><?php echo htmlentities($_SESSION['id'])?>">
+                                <a href="<?php echo BASE_EDITOR.'/category/manage-subcategories.php?SNID='?><?php echo htmlspecialchars($_SESSION['id'])?>">
                                 <div class="card cardh border-0">
                                     <div class="card-body py-4">
                                         <h5 class="mb-2 fw-bold text-uppercase">Sub Category listed</h5>
                                         <i class='bx bxs-layer icon'></i>
-                                        <p class="mb-2 fw-bold"><?php echo htmlentities($subcategories)?></p>
+                                        <p class="mb-2 fw-bold"><?php echo htmlspecialchars($subcategories)?></p>
                                     </div>
                                 </div>
                                 </a>
@@ -146,7 +146,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                                         if (!$stmt->execute()) {
                                                         echo "Error fetching posts: " . mysqli_stmt_error($stmt);
                                                         } else if (mysqli_num_rows($result) == 0) {
-                                                        echo "No published posts found.";
+                                                        echo "<p class='found' style='font-size: 16px;'>No published posts found.</p>";
                                                         } else {
                                                             // Display the posts
                                                             while ($posts = $result->fetch_assoc()) {

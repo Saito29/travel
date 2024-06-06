@@ -45,7 +45,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                         <h3 class="fw-bold fs-4 mb-3">Edit Category</h3>
                         <ol class="breadcrumb p-0 m-0 ">
                             <li class="breadcrumb-item"><a href="#">Travel</a></li>
-                            <li class="breadcrumb-item"><a href="#"><?php echo $_SESSION['role']?></a></li>
+                            <li class="breadcrumb-item"><a href="#"><?php echo htmlspecialchars($_SESSION['role'])?></a></li>
                             <li class="breadcrumb-item active" aria-current="page">Edit Category</li>
                         </ol>
                     </div>
@@ -67,18 +67,18 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                             </div>
                                          </div>
                                         <form action="edit-category.php" class="row gx-2 gy-3" name="addUser" method="post" enctype="application/x-www-form-urlencoded">
-                                            <input type="hidden" name="id" value="<?php echo $id?>">
+                                            <input type="hidden" name="id" value="<?php echo htmlspecialchars($id)?>">
                                             <div class="mb-1 col-md-6 form-group">
                                                 <label for="categName" class="form-label">Category:</label>
-                                                <input type="text" class="form-control p-2" name="categName" value="<?php echo $categName?>" placeholder="Category Name">
+                                                <input type="text" class="form-control p-2" name="categName" value="<?php echo htmlspecialchars($categName)?>" placeholder="Category Name">
                                             </div>
                                             <div class="mb-1 col-md-6 form-group">
                                                 <label for="categDesc" class="form-label">Category Description:</label>
-                                                <textarea name="categDesc" class="form-control" rows="4" placeholder="Category Description"><?php echo $categDesc?></textarea>
+                                                <textarea name="categDesc" class="form-control" rows="4" placeholder="Category Description"><?php echo htmlspecialchars($categDesc)?></textarea>
                                             </div>
                                             <div class="mb-1 col-md-4 form-group">
                                                 <label for="categUpt_at" class="form-label">Category Update DateTime:</label>
-                                                <input type="datetime-local" name="categUpt_at" class="form-control form-control-sm" value="<?php echo $categUpt_at?>">
+                                                <input type="datetime-local" name="categUpt_at" class="form-control form-control-sm" value="<?php echo htmlspecialchars($categUpt_at)?>">
                                             </div>
                                             <div class="mb-2 col-md-12 form-group">
                                                 <button type="submit" class="btn btn-outline-success" name="upt-btn">Update Category</button>
@@ -96,6 +96,6 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
         </div>
     </div>
     <!--script-->
-    <?php include(ROOT_PATH."/app/includes/scripts.php");?>
+    <?php include(ROOT_PATH."/app/includes/scscripts.php");?>
 </body>
 </html>
