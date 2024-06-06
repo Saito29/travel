@@ -45,7 +45,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                         <h3 class="fw-bold fs-4 mb-3">Edit About Us</h3>
                         <ol class="breadcrumb p-0 m-0 ">
                             <li class="breadcrumb-item"><a href="#">Travel</a></li>
-                            <li class="breadcrumb-item"><a href="#"><?php echo htmlentities($_SESSION['role'])?></a></li>
+                            <li class="breadcrumb-item"><a href="#"><?php echo htmlspecialchars($_SESSION['role'])?></a></li>
                             <li class="breadcrumb-item active" aria-current="page">Edit About us</li>
                         </ol>
                     </div>
@@ -65,11 +65,11 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                             </div>
                                          </div>
                                          <form action="edit-page.php" class="row gx-2 gy-3" name="updateAboutUs" method="post">
-                                            <input type="hidden" name="id" value="<?php echo htmlentities($id)?>">
+                                            <input type="hidden" name="id" value="<?php echo htmlspecialchars($id)?>">
                                             <div class="mb-1 col-md-6 form-group">
                                                 <label for="title" class="form-label">Page Title:</label>
                                                 <?php if(!isset($_POST['title'])):?>
-                                                <input type="text" class="form-control" name="title" placeholder="Page Title" value="<?php echo htmlentities($title)?>" required>
+                                                <input type="text" class="form-control" name="title" placeholder="Page Title" value="<?php echo htmlspecialchars($title)?>" required>
                                                 <?php else:?>
                                                 <input type="text" class="form-control" name="title" placeholder="Page Title" value="">
                                                 <?php endif;?>
@@ -77,7 +77,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                             <div class="mb-2 col-md-6 form-group">
                                                 <label for="created_at" class="form-label">Posted updated:</label>
                                                 <?php if(!isset($_POST['updated_at'])):?>
-                                                <input type="date" class="form-control" name="updated_at" value="<?php echo htmlentities($updated_at)?>" required>
+                                                <input type="date" class="form-control" name="updated_at" value="<?php echo htmlspecialchars($updated_at)?>" required>
                                                 <?php else:?>
                                                 <input type="date" class="form-control" name="updated_at" value="">
                                                 <?php endif;?>
@@ -85,7 +85,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                             <div class="mb-1 col-md-12 form-group">
                                                 <label for="pageTitle" class="form-label">About Page Details:</label>
                                                 <?php if(!isset($_POST['details'])):?>
-                                                <textarea name="details" id="mytextarea" class="form-control mytextarea"><?php echo htmlentities($details)?></textarea>
+                                                <textarea name="details" id="mytextarea" class="form-control mytextarea"><?php echo htmlspecialchars($details)?></textarea>
                                                 <?php else:?>
                                                 <textarea name="details" id="mytextarea" class="form-control mytextarea"></textarea>
                                                 <?php endif;?>
@@ -95,7 +95,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                             <div class="mb-1 col-md-6 form-group">                                                    
                                                 <label for="contact" class="form-label"><i class='bx bx-phone'></i>Contact No.:</label>
                                                 <?php if(!isset($_POST['contact'])):?>
-                                                <input type="text" name="contact" class="form-control" placeholder="Contact No." value="<?php echo htmlentities($contact)?>">
+                                                <input type="text" name="contact" class="form-control" placeholder="Contact No." value="<?php echo htmlspecialchars($contact)?>">
                                                 <?php else:?>
                                                 <input type="text" name="contact" class="form-control" placeholder="Contact No.">
                                                 <?php endif;?>
@@ -104,7 +104,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                             <div class="mb-1 col-md-6 form-group">
                                                 <label for="email" class="form-label"><i class='bx bxl-gmail'></i>Email Contact:</label>
                                                 <?php if(!isset($_POST['email'])):?>
-                                                <input type="email" name="email" class="form-control" placeholder="Email Contact" value="<?php echo htmlentities($email)?>">
+                                                <input type="email" name="email" class="form-control" placeholder="Email Contact" value="<?php echo htmlspecialchars($email)?>">
                                                 <?php else:?>
                                                 <input type="email" name="email" class="form-control" placeholder="Email Contact">
                                                 <?php endif;?>

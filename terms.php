@@ -41,9 +41,9 @@ require_once(ROOT_PATH.'/vendor/autoload.php');
             </div>
             <?php while($page = mysqli_fetch_assoc($page_query)):?>
             <div class="card mx-auto border-0">
-                <h4 class="card-header bg-transparent border-success-subtle"><?php echo htmlentities($page['title'])?></h4>
+                <h4 class="card-header bg-transparent border-success-subtle"><?php echo htmlspecialchars($page['title'])?></h4>
                 <div class="card-body">
-                    <div class="card-text" name="aboutUs-details" align="justify"><?php echo html_entity_decode($page['details'])?></div>
+                    <div class="card-text" name="aboutUs-details" align="justify"><?php echo htmlspecialchars_decode($page['details'])?></div>
                 </div>
             </div>
             <?php endwhile;?>

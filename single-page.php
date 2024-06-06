@@ -31,10 +31,10 @@ if ($result->num_rows > 0) {
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=7">
-    <meta name="description" content="<?php echo $post['title']?> | Travel">
-    <meta name="author" content="<?php echo $post['postedBy']?>">
+    <meta name="description" content="<?php echo htmlspecialchars($post['title'])?> | Travel">
+    <meta name="author" content="<?php echo htmlspecialchars($post['postedBy'])?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo $post['title']?> | Travel</title>
+    <title><?php echo htmlspecialchars($post['title'])?> | Travel</title>
     <?php include(ROOT_PATH.'/app/includes/sg-css.php');?>
 </head>
 <body>
@@ -61,7 +61,7 @@ if ($result->num_rows > 0) {
                                     <div class="card-img-top d-flex align-items-center justify-content-center mb-3">
                                         <img src="<?php echo BASE_URL.'/app/upload/uploadThumbnail/'?><?php echo htmlspecialchars($post['image'])?>" alt="Thumbnail_post" class=" w-75 h-100 object-fit-md-cover">
                                     </div>
-                                    <p class="card-text h-100 w-100"><?php echo html_entity_decode($post['description'])?></p>
+                                    <p class="card-text h-100 w-100"><?php echo htmlspecialchars_decode($post['description'])?></p>
                                 </div>                                
                             </div>
                         </div>
@@ -176,7 +176,7 @@ if ($result->num_rows > 0) {
                         <div class="card mb-3 w-auto">
                             <h5 class="card-header bg-transparent text-secondary">Google Widgets</h5>
                             <div class="card-body">
-                                <?php echo html_entity_decode($post['googleWidget'])?>
+                                <?php echo htmlspecialchars_decode($post['googleWidget'])?>
                             </div>
                         </div>
                         <!--End o google widgets-->
@@ -205,9 +205,9 @@ if ($result->num_rows > 0) {
                                         // Fetch all results as associative arrays
                                         while ($post = mysqli_fetch_assoc($result)) {
                                             echo '<div class="card mb-2 border-0">';
-                                            echo '  <img src="' . BASE_URL . '/app/upload/uploadThumbnail/' . htmlentities($post['image']) . '" class="card-img-top w-50" alt="Thumbnail_post" width="75" height="75">';
+                                            echo '  <img src="' . BASE_URL . '/app/upload/uploadThumbnail/' . htmlspecialchars($post['image']) . '" class="card-img-top w-50" alt="Thumbnail_post" width="75" height="75">';
                                             echo '  <div class="card-body">';
-                                            echo '    <a class="card-text" href="' . BASE_URL . '/single-page.php?psId=' . htmlentities($post['id']) . '"><p>' . htmlentities($post['title']) . '</p></a>';
+                                            echo '    <a class="card-text" href="' . BASE_URL . '/single-page.php?psId=' . htmlspecialchars($post['id']) . '"><p>' . htmlspecialchars($post['title']) . '</p></a>';
                                             echo '  </div>';
                                             echo '</div>';
                                         }
@@ -247,7 +247,7 @@ if ($result->num_rows > 0) {
                                         // Fetch all results as associative arrays
                                         while ($title = mysqli_fetch_assoc($result)) {
                                             echo '<li class="list-group-item">';
-                                            echo '  <a href="' . BASE_URL . '/single-page.php?psId=' . htmlentities($title['id']) . '" class="text-success px-2">' . htmlentities($title['title']) . '</a>';
+                                            echo '  <a href="' . BASE_URL . '/single-page.php?psId=' . htmlspecialchars($title['id']) . '" class="text-success px-2">' . htmlspecialchars($title['title']) . '</a>';
                                             echo '</li>';
                                         }
 

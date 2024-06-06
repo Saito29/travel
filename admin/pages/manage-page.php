@@ -46,7 +46,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                         <h3 class="fw-bold fs-4 mb-3">Manage Page</h3>
                         <ol class="breadcrumb p-0 m-0 ">
                             <li class="breadcrumb-item"><a href="#">Travel</a></li>
-                            <li class="breadcrumb-item"><a href="#"><?php echo htmlentities($_SESSION['role']);?></a></li>
+                            <li class="breadcrumb-item"><a href="#"><?php echo htmlspecialchars($_SESSION['role']);?></a></li>
                             <li class="breadcrumb-item active" aria-current="page">Manage Page</li>
                         </ol>
                     </div>
@@ -92,14 +92,14 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                                     <!--========= Table Data =====================-->
                                                     <?php foreach ($page as $keys => $pages):?>
                                                     <tr>
-                                                        <td><?Php echo htmlentities($keys + 1);?></td>
-                                                        <td><?php echo htmlentities($pages['title']);?></td>
-                                                        <td><?php echo htmlentities($pages['created_at']);?></td>
-                                                        <td><?php echo htmlentities($pages['updated_at']);?></td>
+                                                        <td><?Php echo htmlspecialchars($keys + 1);?></td>
+                                                        <td><?php echo htmlspecialchars($pages['title']);?></td>
+                                                        <td><?php echo htmlspecialchars($pages['created_at']);?></td>
+                                                        <td><?php echo htmlspecialchars($pages['updated_at']);?></td>
                                                         <td>
-                                                            <a href="<?php echo BASE_ADMIN.'/pages/edit-page.php?pg_Id='?><?php echo htmlentities($pages['id']);?>" class="btn btn-outline-primary m-1"><i class='bx bx-edit'></i></a>
+                                                            <a href="<?php echo BASE_ADMIN.'/pages/edit-page.php?pg_Id='?><?php echo htmlspecialchars($pages['id']);?>" class="btn btn-outline-primary m-1"><i class='bx bx-edit'></i></a>
                                                             &nbsp;
-                                                            <a href="<?php echo BASE_ADMIN.'/pages/manage-page.php?pgDel_id='?><?php echo htmlentities($pages['id'])?>" class="btn btn-outline-danger m-1"><i class='bx bx-trash-alt' ></i></a>
+                                                            <a href="<?php echo BASE_ADMIN.'/pages/manage-page.php?pgDel_id='?><?php echo htmlspecialchars($pages['id'])?>" class="btn btn-outline-danger m-1"><i class='bx bx-trash-alt' ></i></a>
                                                         </td>
                                                     </tr>
                                                         <?php endforeach; ?>

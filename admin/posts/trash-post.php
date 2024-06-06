@@ -45,7 +45,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                         <h3 class="fw-bold fs-4 mb-3">Trash Post</h3>
                         <ol class="breadcrumb p-0 m-0 ">
                             <li class="breadcrumb-item"><a href="#">Travel</a></li>
-                            <li class="breadcrumb-item"><a href="#"><?php echo htmlentities($_SESSION['role'])?></a></li>
+                            <li class="breadcrumb-item"><a href="#"><?php echo htmlspecialchars($_SESSION['role'])?></a></li>
                             <li class="breadcrumb-item active" aria-current="page">Trash Post</li>
                         </ol>
                     </div>
@@ -106,18 +106,18 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                                             if (mysqli_num_rows($result) > 0) {
                                                                 while ($post = mysqli_fetch_assoc($result)) {
                                                                     echo "<tr>";
-                                                                    echo "<td>" . htmlentities($post['id']) . "</td>";
-                                                                    echo "<td>" . htmlentities($post['postedBy']) . "</td>";
-                                                                    echo "<td>" . htmlentities($post['title']) . "</td>";
-                                                                    echo "<td>" . htmlentities($post['categoryName']) . "</td>";
-                                                                    echo "<td>" . (isset($post['subcategoryName']) ? htmlentities($post['subcategoryName']) : 'N/A') . "</td>"; // Handle optional subcategory
-                                                                    echo "<td class='text-success'>" . htmlentities($post['status']) . "</td>";
+                                                                    echo "<td>" . htmlspecialchars($post['id']) . "</td>";
+                                                                    echo "<td>" . htmlspecialchars($post['postedBy']) . "</td>";
+                                                                    echo "<td>" . htmlspecialchars($post['title']) . "</td>";
+                                                                    echo "<td>" . htmlspecialchars($post['categoryName']) . "</td>";
+                                                                    echo "<td>" . (isset($post['subcategoryName']) ? htmlspecialchars($post['subcategoryName']) : 'N/A') . "</td>"; // Handle optional subcategory
+                                                                    echo "<td class='text-success'>" . htmlspecialchars($post['status']) . "</td>";
                                                                     echo "<td>" . date('F j, Y', strtotime($post['created_at'])) . "</td>";
                                                                     echo "<td>" . date('F j, Y', strtotime($post['updated_at'])) . "</td>";
                                                                     echo "<td>";
-                                                                    echo '<a href="' . BASE_ADMIN . '/posts/trash-post.php?recPS_ID=' . htmlentities($post['id']) . '" class="btn btn-outline-success m-1" data-bs-toggle="tooltip" data-bs-title="recover post"><i class="bx bx-redo"></i></a>';
+                                                                    echo '<a href="' . BASE_ADMIN . '/posts/trash-post.php?recPS_ID=' . htmlspecialchars($post['id']) . '" class="btn btn-outline-success m-1" data-bs-toggle="tooltip" data-bs-title="recover post"><i class="bx bx-redo"></i></a>';
                                                                     echo "&nbsp;";
-                                                                    echo '<a href="' . BASE_ADMIN . '/posts/trash-post.php?delPS_ID=' . htmlentities($post['id']) . '" class="btn btn-outline-danger m-1" data-bs-toggle="tooltip" data-bs-title="permanent delete post"><i class="bx bx-trash-alt"></i></a>';
+                                                                    echo '<a href="' . BASE_ADMIN . '/posts/trash-post.php?delPS_ID=' . htmlspecialchars($post['id']) . '" class="btn btn-outline-danger m-1" data-bs-toggle="tooltip" data-bs-title="permanent delete post"><i class="bx bx-trash-alt"></i></a>';
                                                                     echo "</td>";
                                                                     echo "</tr>";
                                                                 }

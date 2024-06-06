@@ -45,7 +45,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                         <h3 class="fw-bold fs-4 mb-3">About Page</h3>
                         <ol class="breadcrumb p-0 m-0 ">
                             <li class="breadcrumb-item"><a href="#">Travel</a></li>
-                            <li class="breadcrumb-item"><a href="#"><?php echo htmlentities($_SESSION['role'])?></a></li>
+                            <li class="breadcrumb-item"><a href="#"><?php echo htmlspecialchars($_SESSION['role'])?></a></li>
                             <li class="breadcrumb-item active" aria-current="page">About page</li>
                         </ol>
                     </div>
@@ -70,7 +70,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                                 <?php if(!isset($_POST['title'])):?>
                                                 <input type="text" class="form-control" name="title" placeholder="Page Title" value="">
                                                 <?php else:?>
-                                                <input type="text" class="form-control" name="title" placeholder="Page Title" value="<?php echo htmlentities($title)?>">
+                                                <input type="text" class="form-control" name="title" placeholder="Page Title" value="<?php echo htmlspecialchars($title)?>">
                                                 <?php endif;?>
                                             </div>
                                             <div class="mb-2 col-md-6 form-group">
@@ -78,7 +78,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                                 <?php if(!isset($_POST['created_at'])):?>
                                                 <input type="date" class="form-control" name="created_at" value="">
                                                 <?php else:?>
-                                                <input type="date" class="form-control" name="created_at" value="<?php echo htmlentities($created_at)?>">
+                                                <input type="date" class="form-control" name="created_at" value="<?php echo htmlspecialchars($created_at)?>">
                                                 <?php endif;?>
                                             </div>
                                             <div class="mb-1 col-md-12 form-group">
@@ -86,7 +86,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                                 <?php if(!isset($_POST['details'])):?>
                                                 <textarea name="details" id="mytextarea" class="form-control mytextarea"></textarea>
                                                 <?php else:?>
-                                                <textarea name="details" id="mytextarea" class="form-control mytextarea"><?php echo htmlentities($details)?></textarea>
+                                                <textarea name="details" id="mytextarea" class="form-control mytextarea"><?php echo htmlspecialchars($details)?></textarea>
                                                 <?php endif;?>
                                             </div>
                                             <h4 class="mb-1 mt-2 card-title">Page Contact Info:</h4>
@@ -96,7 +96,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                                 <?php if(!isset($_POST['contact'])):?>
                                                 <input type="text" name="contact" class="form-control" placeholder="Contact No.">
                                                 <?php else:?>
-                                                <input type="text" name="contact" class="form-control" placeholder="Contact No." value="<?php echo htmlentities($contact)?>">
+                                                <input type="text" name="contact" class="form-control" placeholder="Contact No." value="<?php echo htmlspecialchars($contact)?>">
                                                 <?php endif;?>
                                                 <p class="text-warning-emphasis fs-6">(optional)</p>
                                             </div>
@@ -105,7 +105,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                                 <?php if(!isset($_POST['email'])):?>
                                                 <input type="email" name="email" class="form-control" placeholder="Email Contact">
                                                 <?php else:?>
-                                                <input type="email" name="email" class="form-control" placeholder="Email Contact" value="<?php echo htmlentities($email)?>">
+                                                <input type="email" name="email" class="form-control" placeholder="Email Contact" value="<?php echo htmlspecialchars($email)?>">
                                                 <?php endif;?>
                                                 <p class="text-warning-emphasis fs-6">(optional)</p>
                                             </div>

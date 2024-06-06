@@ -114,7 +114,7 @@ if(isset($_GET['ctId'])){
                                             <div class="card-body">
                                                 <h5 class="card-title mb-2"><a href="<?php echo BASE_URL . '/single-page.php?psId=' . htmlspecialchars($posts['id']); ?>"><?php echo htmlspecialchars($posts['title']); ?></a></h5>
                                                 <p class="card-text mb-2">
-                                                    <?php echo html_entity_decode(substr($posts['description'], 0 ,300).'...'); ?>
+                                                    <?php echo htmlspecialchars_decode(substr($posts['description'], 0 ,300).'...'); ?>
                                                 </p>
                                                 <div class="text-end mt-3">
                                                     <a href="<?php echo BASE_URL . '/single-page.php?psId=' . htmlspecialchars($posts['id']); ?>" class="btn read-more">Read more</a>

@@ -42,9 +42,9 @@ require_once(ROOT_PATH.'/vendor/autoload.php');
             <!--============ Page Wrapper =============-->
             <?php while($page = mysqli_fetch_array($page_query)):?>
             <div class="card border-0 mx-auto">
-                <h4 class="card-header bg-transparent border-success-subtle"><?php echo htmlentities($page['title'])?></h4>
+                <h4 class="card-header bg-transparent border-success-subtle"><?php echo htmlspecialchars($page['title'])?></h4>
                 <div class="card-body">
-                    <div class="card-text h-100 w-100" name="aboutUs-details" align="justify"><?php echo html_entity_decode($page['details'])?></div>
+                    <div class="card-text h-100 w-100" name="aboutUs-details" align="justify"><?php echo htmlspecialchars_decode($page['details'])?></div>
                 </div>
             </div>
             <?php endwhile;?>

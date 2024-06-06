@@ -16,4 +16,4 @@
 <script src="https://cdn.jsdelivr.net/npm/@tinymce/tinymce-webcomponent@1/dist/tinymce-webcomponent.min.js"></script>
 
 <!--============== Customized JS ======================-->
-<script src="<?php echo BASE_EDITOR.'/asset/js/script.js'?>"></script>
+<script src="<?php echo BASE_ADMIN.'/asset/js/script.js'?>"></script>

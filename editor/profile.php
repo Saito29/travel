@@ -86,7 +86,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                             <div class="mb-1 col-sm-6">
                                                 <label for="profileImage" class="form-label">Profile Image:</label>
                                                 <img src="<?php echo BASE_URL.'/app/upload/uploadProfile/'?><?php echo htmlspecialchars($_SESSION['profileImage'])?>" onclick="triggerProfileClick()" id="profileDisplay" class="rounded-circle d-block border" alt="profile-user" style="cursor:pointer; height: 75px; width: 75px;" height="75" width="75">
-                                                <input type="file" class="d-none" name="profileImage" onchange="displayProfileImage(this)" id="profileImage">
+                                                <input type="file" class="d-none" name="profileImage" onchange="displayProfileImage(this)" id="profileImage" value="<?php echo htmlspecialchars($_SESSION['profileImage'])?>">
                                             </div>
                                             <div class="mb-1 col-sm-4">
                                                 <label for="updated_at" class="form-label">Date Updated:</label>

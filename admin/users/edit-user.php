@@ -121,7 +121,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] == 'sub-admin'){
                                             </div>
                                             <div class="mb-1 col-sm-4">
                                                 <label for="updated_at" class="form-label">Date Updated:</label>
-                                                <input type="datetime-local" class="form-control form-control-sm" name="updated_at" id="updated_at" value="<?php echo htmlentities($updated_at)?>">
+                                                <input type="datetime-local" class="form-control form-control-sm" name="updated_at" id="updated_at" value="<?php echo htmlspecialchars($updated_at)?>">
                                             </div>
                                             <div class="mb-2 col-sm-8">
                                                 <button type="submit" class="btn btn-outline-success p-2 text-center" name="updateUser-btn">Update Users</button>
