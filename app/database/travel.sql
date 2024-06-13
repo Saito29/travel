@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 06, 2024 at 02:56 PM
+-- Generation Time: Jun 13, 2024 at 04:26 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -92,7 +92,7 @@ CREATE TABLE `pages` (
 INSERT INTO `pages` (`id`, `title`, `details`, `contact`, `email`, `created_at`, `updated_at`) VALUES
 (1, 'About Us', '<p>About us sample to edit</p>', '', '', '2024-05-21', '2024-05-21'),
 (2, 'Terms and Conditions', '<p>Terms and Conditions of website travel</p>', '', '', '2024-05-21', '0000-00-00'),
-(3, 'About Page', '<p>Travel is a capstone project that researchers propose a web-app system for educational blog with category for user interest. However it is still in a development to be reviewed by other end users and only had a limit of end user to be tester of the web-app project.</p>', '+639092308202', 'admin@gmail.com', '2024-05-21', '0000-00-00');
+(3, 'About Page', '<p>Travel is a capstone project that researchers propose a web-app system for educational blog with category for user interest. However it is still in a development to be reviewed by other end users and only had a limit of end user to be tester of the web-app project.</p>', '+639092308202', 'message.travel.com@gmail.com', '2024-05-21', '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -107,7 +107,7 @@ CREATE TABLE `post` (
   `category` int(11) DEFAULT NULL,
   `subcategory` int(11) DEFAULT NULL,
   `status` enum('published','unpublished') DEFAULT NULL,
-  `description` text DEFAULT NULL,
+  `description` longtext DEFAULT NULL,
   `googleWidget` text DEFAULT NULL,
   `image` varchar(255) DEFAULT NULL,
   `viewer` int(11) NOT NULL,
