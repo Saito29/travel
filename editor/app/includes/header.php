@@ -22,8 +22,8 @@
 <link rel="stylesheet" href="https://cdn.datatables.net/2.0.1/css/dataTables.bootstrap5.css">
 
 <!--Tinymce Text Editor This is for CDN need to be configured in Admin-->
-<script src="https://cdn.tiny.cloud/1/ibwzlzvtiue1cnl2kujwtewutyd1oegqob2svdnyv38tndmq/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
-<script src="<?php echo BASE_URL.'/vendor/tinymce/tinymce/tinymce.init.js'?>"></script>
+<script src="<?php echo BASE_URL.'/vendor/tinymce/tinymce.min.js'?>"></script>
+<script src="<?php echo BASE_URL.'/vendor/tinymce/tinymce.init.js'?>"></script>
 
 <!--Pannellum-->
 <script type="text/javascript" src="https://pannellum.org/js/bootstrap-native.min.js"></script>
