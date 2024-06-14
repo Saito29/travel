@@ -92,7 +92,7 @@ if ($result->num_rows > 0) {
                                             </div>
                                             <div class="col-md-12 form-group">
                                                 <p class="text-secondary-emphasis">Comment: </p>
-                                                <textarea name="comment" class="form-control editor-comment"></textarea>                                                    
+                                                <textarea name="comment" class="form-control mytextarea"></textarea>                                                    
                                                 <p class="text-warning-emphasis">Required</p>
                                             </div>
                                             <div class="mb-2 col-md-12 form-group">
@@ -108,7 +108,7 @@ if ($result->num_rows > 0) {
                                             <input type="hidden" name="email" value="<?php echo htmlspecialchars($_SESSION['email'])?>">
                                             <div class="col-md-12 form-group">
                                                 <p class="text-secondary-emphasis">Comment: </p>
-                                                <textarea name="comment" class="form-control editor-comment"></textarea>                                                    
+                                                <textarea name="comment" class="form-control mytextarea"></textarea>                                                    
                                                 <p class="text-warning-emphasis">Required</p>
                                             </div>
                                             <div class="mb-2 col-md-12 form-group">

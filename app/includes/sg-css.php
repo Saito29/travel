@@ -24,18 +24,6 @@
     <!--Slick JQuery Min CSS exception
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
     -->
-
-    <!--Pagination JS-->
-    <link rel="stylesheet" href="<?php echo BASE_URL.'/asset/vendor/Pagination/pagination.css'?>">
-
-    <style type="text/css">
-        .ck-editor__editable[role="textbox"] {
-            /* Editing area */
-            min-height: 200px;
-        }
-        .ck-content .image {
-            /* Block images */
-            max-width: 80%;
-            margin: 20px auto;
-        }
-    </style>
+    <!--Tinymce Text Editor This is for CDN need to be configured in Admin-->
+    <script src="<?php echo BASE_URL.'/vendor/tinymce/tinymce.min.js'?>"></script>
+    <script src="<?php echo BASE_URL.'/vendor/tinymce/tinymce.comment.js'?>"></script>

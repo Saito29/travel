@@ -12,8 +12,3 @@
 
 <!--============== Customized JS ======================-->
 <script src="<?php echo BASE_URL.'/asset/js/scripts.js'?>"></script>
-
-<!--tinymce-->
-<script src="<?php echo BASE_URL.'/vendor/tinymce/tinymce/tinymce.min.js'?>"></script>
-<script src="<?php echo BASE_URL.'/vendor/tinymce/tinymce/tinymce.js'?>"></script>
-<script src="<?php echo BASE_URL.'/asset/js/tinymce.editor.js'?>"></script>
