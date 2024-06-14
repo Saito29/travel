@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9dd9f9aaece856dd56fc4af6c8496c86",
+    "content-hash": "15c9a08696199a88c47f625da68640d4",
     "packages": [
         {
             "name": "phpmailer/phpmailer",
@@ -89,16 +89,16 @@
         },
         {
             "name": "tinymce/tinymce",
-            "version": "7.0.0",
+            "version": "7.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tinymce/tinymce-dist.git",
-                "reference": "c011b5164178ac5224e658bf2aed713479fc78ae"
+                "reference": "c587e0ce032898f6528ffc8374f1ebe3011b9158"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tinymce/tinymce-dist/zipball/c011b5164178ac5224e658bf2aed713479fc78ae",
-                "reference": "c011b5164178ac5224e658bf2aed713479fc78ae",
+                "url": "https://api.github.com/repos/tinymce/tinymce-dist/zipball/c587e0ce032898f6528ffc8374f1ebe3011b9158",
+                "reference": "c587e0ce032898f6528ffc8374f1ebe3011b9158",
                 "shasum": ""
             },
             "type": "component",
@@ -142,9 +142,9 @@
                 "wysiwyg"
             ],
             "support": {
-                "source": "https://github.com/tinymce/tinymce-dist/tree/7.0.0"
+                "source": "https://github.com/tinymce/tinymce-dist/tree/7.1.2"
             },
-            "time": "2024-03-20T05:46:56+00:00"
+            "time": "2024-06-05T05:16:22+00:00"
         }
     ],
     "packages-dev": [],

@@ -22,12 +22,8 @@
 <link rel="stylesheet" href="https://cdn.datatables.net/2.0.1/css/dataTables.bootstrap5.css">
 
 <!--Tinymce Text Editor This is for CDN need to be configured in Admin-->
-<script src="https://cdn.tiny.cloud/1/ibwzlzvtiue1cnl2kujwtewutyd1oegqob2svdnyv38tndmq/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
-<script src="<?php echo BASE_ADMIN.'/vendor/tinymce_7.0.0/tinymce/js/tinymce/tinymce.min.js" referrerpolicy="origin'?>"></script>
-<link rel="stylesheet" href="<?php echo BASE_ADMIN.'/vendor/tinymce_7.0.0/tinymce/js/tinymce/skins/ui/tinymce-5-dark/content.inline.min.css'?>">
-<link rel="stylesheet" href="<?php echo BASE_ADMIN.'/vendor/tinymce_7.0.0/tinymce/js/tinymce/skins/ui/tinymce-5-dark/content.inline.js'?>">
-<!--Tinymce initializer-->
-<script src="<?php echo BASE_ADMIN.'/vendor/tinymce_7.0.0/tinymce/js/tinymce/tinymceFullOpen-Source.js'?>"></script>
+<script src="<?php echo BASE_URL.'/vendor/tinymce/tinymce/tinymce.min.js'?>"></script>
+<script src="<?php echo BASE_URL.'/vendor/tinymce/tinymce/tinymce.init.js'?>"></script>
 
 <!--Pannellum-->
 <script type="text/javascript" src="https://pannellum.org/js/bootstrap-native.min.js"></script>
