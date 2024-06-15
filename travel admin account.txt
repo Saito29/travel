@@ -2,3 +2,4 @@ travel admin account
 username: Admin	
 email: admin@gmail.com	
 password: @admin0423
+lcnr qkxu qjca zdrx
