@@ -64,7 +64,7 @@ if(isset($_POST['forget-btn'])){
             if($conn->affected_rows){
                 $mail = require(ROOT_PATH.'/app/controllers/auth/mailer.php');
                 #Set the mail object 
-                $mail->setFrom("noreply@example.com");
+                $mail->setFrom("message.travel.com@gmail.com");
                 $mail->addAddress($email);
                 $mail->Subject = "Password Reset";
                 $mail->Body = "<b>Dear User.</b>
