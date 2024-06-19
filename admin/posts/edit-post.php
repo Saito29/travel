@@ -147,7 +147,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                                 <p class="text-danger fs-6 px-2">required</p>
                                             </div>
                                             <div class="mb-1 col-md-12 form-group">
-                                                <label for="googleWidget" class="form-label">Google Widgets:</label>
+                                                <label for="googleWidget" class="form-label">Embeded Google Widgets:</label>
                                                 <textarea name="googleWidget" id="mytextarea" class="form-control mytextarea"><?php echo htmlspecialchars($googleWidget);?></textarea>
                                                 <p class="text-danger fs-6 px-2">required</p>
                                             </div>

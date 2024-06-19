@@ -25,5 +25,5 @@
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
     -->
     <!--Tinymce Text Editor This is for CDN need to be configured in Admin-->
-    <script src="<?php echo BASE_URL.'/vendor/tinymce/tinymce.min.js'?>"></script>
-    <script src="<?php echo BASE_URL.'/vendor/tinymce/tinymce.comment.js'?>"></script>
+    <script src="<?php echo BASE_URL.'/vendor/tinymce/tinymce/tinymce.min.js'?>"></script>
+    <script src="<?php echo BASE_URL.'/asset/js/tinymce.editor.js'?>"></script>

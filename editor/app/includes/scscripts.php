@@ -11,9 +11,6 @@
 <script src="https://cdn.datatables.net/2.0.1/js/dataTables.bootstrap5.js"></script>
 <script src="<?php echo BASE_EDITOR.'/asset/js/dataTable.js'?>"></script>
 
-<!--Tinymce Editor in Webcomponents if using cloud form-->
-<script src="https://cdn.jsdelivr.net/npm/@tinymce/tinymce-webcomponent@1/dist/tinymce-webcomponent.min.js"></script>
-
 <!--Customed Script-->
 <script src="<?php echo BASE_EDITOR.'/asset/js/nav.js'?>"></script>
 

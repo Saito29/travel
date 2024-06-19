@@ -29,12 +29,13 @@ $mail->SMTPAuth = true;
 $mail->Host = 'your_host';
 $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
 $mail->Port = '587';
-$mail->Username = "your_email";
+$mail->Username = "your_username";
 $mail->Password = "your_password";
 
 $mail->setFrom($email, $name);
 $mail->addAddress("your_email", "your_username");
 
+$mail->isHTML(true);
 $mail->Subject = $subject;
 $mail->Body = $message;
 
