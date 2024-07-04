@@ -162,7 +162,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                                                 echo '<td class="text-break">';
                                                                 echo '<a href="' . BASE_EDITOR . '/post/edit-post.php?psID=' . htmlspecialchars($posts['id']) . '" class="btn btn-outline-primary m-1"><i class=\'bx bx-edit\'></i></a>';
                                                                 echo '&nbsp;';
-                                                                echo '<a href="' . BASE_EDITOR . '/post/manage-post.php?delArcPS_ID=' . htmlspecialchars($posts['id']) . '" class="btn btn-outline-danger m-1"><i class=\'bx bx-trash-alt\' ></i></a>';
+                                                                echo '<a href="' . BASE_EDITOR . '/editor-dashboard.php?delArcPS_ID=' . htmlspecialchars($posts['id']) . '" class="btn btn-outline-danger m-1"><i class=\'bx bx-trash-alt\' ></i></a>';
                                                                 echo '</td>';
                                                                 echo '</tr>';
                                                             }

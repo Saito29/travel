@@ -30,7 +30,7 @@ if(count($selectSubcategory) >= 0){
 $id = mysqli_real_escape_string($conn, $_SESSION['id']);
 
 #Construct the prepared statement (recommended for security)
-$post = "SELECT COUNT(*) AS total_posts FROM $tblpost WHERE postedBy = '$id'";
+$post = "SELECT COUNT(*) AS total_posts FROM $tblpost WHERE postedBy = '$id' AND is_Active = 1";
 
 #Execute the query 
 $result = mysqli_query($conn, $post);
