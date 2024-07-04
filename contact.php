@@ -26,14 +26,14 @@ $mail->isSMTP();
 $mail->SMTPAuth = true;
 
 #Configure 
-$mail->Host = 'your_host';
+$mail->Host = 'smtp.gmail.com';
 $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
 $mail->Port = '587';
-$mail->Username = "your_username";
-$mail->Password = "your_password";
+$mail->Username = "message.travel.com@gmail.com";
+$mail->Password = "lcnrqkxuqjcazdrx";
 
 $mail->setFrom($email, $name);
-$mail->addAddress("your_email", "your_username");
+$mail->addAddress("message.travel.com@gmail.com", "messageTravel.com");
 
 $mail->isHTML(true);
 $mail->Subject = $subject;

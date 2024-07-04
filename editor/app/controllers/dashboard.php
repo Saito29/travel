@@ -27,10 +27,10 @@ if(count($selectSubcategory) >= 0){
 }
 
 // Escape the session username to prevent SQL injection
-$username = mysqli_real_escape_string($conn, $_SESSION['username']);
+$id = mysqli_real_escape_string($conn, $_SESSION['id']);
 
 #Construct the prepared statement (recommended for security)
-$post = "SELECT COUNT(*) AS total_posts FROM $tblpost WHERE postedBy = '$username'";
+$post = "SELECT COUNT(*) AS total_posts FROM $tblpost WHERE postedBy = '$id'";
 
 #Execute the query 
 $result = mysqli_query($conn, $post);
@@ -47,22 +47,22 @@ mysqli_free_result($result);
 
 #This part is for counting numbers post in the trash
 #Escape the session username to prevent SQL injection
-$username = mysqli_real_escape_string($conn, $_SESSION['username']);
+$username = mysqli_real_escape_string($conn, $_SESSION['id']);
 
 #Construct the prepared statement (recommended for security)
 $posts = "SELECT COUNT(*) AS total_posts_trash FROM $tblpost WHERE postedBy = '$username' AND is_Active = 0";
 
 #Execute the query 
-$result = mysqli_query($conn, $posts);
+$results = mysqli_query($conn, $posts);
 
 #Fetch the count as an associative array
-$row = mysqli_fetch_assoc($result);
+$row = mysqli_fetch_assoc($results);
 
 #Extract the total posts count
 $totalPostTrash = $row['total_posts_trash'];
 
 #Close the result set (optional)
-mysqli_free_result($result);
+mysqli_free_result($results);
 
 #delete Post data made by users, transform it into archives data
 if(isset($_GET['delArcPS_ID'])){

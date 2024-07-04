@@ -119,7 +119,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                                 <!--========= Table Data =====================-->
                                                 <?php
                                                         // Escape the session username to prevent SQL injection
-                                                        $username = mysqli_real_escape_string($conn, $_SESSION['username']);
+                                                        $id = mysqli_real_escape_string($conn, $_SESSION['id']);
 
                                                         # Construct the prepared statement (recommended for security)
                                                         $sql = "SELECT p.*, u.username AS postedBy, 
@@ -135,7 +135,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                                         $stmt = mysqli_prepare($conn, $sql);
 
                                                         # Bind the parameters (improve security against SQL injection)
-                                                        mysqli_stmt_bind_param($stmt, "s", $username); // Assuming active status is 1
+                                                        mysqli_stmt_bind_param($stmt, "i", $id); // Assuming active status is 1
 
                                                         # Execute the statement
                                                         mysqli_stmt_execute($stmt);
