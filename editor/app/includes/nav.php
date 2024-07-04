@@ -10,7 +10,7 @@
                 <img src="<?php echo BASE_URL.'/app/upload/uploadProfile/'?><?php echo htmlspecialchars($_SESSION['profileImage'])?>" alt="profile" width="40" height="40" class="avatar rounded-circle">
             </a>
             <ul class="dropdown-menu dropdown-menu-end rounded">
-                <li><p class="dropdown-item text-center">Hi <?php echo htmlspecialchars($_SESSION['role'])?></p></li>
+                <li><p class="dropdown-item text-center">Hi <?php echo htmlspecialchars($_SESSION['username'])?></p></li>
                 <li><hr class="dropdown-divider"></li>
                 <li>
                     <a class="dropdown-item" href="<?php echo BASE_EDITOR.'/profile.php'?>">

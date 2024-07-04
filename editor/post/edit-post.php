@@ -150,7 +150,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] === 'user' || $_SESSION['role'] =
                                             </div>
                                             <div class="mb-1 col-sm-6">
                                                 <label for="image" class="form-label">Feature Image:</label>
-                                                <input type="file" class="form-control" name="image" accept="image/*" value="<?php echo htmlspecialchars($postImage);?>" required>
+                                                <input type="file" class="form-control" name="image" accept="image/*" value="<?php echo BASE_URL.'/app/upload/uploadThumbnail/'.$postImage?>"" required>
                                                 <p class="text-danger fs-6 px-2">required</p>
                                                 <img src="<?php echo BASE_URL.'/app/upload/uploadThumbnail/'.$postImage?>" alt="Thumbnail_Post" width="220" height="160">
                                             </div>
