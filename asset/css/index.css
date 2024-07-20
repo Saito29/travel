@@ -38,6 +38,12 @@ html, body{
     height: 100%;
 }
 
+.image-a{
+    width: 100%;
+    height: auto;
+    
+}
+
 /*======= Read More btn ============*/
 .btn{
     border: 1px solid #26A699 !important;

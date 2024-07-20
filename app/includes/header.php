@@ -1,7 +1,18 @@
     <!--=============== HEADER ===============-->
     <header class="header" id="header">
         <nav class="nav container">
-            <h3 class="logo-name"><a href="<?php echo BASE_URL.'/index.php'?>"><span style="color: #af8fb6">Tra</span>vel</a></h3>
+            <h4 class="logo-name">
+                <a href="<?php echo BASE_URL.'/index.php'?>">
+                    <?php 
+                        $settings_query = mysqli_query($conn, "SELECT * FROM settings WHERE id = 1");
+                    ?>
+                    <?php while($setting = mysqli_fetch_assoc($settings_query)):?>
+                        <img src="<?php echo BASE_URL.'/app/upload/uploadSettingURL/uploadLogo/'?><?php echo htmlentities($setting['logo'])?>" alt="Logo" width="32px" height="auto">
+                    <?php endwhile;?>
+                    <!--<img src="<?php echo BASE_URL.'/app/upload/uploadSettingURL/uploadLogo/Logo.webp'?>" style="width: 32px; height: auto;" alt="Logo">-->
+                    <span style="color: #af8fb6">Tra</span>vel Quezon Province
+                </a>
+            </h4>
             <!--=================== Navigation Panel ====================-->
             <div class="nav__menu" id="nav-menu">
                 <ul class="nav__list">
